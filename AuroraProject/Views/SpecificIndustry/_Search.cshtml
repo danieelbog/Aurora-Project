@@ -1,0 +1,31 @@
+﻿@model AuroraProject.ViewModels.GigsViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="container-fluid search-container">
+
+    @using (Html.BeginForm("Search", "Gig"))
+    {
+        <div class="container-fluid justify-content-around search-box">
+            <div>
+                <div class="close-search">
+                    <i class="fa fa-close close-search-icon"></i>
+                </div>
+            </div>
+
+            <div class="row justify-content-around type-and-press">
+                <div class="">TYPE AND PRESS “ENTER” TO SEARCH</div>
+            </div>
+            <div class="row justify-content-around type-here">
+                @Html.TextBoxFor(m => m.SearchTerm, new { @class = "search-input", placeholder = "Search By Influencer, Industry or Card Name" })
+            </div>
+            <div>
+                <div class="logo">
+                    <img class="OurLogo" src="~/Content/Images/Logo/aurora_logoFINAL-05.png" alt="AuroraLogo" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

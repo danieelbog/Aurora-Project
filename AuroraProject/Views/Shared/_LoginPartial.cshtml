@@ -1,22 +1,56 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+    <li class="dropdown nav-item">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+            <a class="nav-link hello-user dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="@Url.Action("Index", "Manage")">
+                @{Html.RenderAction("UserFullName", "Account");}
+            </a>
+            <ul class="dropdown-menu logged-dropdown">
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("Details", "Influencer")"><span><i class="fa fa-user i-logged-dropdown"></i></span>My Profile</a>
+                </li>
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("Messages", "Gig")"><span><i class="fa fa-envelope i-logged-dropdown"></i></span>Messages</a>
+                </li>
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("Mine", "Gig")"><span><i class="fa fa-gamepad i-logged-dropdown"></i></span>My Posted Gigs</a>
+                </li>
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("Favourites", "Gig")"><span><i class="fa fa-heart i-logged-dropdown"></i></span>Favourite Gigs</a>
+                </li>
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("MineInfluencers", "Influencer")"><span><i class="fa fa-users i-logged-dropdown"></i></span>Favourite Influencers</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("Index", "Wallet")"><span><i class="fa fa-google-wallet i-logged-dropdown"></i></span>My Wallet</a>
+                </li>
+                <li class="nav-item animated fadeIn">
+                    <a class="nav-link log-off" href="@Url.Action("Index", "Manage")"><span><i class="fa fa-gear i-logged-dropdown"></i></span>Settings</a>
+                </li>
+                <li class="nav-item animated fadeIn">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        <a class="nav-link log-off" href="javascript:document.getElementById('logoutForm').submit()">
+                            <span><i class="fa fa-power-off i-logged-dropdown"></i></span>
+                            Log off
+                        </a>
+                    }
+                </li>
+            </ul>
+        }
+    </li>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <li class="nav-item">
+        <a class="nav-link Sing-In" href="@Url.Action("Login", "Account")">Sign In</a>
+    </li>
+    <li class="nav-item li-Join">
+        <a class="nav-link Join" href="@Url.Action("Register", "Account")">Join</a>
+    </li>
 }

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AuroraProject.Models.SpecificIndustry>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-start nav-Industry">
+    <button class="navbar-toggler float-right toggler-industry" type="button" data-toggle="collapse" data-target="#navbarNav-Industry" aria-controls="navbarNav-Industry" aria-expanded="false" aria-label="Toggle navigation">
+        @*<span class="navbar-toggler-icon"></span>*@
+        <span><i class="fa fa-bars burger-icon-toggler"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav-Industry">
+        <ul class="nav navbar-nav ml-auto ul-Industry">
+            @foreach (var industry in Model.Select(ind => ind.Industry).Distinct())
+            {
+                <li class="nav-item li-industry position-relative">
+                    <button class="nav-link button-Industry" href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@industry.IndustryName</button>
+
+                    @foreach (var specificindustry in Model.Select(ind => ind.Industry).Distinct())
+                    {
+                        <div class="dropdown-menu  div-specificInd" aria-labelledby="dropdownMenuButton">
+                            @foreach (var item in Model.Where(spi => spi.IndustryID == industry.ID))
+                            {
+                                @Html.ActionLink(item.Name, "GigsPerIndustry", "SpecificIndustry", new { specificIndustryID = item.ID }, new { @class = "dropdown-item a-specificInd animated fadeIn" })
+                            }
+                        </div>
+                    }
+                </li>
+            }
+
+            <li class="nav-item li-industry position-relative">
+                <i class="fa fa-search search-icon-navbar"></i>
+            </li>
+        </ul>
+    </div>
+</nav>

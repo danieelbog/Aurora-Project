@@ -1,41 +1,77 @@
-﻿@model AuroraProject.Models.RegisterViewModel
-@{
+﻿@model AuroraProject.ViewModels.RegisterViewModel
+    @{
     ViewBag.Title = "Register";
-}
+    }
 
-<h2>@ViewBag.Title.</h2>
+<div class="container container-fluid-login">
+    <div class="row login-row">
+        <div class="col-lg-6 col-md-6 d-none d-md-block image-container image-container-login">
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+        <div class="col-lg-6 col-md-6 form-container form-container-login">
+            <div class="col-lg-8 col-md-12 col-sm-9 colxs col-12 form-box-login text-center">
+                <div class="logo mb-3">
+                    <img src="~/Content/Images/Logo/aurora_logo-03.png" width="150" alt="Logo-Image" class="mb-3" />
+                    <div class="heading mb-5">
+                        <h4>
+                            Create an Account
+                        </h4>
+                    </div>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "newUser" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @type = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", @type = "password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @type = "password" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.FirstName, new { placeholder = "Your First Name", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.LastName, new { placeholder = "Your Last Name", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="text-left mb-3">
+                            <button type="submit" class="btn" value="Register">Register</button>
+                        </div>
+                        <div class="text-center mb-2">
+                            <div class="mb-3" style="color: purple">
+                                Or Register in with
+                            </div>
+                            <a href="" class="btn btn-social btn-facebook">
+                                facebook
+                            </a>
+                            <a href="" class="btn btn-social btn-google">
+                                google
+                            </a>
+                            <a href="" class="btn btn-social btn-twitter">
+                                twitter
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

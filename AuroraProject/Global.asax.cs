@@ -16,7 +16,7 @@ namespace AuroraProject
         protected void Application_Start()
         {
             Mapper.Initialize(c => c.AddProfile<OrganizationProfile>());
-            //FOR API USSAGE
+            //FOR API USSAGEs
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
             AreaRegistration.RegisterAllAreas();

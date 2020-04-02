@@ -281,7 +281,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\GigFormViewModel.cs" />
-    <Compile Include="ViewModels\GigViewModel.cs" />
+    <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="ViewModels\InfluencerFormViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\UserDetailsViewModel.cs" />
@@ -477,13 +477,19 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\Account\_UserDetails.cshtml" />
+    <Content Include="Views\Gig\GigForm.cshtml" />
+    <Content Include="Views\Gig\Index.cshtml" />
+    <Content Include="Views\Gig\Mine.cshtml" />
+    <Content Include="Views\Influencer\InfluencerForm.cshtml" />
+    <Content Include="Views\Influencer\MineInfluencers.cshtml" />
+    <Content Include="Views\Influencer\MyProfile.cshtml" />
+    <Content Include="Views\SpecificIndustry\_Index.cshtml" />
+    <Content Include="Views\SpecificIndustry\_Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\EconomicClasses\" />
-    <Folder Include="Views\Gig\" />
-    <Folder Include="Views\Influencer\" />
-    <Folder Include="Views\SpecificIndustry\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

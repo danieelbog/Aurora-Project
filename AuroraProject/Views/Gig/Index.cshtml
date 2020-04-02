@@ -1,0 +1,249 @@
+﻿@model AuroraProject.ViewModels.GigsViewModel
+@{
+    ViewBag.Title = Model.Heading;
+}
+
+<div class="container-fluid card-container-fluid">
+
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
+
+    <div class="page-decoration container">
+        <h1 class="page-heading">@Model.Heading</h1>
+        <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
+
+
+
+        <div class="sorting-div">
+            <div class="dropdown">
+                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Influencer Options<b class="caret"></b></div>
+                <div class="dropdown-menu">
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Rating
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Name
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Most Followed
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Online
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Card Options<b class="caret"></b></div>
+                <div class="dropdown-menu">
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Most Endoresed
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Lowest Price
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Delivery Time<b class="caret"></b></div>
+                <div class="dropdown-menu">
+                    <div>
+                        <div class="checkbox">
+                            Express
+                            <label>
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Up to 3 Days
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Up to 5 Days
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Up to 7 Days
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="sorting-div">
+            <p class="services-count">Services Available: @Model.Gigs.Count()</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-around">
+        @foreach (var gig in Model.Gigs)
+        {
+            <!-- Inverse Card -->
+            <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
+                <div class="card-header d-flex flex-row">
+
+                    <div class="media-body">
+                        @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
+
+                        <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
+                            <img src="http://propeller.in/components/list/img/40x40.png" width="40" height="40">
+                        </a>
+                        <h3 class="card-title text-center">
+                            @gig.User.UserFullName
+                            @*<i class="fa fa-eye-slash js-disable-gig animated fadeInDown" data-gig-id="@gig.ID"></i>*@
+                        </h3>
+                        <p class="card-subtitle text-center">@gig.Influencer.AboutTheInfluencer</p>
+
+                    </div>
+                </div>
+                <div class="pmd-card-media">
+                    <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
+                </div>
+
+                @*<div class="btn-group align-self-stretch">
+                        <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Edit", "Edit", "Gig", new { gig.ID }, new { @class = "dropdown-item" })
+                            <a class="dropdown-item js-disable-gig" data-gig-id="@gig.ID" href="#">Disable</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Delete</a>
+                        </div>
+                    </div>*@
+
+                <div class="card-body">
+                    <h2 class="card-title">@gig.GigName</h2>
+                    <p class="card-text">@gig.Descreption</p>
+                </div>
+
+                <div class="card-body m-0 p-0">
+                    <div class="col-12 d-flex justify-content-between">
+                        <p class="card-subtitle mb-1 align-self-end">Delivery Time: @gig.BasicPackage.DeliveryTime</p>
+                        <p class="card-subtitle mb-1 align-self-end">Starting From: @gig.BasicPackage.Price $</p>
+                    </div>
+                </div>
+
+                <div class="card-footer align-content-around d-flex justify-content-around">
+                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
+                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
+                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-favourite-gig").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
+                    .done(function () {
+                        button
+                            .removeClass("fa-heart-o")
+                            .addClass("fa-heart")
+                    })
+                    .fail(function () {
+                        alert("WTF")
+                    });
+            });
+
+            $(".js-toggle-favourite-influencer").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
+                    .done(function () {
+                        button
+                            .removeClass("fa-heart-o")
+                            .addClass("fa-heart")
+                    })
+                    .fail(function () {
+                        alert("WTF")
+                    });
+            })
+
+            //$(function () {
+            //    var cursor;
+            //    $("#cmd").click(function () {
+            //        $("input").focus();
+            //        cursor = window.setInterval(function () {
+            //            if ($("#cursor").css("visibility") === "visible") {
+            //                $("#cursor").css({
+            //                    visibility: "hidden"
+            //                });
+            //            } else {
+            //                $("#cursor").css({
+            //                    visibility: "visible"
+            //                });
+            //            }
+            //        }, 500);
+            //    });
+
+            //    $("input").keyup(function () {
+            //        $("#cmd span").text($(this).val());
+            //    });
+
+            //    $("input").blur(function () {
+            //        clearInterval(cursor);
+            //        $("#cursor").css({
+            //            visibility: "visible"
+            //        });
+            //    });
+            //});
+
+            //$(document).ready(function () {
+            //    $("#cmd").trigger("click");
+            //});
+
+        });
+    </script>
+}
