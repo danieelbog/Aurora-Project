@@ -209,11 +209,17 @@
     <Compile Include="Migrations\202004020522210_PopulateSpecificIndustry.designer.cs">
       <DependentUpon>202004020522210_PopulateSpecificIndustry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.cs" />
+    <Compile Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.designer.cs">
+      <DependentUpon>202004020527544_BasicInfluencerAndMembershipTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
+    <Compile Include="Models\Influencer.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\SortingClasses\QuickSort.cs" />
     <Compile Include="Models\SortingClasses\Sorter.cs" />
     <Compile Include="Models\SortingClasses\BucketSort.cs" />
@@ -455,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004020522210_PopulateSpecificIndustry.resx">
       <DependentUpon>202004020522210_PopulateSpecificIndustry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.resx">
+      <DependentUpon>202004020527544_BasicInfluencerAndMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
