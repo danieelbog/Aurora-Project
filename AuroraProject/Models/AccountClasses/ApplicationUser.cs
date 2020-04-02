@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
@@ -29,8 +30,8 @@ namespace AuroraProject.Models
         ////NAVIGATION TO INFLUENCER  
         //public Influencer Influencer { get; set; }
 
-        ////RELATIONSHIP WITH FAVORITE GIGS
-        //public ICollection<FavouriteGig> Gigs { get; set; }
+        //RELATIONSHIP WITH FAVORITE GIGS
+        public ICollection<FavouriteGig> Gigs { get; set; }
 
         ////RELATION WITH FAVOURITE INFLUENCER
         //public ICollection<FavouriteInfluencer> Influencers { get; set; }
@@ -41,7 +42,7 @@ namespace AuroraProject.Models
 
         public ApplicationUser()
         {
-            //Gigs = new Collection<FavouriteGig>();
+            Gigs = new Collection<FavouriteGig>();
             //Influencers = new Collection<FavouriteInfluencer>();
         }
 

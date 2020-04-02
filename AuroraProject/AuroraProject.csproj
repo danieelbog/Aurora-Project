@@ -213,13 +213,22 @@
     <Compile Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.designer.cs">
       <DependentUpon>202004020527544_BasicInfluencerAndMembershipTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004020532453_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\202004020532453_PopulateMembershipTypes.designer.cs">
+      <DependentUpon>202004020532453_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004020539073_FavouriteGig.cs" />
+    <Compile Include="Migrations\202004020539073_FavouriteGig.designer.cs">
+      <DependentUpon>202004020539073_FavouriteGig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
-    <Compile Include="Models\Influencer.cs" />
-    <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\FavouriteGig.cs" />
+    <Compile Include="Models\InfluencerClasses\Influencer.cs" />
+    <Compile Include="Models\AccountClasses\MembershipType.cs" />
     <Compile Include="Models\SortingClasses\QuickSort.cs" />
     <Compile Include="Models\SortingClasses\Sorter.cs" />
     <Compile Include="Models\SortingClasses\BucketSort.cs" />
@@ -431,6 +440,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\API\" />
     <Folder Include="DTO\" />
+    <Folder Include="Models\FavouriteClasses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -464,6 +474,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.resx">
       <DependentUpon>202004020527544_BasicInfluencerAndMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020532453_PopulateMembershipTypes.resx">
+      <DependentUpon>202004020532453_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020539073_FavouriteGig.resx">
+      <DependentUpon>202004020539073_FavouriteGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
