@@ -40,9 +40,9 @@ namespace AuroraProject.Models
         public PremiumPackage PremiumPackage { get; set; }
 
         // SPECIFIC INDUSTRY RELATION
-        //[Required]
-        //public int SpecificIndustryID { get; set; }
-        //public SpecificIndustry SpecificIndustry { get; set; }
+        [Required]
+        public int SpecificIndustryID { get; set; }
+        public SpecificIndustry SpecificIndustry { get; set; }
 
         //RELATION WITH APPLICATION USER
         [Required]
