@@ -277,7 +277,7 @@
     <Compile Include="Models\SellingPackage\BasicPackage.cs" />
     <Compile Include="Models\GigClasses\Gig.cs" />
     <Compile Include="Models\IndustryClasses\SpecificIndustry.cs" />
-    <Compile Include="Models\Wallet.cs" />
+    <Compile Include="Models\EconomicClasses\Wallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\GigFormViewModel.cs" />
@@ -489,7 +489,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\EconomicClasses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

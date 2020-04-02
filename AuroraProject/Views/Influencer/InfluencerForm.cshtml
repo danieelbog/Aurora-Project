@@ -1,205 +1,102 @@
-﻿@model AuroraProject.ViewModels.GigsViewModel
+﻿@model AuroraProject.ViewModels.InfluencerFormViewModel
 @{
-    ViewBag.Title = Model.Heading;
+    ViewBag.Title = Model.PageName;
 }
 
-<div class="container-fluid card-container-fluid">
+<div class="container container-fluid-login">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.PageName</a></h6>
 
     <div class="page-decoration container">
-        <h1 class="page-heading">@Model.Heading</h1>
-        <p class="page-descreption">A fact about the user, based on his avtivity to make his day</p>
-
-        <div class="sorting-div">
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Influencer Options<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Rating
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Name
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Most Followed
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Online
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Card Options<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Most Endoresed
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Lowest Price
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Delivery Time<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            Express
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 3 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 5 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 7 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-        <div class="sorting-div">
-            <p class="services-count">Cards Available: @Model.Gigs.Count()</p>
-        </div>
+        <h1 class="page-heading">@Model.PageName</h1>
+        <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
     </div>
 
-    <div class="row justify-content-around">
-        @foreach (var gig in Model.Gigs)
-        {
-            <!-- Inverse Card -->
-            <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
-                <div class="card-header d-flex flex-row">
+    <div class="row login-row">
+        <div class="col-lg-6 col-md-6 d-none d-md-block image-container image-container-login">
 
-                    <div class="media-body">
-                        @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
-
-                        <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img src="http://propeller.in/components/list/img/40x40.png" width="40" height="40">
-                        </a>
-                        <h3 class="card-title text-center">
-                            @gig.User.UserFullName
-                            <i class="fa fa-eye-slash js-disable-gig animated fadeInDown" data-gig-id="@gig.ID"></i>
-                        </h3>
-                        <p class="card-subtitle text-center">@gig.Influencer.AboutTheInfluencer</p>
-
+        </div>
+        <div class="col-lg-6 col-md-6 form-container form-container-login">
+            <div class="col-lg-8 col-md-12 col-sm-9 colxs col-12 form-box-login text-center">
+                <div class="logo mb-3">
+                    <img src="~/Content/Images/Logo/aurora_logo-03.png" width="150" alt="Logo-Image" class="mb-3" />
+                    <div class="heading mb-5">
+                        <h4>
+                            @Model.PageName
+                        </h4>
                     </div>
-                </div>
-                <div class="pmd-card-media">
-                    <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
-                </div>
+                    @using (Html.BeginForm(Model.Action, "Influencer", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "newUser" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                @*<div class="btn-group align-self-stretch">
-                        <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("Edit", "Edit", "Gig", new { gig.ID }, new { @class = "dropdown-item" })
-                            <a class="dropdown-item js-disable-gig" data-gig-id="@gig.ID" href="#">Disable</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Delete</a>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            @Html.TextBoxFor(m => m.AboutTheInfluencer, new { placeholder = "Describe yourself", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.AboutTheInfluencer, "", new { @class = "error-register" })
                         </div>
-                    </div>*@
 
-                <div class="card-body">
-                    <h2 class="card-title">@gig.GigName</h2>
-                    <p class="card-text">@gig.Descreption</p>
-                </div>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            @Html.TextBoxFor(m => m.MainLanguage, new { placeholder = "What is your main used language", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.MainLanguage, "", new { @class = "error-register" })
+                        </div>
 
-                <div class="card-body m-0 p-0">
-                    <div class="col-12 d-flex justify-content-between">
-                        <p class="card-subtitle mb-1 align-self-end">Delivery Time: @gig.BasicPackage.DeliveryTime</p>
-                        <p class="card-subtitle mb-1 align-self-end">Starting From: @gig.BasicPackage.Price $</p>
-                    </div>
-                </div>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            @Html.TextBoxFor(m => m.MainPlatform, new { placeholder = "Where is your main Social Media Account", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.MainPlatform, "", new { @class = "error-register" })
+                        </div>
 
-                <div class="card-footer align-content-around d-flex justify-content-around">
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.Exposure, new { placeholder = "How many followers do you have", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.Exposure, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.MainTopic, new { placeholder = "Your main topic", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.MainTopic, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.AudienceAge, new { placeholder = "Your audience age", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.AudienceAge, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.AudienceMainCountry, new { placeholder = "Where is your main Audience From", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.AudienceMainCountry, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.AudienceMainState, new { placeholder = "What is your Audience main State", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.AudienceMainState, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.AudienceMainTrait, new { placeholder = "Describe your audience with one phrase", @type = "text" })
+                            @Html.ValidationMessageFor(m => m.AudienceMainTrait, "", new { @class = "error-register" })
+                        </div>
+
+                        <div class="form-input form-dropdown">
+                            <span><i class="fa fa-gear"></i></span>
+                            @Html.DropDownListFor(m => m.MembershipTypeID, new SelectList(Model.MembershipTypes, "ID", "Name"), "Membership Type", new { @class = "register-custom-dropdown" })
+                            @Html.ValidationMessageFor(m => m.MembershipTypeID, "", new { @class = "error-register" })
+                        </div>
+                        @Html.HiddenFor(i => i.ID)
+
+                        <div class="text-left mb-3">
+                            <button type="submit" class="btn" value="Register">@Model.ButtonName</button>
+                        </div>
+                    }
                 </div>
             </div>
-
-
-        }
+        </div>
     </div>
 </div>
-
-@section scripts {
-    <script>
-        $(document).ready(function () {
-            $(".js-disable-gig").click(function (e) {
-                link = $(e.target);
-
-                $.ajax({
-                    url: "/api/gigs/" + link.attr("data-gig-id"),
-                    method: "DELETE"
-                })
-                    .done(function () {
-                        link.removeClass("fa-eye-slash")
-                        link.addClass("fa-eye")
-                    })
-                    .fail(function () {
-                        alert("WTF");
-                    })
-            })
-
-        });
-    </script>
-}

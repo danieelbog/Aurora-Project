@@ -1,14 +1,13 @@
-﻿@model AuroraProject.ViewModels.GigsViewModel
+﻿@model IEnumerable<AuroraProject.Models.Influencer>
 @{
-    ViewBag.Title = Model.Heading;
+    ViewBag.Title = "Mine Favourite Influencers";
 }
-
 <div class="container-fluid card-container-fluid">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">Mine Favourite Influencers</a></h6>
 
     <div class="page-decoration container">
-        <h1 class="page-heading">@Model.Heading</h1>
+        <h1 class="page-heading">"Mine Favourite Influencers"</h1>
         <p class="page-descreption">A fact about the user, based on his avtivity to make his day</p>
 
         <div class="sorting-div">
@@ -111,95 +110,63 @@
             </div>
         </div>
 
-
-
-
-
-
-
         <div class="sorting-div">
-            <p class="services-count">Cards Available: @Model.Gigs.Count()</p>
+            @*<p class="services-count">Cards Available: @Model.Gigs.Count()</p>*@
         </div>
     </div>
 
     <div class="row justify-content-around">
-        @foreach (var gig in Model.Gigs)
-        {
-            <!-- Inverse Card -->
-            <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
-                <div class="card-header d-flex flex-row">
 
-                    <div class="media-body">
-                        @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
+        <!-- Inverse Card -->
+        <div class="favourite-influncer-card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
+            <div class="front">
+                <div class="influencer-card" href="#">
+                    <div class="top">
+                        <div class="container">
+                            <div class="name">
+                                <p class="influencer-p1">Gal Gadot</p>
+                                <p class="city">Audience Main Country</p>
+                            </div>
 
-                        <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img src="http://propeller.in/components/list/img/40x40.png" width="40" height="40">
-                        </a>
-                        <h3 class="card-title text-center">
-                            @gig.User.UserFullName
-                            <i class="fa fa-eye-slash js-disable-gig animated fadeInDown" data-gig-id="@gig.ID"></i>
-                        </h3>
-                        <p class="card-subtitle text-center">@gig.Influencer.AboutTheInfluencer</p>
 
-                    </div>
-                </div>
-                <div class="pmd-card-media">
-                    <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
-                </div>
+                            <div class="exposure">
 
-                @*<div class="btn-group align-self-stretch">
-                        <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("Edit", "Edit", "Gig", new { gig.ID }, new { @class = "dropdown-item" })
-                            <a class="dropdown-item js-disable-gig" data-gig-id="@gig.ID" href="#">Disable</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Delete</a>
+                                <div class="inlfunecer-likes">
+                                    <p class="influencer-p2">Exposure</p>
+                                </div>
+
+                                <div class="influnecer-maintopic">
+                                    <p class="influencer-p2">Main Topic</p>
+                                </div>
+
+                                <div class="influnecer-gigs">
+                                    <p class="influencer-p2">Gigs</p>
+                                </div>
+
+
+                            </div>
                         </div>
-                    </div>*@
-
-                <div class="card-body">
-                    <h2 class="card-title">@gig.GigName</h2>
-                    <p class="card-text">@gig.Descreption</p>
-                </div>
-
-                <div class="card-body m-0 p-0">
-                    <div class="col-12 d-flex justify-content-between">
-                        <p class="card-subtitle mb-1 align-self-end">Delivery Time: @gig.BasicPackage.DeliveryTime</p>
-                        <p class="card-subtitle mb-1 align-self-end">Starting From: @gig.BasicPackage.Price $</p>
                     </div>
-                </div>
+                    <div class="bottom">Follow</div>
 
-                <div class="card-footer align-content-around d-flex justify-content-around">
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+                    <div class="back">
+                        <div class="back-content middle">
+                            <span>Instagram</span> <br>
+                            <span>Youtube Channel</span> <br>
+                            <span>Facebook Channel</span> <br>
+                            <span>Linkedin</span> <br>
+                            <div class="lg">
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube"></i></a>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
-        }
+        </div>
     </div>
 </div>
 
-@section scripts {
-    <script>
-        $(document).ready(function () {
-            $(".js-disable-gig").click(function (e) {
-                link = $(e.target);
 
-                $.ajax({
-                    url: "/api/gigs/" + link.attr("data-gig-id"),
-                    method: "DELETE"
-                })
-                    .done(function () {
-                        link.removeClass("fa-eye-slash")
-                        link.addClass("fa-eye")
-                    })
-                    .fail(function () {
-                        alert("WTF");
-                    })
-            })
-
-        });
-    </script>
-}
