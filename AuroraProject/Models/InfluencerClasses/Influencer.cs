@@ -37,9 +37,7 @@ namespace AuroraProject.Models
         public string AboutTheInfluencer { get; set; }
 
         //RELATION WITH APPLICATION USER
-        //[Required]
-        //public string UserID { get; set; }
-        //public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         // RELATION WITH MEMBERSHIPTYPE
         [Required]

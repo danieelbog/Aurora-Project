@@ -27,8 +27,8 @@ namespace AuroraProject.Models
             }
         }
 
-        ////NAVIGATION TO INFLUENCER  
-        //public Influencer Influencer { get; set; }
+        //NAVIGATION TO INFLUENCER  
+        public Influencer Influencer { get; set; }
 
         //RELATIONSHIP WITH FAVORITE GIGS
         public ICollection<FavouriteGig> Gigs { get; set; }
@@ -36,9 +36,8 @@ namespace AuroraProject.Models
         //RELATION WITH FAVOURITE INFLUENCER
         public ICollection<FavouriteInfluencer> Influencers { get; set; }
 
-        ////RELATION WITH WALLET
-        //public int WalletID { get; set; }
-        //public Wallet Wallet { get; set; }
+        //NAVIGATION TO WALLET
+        public Wallet Wallet { get; set; }
 
         public ApplicationUser()
         {
@@ -59,17 +58,17 @@ namespace AuroraProject.Models
             return applicationUser.FirstName + " " + applicationUser.LastName;
         }
 
-        //public void PayAmount(float amountToPay, Wallet wallet)
-        //{
-        //    if (wallet.Value >= amountToPay)
-        //    {
-        //        wallet.SubMoney(amountToPay, WalletID);
-        //    }
-        //}
+        public void PayAmount(float amountToPay, Wallet wallet)
+        {
+            if (wallet.Value >= amountToPay)
+            {
+                wallet.SubMoney(amountToPay, wallet.ID);
+            }
+        }
 
-        //public void DepositAmount(float amountToAdd, Wallet wallet)
-        //{
-        //    wallet.AddMoney(amountToAdd, WalletID);
-        //}
+        public void DepositAmount(float amountToAdd, Wallet wallet)
+        {
+            wallet.AddMoney(amountToAdd, wallet.ID);
+        }
     }
 }

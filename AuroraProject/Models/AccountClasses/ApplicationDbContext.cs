@@ -33,16 +33,6 @@ namespace AuroraProject.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Influencer>()
-            //   .HasRequired(n => n.User)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-
-            //modelBuilder.Entity<Influencer>()
-            //   .HasRequired(n => n.User)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.Gigs)
                 .WithRequired(f => f.Actioner)
@@ -52,6 +42,14 @@ namespace AuroraProject.Models
                 .HasMany(u => u.Actioners)
                 .WithRequired(f => f.Gig)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Influencer>()
+                .HasRequired(i => i.User)
+                .WithOptional(u => u.Influencer);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasRequired(u => u.Wallet)
+                .WithRequiredPrincipal(w => w.Owner);
 
             base.OnModelCreating(modelBuilder);
         }
