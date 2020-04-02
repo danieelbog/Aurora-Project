@@ -55,6 +55,6 @@ namespace AuroraProject.Models
         //public Influencer Influencer { get; set; }
 
         //RELATIONSHIP WITH FAVORITE GIGS
-        //public ICollection<FavouriteGig> Actioners { get; set; }
+        public ICollection<FavouriteGig> Actioners { get; set; }
     }
 }

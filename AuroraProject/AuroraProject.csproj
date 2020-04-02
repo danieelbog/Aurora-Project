@@ -221,12 +221,17 @@
     <Compile Include="Migrations\202004020539073_FavouriteGig.designer.cs">
       <DependentUpon>202004020539073_FavouriteGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004020542528_FavouriteInfluencer.cs" />
+    <Compile Include="Migrations\202004020542528_FavouriteInfluencer.designer.cs">
+      <DependentUpon>202004020542528_FavouriteInfluencer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
-    <Compile Include="Models\FavouriteGig.cs" />
+    <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
+    <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
     <Compile Include="Models\InfluencerClasses\Influencer.cs" />
     <Compile Include="Models\AccountClasses\MembershipType.cs" />
     <Compile Include="Models\SortingClasses\QuickSort.cs" />
@@ -440,7 +445,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\API\" />
     <Folder Include="DTO\" />
-    <Folder Include="Models\FavouriteClasses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -480,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004020539073_FavouriteGig.resx">
       <DependentUpon>202004020539073_FavouriteGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020542528_FavouriteInfluencer.resx">
+      <DependentUpon>202004020542528_FavouriteInfluencer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

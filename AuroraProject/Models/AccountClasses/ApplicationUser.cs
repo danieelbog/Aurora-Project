@@ -33,8 +33,8 @@ namespace AuroraProject.Models
         //RELATIONSHIP WITH FAVORITE GIGS
         public ICollection<FavouriteGig> Gigs { get; set; }
 
-        ////RELATION WITH FAVOURITE INFLUENCER
-        //public ICollection<FavouriteInfluencer> Influencers { get; set; }
+        //RELATION WITH FAVOURITE INFLUENCER
+        public ICollection<FavouriteInfluencer> Influencers { get; set; }
 
         ////RELATION WITH WALLET
         //public int WalletID { get; set; }
@@ -43,7 +43,7 @@ namespace AuroraProject.Models
         public ApplicationUser()
         {
             Gigs = new Collection<FavouriteGig>();
-            //Influencers = new Collection<FavouriteInfluencer>();
+            Influencers = new Collection<FavouriteInfluencer>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

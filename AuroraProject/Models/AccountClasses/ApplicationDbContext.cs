@@ -18,7 +18,7 @@ namespace AuroraProject.Models
         public DbSet<SpecificIndustry> SpecificIndustries { get; set; }
         public DbSet<Influencer> Influencers { get; set; }
         public DbSet<FavouriteGig> FavouriteGigs { get; set; }
-        //public DbSet<FavouriteInfluencer> FavouriteInfluencers { get; set; }
+        public DbSet<FavouriteInfluencer> FavouriteInfluencers { get; set; }
         //public DbSet<Wallet> Wallets { get; set; }
 
         public ApplicationDbContext()
@@ -48,10 +48,10 @@ namespace AuroraProject.Models
                 .WithRequired(f => f.Actioner)
                 .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<Gig>()
-            //    .HasMany(u => u.Actioners)
-            //    .WithRequired(f => f.Gig)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Gig>()
+                .HasMany(u => u.Actioners)
+                .WithRequired(f => f.Gig)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }

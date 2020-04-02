@@ -47,6 +47,6 @@ namespace AuroraProject.Models
         public MembershipType MembershipType { get; set; }
 
         //RELATION WITH FAVOURITE INFLUENCER
-        //public ICollection<FavouriteInfluencer> Followers { get; set; }
+        public ICollection<FavouriteInfluencer> Followers { get; set; }
     }
 }
