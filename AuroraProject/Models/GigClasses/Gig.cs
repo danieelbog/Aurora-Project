@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AuroraProject.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -56,5 +58,56 @@ namespace AuroraProject.Models
 
         //RELATIONSHIP WITH FAVORITE GIGS
         public ICollection<FavouriteGig> Actioners { get; set; }
+
+        protected Gig()
+        {
+            Actioners = new Collection<FavouriteGig>();
+        }
+
+        public Gig(GigFormViewModel viewModel, string userID, int influencerID)
+        {
+            UserRating = viewModel.UserRating;
+            GigName = viewModel.GigName;
+            GigWallpaper = viewModel.GigWallpaper;
+            Descreption = viewModel.Descreption;
+            BasicPackageID = viewModel.BasicPackageID;
+            AdvancedPackageID = viewModel.BasicPackageID;
+            PremiumPackageID = viewModel.PremiumPackageID;
+            SpecificIndustryID = viewModel.SpecificIndustryID;
+            UserID = userID;
+            InfluencerID = influencerID;
+            Actioners = new Collection<FavouriteGig>();
+        }
+
+        public void Modify(GigFormViewModel updatedViewModel)
+        {
+            //CODE FOR GIG
+            Descreption = updatedViewModel.Descreption;
+            GigName = updatedViewModel.GigName;
+            GigWallpaper = updatedViewModel.GigWallpaper;
+            UserRating = updatedViewModel.UserRating;
+
+            //CODE FOR BASIC PACKAGE
+            BasicPackage.Modify(updatedViewModel);
+
+            //CODE FOR ADVANCED PACKAGE
+            AdvancedPackage.Modify(updatedViewModel);
+
+            //CODE FOR PREMIUM PACKAGE
+            PremiumPackage.Modify(updatedViewModel);
+
+            //CODE FOR SPECIFIC INDUSTRY
+            SpecificIndustryID = updatedViewModel.SpecificIndustryID;
+        }
+
+        public void Disable()
+        {
+            IsDisabled = true;
+        }
+
+        public void Enable()
+        {
+            IsDisabled = false;
+        }
     }
 }

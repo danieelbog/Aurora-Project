@@ -1,4 +1,5 @@
 ﻿using AuroraProject.Interfaces;
+using AuroraProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,5 +24,26 @@ namespace AuroraProject.Models
 
         [Required]
         public int DeliveryTime { get; set; }
+        protected PremiumPackage()
+        {
+
+        }
+
+        public PremiumPackage(GigFormViewModel viewModel)
+        {
+            Price = viewModel.PremiumPrice;
+            PackageName = viewModel.PremiumPackageName;
+            PackageDescreption = viewModel.PremiumPackageDescreption;
+            DeliveryTime = viewModel.PremiumDeliveryTime;
+        }
+
+        public void Modify(GigFormViewModel updatedViewModel)
+        {
+            //CODE FOR ADVANCED PACKAGE
+            Price = updatedViewModel.PremiumPrice;
+            PackageName = updatedViewModel.PremiumPackageName;
+            PackageDescreption = updatedViewModel.PremiumPackageDescreption;
+            DeliveryTime = updatedViewModel.PremiumDeliveryTime;
+        }
     }
 }
