@@ -50,9 +50,9 @@ namespace AuroraProject.Models
         public ApplicationUser User { get; set; }
 
         //RELATION WITH INFLUENCER
-        //[Required]
-        //public int InfluencerID { get; set; }
-        //public Influencer Influencer { get; set; }
+        [Required]
+        public int InfluencerID { get; set; }
+        public Influencer Influencer { get; set; }
 
         //RELATIONSHIP WITH FAVORITE GIGS
         public ICollection<FavouriteGig> Actioners { get; set; }

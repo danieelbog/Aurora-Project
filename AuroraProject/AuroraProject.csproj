@@ -233,6 +233,10 @@
     <Compile Include="Migrations\202004020555100_WALLET_USER_RELATION.designer.cs">
       <DependentUpon>202004020555100_WALLET_USER_RELATION.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.cs" />
+    <Compile Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.designer.cs">
+      <DependentUpon>202004020606413_GIG_INFLUENCER_RELATION.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
@@ -503,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004020555100_WALLET_USER_RELATION.resx">
       <DependentUpon>202004020555100_WALLET_USER_RELATION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.resx">
+      <DependentUpon>202004020606413_GIG_INFLUENCER_RELATION.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
