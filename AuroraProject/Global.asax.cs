@@ -1,3 +1,5 @@
+using AuroraProject.App_Start;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,10 @@ namespace AuroraProject
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(c => c.AddProfile<OrganizationProfile>());
+            //FOR API USSAGE
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
