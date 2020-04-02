@@ -183,6 +183,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISellingPackage.cs" />
+    <Compile Include="Interfaces\ISortStrategy.cs" />
     <Compile Include="Migrations\202004020441197_InitialModel.cs" />
     <Compile Include="Migrations\202004020441197_InitialModel.designer.cs">
       <DependentUpon>202004020441197_InitialModel.cs</DependentUpon>
@@ -200,6 +202,10 @@
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
+    <Compile Include="Models\SortingClasses\QuickSort.cs" />
+    <Compile Include="Models\SortingClasses\Sorter.cs" />
+    <Compile Include="Models\SortingClasses\BucketSort.cs" />
+    <Compile Include="Models\SortingClasses\BubbleSort.cs" />
     <Compile Include="Models\IndustryClasses\Industry.cs" />
     <Compile Include="Models\SellingPackage\AdvancedPackage.cs" />
     <Compile Include="Models\SellingPackage\PremiumPackage.cs" />
