@@ -9,17 +9,21 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AuroraProject.Models;
+using AuroraProject.ViewModels;
 
 namespace AuroraProject.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext context;
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -50,6 +54,19 @@ namespace AuroraProject.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [Authorize]
+        public ActionResult UserFullName()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var user = context.Users.Single(u => u.Id == userId);
+            var userName = ApplicationUser.FullName(user);
+
+            var viewModel = new UserDetailsViewModel(userName);
+
+            return PartialView("_UserDetails", viewModel);
         }
 
         //

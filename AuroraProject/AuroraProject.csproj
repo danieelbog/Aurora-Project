@@ -197,6 +197,10 @@
     <Compile Include="Migrations\202004020456210_IndustryClasses.designer.cs">
       <DependentUpon>202004020456210_IndustryClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004020508068_BasicUserModel.cs" />
+    <Compile Include="Migrations\202004020508068_BasicUserModel.designer.cs">
+      <DependentUpon>202004020508068_BasicUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
@@ -214,6 +218,8 @@
     <Compile Include="Models\IndustryClasses\SpecificIndustry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\UserDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -411,7 +417,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\API\" />
     <Folder Include="DTO\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -433,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004020456210_IndustryClasses.resx">
       <DependentUpon>202004020456210_IndustryClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020508068_BasicUserModel.resx">
+      <DependentUpon>202004020508068_BasicUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
