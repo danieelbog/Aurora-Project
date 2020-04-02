@@ -197,6 +197,7 @@
     <Compile Include="Controllers\GigController.cs" />
     <Compile Include="Controllers\InfluencerController.cs" />
     <Compile Include="Controllers\SpecificIndustryController.cs" />
+    <Compile Include="Controllers\WalletController.cs" />
     <Compile Include="DTO\FavouriteGigDto.cs" />
     <Compile Include="DTO\FavouriteInfluencerDto.cs" />
     <Compile Include="DTO\GigDto.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="ViewModels\InfluencerFormViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\UserDetailsViewModel.cs" />
+    <Compile Include="ViewModels\WalletViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -298,6 +300,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\Images\download.jpg" />
+    <Content Include="Content\Images\Images\wallet.png" />
     <Content Include="Content\Images\Login\purpleBackground.jpg" />
     <Content Include="Content\Images\Logo\aurora_logo-03.png" />
     <Content Include="Content\Images\Logo\aurora_logo-04.png" />
@@ -486,6 +489,7 @@
     <Content Include="Views\Influencer\MyProfile.cshtml" />
     <Content Include="Views\SpecificIndustry\_Index.cshtml" />
     <Content Include="Views\SpecificIndustry\_Search.cshtml" />
+    <Content Include="Views\Wallet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

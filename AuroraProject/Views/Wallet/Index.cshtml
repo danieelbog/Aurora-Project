@@ -1,0 +1,61 @@
+﻿@model AuroraProject.ViewModels.WalletViewModel
+
+@{
+    ViewBag.Title = @Model.PageName;
+}
+
+<div class="container-fluid">
+
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();"> @Html.ActionLink(Model.UserFullName, "Details", "Influencer")</a>><a href="" onClick="window.location.reload();"> @Model.PageName</a></h6>
+
+    <div class="page-decoration container">
+        <h1 class="page-heading">@Model.PageName</h1>
+        <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
+    </div>
+
+    <div class="mywallet-container-fluid">
+        <div class="wallet-container-a text-center">
+            <p class="page-title">
+                <i class="fa fa-align-left"></i>
+                E-Wallet
+                <i class="fa fa-user">
+                    @Html.ActionLink(Model.UserFullName, "Details", "Influencer")
+                </i>
+            </p>
+
+            <div class="amount-box text-center">
+                <img src="~/Content/Images/Images/wallet.png">
+                <p>Total Balance</p>
+                <p class="amount">$ @Model.Value</p>
+            </div>
+
+            @using (Html.BeginForm("Update", "Wallet", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="btn-group text-center">
+                    <button type="submit" name="submitButton" value="AddMoney" class="btn btn-outline-light">Add Money</button>
+                    <button type="submit" name="submitButton" value="WithdrawMoney" class="btn btn-outline-light">Withdraw</button>
+                </div>
+
+                <div class="money-ammount-text">
+                    @Html.TextAreaFor(m => m.Value, new { placeholder = "Enter an Amount", @type = "text", @class = "input-money-ammount", @min = "0", @max = "10000" })
+                    @Html.ValidationMessageFor(m => m.Value, "", new { @class = "error-register" })
+                </div>
+            }
+
+            <div class="txn-history">
+                <p class="history-card-txt"><b>History</b></p>
+                <p class="txn-list">Payment to the Shop<span class="debit-amount">-100$</span></p>
+
+                <p class="txn-list">Payment to Aurora Shop<span class="debit-amount">150$</span></p>
+
+                <p class="txn-list">Credit from Abc ltd<span class="credit-amount">-300$</span></p>
+
+                <p class="txn-list">Transfer from JohnSmith<span class="credit-amount">+100$</span></p>
+            </div>
+
+            <div class="footer-menu">
+            </div>
+        </div>
+    </div>
+</div>

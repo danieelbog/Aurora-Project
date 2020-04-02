@@ -1321,3 +1321,156 @@ img.OurLogo {
 .influencer-card:hover > .back {
     transform: perspective(600px) rotateY(0deg);
 }
+
+
+/*WALLET*/
+.mywallet-container-fluid {
+    height: auto;
+    max-width: 70%;
+    justify-content: center !important;
+    align-self: center !important;
+    
+    transform:translate(22%, 50%);
+
+    /*display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(240px, 1fr));*/
+    /*position: relative;*/
+}
+
+/*OTAN MIKRAINEI H OTHONH */
+/*@media (max-width: 991px) {
+    .mywallet-container-fluid {
+        grid-template-columns: repeat(auto-fit,minmax(350px, 1fr));
+    }
+}*/
+
+.wallet-container-a {
+    opacity: 0.8;
+    /* background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(); */
+    /* background: #20002c;  
+     background: linear-gradient(to right, #cbb4d4, #20002c); */
+    background: #000428;
+    background: linear-gradient(to right, #004e92, #010a58);
+    /* background: #000000;  
+     background: -webkit-linear-gradient(to right, #434343, #000000);  */
+    /* background: #ff0084;  
+     background: -webkit-linear-gradient(to right, #33001b, #ff0084);   */
+    /* background: #ff6600; 
+     background: -webkit-linear-gradient(to right, #f83600, #fe8c00);   */
+    /*width: 320px;*/
+    width: 100% !important;
+    color: floralwhite;
+    font-size: 15px;
+    padding: 20px 20px 0;
+    position: relative;
+
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+}
+
+.page-title {
+    text-align: left;
+}
+
+    .page-title .fa-user {
+        float: right;
+    }
+
+    .page-title .fa-user a {
+        color: floralwhite;
+        padding: 0.5em;
+    }
+
+.fa-align-left {
+    margin-right: 15px;
+}
+
+.amount-box img {
+    width: 30px;
+}
+
+.amount {
+    font-size: 35px;
+}
+
+.amount-box p {
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.btn-group {
+    margin: 20px 0;
+}
+
+    .btn-group .btn {
+        margin: 8px;
+        border-radius: 20px !important;
+        font-size: 12px;
+    }
+
+.txn-history {
+    text-align: left;
+}
+
+.txn-history {
+    text-align: left;
+}
+
+.history-card-txt b{
+    color: floralwhite;
+}
+
+.txn-list {
+    background-color: floralwhite;
+    padding: 12px 10px;
+    color: #777;
+    font-size: 14px;
+    margin: 7px 0;
+}
+
+.debit-amount {
+    color: red;
+    float: right;
+}
+
+.credit-amount {
+    color: green;
+    float: right;
+}
+
+.footer-menu {
+    margin: 20px -20px 0;
+    bottom: 0;
+    border-top: 1px solid #ccc;
+    padding: 10px 10px 0;
+}
+
+    .footer-menu p {
+        font-size: 12px;
+    }
+
+.money-ammount-text{
+    border: none;
+    background-color: transparent !important;
+
+}
+
+.input-money-ammount {
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 20px;
+    color: floralwhite;
+    width: 100%;
+    -webkit-appearance: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+    
