@@ -7,13 +7,13 @@ namespace AuroraProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class BasicUserModel : IMigrationMetadata
+    public sealed partial class PopulateIndustries : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BasicUserModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateIndustries));
         
         string IMigrationMetadata.Id
         {
-            get { return "202004020508068_BasicUserModel"; }
+            get { return "202004020520078_PopulateIndustries"; }
         }
         
         string IMigrationMetadata.Source

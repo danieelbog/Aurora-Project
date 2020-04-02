@@ -197,9 +197,17 @@
     <Compile Include="Migrations\202004020456210_IndustryClasses.designer.cs">
       <DependentUpon>202004020456210_IndustryClasses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020508068_BasicUserModel.cs" />
-    <Compile Include="Migrations\202004020508068_BasicUserModel.designer.cs">
-      <DependentUpon>202004020508068_BasicUserModel.cs</DependentUpon>
+    <Compile Include="Migrations\202004020519315_BasicUserModelUpdate.cs" />
+    <Compile Include="Migrations\202004020519315_BasicUserModelUpdate.designer.cs">
+      <DependentUpon>202004020519315_BasicUserModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004020520078_PopulateIndustries.cs" />
+    <Compile Include="Migrations\202004020520078_PopulateIndustries.designer.cs">
+      <DependentUpon>202004020520078_PopulateIndustries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004020522210_PopulateSpecificIndustry.cs" />
+    <Compile Include="Migrations\202004020522210_PopulateSpecificIndustry.designer.cs">
+      <DependentUpon>202004020522210_PopulateSpecificIndustry.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
@@ -439,8 +447,14 @@
     <EmbeddedResource Include="Migrations\202004020456210_IndustryClasses.resx">
       <DependentUpon>202004020456210_IndustryClasses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020508068_BasicUserModel.resx">
-      <DependentUpon>202004020508068_BasicUserModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004020519315_BasicUserModelUpdate.resx">
+      <DependentUpon>202004020519315_BasicUserModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020520078_PopulateIndustries.resx">
+      <DependentUpon>202004020520078_PopulateIndustries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020522210_PopulateSpecificIndustry.resx">
+      <DependentUpon>202004020522210_PopulateSpecificIndustry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
