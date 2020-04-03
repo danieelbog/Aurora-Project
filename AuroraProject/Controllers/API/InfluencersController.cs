@@ -34,8 +34,13 @@ namespace AuroraProject.Controllers.API
             if (influencerDb == null)
                 return BadRequest();
 
+            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            if (auroraWallet == null)
+                return BadRequest();
+
             // THIS TRY CATCH CHECKS IF THE PAYMENT CAN BE DONE, AND IN GENERAL IF SOMETHING GOES WRONG            
-            influencerDb.Modify(influencerDto, influencerDb);
+            influencerDb.Modify(influencerDto, influencerDb, auroraWallet);
+
 
             // SAVE CHANGES TO DB
             context.SaveChanges();

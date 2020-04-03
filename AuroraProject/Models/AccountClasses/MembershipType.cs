@@ -16,7 +16,7 @@ namespace AuroraProject.Models
         public int DurationInDays { get; set; }
         public float Discount { get; set; }
 
-        public static void SellMembershipType(ApplicationUser user, int membershipTypeID)
+        public static void SellMembershipType(ApplicationUser user, int membershipTypeID, AuroraWallet auroraWallet)
         {
             var payment = 0.0f;
 
@@ -38,10 +38,10 @@ namespace AuroraProject.Models
                     payment = 0.0f;
                     break;
             }
-            user.PayAmount(payment, user.Wallet);
+            user.TransferMoneyToAurora(user.Wallet, auroraWallet, payment);
         }
 
-        public static void ModifyMembershipType(ApplicationUser user, int oldMembershipTypeID, int newMembershipTypeID)
+        public static void ModifyMembershipType(ApplicationUser user, int oldMembershipTypeID, int newMembershipTypeID, AuroraWallet auroraWallet)
         {
             var pricePerDay = 0.0f;
             var durationInDays = 0;
@@ -104,10 +104,10 @@ namespace AuroraProject.Models
             float payment = pricePerDay * durationInDays - (pricePerDay * durationInDays * discount) / 100;
 
             //DEPOSIT ANY MONEY LEFT BASED ON THE DURATION
-            user.DepositAmount(payment, user.Wallet);
+            user.RecieveMoneyFromAurora(auroraWallet, user.Wallet, payment);
 
             //BY THE NEW MEMBERSHIP TYPE
-            SellMembershipType(user, newMembershipTypeID);
+            SellMembershipType(user, newMembershipTypeID, auroraWallet);
         }
     }
 }

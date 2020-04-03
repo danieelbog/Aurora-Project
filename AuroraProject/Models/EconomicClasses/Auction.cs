@@ -20,7 +20,7 @@ namespace AuroraProject.Models
         public int GigID { get; set; }
         public Gig Gig { get; set; }
 
-        public void PutBet(List<Auction> auctions, Auction newAuction, ApplicationUser user, List<Gig> allGigs)
+        public void PutBet(List<Auction> auctions, Auction newAuction, ApplicationUser user, List<Gig> allGigs, AuroraWallet auroraWallet)
         {
             auctions.Add(newAuction);
             BubbleSort.SortDescendingBet(auctions);
@@ -37,13 +37,13 @@ namespace AuroraProject.Models
             {
                 if(user.Wallet.Value >= newAuction.Bet)
                 {
-                    user.PayAmount(newAuction.Bet, user.Wallet);
+                    user.TransferMoneyToAurora(user.Wallet, auroraWallet, newAuction.Bet);
                     Auction.PutGigOnTheMarket(allGigs, newAuction);
                 }
                 else
                 {
                     newAuction.Bet = user.Wallet.Value;
-                    PutBet(auctions, newAuction, user, allGigs);
+                    PutBet(auctions, newAuction, user, allGigs, auroraWallet);
                 }             
             }
             

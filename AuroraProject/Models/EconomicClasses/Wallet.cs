@@ -43,6 +43,6 @@ namespace AuroraProject.Models
                 Value -= amount;
             else
                 Value -= Value;
-        }
+        }        
     }
 }

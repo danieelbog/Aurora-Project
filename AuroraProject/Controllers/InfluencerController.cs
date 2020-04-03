@@ -104,11 +104,15 @@ namespace AuroraProject.Controllers
                 .Include(u => u.Wallet)
                 .Single(u => u.Id == userId);
 
+            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            if (auroraWallet == null)
+                return HttpNotFound();
+
             // THIS TRY CATCH CHECKS IF THE PAYMENT CAN BE DONE, AND IN GENERAL IF SOMETHING GOES WRONG
             try
             {
                 //CREATE THE INFLUENCER
-                var influencer = Influencer.CreateInflunecerWithPayment(viewModel, user);
+                var influencer = Influencer.CreateInflunecerWithPayment(viewModel, user, auroraWallet);
                 context.Influencers.Add(influencer);
                 // SAVE CHANGES TO DB
                 context.SaveChanges();
@@ -138,10 +142,14 @@ namespace AuroraProject.Controllers
             if (influencerDb == null)
                 return HttpNotFound();
 
+            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            if (auroraWallet == null)
+                return HttpNotFound();
+
             // THIS TRY CATCH CHECKS IF THE PAYMENT CAN BE DONE, AND IN GENERAL IF SOMETHING GOES WRONG
             try
             {
-                influencerDb.Modify(viewModel, influencerDb);
+                influencerDb.Modify(viewModel, influencerDb, auroraWallet);
             }
             catch (Exception)
             {

@@ -259,12 +259,21 @@
     <Compile Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.designer.cs">
       <DependentUpon>202004020606413_GIG_INFLUENCER_RELATION.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004031320024_AuroraWallet.cs" />
+    <Compile Include="Migrations\202004031320024_AuroraWallet.designer.cs">
+      <DependentUpon>202004031320024_AuroraWallet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004031321299_PopulateAuroraWallet.cs" />
+    <Compile Include="Migrations\202004031321299_PopulateAuroraWallet.designer.cs">
+      <DependentUpon>202004031321299_PopulateAuroraWallet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
-    <Compile Include="Models\Auction.cs" />
+    <Compile Include="Models\AuroraWallet.cs" />
+    <Compile Include="Models\EconomicClasses\Auction.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
     <Compile Include="Models\InfluencerClasses\Influencer.cs" />
@@ -545,6 +554,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.resx">
       <DependentUpon>202004020606413_GIG_INFLUENCER_RELATION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004031320024_AuroraWallet.resx">
+      <DependentUpon>202004031320024_AuroraWallet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004031321299_PopulateAuroraWallet.resx">
+      <DependentUpon>202004031321299_PopulateAuroraWallet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

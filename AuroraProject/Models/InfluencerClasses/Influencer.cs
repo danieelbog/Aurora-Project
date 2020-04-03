@@ -72,20 +72,20 @@ namespace AuroraProject.Models
             User = user;
         }
 
-        public static Influencer CreateInflunecerWithPayment(InfluencerFormViewModel viewModel, ApplicationUser user)
+        public static Influencer CreateInflunecerWithPayment(InfluencerFormViewModel viewModel, ApplicationUser user, AuroraWallet auroraWallet)
         {
             var influencer = new Influencer(viewModel, user);
             user.Influencer = influencer;
 
-            MembershipType.SellMembershipType(user, viewModel.MembershipTypeID);
+            MembershipType.SellMembershipType(user, viewModel.MembershipTypeID, auroraWallet);
 
             return influencer;
         }
 
-        public void Modify(InfluencerFormViewModel updatedViewModel, Influencer oldInfluencer)
+        public void Modify(InfluencerFormViewModel updatedViewModel, Influencer oldInfluencer, AuroraWallet auroraWallet)
         {
             if (oldInfluencer.MembershipTypeID != updatedViewModel.MembershipTypeID)
-                MembershipType.ModifyMembershipType(oldInfluencer.User, oldInfluencer.MembershipTypeID, updatedViewModel.MembershipTypeID);
+                MembershipType.ModifyMembershipType(oldInfluencer.User, oldInfluencer.MembershipTypeID, updatedViewModel.MembershipTypeID, auroraWallet);
 
             AboutTheInfluencer = updatedViewModel.AboutTheInfluencer;
             AudienceAge = updatedViewModel.AudienceAge;
@@ -99,10 +99,10 @@ namespace AuroraProject.Models
             MainPlatform = updatedViewModel.MainPlatform;
         }
 
-        public void Modify(InfluencerDto influencerDto, Influencer oldInfluencer)
+        public void Modify(InfluencerDto influencerDto, Influencer oldInfluencer, AuroraWallet auroraWallet)
         {
             if (oldInfluencer.MembershipTypeID != influencerDto.MembershipTypeID)
-                MembershipType.ModifyMembershipType(oldInfluencer.User, oldInfluencer.MembershipTypeID, influencerDto.MembershipTypeID);
+                MembershipType.ModifyMembershipType(oldInfluencer.User, oldInfluencer.MembershipTypeID, influencerDto.MembershipTypeID, auroraWallet);
 
             AboutTheInfluencer = influencerDto.AboutTheInfluencer;
             AudienceAge = influencerDto.AudienceAge;

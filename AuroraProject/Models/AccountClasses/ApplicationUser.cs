@@ -58,17 +58,34 @@ namespace AuroraProject.Models
             return applicationUser.FirstName + " " + applicationUser.LastName;
         }
 
-        public void PayAmount(float amountToPay, Wallet wallet)
+        public void TransferMoneyToUser(Wallet fromWallet, Wallet toWallet, float amount)
         {
-            if (wallet.Value >= amountToPay)
+            if (amount <= fromWallet.Value)
             {
-                wallet.SubMoney(amountToPay, wallet.ID);
+                fromWallet.SubMoney(amount, fromWallet.ID);
+                toWallet.AddMoney(amount, toWallet.ID);
             }
+
         }
 
-        public void DepositAmount(float amountToAdd, Wallet wallet)
+        public void TransferMoneyToAurora(Wallet fromWallet, AuroraWallet toAuroraWallet, float amount)
         {
-            wallet.AddMoney(amountToAdd, wallet.ID);
+            if (amount <= fromWallet.Value)
+            {
+                fromWallet.SubMoney(amount, fromWallet.ID);
+                toAuroraWallet.AddMoney(amount, toAuroraWallet.ID);
+            }
+
+        }
+
+        public void RecieveMoneyFromAurora(AuroraWallet fromAuroraWallet, Wallet toWallet, float amount)
+        {
+            if (amount <= fromAuroraWallet.Balance)
+            {
+                fromAuroraWallet.SubMoney(amount, fromAuroraWallet.ID);
+                toWallet.AddMoney(amount, toWallet.ID);
+            }
+
         }
     }
 }
