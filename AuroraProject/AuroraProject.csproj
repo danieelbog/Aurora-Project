@@ -272,7 +272,7 @@
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
-    <Compile Include="Models\AuroraWallet.cs" />
+    <Compile Include="Models\EconomicClasses\AuroraWallet.cs" />
     <Compile Include="Models\EconomicClasses\Auction.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
@@ -503,6 +503,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Auction\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

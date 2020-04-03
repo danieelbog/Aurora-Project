@@ -46,5 +46,14 @@ namespace AuroraProject.Models
             PackageDescreption = updatedViewModel.AdvancedPackageDescreption;
             DeliveryTime = updatedViewModel.AdvancedDeliveryTime;
         }
+
+        public void SellPackage(ApplicationUser user, Wallet toUserWallet, AuroraWallet toAuroraWallet)
+        {
+            var auroraMortage = Price * 0.05f;
+            var clearPrice = Price - auroraMortage;
+
+            user.TransferMoneyToAurora(user.Wallet, toAuroraWallet, auroraMortage);
+            user.TransferMoneyToUser(user.Wallet, toUserWallet, clearPrice);
+        }
     }
 }

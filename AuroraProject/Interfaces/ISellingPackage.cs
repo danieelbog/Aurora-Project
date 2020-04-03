@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuroraProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,7 @@ namespace AuroraProject.Interfaces
         string PackageDescreption { get; set; }
 
         int DeliveryTime { get; set; }
+
+        void SellPackage(ApplicationUser user, Wallet toUserWallet, AuroraWallet toAuroraWallet);
     }
 }
