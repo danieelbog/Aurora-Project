@@ -1324,26 +1324,6 @@ img.OurLogo {
 
 
 /*WALLET*/
-.mywallet-container-fluid {
-    height: auto;
-    max-width: 70%;
-    justify-content: center !important;
-    align-self: center !important;
-    
-    transform:translate(22%, 50%);
-
-    /*display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-columns: repeat(5, minmax(240px, 1fr));*/
-    /*position: relative;*/
-}
-
-/*OTAN MIKRAINEI H OTHONH */
-/*@media (max-width: 991px) {
-    .mywallet-container-fluid {
-        grid-template-columns: repeat(auto-fit,minmax(350px, 1fr));
-    }
-}*/
 
 .wallet-container-a {
     opacity: 0.8;
@@ -1359,7 +1339,7 @@ img.OurLogo {
     /* background: #ff6600; 
      background: -webkit-linear-gradient(to right, #f83600, #fe8c00);   */
     /*width: 320px;*/
-    width: 100% !important;
+    max-width: 50% !important;
     color: floralwhite;
     font-size: 15px;
     padding: 20px 20px 0;
@@ -1367,7 +1347,13 @@ img.OurLogo {
 
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform:translate(-50%, 0%);
+}
+
+@media (max-width: 991px) {
+    .wallet-container-a {
+        max-width: 100% !important;
+    }
 }
 
 .page-title {

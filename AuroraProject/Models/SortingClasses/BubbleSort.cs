@@ -45,5 +45,31 @@ namespace AuroraProject.Models
 
             return gigs;
         }
+
+        public static List<Auction> SortDescendingBet(List<Auction> autctions)
+        {
+            Auction temp;
+            for (int j = 0; j <= autctions.Count - 2; j++)
+            {
+                for (int i = 0; i <= autctions.Count - 2; i++)
+                {
+                    if (autctions[i].Bet < autctions[i + 1].Bet)
+                    {
+                        temp = autctions[i + 1];
+                        autctions[i + 1] = autctions[i];
+                        autctions[i] = temp;
+                    }
+
+                    if (autctions[i].SpecificIndustryID < autctions[i + 1].SpecificIndustryID)
+                    {
+                        temp = autctions[i + 1];
+                        autctions[i + 1] = autctions[i];
+                        autctions[i] = temp;
+                    }
+                }
+            }
+
+            return autctions;
+        }
     }
 }

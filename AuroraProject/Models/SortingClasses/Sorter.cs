@@ -50,5 +50,6 @@ namespace AuroraProject.Models
 
             return gigs;
         }
+
     }
 }

@@ -39,7 +39,7 @@ namespace AuroraProject.Models
 
         public void WithdrawMoney(float amount, int walletID)
         {
-            if (amount > Value)
+            if (amount < Value)
                 Value -= amount;
             else
                 Value -= Value;

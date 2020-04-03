@@ -264,6 +264,7 @@
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
     <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
+    <Compile Include="Models\Auction.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
     <Compile Include="Models\InfluencerClasses\Influencer.cs" />
@@ -489,7 +490,7 @@
     <Content Include="Views\Influencer\MyProfile.cshtml" />
     <Content Include="Views\SpecificIndustry\_Index.cshtml" />
     <Content Include="Views\SpecificIndustry\_Search.cshtml" />
-    <Content Include="Views\Wallet\Index.cshtml" />
+    <Content Include="Views\Wallet\MyWallet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

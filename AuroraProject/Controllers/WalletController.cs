@@ -24,7 +24,7 @@ namespace AuroraProject.Controllers
         }
 
         //GET WALLET
-        public ActionResult Edit()
+        public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
             var wallet = context.Wallets
@@ -36,10 +36,10 @@ namespace AuroraProject.Controllers
 
             var viewModel = new WalletViewModel(wallet.Value, wallet.Owner.UserFullName, "My Wallet");
 
-            return View("Index", viewModel);
+            return View("MyWallet", viewModel);
         }
 
-        //POST: UPDATE A GIG
+        //POST: UPDATE WALLET
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update(WalletViewModel viewModel, string submitButton)
@@ -47,24 +47,24 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
             var walletDb = context.Wallets.Single(w => w.Owner.Id == userId);
 
-            if (walletDb == null)
+            if (walletDb == null || viewModel.Transaction < 0)
                 return HttpNotFound("You dont have a wallet?");
 
             switch (submitButton)
             {
                 case "AddMoney":
-                    walletDb.AddMoney(viewModel.Value, walletDb.ID);
+                    walletDb.AddMoney(viewModel.Transaction, walletDb.ID);
                     context.SaveChanges();
                     break;
                 case "WithdrawMoney":
-                    walletDb.WithdrawMoney(viewModel.Value, walletDb.ID);
+                    walletDb.WithdrawMoney(viewModel.Transaction, walletDb.ID);
                     context.SaveChanges();
                     break;
                 default:
-                    return RedirectToAction("Edit");
+                    return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Edit");
+            return RedirectToAction("Index");
         }
     }
 }
