@@ -336,6 +336,7 @@ textarea {
     margin: 1em 0 0 1em;
 }
 
+
 .page-heading {
     color: var(--main-navbarText-color) !important;
     text-decoration: none;
@@ -360,8 +361,17 @@ textarea {
 
 /*OTAN MIKRAINEI H OTHONH */
 @media (max-width: 991px) {
+
     .sorting-div {
-        grid-template-columns: repeat(auto-fit,minmax(350px, 1fr));
+        width: 90% !important;
+        grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+    }
+
+    .page-decoration {
+        display: grid;
+        grid-gap: 0.08px;
+        margin: 1em 0 0 0em;
+        grid-template-columns: repeat( 1, minmax(250px, 1fr) );
     }
 }
 
@@ -744,6 +754,60 @@ input, select, textarea {
 }
 
 /*ΜΙΝΕ PROFILE*/
+
+.myprofile-container-fluid {
+    /*display: grid;*/
+    height: auto;
+    width: auto;
+}
+
+.auction-form-profile {
+    position: fixed;
+    background-color: purple;
+    left: 46%;
+    top: 25%;
+    margin: 1em;
+    width: 50%;
+    justify-content: center !important;
+    align-content: center;
+    text-align: center;
+    margin: 2em;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 50%;
+}
+
+@media (min-width: 1691px) {
+
+    .auction-form-profile {
+        width: 60%;
+        left: 34%;
+    }
+}
+
+@media (max-width: 1241px) {
+
+    .auction-form-profile {
+        margin: 1em 0 0 0;
+        position: relative;
+        display: inline-grid;
+        width: 100%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        top: 0%;
+    }
+}
+
+.container-auction div {
+    margin: 1em;
+}
+
+    .container-auction div .form-control {
+        align-self: center;
+        justify-self: center;
+        display: inline-block;
+    }
+
 .sidebar {
     grid-area: sidebar;
     background: floralwhite;
@@ -867,7 +931,7 @@ b {
 
 
 /*OTAN MIKRAINEI H OTHONH */
-@media (min-width: 991px) {
+@media (min-width: 1241px) {
 
     .mine-profile-ul {
         display: flex;
@@ -1344,10 +1408,9 @@ img.OurLogo {
     font-size: 15px;
     padding: 20px 20px 0;
     position: relative;
-
     top: 50%;
     left: 50%;
-    transform:translate(-50%, 0%);
+    transform: translate(-50%, 0%);
 }
 
 @media (max-width: 991px) {
@@ -1364,10 +1427,10 @@ img.OurLogo {
         float: right;
     }
 
-    .page-title .fa-user a {
-        color: floralwhite;
-        padding: 0.5em;
-    }
+        .page-title .fa-user a {
+            color: floralwhite;
+            padding: 0.5em;
+        }
 
 .fa-align-left {
     margin-right: 15px;
@@ -1404,7 +1467,7 @@ img.OurLogo {
     text-align: left;
 }
 
-.history-card-txt b{
+.history-card-txt b {
     color: floralwhite;
 }
 
@@ -1437,10 +1500,9 @@ img.OurLogo {
         font-size: 12px;
     }
 
-.money-ammount-text{
+.money-ammount-text {
     border: none;
     background-color: transparent !important;
-
 }
 
 .input-money-ammount {
@@ -1459,4 +1521,3 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-    

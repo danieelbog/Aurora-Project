@@ -10,7 +10,7 @@ namespace AuroraProject
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootstrap.bundle.min.js",
                         "~/Scripts/bootbox.min.js",
                         "~/Scripts/toastr.js",
                         "~/Scripts/underscore.min.js",

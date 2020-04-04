@@ -194,6 +194,7 @@
     <Compile Include="Controllers\API\FavouriteInfluencersController.cs" />
     <Compile Include="Controllers\API\GigsController.cs" />
     <Compile Include="Controllers\API\InfluencersController.cs" />
+    <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\GigController.cs" />
     <Compile Include="Controllers\InfluencerController.cs" />
     <Compile Include="Controllers\SpecificIndustryController.cs" />
@@ -291,6 +292,7 @@
     <Compile Include="Models\EconomicClasses\Wallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AuctionFormViewModel.cs" />
     <Compile Include="ViewModels\GigFormViewModel.cs" />
     <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="ViewModels\InfluencerFormViewModel.cs" />
@@ -500,10 +502,10 @@
     <Content Include="Views\SpecificIndustry\_Index.cshtml" />
     <Content Include="Views\SpecificIndustry\_Search.cshtml" />
     <Content Include="Views\Wallet\MyWallet.cshtml" />
+    <Content Include="Views\Auction\_Auction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Auction\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
