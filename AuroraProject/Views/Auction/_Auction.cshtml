@@ -8,17 +8,12 @@
     <div class="container container-auction">
         <h2>Add a Gig</h2>
         <div>
-            @Html.DropDownListFor(g => g.Gigs, new SelectList(Model.Gigs, "ID", "GigName"), "--Select--", new { @class = "form-control" })
+            @Html.DropDownListFor(g => g.GigID, new SelectList(Model.Gigs, "ID", "GigName"), "--Select--", new { @class = "form-control" })
             @Html.ValidationMessageFor(i => i.GigID)
         </div>
         <div>
             @Html.TextBoxFor(m => m.Bet, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Bet)
-        </div>
-
-        <div>
-            @Html.TextBoxFor(m => m.PositionOnMarket, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.PositionOnMarket)
         </div>
         <div>
             <button type="submit" class="btn btn-primary" value="Save" name="actionButton">Save</button>
@@ -33,7 +28,10 @@
                 @gig.GigName
             </div>
             <div>
-                @Model.PositionOnMarket
+                @if (Model.PositionOnMarket != 0)
+                {
+                    Model.PositionOnMarket += 1;
+                }
             </div>
             <div>
                 @Model.Bet

@@ -20,9 +20,17 @@ namespace AuroraProject.Controllers
         {
             context.Dispose();
         }
-        // GET: SpecificIndustry
 
-        // INDEX HERE IS USED TO PRINT THE MEGANAVBAR - DONT TOUCH
+        // GET: SpecificIndustry
+        public ActionResult AuroraProSpecificIndustries(int industryID)
+        {
+            var specificIndustries = context.SpecificIndustries
+                .Where(sp => sp.IndustryID == industryID)
+                .ToList();
+
+            return View("AuroraProSpecificIndustries", specificIndustries);
+        }
+
         public ActionResult Index()
         {
             var specificIndustry = context.SpecificIndustries
@@ -35,7 +43,7 @@ namespace AuroraProject.Controllers
         {
             return RedirectToAction("Index", "Gig", new { specificIndustryID = specificIndustryID });
         }
-
+        
         // SEARCH
         public ActionResult Search()
         {

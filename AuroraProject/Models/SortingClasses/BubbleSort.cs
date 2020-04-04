@@ -60,12 +60,12 @@ namespace AuroraProject.Models
                         autctions[i] = temp;
                     }
 
-                    if (autctions[i].SpecificIndustryID < autctions[i + 1].SpecificIndustryID)
-                    {
-                        temp = autctions[i + 1];
-                        autctions[i + 1] = autctions[i];
-                        autctions[i] = temp;
-                    }
+                    //if (autctions[i].SpecificIndustryID < autctions[i + 1].SpecificIndustryID)
+                    //{
+                    //    temp = autctions[i + 1];
+                    //    autctions[i + 1] = autctions[i];
+                    //    autctions[i] = temp;
+                    //}
                 }
             }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuroraProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,53 +12,40 @@ namespace AuroraProject.Models
         public int ID { get; set; }
         public float Bet { get; set; }
         public int PositionOnMarket { get; set; }
-
-        [Required]
-        public int SpecificIndustryID { get; set; }
-        public SpecificIndustry SpecificIndustry { get; set; }
         
         [Required]
         public int GigID { get; set; }
         public Gig Gig { get; set; }
 
-        public void PutBet(List<Auction> auctions, Auction newAuction, ApplicationUser user, List<Gig> allGigs, AuroraWallet auroraWallet)
+        public int SpecificIndustryID { get; set; }
+
+        protected Auction()
         {
-            auctions.Add(newAuction);
-            BubbleSort.SortDescendingBet(auctions);
 
-            var counter = 0;
-
-            foreach (var auction in auctions)
-            {
-                counter++;
-                auction.PositionOnMarket = counter;
-            }
-
-            if(newAuction.PositionOnMarket < 5)
-            {
-                if(user.Wallet.Value >= newAuction.Bet)
-                {
-                    user.TransferMoneyToAurora(user.Wallet, auroraWallet, newAuction.Bet);
-                    Auction.PutGigOnTheMarket(allGigs, newAuction);
-                }
-                else
-                {
-                    newAuction.Bet = user.Wallet.Value;
-                    PutBet(auctions, newAuction, user, allGigs, auroraWallet);
-                }             
-            }
-            
         }
 
-        public static List<Gig> PutGigOnTheMarket(List<Gig> gigs, Auction newAuction)
+        private Auction(AuctionFormViewModel viewModel, int specificIndustryID)
         {
-            //NICE CHANCE FOR REFLECTION HERE
-
-            //gigs[newAuction.PositionOnMarket] = newAuction.Gig;
-            gigs.Insert(newAuction.PositionOnMarket, newAuction.Gig);
-
-
-            return gigs;
+            Bet = viewModel.Bet;
+            PositionOnMarket = viewModel.PositionOnMarket;
+            GigID = viewModel.GigID;
+            SpecificIndustryID = specificIndustryID;
         }
+
+        public static Auction CreateAuction(AuctionFormViewModel viewModel, List<Auction> allRelatedAuctions, Gig gig, AuroraWallet auroraWallet)
+        {
+            gig.User.TransferMoneyToAurora(gig.User.Wallet, auroraWallet, viewModel.Bet);
+
+            var auction = new Auction(viewModel, gig.SpecificIndustryID);            
+
+            allRelatedAuctions.Add(auction);
+
+            BubbleSort.SortDescendingBet(allRelatedAuctions);
+
+            auction.PositionOnMarket = allRelatedAuctions.FindIndex(a => a.GigID == viewModel.GigID);
+
+            return auction;
+        }
+
     }
 }

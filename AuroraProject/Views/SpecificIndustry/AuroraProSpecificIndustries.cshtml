@@ -1,0 +1,24 @@
+﻿@model  IEnumerable<AuroraProject.Models.SpecificIndustry>
+@{
+    ViewBag.Title = "Pro-SpecificIndustries";
+}
+
+<div class=" container-fluid">
+
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Pro-Industries", "AuroraProIndustries", "Industry") > <a href="" onClick="window.location.reload();">Pro-SpecificIndustries</a></h6>
+
+    <div class="page-decoration container">
+        <h1 class="page-heading">Industries</h1>
+        <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
+    </div>
+
+    @foreach (var specificIndustry in Model)
+    {
+        <ul>
+            <li>
+                @Html.ActionLink(specificIndustry.Name, "AuroraPro", "Auction", new { specificIndustryID = specificIndustry.ID }, new { @class = "dropdown-item a-specificInd animated fadeIn" })
+            </li>
+        </ul>
+    }
+
+</div>

@@ -21,6 +21,8 @@ namespace AuroraProject.Models
         public DbSet<FavouriteInfluencer> FavouriteInfluencers { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<AuroraWallet> AuroraWallets { get; set; }
+        public DbSet<Auction> Auctions { get; set; }
+
 
         public ApplicationDbContext()
             : base("AuroraProjectDbContext", throwIfV1Schema: false)
