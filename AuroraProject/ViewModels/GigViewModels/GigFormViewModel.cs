@@ -109,8 +109,8 @@ namespace AuroraProject.ViewModels
                     (c => c.Update(this));
                 Expression<Func<GigController, ActionResult>> create =
                     (c => c.Create(this));
-                Expression<Func<GigController, ActionResult>> delete =
-                    (c => c.Delete(this));
+                //Expression<Func<GigController, ActionResult>> delete =
+                //    (c => c.Delete(this));
 
                 var action = (GigID != 0) ? update : create;
                 var actionName = (action.Body as MethodCallExpression).Method.Name;

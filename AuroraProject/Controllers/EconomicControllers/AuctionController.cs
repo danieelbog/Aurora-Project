@@ -42,7 +42,7 @@ namespace AuroraProject.Controllers
 
             // SEND GIGS TO THE VIEW
             var viewModel = new AuctionViewModel(auctions, User.Identity.IsAuthenticated,
-                specificIndustryID == null ? "No Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Gigs");
+                specificIndustryID == null ? "No Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Pro Gigs");
 
             //SEND THE SORTED LIST TO THE VIEW
             return View("AuroraPro", viewModel);

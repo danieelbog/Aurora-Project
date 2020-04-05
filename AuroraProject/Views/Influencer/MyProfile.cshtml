@@ -226,10 +226,10 @@
                     data: viewModel
                 })
                     .done(function () {
-                        alert("VALE ENA TOSTER RE MALAKA");
+                        toastr.success("Changes Saved");
                     })
                     .fail(function () {
-                        alert("WTF!");
+                        toastr.error("Failed Saving Changes");
                     });
             });
 

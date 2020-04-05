@@ -192,11 +192,12 @@
                     method: "DELETE"
                 })
                     .done(function () {
+                        toastr.success("Gig Hidden");
                         link.removeClass("fa-eye-slash")
                         link.addClass("fa-eye")
                     })
                     .fail(function () {
-                        alert("WTF");
+                        toastr.error("Faled to Hide Gig");
                     })
             })
 

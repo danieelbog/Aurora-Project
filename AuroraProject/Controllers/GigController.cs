@@ -22,6 +22,29 @@ namespace AuroraProject.Controllers
             context.Dispose();
         }
 
+        //GET: THE DETAILS OF A GIG
+        public ActionResult Details(int gigID)
+        {
+            var gigs = context.Gigs
+                .Include(g => g.User)
+                .Include(g => g.BasicPackage)
+                .Include(g => g.AdvancedPackage)
+                .Include(g => g.PremiumPackage)
+                .Include(g => g.SpecificIndustry)
+                .Include(g => g.Influencer)
+
+                //I CREATE A LIST OF ONE GIG SO I CAN USE MY OLD VIEW MODEL
+                //DONT KNOW IF THIS IS OK OR NOT BUT IT WORKS FOR NOW
+                //SURELLY THERE ARE NO GIGS WITH THE SAME ID
+                .Where(g => g.ID == gigID)
+                .ToList();
+
+            var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
+                                $"{gigs[0].GigName}", null);
+
+            return View("Details", viewModel);
+        }
+
         // GET: ALL GIGS
         public ActionResult Index(int? specificIndustryID, string query = null)
         {

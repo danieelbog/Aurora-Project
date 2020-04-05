@@ -5,10 +5,10 @@
 
     <div class="container-fluid card-container-fluid">
 
-        <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Pro-Industries", "AuroraProIndustries", "Industry") > @Html.ActionLink("Pro-SpecificIndustries", "AuroraProSpecificIndustries", "SpecificIndustry") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
+        <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Pro-Industries", "AuroraProIndustries", "Industry") > @Html.ActionLink("Pro-SpecificIndustries", "AuroraProSpecificIndustries", "SpecificIndustry") > <a href="" onClick="window.location.reload();">@Model.Heading Details</a></h6>
 
         <div class="page-decoration container">
-            <h1 class="page-heading">@Model.Heading</h1>
+            <h1 class="page-heading">@Model.Heading Details</h1>
             <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
 
 
@@ -202,48 +202,17 @@
                 var button = $(e.target);
                 $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
                     .done(function () {
+                        toastr.success("Added To Favourites");
+
                         button
                             .removeClass("fa-heart-o")
                             .addClass("fa-heart")
+
                     })
                     .fail(function () {
-                        alert("WTF")
+                        toastr.error("Failed Adding to Favourites");
                     });
             })
-
-            //$(function () {
-            //    var cursor;
-            //    $("#cmd").click(function () {
-            //        $("input").focus();
-            //        cursor = window.setInterval(function () {
-            //            if ($("#cursor").css("visibility") === "visible") {
-            //                $("#cursor").css({
-            //                    visibility: "hidden"
-            //                });
-            //            } else {
-            //                $("#cursor").css({
-            //                    visibility: "visible"
-            //                });
-            //            }
-            //        }, 500);
-            //    });
-
-            //    $("input").keyup(function () {
-            //        $("#cmd span").text($(this).val());
-            //    });
-
-            //    $("input").blur(function () {
-            //        clearInterval(cursor);
-            //        $("#cursor").css({
-            //            visibility: "visible"
-            //        });
-            //    });
-            //});
-
-            //$(document).ready(function () {
-            //    $("#cmd").trigger("click");
-            //});
-
         });
     </script>
 }

@@ -11,114 +11,6 @@
         <h1 class="page-heading">@Model.Heading</h1>
         <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
 
-
-
-        <div class="sorting-div">
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Influencer Options<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Rating
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Name
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Most Followed
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Online
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Card Options<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Most Endoresed
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Lowest Price
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Delivery Time<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            Express
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 3 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 5 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 7 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
         <div class="sorting-div">
             <p class="services-count">Services Available: @Model.Gigs.Count()</p>
         </div>
@@ -145,10 +37,9 @@
 
                     </div>
                 </div>
-
-                <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
+                <div class="pmd-card-media">
                     <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
-                </a>
+                </div>
 
                 @*<div class="btn-group align-self-stretch">
                         <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
@@ -178,6 +69,27 @@
                     <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
                 </div>
             </div>
+
+            <div>
+                <form id="purchace-gig-basic">
+                    <button class="btn btn-danger basicPackageBtn" data-sellingPackage-id="@gig.BasicPackageID" data-gig-id="@gig.ID">
+                        @gig.BasicPackage.PackageName
+                    </button>
+                </form>
+
+                <form id="purchace-gig-advanced">
+                    <button class="btn btn-info advancedPackageBtn" data-sellingPackage-id="@gig.AdvancedPackageID" data-gig-id="@gig.ID">
+                        @gig.AdvancedPackage.PackageName
+                    </button>
+                </form>
+
+                <form id="purchace-gig-premium">
+                    <button class="btn btn-success premiumPackagebtn" data-sellingPackage-id="@gig.PremiumPackageID" data-gig-id="@gig.ID">
+                        @gig.PremiumPackage.PackageName
+                    </button>
+                </form>
+            </div>
+
         }
     </div>
 </div>
@@ -186,6 +98,8 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+
+            // TOGGLE FAVOURITES JS
             $(".js-toggle-favourite-gig").click(function (e) {
                 var button = $(e.target);
                 $.post("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
@@ -218,38 +132,78 @@
                     });
             })
 
-            //$(function () {
-            //    var cursor;
-            //    $("#cmd").click(function () {
-            //        $("input").focus();
-            //        cursor = window.setInterval(function () {
-            //            if ($("#cursor").css("visibility") === "visible") {
-            //                $("#cursor").css({
-            //                    visibility: "hidden"
-            //                });
-            //            } else {
-            //                $("#cursor").css({
-            //                    visibility: "visible"
-            //                });
-            //            }
-            //        }, 500);
-            //    });
+            //PURCHASE BASIC PACKAGE JS
+            $('#purchace-gig-basic').submit(function (e) {
+                let viewModel = {};
 
-            //    $("input").keyup(function () {
-            //        $("#cmd span").text($(this).val());
-            //    });
+                e.preventDefault(e.target.firstChild);
 
-            //    $("input").blur(function () {
-            //        clearInterval(cursor);
-            //        $("#cursor").css({
-            //            visibility: "visible"
-            //        });
-            //    });
-            //});
+                let packageButton = $(e.target.children);
 
-            //$(document).ready(function () {
-            //    $("#cmd").trigger("click");
-            //});
+                viewModel.BasicPackageID = packageButton.attr("data-sellingPackage-id")
+                viewModel.ID = packageButton.attr("data-gig-id")
+
+                $.ajax({
+                    url: '/api/sellingPackages',
+                    method: 'post',
+                    data: viewModel
+                })
+                    .done(function () {
+                        toastr.success("Purchased " + "@Model.Heading");
+                    })
+                    .fail(function () {
+                        toastr.error("Failed to Purchase " + "@Model.Heading");
+                    });
+            });
+
+            //PURCHASE ADVANCED PACKAGE JS
+            $('#purchace-gig-advanced').submit(function (e) {
+                let viewModel = {};
+
+                e.preventDefault(e.target.firstChild);
+
+                let packageButton = $(e.target.children);
+
+                viewModel.AdvancedPackageID = packageButton.attr("data-sellingPackage-id")
+                viewModel.ID = packageButton.attr("data-gig-id")
+
+                $.ajax({
+                    url: '/api/sellingPackages',
+                    method: 'post',
+                    data: viewModel
+                })
+                    .done(function () {
+                        toastr.success("Purchased " + "@Model.Heading");
+                    })
+                    .fail(function () {
+                        toastr.error("Failed to Purchase " + "@Model.Heading");
+                    });
+            });
+
+            //PURCHASE PREMIUM PACKAGE JS
+            $('#purchace-gig-premium').submit(function (e) {
+                let viewModel = {};
+
+                e.preventDefault(e.target.firstChild);
+
+                let packageButton = $(e.target.children);
+
+                viewModel.PremiumPackageID = packageButton.attr("data-sellingPackage-id")
+                viewModel.ID = packageButton.attr("data-gig-id")
+
+                $.ajax({
+                    url: '/api/sellingPackages',
+                    method: 'post',
+                    data: viewModel
+                })
+                    .done(function () {
+                        toastr.success("Purchased " + "@Model.Heading");
+                    })
+                    .fail(function () {
+                        toastr.error("Failed to Purchase " + "@Model.Heading");
+                    });
+            });
+
 
         });
     </script>
