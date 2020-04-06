@@ -277,6 +277,10 @@
     <Compile Include="Migrations\202004041707222_AuctionModel.designer.cs">
       <DependentUpon>202004041707222_AuctionModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.cs" />
+    <Compile Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.designer.cs">
+      <DependentUpon>202004061120555_FilesAndRelationWithInfluencer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
@@ -286,6 +290,7 @@
     <Compile Include="Models\EconomicClasses\Auction.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\InfluencerClasses\Influencer.cs" />
     <Compile Include="Models\AccountClasses\MembershipType.cs" />
     <Compile Include="Models\SortingClasses\QuickSort.cs" />
@@ -580,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004041707222_AuctionModel.resx">
       <DependentUpon>202004041707222_AuctionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.resx">
+      <DependentUpon>202004061120555_FilesAndRelationWithInfluencer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

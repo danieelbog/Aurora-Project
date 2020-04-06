@@ -25,10 +25,19 @@
                             @Model.PageName
                         </h4>
                     </div>
-                    @using (Html.BeginForm(Model.Action, "Influencer", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "newUser" }))
+                    @using (Html.BeginForm(Model.Action, "Influencer", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", role = "form", @id = "newUser" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                        <div class="form-group">
+                            @Html.Label("Avatar", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" id="Avatar" name="upload" />
+                            </div>
+                        </div>
 
                         <div class="form-input">
                             <span><i class="fa fa-lock"></i></span>
