@@ -833,6 +833,7 @@ input, select, textarea {
     height: auto;
 }
 
+
 .GalGadot {
     list-style: none;
     padding: 1em !important;
@@ -861,14 +862,10 @@ input, select, textarea {
 
 .mine-profile-ul li {
     list-style: none;
-    padding: 0.5em 0 1em 0;
+    padding: 1em 0 1em 0;
     text-align: center;
     transition: 0.3s;
 }
-
-    .mine-profile-ul li div {
-        margin: 0;
-    }
 
 b {
     color: #62646A;
@@ -897,7 +894,9 @@ b {
     /*TRY THIS EFFECT TOO*/
     display: grid;
     justify-content: center;
-    margin: 0 4em 0 4em;
+    top: 0%;
+    left:50%;
+    transform:translate(-50%, 0%);
     /*margin-left: 70px;*/
     cursor: pointer;
 }
@@ -1521,3 +1520,45 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/*BOOTBOX CSS*/
+
+.modal-header{
+    justify-content: center !important;
+}
+
+    .modal-header .close {
+        text-shadow: none;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .bootbox .modal-header {
+        flex-direction: row-reverse;
+    }
+  
+.bootbox-cancel-btn {
+    outline: none;
+    font-size: 18px;
+}
+
+    .bootbox-cancel-btn:hover {
+        outline: none;
+        color: var(--main-navbarText-color-hover);
+    }
+
+.bootbox-confirm-btn {
+    outline: none;
+    background-color: var(--main-navbarTextPro-color);
+    color: var(--main-buttonText-color);
+    transition: .6s;
+    font-size: 18px;
+}
+
+    .bootbox-confirm-btn:hover {
+        outline: none;
+        background-color: var(--main-navbarBackgroundJoin-color-hover);
+        color: var(--main-buttonText-color);
+    }
+
+

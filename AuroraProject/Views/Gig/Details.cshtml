@@ -70,26 +70,28 @@
                 </div>
             </div>
 
-            <div>
-                <form id="purchace-gig-basic">
-                    <button class="btn btn-danger basicPackageBtn" data-sellingPackage-id="@gig.BasicPackageID" data-gig-id="@gig.ID">
-                        @gig.BasicPackage.PackageName
-                    </button>
-                </form>
+            if (Model.ShowActions)
+            {
+                <div>
+                    <form id="purchace-gig-basic">
+                        <button class="btn btn-danger basicPackageBtn" data-sellingPackage-id="@gig.BasicPackageID" data-gig-id="@gig.ID">
+                            @gig.BasicPackage.PackageName
+                        </button>
+                    </form>
 
-                <form id="purchace-gig-advanced">
-                    <button class="btn btn-info advancedPackageBtn" data-sellingPackage-id="@gig.AdvancedPackageID" data-gig-id="@gig.ID">
-                        @gig.AdvancedPackage.PackageName
-                    </button>
-                </form>
+                    <form id="purchace-gig-advanced">
+                        <button class="btn btn-info advancedPackageBtn" data-sellingPackage-id="@gig.AdvancedPackageID" data-gig-id="@gig.ID">
+                            @gig.AdvancedPackage.PackageName
+                        </button>
+                    </form>
 
-                <form id="purchace-gig-premium">
-                    <button class="btn btn-success premiumPackagebtn" data-sellingPackage-id="@gig.PremiumPackageID" data-gig-id="@gig.ID">
-                        @gig.PremiumPackage.PackageName
-                    </button>
-                </form>
-            </div>
-
+                    <form id="purchace-gig-premium">
+                        <button class="btn btn-success premiumPackagebtn" data-sellingPackage-id="@gig.PremiumPackageID" data-gig-id="@gig.ID">
+                            @gig.PremiumPackage.PackageName
+                        </button>
+                    </form>
+                </div>
+            }
         }
     </div>
 </div>
@@ -143,17 +145,39 @@
                 viewModel.BasicPackageID = packageButton.attr("data-sellingPackage-id")
                 viewModel.ID = packageButton.attr("data-gig-id")
 
-                $.ajax({
-                    url: '/api/sellingPackages',
-                    method: 'post',
-                    data: viewModel
+                 bootbox.dialog({
+                    title: 'Confirm Purchase',
+                    message: '<p>Are you sure you want to purchase the Selected Service of the Gig?</p>',
+                    size: 'large',
+                    onEscape: true,
+                    backdrop: true,
+                    buttons: {
+                        no: {
+                            label: 'Cancel',
+                            className: 'btn bootbox-cancel-btn shadow-none',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: 'Continue',
+                            className: 'btn bootbox-confirm-btn shadow-none',
+                            callback: function () {
+                                $.ajax({
+                                    url: '/api/sellingPackages',
+                                    method: 'post',
+                                    data: viewModel
+                                })
+                                    .done(function () {
+                                        toastr.success("Purchased " + "@Model.Heading");
+                                    })
+                                    .fail(function () {
+                                        toastr.error("Failed to Purchase " + "@Model.Heading");
+                                    });
+                            }
+                        }
+                    }
                 })
-                    .done(function () {
-                        toastr.success("Purchased " + "@Model.Heading");
-                    })
-                    .fail(function () {
-                        toastr.error("Failed to Purchase " + "@Model.Heading");
-                    });
             });
 
             //PURCHASE ADVANCED PACKAGE JS
@@ -167,17 +191,40 @@
                 viewModel.AdvancedPackageID = packageButton.attr("data-sellingPackage-id")
                 viewModel.ID = packageButton.attr("data-gig-id")
 
-                $.ajax({
-                    url: '/api/sellingPackages',
-                    method: 'post',
-                    data: viewModel
+                 bootbox.dialog({
+                    title: 'Confirm Purchase',
+                    message: '<p>Are you sure you want to purchase the Selected Service of the Gig?</p>',
+                    size: 'large',
+                    onEscape: true,
+                    backdrop: true,
+                    buttons: {
+                        no: {
+                            label: 'Cancel',
+                            className: 'btn-default',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: 'Continue',
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: '/api/sellingPackages',
+                                    method: 'post',
+                                    data: viewModel
+                                })
+                                    .done(function () {
+                                        toastr.success("Purchased " + "@Model.Heading");
+                                    })
+                                    .fail(function () {
+                                        toastr.error("Failed to Purchase " + "@Model.Heading");
+                                    });
+                            }
+                        }
+                    }
                 })
-                    .done(function () {
-                        toastr.success("Purchased " + "@Model.Heading");
-                    })
-                    .fail(function () {
-                        toastr.error("Failed to Purchase " + "@Model.Heading");
-                    });
+
             });
 
             //PURCHASE PREMIUM PACKAGE JS
@@ -191,17 +238,40 @@
                 viewModel.PremiumPackageID = packageButton.attr("data-sellingPackage-id")
                 viewModel.ID = packageButton.attr("data-gig-id")
 
-                $.ajax({
-                    url: '/api/sellingPackages',
-                    method: 'post',
-                    data: viewModel
+                 bootbox.dialog({
+                    title: 'Confirm Purchase',
+                    message: '<p>Are you sure you want to purchase the Selected Service of the Gig?</p>',
+                    size: 'large',
+                    onEscape: true,
+                    backdrop: true,
+                    buttons: {
+                        no: {
+                            label: 'Cancel',
+                            className: 'btn-default',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: 'Continue',
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: '/api/sellingPackages',
+                                    method: 'post',
+                                    data: viewModel
+                                })
+                                    .done(function () {
+                                        toastr.success("Purchased " + "@Model.Heading");
+                                    })
+                                    .fail(function () {
+                                        toastr.error("Failed to Purchase " + "@Model.Heading");
+                                    });
+                            }
+                        }
+                    }
                 })
-                    .done(function () {
-                        toastr.success("Purchased " + "@Model.Heading");
-                    })
-                    .fail(function () {
-                        toastr.error("Failed to Purchase " + "@Model.Heading");
-                    });
+
             });
 
 

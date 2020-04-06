@@ -11,7 +11,6 @@ using AuroraProject.DTO;
 
 namespace AuroraProject.Controllers.API
 {
-    [Authorize]
     public class SellingPackagesController : ApiController
     {
         private ApplicationDbContext context;
@@ -20,6 +19,7 @@ namespace AuroraProject.Controllers.API
             context = new ApplicationDbContext();
         }
 
+        [Authorize]
         [HttpPost]
         public IHttpActionResult PurchasePackage(GigDto gigDto)
         {
