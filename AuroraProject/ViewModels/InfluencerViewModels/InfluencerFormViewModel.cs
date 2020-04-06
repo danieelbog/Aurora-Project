@@ -67,16 +67,16 @@ namespace AuroraProject.ViewModels
 
 
         // RELATION WITH FILE
-        public int FileID { get; set; }
-        public File File { get; set; }
         public IEnumerable<File> Files { get; set; }
         public HttpPostedFileBase upload { get; set; }
+
+        // WHAT ACTION SHOULD RUN IS DECIDED HERE
         public string Action
         {
             get
             {
                 Expression<Func<InfluencerController, ActionResult>> update =
-                    (c => c.Update(this));
+                    (c => c.Update(this, upload));
                 Expression<Func<InfluencerController, ActionResult>> create =
                     (c => c.Create(this, upload));
 
@@ -113,6 +113,9 @@ namespace AuroraProject.ViewModels
             PageName = pageName;
             ButtonName = buttonName;
             FullName = fullName;
+
+            //FILES
+            Files = influencer.Files;
         }
 
         public static InfluencerFormViewModel CreateFormViewModel(Influencer influencer, IEnumerable<MembershipType> membershipTypes, string pageName, string buttonName, string fullName)

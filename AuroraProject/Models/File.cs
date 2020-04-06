@@ -38,13 +38,5 @@ namespace AuroraProject.Models
             FileType = fileType;
             InfluencerID = influencerID;
         }
-
-        public void Modify(InfluencerFormViewModel viewModel)
-        {
-            FileName = viewModel.File.FileName;
-            ContentType = viewModel.File.ContentType;
-            Content = viewModel.File.Content;
-            FileType = viewModel.File.FileType;
-        }
     }
 }

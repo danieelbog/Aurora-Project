@@ -27,6 +27,7 @@ namespace AuroraProject.Controllers
         {
             var userId = User.Identity.GetUserId();
 
+            // BRING THE INFLUENCERS THAT THE USER HAS FAVOURITED WITH ALL THEIR NEEDED PROPERTIES
             var influencers = context.FavouriteInfluencers
                 .Where(f => f.FollowerID == userId)
                 .Select(f => f.Influencer).Include(i => i.Files)
@@ -57,10 +58,6 @@ namespace AuroraProject.Controllers
             {
                 var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, context.MembershipTypes.ToList(), "My Profile", null, ApplicationUser.FullName(influencer.User));
 
-                //TESIGN FILE
-                viewModel.Files = influencer.Files;
-
-
                 return View("MyProfile", viewModel);
             }
         }
@@ -88,6 +85,7 @@ namespace AuroraProject.Controllers
             else
             {
                 var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, context.MembershipTypes.ToList(), "Edit Influencer Info", "Update", null);
+
                 return View("InfluencerForm", viewModel);
             }
 
@@ -111,6 +109,7 @@ namespace AuroraProject.Controllers
                 .Include(u => u.Wallet)
                 .Single(u => u.Id == userId);
 
+            // BRING AURORA WALLET TO ALLOW THE USER PAY US
             var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
             if (auroraWallet == null)
                 return HttpNotFound();
@@ -121,26 +120,24 @@ namespace AuroraProject.Controllers
                 //CREATE THE INFLUENCER
                 var influencer = Influencer.CreateInflunecerWithPayment(viewModel, user, auroraWallet);
 
+                //IF THERE IS NEW FILE UPLOADED
                 if (upload != null && upload.ContentLength > 0)
                 {
-
+                    //WE WILL CREATE A NEW FILE WITH THE TYPE OF AVATAR (THIS IS WHAT I NEED HERE)
                     var avatar = new File(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencer.ID);
 
-                    //var avatar = new File()
-                    //{
-                    //    FileName = System.IO.Path.GetFileName(upload.FileName),
-                    //    FileType = FileType.Avatar,
-                    //    ContentType = upload.ContentType
-                    //};
-
+                    //BLACK MAGIC
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
                     {
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
+
+                    // GIVE INFLUENCER THE LIST OF FILES WITH THE AVATAR FILE
                     influencer.Files = new List<File> { avatar };
                 }
 
                 context.Influencers.Add(influencer);
+
                 // SAVE CHANGES TO DB
                 context.SaveChanges();
             }
@@ -156,20 +153,24 @@ namespace AuroraProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Update(InfluencerFormViewModel viewModel)
+        public ActionResult Update(InfluencerFormViewModel viewModel, HttpPostedFileBase upload)
         {
-            // REFACTOR V1        
+            // GET THE USER ID TO USE IT LATER
             var userId = User.Identity.GetUserId();
 
+            // BRING THE INFLUENCER FOR EDIT
             var influencerDb = context.Influencers
                 .Include(i => i.MembershipType)
                 .Include(i => i.User)
                 .Include(i => i.User.Wallet)
                 .Include(i => i.Files)
                 .SingleOrDefault(i => i.ID == viewModel.ID && i.User.Id == userId);
+
+            // CHECK IF THE INFLUENCER EXIST
             if (influencerDb == null)
                 return HttpNotFound();
 
+            // BRING AURORA WALLET FOR RETURNING MONEY TO USER AND GETTING OUR CUT IF NEEDED
             var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
             if (auroraWallet == null)
                 return HttpNotFound();
@@ -178,6 +179,26 @@ namespace AuroraProject.Controllers
             try
             {
                 influencerDb.Modify(viewModel, influencerDb, auroraWallet);
+
+                // IF THERE IS MEW FILE UPLOADED THEN WE WILL DELETE THE INFLUENCER FILE FOR AVATAR FROM HIS FILES
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    if (influencerDb.Files.Any(f => f.FileType == FileType.Avatar))
+                        context.Files.Remove(influencerDb.Files.First(f => f.FileType == FileType.Avatar));
+
+                    // THEN WE WILL CREATE NEW FILE AND GIVE IT TO THE USER
+                    var avatar = new File(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencerDb.ID);
+
+                    // BLACK MAGIC
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+
+                    // WE ADD THE LIST WITH THE NEW AVATAR FILE TO THE INFLUENCER LIST
+                    influencerDb.Files = new List<File> { avatar };
+                }
+
             }
             catch (Exception)
             {
