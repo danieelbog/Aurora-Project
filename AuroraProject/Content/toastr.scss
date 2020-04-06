@@ -111,6 +111,7 @@ button.toast-close-button {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  text-align: center;
 }
 #toast-container > :hover {
   -moz-box-shadow: 0 0 12px #000000;
@@ -147,7 +148,7 @@ button.toast-close-button {
   background-color: #030303;
 }
 .toast-success {
-  background-color: #51a351;
+  background-color: purple;
 }
 .toast-error {
   background-color: #bd362f;

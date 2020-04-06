@@ -777,9 +777,12 @@ input, select, textarea {
     height: 50%;
 }
 
-@media (min-width: 1691px) {
+    .auction-form-profile::-webkit-scrollbar {
+        display: none;
+    }
 
-    .auction-form-profile {
+    @media (min-width: 1691px) {
+        .auction-form-profile {
         width: 60%;
         left: 34%;
     }
