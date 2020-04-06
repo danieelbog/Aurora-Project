@@ -196,6 +196,7 @@
     <Compile Include="Controllers\API\InfluencersController.cs" />
     <Compile Include="Controllers\API\SellingPackagesController.cs" />
     <Compile Include="Controllers\EconomicControllers\AuctionController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\GigController.cs" />
     <Compile Include="Controllers\IndustryContollers\IndustryController.cs" />
     <Compile Include="Controllers\InfluencerController.cs" />
@@ -525,6 +526,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -29,7 +29,7 @@ namespace AuroraProject.Controllers
 
             var influencers = context.FavouriteInfluencers
                 .Where(f => f.FollowerID == userId)
-                .Select(f => f.Influencer)
+                .Select(f => f.Influencer).Include(i => i.Files)
                 .Include(f => f.User)
                 .Include(f => f.User.Gigs)
                 .ToList();
@@ -44,6 +44,7 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
             var influencer = context.Influencers
                 .Include(i => i.MembershipType)
+                .Include(i => i.Files)
                 .Include(i => i.User)
                 .SingleOrDefault(i => i.User.Id == userId);
 
@@ -55,6 +56,11 @@ namespace AuroraProject.Controllers
             else
             {
                 var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, context.MembershipTypes.ToList(), "My Profile", null, ApplicationUser.FullName(influencer.User));
+
+                //TESIGN FILE
+                viewModel.Files = influencer.Files;
+
+
                 return View("MyProfile", viewModel);
             }
         }
@@ -69,6 +75,7 @@ namespace AuroraProject.Controllers
             // GETTING THE USER'S INFLUENCER
             var influencer = context.Influencers
                 .Include(i => i.User)
+                .Include(i => i.Files)
                 .SingleOrDefault(i => i.User.Id == userId);
 
             // IF THE INFLUENCER ID IS NULL THEN WE WILL SEND IT TO THE CREATE
@@ -89,7 +96,7 @@ namespace AuroraProject.Controllers
         // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InfluencerFormViewModel viewModel)
+        public ActionResult Create(InfluencerFormViewModel viewModel, HttpPostedFileBase upload)
         {
             // BAD SCENARIO IF THE MODEL IS INVALID
             if (!ModelState.IsValid)
@@ -97,7 +104,7 @@ namespace AuroraProject.Controllers
                 //viewModel.MembershipTypes = context.MembershipTypes.ToList();
                 return RedirectToAction("Create");
             }
-
+            
             // GET USER ID AND USER
             var userId = User.Identity.GetUserId();
             var user = context.Users
@@ -113,6 +120,26 @@ namespace AuroraProject.Controllers
             {
                 //CREATE THE INFLUENCER
                 var influencer = Influencer.CreateInflunecerWithPayment(viewModel, user, auroraWallet);
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+
+                    var avatar = new File(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencer.ID);
+
+                    //var avatar = new File()
+                    //{
+                    //    FileName = System.IO.Path.GetFileName(upload.FileName),
+                    //    FileType = FileType.Avatar,
+                    //    ContentType = upload.ContentType
+                    //};
+
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    influencer.Files = new List<File> { avatar };
+                }
+
                 context.Influencers.Add(influencer);
                 // SAVE CHANGES TO DB
                 context.SaveChanges();
@@ -138,6 +165,7 @@ namespace AuroraProject.Controllers
                 .Include(i => i.MembershipType)
                 .Include(i => i.User)
                 .Include(i => i.User.Wallet)
+                .Include(i => i.Files)
                 .SingleOrDefault(i => i.ID == viewModel.ID && i.User.Id == userId);
             if (influencerDb == null)
                 return HttpNotFound();

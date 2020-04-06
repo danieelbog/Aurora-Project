@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuroraProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,5 +24,27 @@ namespace AuroraProject.Models
         // RELATION WITH INFLUENCER
         public int InfluencerID { get; set; }
         public Influencer Influencer { get; set; }
+
+        protected File()
+        {
+
+        }
+
+        public File(string fileName, string contentType, byte[] content, FileType fileType, int influencerID)
+        {
+            FileName = fileName;
+            ContentType = contentType;
+            Content = content;
+            FileType = fileType;
+            InfluencerID = influencerID;
+        }
+
+        public void Modify(InfluencerFormViewModel viewModel)
+        {
+            FileName = viewModel.File.FileName;
+            ContentType = viewModel.File.ContentType;
+            Content = viewModel.File.Content;
+            FileType = viewModel.File.FileType;
+        }
     }
 }

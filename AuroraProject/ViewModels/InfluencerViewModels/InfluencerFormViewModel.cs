@@ -64,6 +64,13 @@ namespace AuroraProject.ViewModels
 
         // RELATION WITH USER ID
         public string UserID { get; set; }
+
+
+        // RELATION WITH FILE
+        public int FileID { get; set; }
+        public File File { get; set; }
+        public IEnumerable<File> Files { get; set; }
+        public HttpPostedFileBase upload { get; set; }
         public string Action
         {
             get
@@ -71,7 +78,7 @@ namespace AuroraProject.ViewModels
                 Expression<Func<InfluencerController, ActionResult>> update =
                     (c => c.Update(this));
                 Expression<Func<InfluencerController, ActionResult>> create =
-                    (c => c.Create(this));
+                    (c => c.Create(this, upload));
 
                 var action = (ID != 0) ? update : create;
                 var actionName = (action.Body as MethodCallExpression).Method.Name;
