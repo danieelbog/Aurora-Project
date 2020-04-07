@@ -329,10 +329,12 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\Images\download.jpg" />
     <Content Include="Content\Images\Images\wallet.png" />
-    <Content Include="Content\Images\Login\purpleBackground.jpg" />
+    <Content Include="Content\Images\Login\InfluencerRegister.png" />
+    <Content Include="Content\Images\Login\GigFormInput.png" />
     <Content Include="Content\Images\Logo\aurora_logo-03.png" />
     <Content Include="Content\Images\Logo\aurora_logo-04.png" />
     <Content Include="Content\Images\Logo\aurora_logoFINAL-05.png" />
+    <Content Include="Content\mdb.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />

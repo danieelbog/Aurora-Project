@@ -8,170 +8,180 @@
     @Html.AntiForgeryToken()
 
 
-    <div class=" container-fluid">
+    <div class=" container-fluid register">
 
         <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Influencer", "Create", "Influencer") > <a href="" onClick="window.location.reload();">@Model.PageName</a></h6>
 
         <div class="page-decoration container">
             <h1 class="page-heading">@Model.PageName</h1>
-            <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
+            <p class="page-descreption">A Simple Gig, can transform our world Forever!</p>
         </div>
 
-        <div class="container col-md-6">
-            <h3 style="margin-top: 9em">Gig Information:</h3>
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                <h3>Tips:</h3>
+                <p>Your Gig is like your Spaceship <br /> Be creative, Pick a Catchy Tite for your Gig, Plan carefully your Service!<p>
+                    @*<input type="submit" name="" value="Login" /><br />*@
+                    <button type="submit" class="btn btn-group-lg btn-submit-form animated flash" value="Save" name="actionButton">@Model.ButtonName</button>
+            </div>
+
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Gig</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="basicPackage-tab" data-toggle="tab" href="#basicPackage" role="tab" aria-controls="basicPackage" aria-selected="false">Basic Package</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="advancedPackage-tab" data-toggle="tab" href="#advancedPackage" role="tab" aria-controls="advancedPackage" aria-selected="false">Advanced Package</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="premiumPackage-tab" data-toggle="tab" href="#premiumPackage" role="tab" aria-controls="premiumPackage" aria-selected="false">Premium Package</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row register-form">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.GigName, new { @class = "form-control", @placeholder = "Gig Title *" })
+                                    @Html.ValidationMessageFor(m => m.GigName)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.UserRating, new { @class = "form-control", @placeholder = "User Rating *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.UserRating)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.GigWallpaper, new { @class = "form-control", @placeholder = "Gig Wallpaper *" })
+                                    @Html.ValidationMessageFor(m => m.GigWallpaper)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Descreption, new { @class = "form-control", @placeholder = "Description *" })
+                                    @Html.ValidationMessageFor(m => m.Descreption)
+                                </div>
+                                <div class="form-group">
+                                    @Html.DropDownListFor(i => i.SpecificIndustryID, new SelectList(Model.SpecificIndustries, "ID", "Name"), "Select", new { @class = "form-control select-value", @placeholder = "Select" })
+                                    @Html.ValidationMessageFor(i => i.SpecificIndustryID)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade show" id="basicPackage" role="tabpanel" aria-labelledby="basicPackage-tab">
+                        <div class="row register-form">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.BasicPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
+                                    @Html.ValidationMessageFor(m => m.BasicPackageName)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.BasicPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.BasicPrice)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.BasicPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
+                                    @Html.ValidationMessageFor(m => m.BasicPackageDescreption)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.BasicDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.BasicDeliveryTime)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="advancedPackage" role="tabpanel" aria-labelledby="advancedPackage-tab">
+                        <div class="row register-form">
+                            <div class="row register-form">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.AdvancedPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
+                                        @Html.ValidationMessageFor(m => m.AdvancedPackageName)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.AdvancedPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
+                                        @Html.ValidationMessageFor(m => m.AdvancedPrice)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.AdvancedPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
+                                        @Html.ValidationMessageFor(m => m.AdvancedPackageDescreption)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.AdvancedDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
+                                        @Html.ValidationMessageFor(m => m.AdvancedDeliveryTime)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="premiumPackage" role="tabpanel" aria-labelledby="premiumPackage-tab">
+                        <div class="row register-form">
+                            <div class="row register-form">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.PremiumPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
+                                        @Html.ValidationMessageFor(m => m.PremiumPackageName)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.PremiumPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
+                                        @Html.ValidationMessageFor(m => m.PremiumPrice)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.PremiumPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
+                                        @Html.ValidationMessageFor(m => m.PremiumPackageDescreption)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.PremiumDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
+                                        @Html.ValidationMessageFor(m => m.PremiumDeliveryTime)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class=" container col-md-4">
-            <h2>Add a Gig</h2>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.GigName)
-                @Html.TextBoxFor(m => m.GigName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.GigName)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.UserRating)
-                @Html.TextBoxFor(m => m.UserRating, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.UserRating)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.GigWallpaper)
-                @Html.TextBoxFor(m => m.GigWallpaper, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.GigWallpaper)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Descreption)
-                @Html.TextBoxFor(m => m.Descreption, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Descreption)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(i => i.SpecificIndustryID)
-                @Html.DropDownListFor(i => i.SpecificIndustryID, new SelectList(Model.SpecificIndustries, "ID", "Name"), "--Select--", new { @class = "form-control" })
-                @Html.ValidationMessageFor(i => i.SpecificIndustryID)
-            </div>
-        </div>
-        <div class="container col-md-2"></div>
     </div>
-
-    <div class=" container-fluid">
-        <div class="container col-md-6">
-            <h3 style="margin-top: 9em">Selling Packages:</h3>
-        </div>
-        <div class=" container col-md-4">
-            <h2>
-                Basic Package
-            </h2>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.BasicPackageName)
-                @Html.TextBoxFor(m => m.BasicPackageName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.BasicPackageName)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.BasicPrice)
-                @Html.TextBoxFor(m => m.BasicPrice, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.BasicPrice)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.BasicPackageDescreption)
-                @Html.TextBoxFor(m => m.BasicPackageDescreption, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.BasicPackageDescreption)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.BasicDeliveryTime)
-                @Html.TextBoxFor(m => m.BasicDeliveryTime, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.BasicDeliveryTime)
-            </div>
-        </div>
-        <div class="container col-md-2"></div>
-    </div>
-
-    <div class=" container-fluid">
-        <div class="container col-md-6">
-        </div>
-        <div class=" container col-md-4">
-            <h2>
-                Advanced Package
-            </h2>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.AdvancedPackageName)
-                @Html.TextBoxFor(m => m.AdvancedPackageName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.AdvancedPackageName)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.AdvancedPrice)
-                @Html.TextBoxFor(m => m.AdvancedPrice, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.AdvancedPrice)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.AdvancedPackageDescreption)
-                @Html.TextBoxFor(m => m.AdvancedPackageDescreption, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.AdvancedPackageDescreption)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.AdvancedDeliveryTime)
-                @Html.TextBoxFor(m => m.AdvancedDeliveryTime, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.AdvancedDeliveryTime)
-            </div>
-        </div>
-        <div class="container col-md-2"></div>
-    </div>
-
-    <div class=" container-fluid">
-        <div class="container col-md-6">
-        </div>
-        <div class=" container col-md-4">
-            <h2>
-                Premium Package
-            </h2>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.PremiumPackageName)
-                @Html.TextBoxFor(m => m.PremiumPackageName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PremiumPackageName)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.PremiumPrice)
-                @Html.TextBoxFor(m => m.PremiumPrice, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PremiumPrice)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.PremiumPackageDescreption)
-                @Html.TextBoxFor(m => m.PremiumPackageDescreption, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PremiumPackageDescreption)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.PremiumDeliveryTime)
-                @Html.TextBoxFor(m => m.PremiumDeliveryTime, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PremiumDeliveryTime)
-            </div>
-        </div>
-        <div class="container col-md-2"></div>
-    </div>
-
-    <div class=" container-fluid" style="margin-top: 5em">
-        <div class="container col-md-6">
-        </div>
-        <div class=" container col-md-4">
-
-            @Html.HiddenFor(g => g.GigID)
-            @*@Html.HiddenFor(g => g.UserID)*@
-            @Html.HiddenFor(g => g.BasicPackageID)
-            @Html.HiddenFor(g => g.AdvancedPackageID)
-            @Html.HiddenFor(g => g.PremiumPackageID)
-            @*@Html.HiddenFor(g => g.InfluencerID)*@
-
-            <button type="submit" class="btn btn-primary" value="Save" name="actionButton">@Model.ButtonName</button>
-        </div>
-        <div class="container col-md-2"></div>
-    </div>
-
 }
 
 @section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
 
+            let inputText = $("input[type=text]");
+            let buttonSubmit = $(".btn-submit-form");
+
+            inputText.each(function () {
+                if (this.value == "") {
+                    buttonSubmit.css("display", "none");
+                }
+                else {
+                    buttonSubmit.css("display", "block");
+                }
+            });
+
+            inputText.change(function () {
+
+                inputText.each(function () {
+
+                    if (this.value == "") {
+
+                        buttonSubmit.css("display", "none");
+                    }
+                    else {
+
+                        buttonSubmit.css("display", "block");
+                    }
+                });
+            });
+
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -16,12 +16,12 @@ namespace AuroraProject.ViewModels
         public int GigID { get; set; }
 
         [Display(Name = "User Rating")]
-        [Range(0, 5)]
+        [Range(0, 5, ErrorMessage = "Valid Rating: 0-5")]
         public byte UserRating { get; set; }
 
         [Required(ErrorMessage = "You must chose a Name for your Gig")]
         [Display(Name = "Pick a Name for your Gig")]
-        [MaxLength(15)]
+        [MaxLength(25, ErrorMessage ="Gig name must be up to 25 charachters")]
         public string GigName { get; set; }
 
         [Required(ErrorMessage = "You must chose a Wallpaper for your Gig")]
@@ -29,7 +29,7 @@ namespace AuroraProject.ViewModels
         public string GigWallpaper { get; set; }
 
         [Required(ErrorMessage = "You must write a small Descreption for your Gig")]
-        [StringLength(40)]
+        [StringLength(40, ErrorMessage = "Descreption must be up to 40 charachters")]
         [DataType(DataType.MultilineText)]
         public string Descreption { get; set; }
 
@@ -45,7 +45,7 @@ namespace AuroraProject.ViewModels
         public string BasicPackageName { get; set; }
 
         [Required(ErrorMessage = "You must give a Descreption to your package")]
-        [StringLength(40)]
+        [StringLength(40, ErrorMessage = "Descreption must be up to 40 charachters")]
         [Display(Name = "Describe what your customer will get")]
         public string BasicPackageDescreption { get; set; }
 
@@ -65,7 +65,7 @@ namespace AuroraProject.ViewModels
         public string AdvancedPackageName { get; set; }
 
         [Required(ErrorMessage = "You must give a Descreption to your package")]
-        [StringLength(40)]
+        [StringLength(40, ErrorMessage = "Descreption must be up to 40 charachters")]
         [Display(Name = "Describe what your customer will get")]
         public string AdvancedPackageDescreption { get; set; }
 
@@ -85,7 +85,7 @@ namespace AuroraProject.ViewModels
         public string PremiumPackageName { get; set; }
 
         [Required(ErrorMessage = "You must give a Descreption to your package")]
-        [StringLength(40)]
+        [StringLength(40, ErrorMessage = "Descreption must be up to 40 charachters")]
         [Display(Name = "Describe what your customer will get")]
         public string PremiumPackageDescreption { get; set; }
 
@@ -100,7 +100,6 @@ namespace AuroraProject.ViewModels
         //VIEW PROPERTIES
         public string PageName { get; set; }
         public string ButtonName { get; set; }
-
         public string Action
         {
             get

@@ -36,9 +36,14 @@ textarea {
     --main-navbarBackgroundJoin-color-hover: #b926b9;
     --main-inputText-color: purple;
     --main-buttonText-color: floralwhite;
+    --page-decorator-maintext-white: floralwhite;
 }
 
 /*CUSTOM LAYOUT NAVBAR*/
+
+.bg-light {
+    background-color: floralwhite !important;
+}
 
 .navbar-brand {
     width: 6em;
@@ -321,13 +326,13 @@ textarea {
 
 /*PAGE DECORATIONS*/
 .navigator-h6 {
-    color: var(--main-navbarText-color) !important;
+    color: var( --page-decorator-maintext-white) !important;
     text-decoration: none;
     margin: 1em;
 }
 
     .navigator-h6 a {
-        color: var(--main-navbarText-color) !important;
+        color: var( --page-decorator-maintext-white) !important;
     }
 
 .page-decoration {
@@ -338,16 +343,16 @@ textarea {
 
 
 .page-heading {
-    color: var(--main-navbarText-color) !important;
+    color: var( --page-decorator-maintext-white) !important;
     text-decoration: none;
     font-size: 29px;
     font-weight: bold;
 }
 
 .page-descreption {
-    color: var(--main-navbarText-color) !important;
+    color: var( --page-decorator-maintext-white) !important;
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 0.8;
     position: relative;
 }
 
@@ -413,284 +418,6 @@ textarea {
     opacity: 0.7;
     position: relative;
     top: 1.5em;
-}
-
-/*CUSTOM LOGIN SECTION*/
-.image-container-login {
-    background: url(Images/Login/purpleBackground.jpg) center no-repeat;
-    background-size: cover;
-    height: 100vh;
-}
-
-.form-container-login {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-}
-
-.form-box-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-input, select, textarea {
-    max-width: 320px;
-}
-
-.form-box-login h4 {
-    font-weight: bold;
-    color: var(--main-navbarTextPro-color);
-}
-
-.form-box-login .form-input {
-    position: relative;
-    /*margin-bottom: -1rem;*/
-}
-
-    .form-box-login .form-input input {
-        width: 100%;
-        height: 40px;
-        margin-bottom: 20px;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0px 0px 0px 1px rgba(118,30,131, 0.2);
-        margin-bottom: 3rem;
-        outline: none;
-        background: white;
-        padding-left: 45px;
-    }
-
-    .form-box-login .form-input span {
-        position: absolute;
-        top: 8px;
-        padding-left: 20px;
-        color: var(--main-inputText-color);
-    }
-
-    /*.form-box-login .form-input inptut::placeholder {
-        padding-left: 0px;
-    }*/
-
-    .form-box-login .form-input input:focus,
-    .form-box-login .form-input input:valid,
-    .form-box-login .form-input option:valid {
-        box-shadow: 0px 0px 0px 1px #cd84f1 !important;
-        background: var(--main-buttonText-color);
-    }
-
-.form-box-login input[type="checkbox"]:not(checked) + label:before {
-    background: transparent;
-    border: 2px solid purple;
-    width: 15px;
-    height: 15px;
-    position: relative;
-    left: -25%;
-}
-
-.custom-control-input:checked ~ .custom-control-label::before {
-    background-color: var(--main-inputText-color) !important;
-    border: 0px;
-}
-
-.custom-checkbox {
-    position: relative;
-}
-
-.forget-link, .register-link {
-    color: var(--main-inputText-color);
-    font-weight: bold;
-    position: relative;
-}
-
-    .forget-link:hover, .register-link:hover {
-        color: var(--main-navbarText-color-hover);
-    }
-
-.form-box-login button[type ="submit"] {
-    border: none;
-    cursor: pointer;
-    width: 150px;
-    height: 40px;
-    border-right: 5px;
-    background-color: purple;
-    color: floralwhite;
-    font-weight: bold;
-    transition: 0.8s;
-    position: relative;
-}
-
-    .form-box-login button[type ="submit"]:hover {
-        box-shadow: 0px 0px 0px 1px #cd84f1;
-        background-color: floralwhite;
-        color: var(--main-navbarBackgroundJoin-color-hover);
-    }
-
-.form-box-login .btn-social {
-    color: var(--main-buttonText-color);
-    border: 0px;
-    display: inline-block;
-    margin: 0px;
-    margin-right: 10px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.form-box-login .btn-facebook {
-    background: #4866a8;
-    margin: 0.60rem;
-}
-
-.form-box-login .btn-google {
-    background: #da3f34;
-    margin: 0.60rem;
-}
-
-.form-box-login .btn-twitter {
-    background: #33ccff;
-    margin: 0.60rem;
-}
-
-.form-box-login .btn-facebook:hover {
-    background-color: #3d5785;
-    color: var(--main-buttonText-color);
-}
-
-.form-box-login .btn-google:hover {
-    background-color: #bf3b31;
-    color: var(--main-buttonText-color);
-}
-
-.form-box-login .btn-twitter:hover {
-    background-color: #2eb7e5;
-    color: var(--main-buttonText-color);
-}
-
-
-/*OVERIDE THE ERROR MESSAGES OF BOOTSTRAP*/
-.error-login {
-    pointer-events: none;
-    display: contents;
-    position: relative;
-}
-
-#Email-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-#Password-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-/*REGISTER CUSTOM FORM*/
-.error-register {
-    pointer-events: none;
-    display: contents;
-    position: relative;
-}
-
-#ConfirmPassword-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-#FirstName-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-#LastName-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-#Origin-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-#MembershipTypeID-error {
-    background: purple;
-    color: var(--main-buttonText-color);
-    padding: 0em;
-    width: 27.5em;
-    left: 5%;
-    top: -20px;
-    z-index: 2;
-    border-radius: 5px;
-    font-size: x-small;
-    pointer-events: none;
-}
-
-.form-box-login .form-dropdown span {
-    position: absolute;
-    top: 8px;
-    padding-left: 20px;
-    color: purple;
-}
-
-.register-custom-dropdown {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 0px 0px 1px rgba(118,30,131, 0.2);
-    margin-bottom: 3rem;
-    outline: none;
-    background: white;
-    padding-left: 45px;
 }
 
 /*CUSTOM CARD FOR GIGS*/
@@ -781,8 +508,8 @@ input, select, textarea {
         display: none;
     }
 
-    @media (min-width: 1691px) {
-        .auction-form-profile {
+@media (min-width: 1691px) {
+    .auction-form-profile {
         width: 60%;
         left: 34%;
     }
@@ -898,8 +625,8 @@ b {
     display: grid;
     justify-content: center;
     top: 0%;
-    left:50%;
-    transform:translate(-50%, 0%);
+    left: 50%;
+    transform: translate(-50%, 0%);
     /*margin-left: 70px;*/
     cursor: pointer;
 }
@@ -1183,7 +910,6 @@ img.OurLogo {
 
 
 /*INFLUENCER CARD*/
-
 .favourite-influncer-card {
     opacity: 0.7;
     display: flex;
@@ -1526,7 +1252,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*BOOTBOX CSS*/
 
-.modal-header{
+.modal-header {
     justify-content: center !important;
 }
 
@@ -1536,10 +1262,10 @@ input[type=number]::-webkit-outer-spin-button {
         outline: none;
     }
 
-    .bootbox .modal-header {
-        flex-direction: row-reverse;
-    }
-  
+.bootbox .modal-header {
+    flex-direction: row-reverse;
+}
+
 .bootbox-cancel-btn {
     outline: none;
     font-size: 18px;
@@ -1565,3 +1291,183 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
 
+
+/*NEW FORM CSS*/
+.register {
+    padding: 3%;
+    background-image: linear-gradient(to right top, #2424d1, #3822da, #481fe3, #581bec, #6714f4, #790ef1, #8806ee, #9600eb, #a402dd, #ad0ed0, #b41ac4, #b926b9);
+}
+
+.register-left {
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+    height: auto;
+}
+
+    .register-left input {
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        width: 60%;
+        background: #f8f9fa;
+        font-weight: bold;
+        color: #383d41;
+        margin-top: 30%;
+        margin-bottom: 3%;
+        cursor: pointer;
+    }
+
+.register-right {
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+
+.register-left img {
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite alternate;
+    animation: mover 1s infinite alternate;
+}
+
+@-webkit-keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+.register-left p {
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+
+.register .register-form {
+    position: relative;
+    padding: 1em;
+    margin: 1em !important;
+    justify-content: center;
+}
+
+.btn-submit-form {
+    float: right;
+    margin-top: 10%;
+    border: none;
+    padding: 2%;
+    color: floralwhite;
+    font-weight: 600;
+    width: 100%;
+    top: -2em;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+    .btn-submit-form:hover {
+        color: floralwhite;
+        box-shadow: 0px 1px 1px rgb(255, 255, 255);
+        outline: none;
+    }
+
+    .register .nav-tabs {
+        border: none;
+        background: white;
+        width: 90%;
+        left: 0%;
+        transform: translate(5%,0);
+        margin: 1em;
+        /*float: right;*/
+    }
+
+    .register .nav-tabs .nav-item {
+        justify-content: center;
+        text-align: center;
+        align-content: center;
+        display: flex;
+    }
+
+    .register .nav-tabs .nav-link {
+        padding: 0.9em;
+        font-size: 15px;
+        height: 48px;
+        width: 160px;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--main-navbarText-color);
+    }
+
+        .register .nav-tabs .nav-link:hover {
+            border: none;
+        }
+
+        .register .nav-tabs .nav-link.active {
+            color: floralwhite;
+            background-color: var(--main-navbarTextPro-color-hover);
+            border: none;
+        }
+
+
+
+@media (max-width: 1051px) {
+    .register .nav-tabs {
+        position: relative;
+        left: -10px;
+        display: block;
+        background-color: white;
+    }
+
+        .register .nav-tabs .nav-item {
+            margin-top: 2em;
+        }
+
+        .register .nav-tabs .nav-link {
+            color: purple;
+        }
+}
+
+.register-heading {
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+
+.register-form .form-group {
+    text-align: center;
+}
+
+    .register-form .form-group .form-control {
+        margin: 1em !important;
+        align-self: center;
+        display: initial;
+        position: relative;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        box-shadow: 0px 1px 0px 0px rgba(118,30,131, 0.5);
+        font-size: 16px;
+        height: 3em;
+        color: var(--main-navbarTextPro-color-hover);
+    }
+
+        .register-form .form-group .form-control::-webkit-input-placeholder {
+            color: var(--main-navbarTextPro-color);
+            opacity: 0.5;
+            font-size: 16px;
+        }
