@@ -10,20 +10,19 @@
 
     <div class=" container-fluid register">
 
-        <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Influencer", "Create", "Influencer") > <a href="" onClick="window.location.reload();">@Model.PageName</a></h6>
+        <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Influencer", "Create", "Influencer") > <a href="" onClick="window.location.reload();">@Model.PageName</a></h6>
 
-        <div class="page-decoration container">
-            <h1 class="page-heading">@Model.PageName</h1>
-            <p class="page-descreption">A Simple Gig, can transform our world Forever!</p>
+        <div class="page-decoration-b container">
+            <h1 class="page-heading-b">@Model.PageName</h1>
+            <p class="page-descreption-b">A Simple Gig, can transform our world Forever!</p>
         </div>
 
         <div class="row">
             <div class="col-md-3 register-left">
                 <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
                 <h3>Tips:</h3>
-                <p>Your Gig is like your Spaceship <br /> Be creative, Pick a Catchy Tite for your Gig, Plan carefully your Service!<p>
+                <p>Your Gig is like your Spaceship <br /> Be creative, Pick a Catchy Title for your Gig, Plan carefully your Service!<p>
                     @*<input type="submit" name="" value="Login" /><br />*@
-                    <button type="submit" class="btn btn-group-lg btn-submit-form animated flash" value="Save" name="actionButton">@Model.ButtonName</button>
             </div>
 
             <div class="col-md-9 register-right">
@@ -66,6 +65,7 @@
                                     @Html.DropDownListFor(i => i.SpecificIndustryID, new SelectList(Model.SpecificIndustries, "ID", "Name"), "Select", new { @class = "form-control select-value", @placeholder = "Select" })
                                     @Html.ValidationMessageFor(i => i.SpecificIndustryID)
                                 </div>
+                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
                     </div>
@@ -90,56 +90,55 @@
                                     @Html.TextBoxFor(m => m.BasicDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
                                     @Html.ValidationMessageFor(m => m.BasicDeliveryTime)
                                 </div>
+                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="tab-pane fade show" id="advancedPackage" role="tabpanel" aria-labelledby="advancedPackage-tab">
                         <div class="row register-form">
-                            <div class="row register-form">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.AdvancedPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
-                                        @Html.ValidationMessageFor(m => m.AdvancedPackageName)
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.AdvancedPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
-                                        @Html.ValidationMessageFor(m => m.AdvancedPrice)
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.AdvancedPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
-                                        @Html.ValidationMessageFor(m => m.AdvancedPackageDescreption)
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.AdvancedDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
-                                        @Html.ValidationMessageFor(m => m.AdvancedDeliveryTime)
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.AdvancedPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
+                                    @Html.ValidationMessageFor(m => m.AdvancedPackageName)
                                 </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.AdvancedPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.AdvancedPrice)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.AdvancedPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
+                                    @Html.ValidationMessageFor(m => m.AdvancedPackageDescreption)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.AdvancedDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.AdvancedDeliveryTime)
+                                </div>
+                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="tab-pane fade show" id="premiumPackage" role="tabpanel" aria-labelledby="premiumPackage-tab">
                         <div class="row register-form">
-                            <div class="row register-form">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.PremiumPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
-                                        @Html.ValidationMessageFor(m => m.PremiumPackageName)
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.PremiumPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
-                                        @Html.ValidationMessageFor(m => m.PremiumPrice)
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.PremiumPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
-                                        @Html.ValidationMessageFor(m => m.PremiumPackageDescreption)
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(m => m.PremiumDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
-                                        @Html.ValidationMessageFor(m => m.PremiumDeliveryTime)
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.PremiumPackageName, new { @class = "form-control", @placeholder = "Package Title *" })
+                                    @Html.ValidationMessageFor(m => m.PremiumPackageName)
                                 </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.PremiumPrice, new { @class = "form-control", @placeholder = "Price for your Package *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.PremiumPrice)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.PremiumPackageDescreption, new { @class = "form-control", @placeholder = "Package Descreption *" })
+                                    @Html.ValidationMessageFor(m => m.PremiumPackageDescreption)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.PremiumDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
+                                    @Html.ValidationMessageFor(m => m.PremiumDeliveryTime)
+                                </div>
+                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
                     </div>
@@ -155,30 +154,24 @@
 
             let inputText = $("input[type=text]");
             let buttonSubmit = $(".btn-submit-form");
-
-            inputText.each(function () {
-                if (this.value == "") {
-                    buttonSubmit.css("display", "none");
-                }
-                else {
-                    buttonSubmit.css("display", "block");
-                }
-            });
+            buttonSubmit.css("display", "none");
 
             inputText.change(function () {
+                var fields = $(".form-group")
+                    .find("select, textarea, input").serializeArray();
 
-                inputText.each(function () {
-
-                    if (this.value == "") {
-
-                        buttonSubmit.css("display", "none");
-                    }
-                    else {
-
+                $.each(fields, function (i, field) {
+                    if (fields.every(f => f.value != '')) {
                         buttonSubmit.css("display", "block");
                     }
+                    else {
+                        buttonSubmit.css("display", "none");
+                    }
                 });
-            });
+
+                console.log(fields);
+                console.log(fields.every(f => f.value != ''));
+            })
 
         });
     </script>

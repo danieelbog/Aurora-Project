@@ -334,7 +334,6 @@
     <Content Include="Content\Images\Logo\aurora_logo-03.png" />
     <Content Include="Content\Images\Logo\aurora_logo-04.png" />
     <Content Include="Content\Images\Logo\aurora_logoFINAL-05.png" />
-    <Content Include="Content\mdb.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />

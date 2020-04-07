@@ -41,10 +41,6 @@ textarea {
 
 /*CUSTOM LAYOUT NAVBAR*/
 
-.bg-light {
-    background-color: floralwhite !important;
-}
-
 .navbar-brand {
     width: 6em;
     margin: 0;
@@ -326,13 +322,13 @@ textarea {
 
 /*PAGE DECORATIONS*/
 .navigator-h6 {
-    color: var( --page-decorator-maintext-white) !important;
+    color: var( --main-navbarText-color) !important;
     text-decoration: none;
     margin: 1em;
 }
 
     .navigator-h6 a {
-        color: var( --page-decorator-maintext-white) !important;
+        color: var( --main-navbarText-color) !important;
     }
 
 .page-decoration {
@@ -343,14 +339,14 @@ textarea {
 
 
 .page-heading {
-    color: var( --page-decorator-maintext-white) !important;
+    color: var( --main-navbarText-color) !important;
     text-decoration: none;
     font-size: 29px;
     font-weight: bold;
 }
 
 .page-descreption {
-    color: var( --page-decorator-maintext-white) !important;
+    color: var( --main-navbarText-color) !important;
     text-decoration: none;
     opacity: 0.8;
     position: relative;
@@ -419,6 +415,103 @@ textarea {
     position: relative;
     top: 1.5em;
 }
+
+/*PAGE DECORATION FOR DIFFERENT BACKGROUNDS*/
+.navigator-h6-b {
+    color: var( --page-decorator-maintext-white) !important;
+    text-decoration: none;
+    margin: 1em;
+}
+
+    .navigator-h6-b a {
+        color: var( --page-decorator-maintext-white) !important;
+    }
+
+.page-decoration-b {
+    display: grid;
+    grid-gap: 0.08px;
+    margin: 1em 0 0 1em;
+}
+
+
+.page-heading-b {
+    color: var( --page-decorator-maintext-white) !important;
+    text-decoration: none;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.page-descreption-b {
+    color: var( --page-decorator-maintext-white) !important;
+    text-decoration: none;
+    opacity: 0.8;
+    position: relative;
+}
+
+.sorting-div-b {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(240px, 1fr));
+    position: relative;
+    /*grid-template-columns: repeat(auto-fit,minmax(240px, 1fr));*/
+}
+
+/*OTAN MIKRAINEI H OTHONH */
+@media (max-width: 991px) {
+
+    .sorting-div-b {
+        width: 90% !important;
+        grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+    }
+
+    .page-decoration-b {
+        display: grid;
+        grid-gap: 0.08px;
+        margin: 1em 0 0 0em;
+        grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+    }
+}
+
+.sorting-div-b .dropdown {
+    margin: 1em;
+    text-align: center;
+    /*background-color: var(--main-navbarTextPro-color);*/
+    /*color: floralwhite;*/
+    border-radius: 10px;
+    max-width: 15em;
+    cursor: pointer;
+    transition: .6s;
+    /*background-color: var(--main-navbarTextPro-color);*/
+    color: var( --page-decorator-maintext-white);
+    border: 1px solid;
+    padding: 4px;
+}
+
+    .sorting-div-b .dropdown:hover {
+        background-color: var(--main-navbarTextPro-color-hover);
+        color: floralwhite;
+    }
+
+.sorting-div-b .dropdown-menu-b {
+    position: absolute;
+    border-radius: 10px;
+    top: 6px !important;
+    left: 8% !important;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.services-count-b {
+    color: var( --page-decorator-maintext-white) !important;
+    text-decoration: none;
+    opacity: 0.7;
+    position: relative;
+    top: 1.5em;
+}
+
 
 /*CUSTOM CARD FOR GIGS*/
 
@@ -1319,9 +1412,10 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
 .register-right {
-    background: #f8f9fa;
+    background-color: white;
     border-top-left-radius: 10% 50%;
     border-bottom-left-radius: 10% 50%;
+    height: auto;
 }
 
 .register-left img {
@@ -1366,29 +1460,31 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn-submit-form {
-    float: right;
-    margin-top: 10%;
+    margin-top: 1em;
     border: none;
-    padding: 2%;
-    color: floralwhite;
+    padding: 1em;
+    color: var(--main-buttonText-color);
     font-weight: 600;
-    width: 100%;
-    top: -2em;
+    width: 15em;
     position: relative;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
+    transition: .6s;
+    background-color: #6a13f3;
+    left: 50%;
+    transform: translate(-50%);
 }
 
     .btn-submit-form:hover {
-        color: floralwhite;
-        box-shadow: 0px 1px 1px rgb(255, 255, 255);
+        background-color: var(--main-navbarTextPro-color-hover);
+        color: var(--main-buttonText-color);
         outline: none;
     }
 
     .register .nav-tabs {
         border: none;
         background: white;
-        width: 90%;
+        width: 95%;
         left: 0%;
         transform: translate(5%,0);
         margin: 1em;
@@ -1402,25 +1498,25 @@ input[type=number]::-webkit-outer-spin-button {
         display: flex;
     }
 
-    .register .nav-tabs .nav-link {
-        padding: 0.9em;
-        font-size: 15px;
-        height: 48px;
-        width: 160px;
-        font-weight: 600;
-        font-size: 14px;
-        color: var(--main-navbarText-color);
-    }
+        .register .nav-tabs .nav-link {
+            padding: 0.9em;
+            font-size: 15px;
+            height: 48px;
+            width: 160px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--main-navbarText-color);
+        }
 
         .register .nav-tabs .nav-link:hover {
             border: none;
         }
 
-        .register .nav-tabs .nav-link.active {
-            color: floralwhite;
-            background-color: var(--main-navbarTextPro-color-hover);
-            border: none;
-        }
+            .register .nav-tabs .nav-link.active {
+                color: floralwhite;
+                background-color: #6a13f3;
+                border: none;
+            }
 
 
 
@@ -1439,6 +1535,11 @@ input[type=number]::-webkit-outer-spin-button {
         .register .nav-tabs .nav-link {
             color: purple;
         }
+
+    .btn-submit-form {
+        left: 43%;
+        transform: translate(-38%);
+    }
 }
 
 .register-heading {
