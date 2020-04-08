@@ -41,58 +41,65 @@
                         <div class="row register-form">
                             <div class="col-md-12">
 
-                                <div class="form-group upload-image">
-                                    @if (Model.Files != null)
-                                    {
-                                        if (Model.Files.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                                <div>
+                                    <div class="form-group upload-image">
+                                        @if (Model.Files != null)
                                         {
-                                            <div>
+                                            if (Model.Files.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                                            {
                                                 <div>
-                                                    <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" width="185" height="185" />
+                                                    <div>
+                                                        <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" width="185" height="185" />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            }
                                         }
-                                    }
 
-                                    <div class="form-group">
-                                        <div>
-                                            <label for="Avatar" class="custom-file-upload form-control">
-                                                @Model.ButtonName Avatar
-                                            </label>
-                                            <input type="file" id="Avatar" name="upload" style="display:none" />
+                                        <div class="form-group">
+                                            <div>
+                                                <label for="Avatar" class="custom-file-upload form-control">
+                                                    @Model.ButtonName Avatar
+                                                </label>
+                                                <input type="file" id="Avatar" name="upload" style="display:none" />
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <hr />
                                 </div>
 
-                                <hr />
+                                <div>
 
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.AboutTheInfluencer, new { @class = "form-control", placeholder = "Describe yourself", @type = "text" })
-                                    @Html.ValidationMessageFor(m => m.AboutTheInfluencer, "", new { @class = "error-register" })
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.AboutTheInfluencer, new { @class = "form-control", placeholder = "Describe yourself", @type = "text" })
+                                        @Html.ValidationMessageFor(m => m.AboutTheInfluencer, "", new { @class = "error-register" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.MainLanguage, new { @class = "form-control", placeholder = "What is your main used language", @type = "text" })
+                                        @Html.ValidationMessageFor(m => m.MainLanguage, "", new { @class = "error-register" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.MainPlatform, new { @class = "form-control", placeholder = "Where is your main Social Media Account", @type = "text" })
+                                        @Html.ValidationMessageFor(m => m.MainPlatform, "", new { @class = "error-register" })
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.MainLanguage, new { @class = "form-control", placeholder = "What is your main used language", @type = "text" })
-                                    @Html.ValidationMessageFor(m => m.MainLanguage, "", new { @class = "error-register" })
+                                <div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Exposure, new { @class = "form-control", placeholder = "How many followers do you have", @type = "text" })
+                                        @Html.ValidationMessageFor(m => m.Exposure, "", new { @class = "error-register" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.MainTopic, new { @class = "form-control", placeholder = "Your main topic", @type = "text" })
+                                        @Html.ValidationMessageFor(m => m.MainTopic, "", new { @class = "error-register" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(m => m.MembershipTypeID, new SelectList(Model.MembershipTypes, "ID", "Name"), "Membership Type", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.MembershipTypeID, "", new { @class = "error-register" })
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.MainPlatform, new { @class = "form-control", placeholder = "Where is your main Social Media Account", @type = "text" })
-                                    @Html.ValidationMessageFor(m => m.MainPlatform, "", new { @class = "error-register" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.Exposure, new { @class = "form-control", placeholder = "How many followers do you have", @type = "text" })
-                                    @Html.ValidationMessageFor(m => m.Exposure, "", new { @class = "error-register" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.MainTopic, new { @class = "form-control", placeholder = "Your main topic", @type = "text" })
-                                    @Html.ValidationMessageFor(m => m.MainTopic, "", new { @class = "error-register" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.DropDownListFor(m => m.MembershipTypeID, new SelectList(Model.MembershipTypes, "ID", "Name"), "Membership Type", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MembershipTypeID, "", new { @class = "error-register" })
-                                </div>
-                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                     </div>
 
                     <div class="tab-pane fade show" id="audienceInfo" role="tabpanel" aria-labelledby="audienceInfo-tab">
@@ -114,9 +121,9 @@
                                     @Html.TextBoxFor(m => m.AudienceMainTrait, new { @class = "form-control", placeholder = "Describe your audience with one phrase", @type = "text" })
                                     @Html.ValidationMessageFor(m => m.AudienceMainTrait, "", new { @class = "error-register" })
                                 </div>
-                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                     </div>
                 </div>
 

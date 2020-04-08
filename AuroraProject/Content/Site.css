@@ -1459,21 +1459,29 @@ input[type=number]::-webkit-outer-spin-button {
     transform:translate(50%);
 }
 
-.btn-submit-form {
-    margin-top: 1em;
-    border: none;
-    padding: 1em;
-    color: var(--main-buttonText-color);
-    font-weight: 600;
-    width: 15em;
-    position: relative;
-    cursor: pointer;
-    font-size: 16px;
-    transition: .6s;
-    background-color: #6a13f3;
-    left: 50%;
-    transform: translate(-50%);
-}
+    .register .register-form div {
+        display: inline;
+        justify-content: center;
+        text-align:center;
+    }
+
+    .btn-submit-form {
+        margin-top: 1em;
+        border: none;
+        padding: 1em;
+        color: var(--main-buttonText-color);
+        font-weight: 600;
+        width: 20em;
+        height: 3em;
+        top: -2em;
+        position: relative;
+        cursor: pointer;
+        font-size: 16px;
+        transition: .6s;
+        background-color: #6a13f3;
+        left: 50%;
+        transform: translate(-53%);
+    }
 
     .btn-submit-form:hover {
         background-color: var(--main-navbarTextPro-color-hover);
@@ -1538,8 +1546,14 @@ input[type=number]::-webkit-outer-spin-button {
         }
 
     .btn-submit-form {
-        left: 43%;
-        transform: translate(-38%);
+        left: 50%;
+        width: 55%;
+        transform: translate(-54%);
+    }
+
+    .register-form .form-group .custom-file-upload {
+        font-size: 12px !important;
+        justify-self: center;
     }
 }
 
@@ -1586,11 +1600,15 @@ input[type=number]::-webkit-outer-spin-button {
         color: white;
     }
 
-        .upload-image div {
-            height: auto;
-            margin: 10px;
-            position: relative;
-        }
+.upload-image {
+    display: table-caption !important;
+}
+
+.upload-image div {
+    height: auto;
+    margin: 10px;
+    position: relative;
+}
 
 .upload-image img {
    border: solid 1px var(--main-navbarTextPro-color-hover);

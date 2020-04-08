@@ -64,9 +64,9 @@
                                     @Html.DropDownListFor(i => i.SpecificIndustryID, new SelectList(Model.SpecificIndustries, "ID", "Name"), "Select", new { @class = "form-control select-value", @placeholder = "Select" })
                                     @Html.ValidationMessageFor(i => i.SpecificIndustryID)
                                 </div>
-                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                     </div>
 
 
@@ -89,9 +89,9 @@
                                     @Html.TextBoxFor(m => m.BasicDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
                                     @Html.ValidationMessageFor(m => m.BasicDeliveryTime)
                                 </div>
-                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                     </div>
 
                     <div class="tab-pane fade show" id="advancedPackage" role="tabpanel" aria-labelledby="advancedPackage-tab">
@@ -113,9 +113,9 @@
                                     @Html.TextBoxFor(m => m.AdvancedDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
                                     @Html.ValidationMessageFor(m => m.AdvancedDeliveryTime)
                                 </div>
-                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                     </div>
 
                     <div class="tab-pane fade show" id="premiumPackage" role="tabpanel" aria-labelledby="premiumPackage-tab">
@@ -137,9 +137,9 @@
                                     @Html.TextBoxFor(m => m.PremiumDeliveryTime, new { @class = "form-control", @placeholder = "Days ready for delivery *", @Value = "" })
                                     @Html.ValidationMessageFor(m => m.PremiumDeliveryTime)
                                 </div>
-                                <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-group-lg btn-submit-form animated fadeIn" value="Save" name="actionButton">@Model.ButtonName</button>
                     </div>
                 </div>
             }
