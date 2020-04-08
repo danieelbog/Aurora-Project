@@ -3,43 +3,42 @@
     ViewBag.Title = Model.PageName;
 }
 
-@using (Html.BeginForm(Model.Action, "Gig"))
-{
-    @Html.AntiForgeryToken()
+<div class="container-fluid register">
+    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Influencer", "Create", "Influencer") > <a href="" onClick="window.location.reload();">@Model.PageName</a></h6>
 
+    <div class="page-decoration-b container">
+        <h1 class="page-heading-b">@Model.PageName</h1>
+        <p class="page-descreption-b">A Simple Gig, can transform our world Forever!</p>
+    </div>
 
-    <div class=" container-fluid register">
-
-        <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Influencer", "Create", "Influencer") > <a href="" onClick="window.location.reload();">@Model.PageName</a></h6>
-
-        <div class="page-decoration-b container">
-            <h1 class="page-heading-b">@Model.PageName</h1>
-            <p class="page-descreption-b">A Simple Gig, can transform our world Forever!</p>
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="SpaceShip Logo" />
+            <h3>Tips:</h3>
+            <p>Your Gig is like your Spaceship <br /> <br /> Be creative, Pick a Catchy Title for your Gig, Plan carefully your Service!<p>
+                @*<input type="submit" name="" value="Login" /><br />*@
         </div>
 
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-                <h3>Tips:</h3>
-                <p>Your Gig is like your Spaceship <br /> Be creative, Pick a Catchy Title for your Gig, Plan carefully your Service!<p>
-                    @*<input type="submit" name="" value="Login" /><br />*@
-            </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Gig</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="basicPackage-tab" data-toggle="tab" href="#basicPackage" role="tab" aria-controls="basicPackage" aria-selected="false">Basic Package</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="advancedPackage-tab" data-toggle="tab" href="#advancedPackage" role="tab" aria-controls="advancedPackage" aria-selected="false">Advanced Package</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="premiumPackage-tab" data-toggle="tab" href="#premiumPackage" role="tab" aria-controls="premiumPackage" aria-selected="false">Premium Package</a>
+                </li>
+                <hr />
+            </ul>
 
-            <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Gig</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="basicPackage-tab" data-toggle="tab" href="#basicPackage" role="tab" aria-controls="basicPackage" aria-selected="false">Basic Package</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="advancedPackage-tab" data-toggle="tab" href="#advancedPackage" role="tab" aria-controls="advancedPackage" aria-selected="false">Advanced Package</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="premiumPackage-tab" data-toggle="tab" href="#premiumPackage" role="tab" aria-controls="premiumPackage" aria-selected="false">Premium Package</a>
-                    </li>
-                </ul>
+            @using (Html.BeginForm(Model.Action, "Gig"))
+            {
+                @Html.AntiForgeryToken()
 
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -143,10 +142,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
-}
+</div>
+
 
 @section scripts {
     <script>

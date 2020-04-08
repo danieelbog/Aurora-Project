@@ -633,7 +633,7 @@ textarea {
 
 .sidebar {
     grid-area: sidebar;
-    background: floralwhite;
+    background: white;
     padding: 0px 0px 10px 0px;
     border-radius: 5px;
     border: 2px solid;
@@ -763,7 +763,7 @@ b {
     }
 
     .sidebar {
-        background: floralwhite;
+        background: white;
         padding-top: 3em;
         width: 35em;
         margin-left: -1em;
@@ -793,7 +793,7 @@ b {
     padding: 25px 0 0 0;
     overflow: hidden;
     opacity: 0.6;
-    background-color: floralwhite;
+    background: white;
 }
 
 
@@ -812,7 +812,7 @@ b {
     padding: 15px 0 25px 0;
     overflow: hidden;
     opacity: 0.6;
-    background-color: floralwhite;
+    background: white;
     text-align-last: center;
 }
 
@@ -827,7 +827,7 @@ b {
 }
 
     .my-profile-button-update:hover {
-        background-color: floralwhite;
+        background: white;
         color: var(--main-navbarBackgroundJoin-color-hover);
         opacity: 1 !important;
     }
@@ -841,7 +841,7 @@ b {
 }
 
     .my-profile-button-cancel:hover {
-        background-color: floralwhite;
+        background: white;
         color: var(--main-navbarBackgroundJoin-color-hover);
     }
 
@@ -1212,33 +1212,30 @@ img.OurLogo {
 
 .wallet-container-a {
     opacity: 0.8;
-    /* background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(); */
-    /* background: #20002c;  
-     background: linear-gradient(to right, #cbb4d4, #20002c); */
-    background: #000428;
-    background: linear-gradient(to right, #004e92, #010a58);
-    /* background: #000000;  
-     background: -webkit-linear-gradient(to right, #434343, #000000);  */
-    /* background: #ff0084;  
-     background: -webkit-linear-gradient(to right, #33001b, #ff0084);   */
-    /* background: #ff6600; 
-     background: -webkit-linear-gradient(to right, #f83600, #fe8c00);   */
-    /*width: 320px;*/
-    max-width: 50% !important;
+    background: transparent;
+    width: 70% !important;
     color: floralwhite;
     font-size: 15px;
-    padding: 20px 20px 0;
+    padding: 2em;
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-65%, 0%);
+    height: auto;
+    box-shadow: 0px .4px 25px .4px floralwhite;
+    border-radius: 25px;
 }
 
 @media (max-width: 991px) {
     .wallet-container-a {
-        max-width: 100% !important;
+        width: 100% !important;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -15%);
+        height: auto;
     }
 }
+
 
 .page-title {
     text-align: left;
@@ -1424,6 +1421,7 @@ input[type=number]::-webkit-outer-spin-button {
     width: 25%;
     -webkit-animation: mover 2s infinite alternate;
     animation: mover 1s infinite alternate;
+    
 }
 
 @-webkit-keyframes mover {
@@ -1457,6 +1455,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 1em;
     margin: 1em !important;
     justify-content: center;
+    left: -50%;
+    transform:translate(50%);
 }
 
 .btn-submit-form {
@@ -1483,7 +1483,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     .register .nav-tabs {
         border: none;
-        background: white;
+        background-color: transparent !important;
         width: 95%;
         left: 0%;
         transform: translate(5%,0);
@@ -1523,9 +1523,10 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 1051px) {
     .register .nav-tabs {
         position: relative;
-        left: -10px;
         display: block;
         background-color: white;
+        left: -50%;
+        transform: translate(50%);
     }
 
         .register .nav-tabs .nav-item {
@@ -1559,7 +1560,6 @@ input[type=number]::-webkit-outer-spin-button {
         display: initial;
         position: relative;
         outline: none;
-        box-shadow: none;
         border: none;
         box-shadow: 0px 1px 0px 0px rgba(118,30,131, 0.5);
         font-size: 16px;
@@ -1572,3 +1572,31 @@ input[type=number]::-webkit-outer-spin-button {
             opacity: 0.5;
             font-size: 16px;
         }
+
+    .register-form .form-group .custom-file-upload {
+        cursor: pointer !important;
+        border: none;
+        box-shadow: none;
+        transition: .6s;
+        border: solid 1px;
+    }
+
+    .register-form .form-group .custom-file-upload:hover {
+        background-color: var(--main-navbarTextPro-color-hover);
+        color: white;
+    }
+
+        .upload-image div {
+            height: auto;
+            margin: 10px;
+            position: relative;
+        }
+
+.upload-image img {
+   border: solid 1px var(--main-navbarTextPro-color-hover);
+   border-radius: 25px;
+   position: relative;
+   left: 0%;
+   transform:translate(-1%);
+   top: -1em;
+}
