@@ -1481,6 +1481,8 @@ input[type=number]::-webkit-outer-spin-button {
         background-color: #6a13f3;
         left: 50%;
         transform: translate(-53%);
+        outline: none;
+        box-shadow: none;
     }
 
     .btn-submit-form:hover {
@@ -1602,12 +1604,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .upload-image {
     display: table-caption !important;
+    width: 15em;
 }
 
 .upload-image div {
     height: auto;
     margin: 10px;
     position: relative;
+    width: 10px;
 }
 
 .upload-image img {
