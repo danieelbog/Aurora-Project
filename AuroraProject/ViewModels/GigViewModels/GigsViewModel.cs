@@ -12,6 +12,10 @@ namespace AuroraProject.ViewModels
         public bool ShowActions { get; set; }
         public string Heading { get; set; }
 
+        public ILookup<int, FavouriteGig> FavouriteGigs { get; set; }
+        public ILookup<int, FavouriteInfluencer> FavouriteInfluencers { get; set; }
+
+
         //SEARCHING FUNCTION
         public string SearchTerm { get; set; }
 

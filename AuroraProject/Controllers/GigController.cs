@@ -25,23 +25,37 @@ namespace AuroraProject.Controllers
         //GET: THE DETAILS OF A GIG
         public ActionResult Details(int gigID)
         {
-            var gigs = context.Gigs
+            var gig = context.Gigs
                 .Include(g => g.User)
                 .Include(g => g.BasicPackage)
                 .Include(g => g.AdvancedPackage)
                 .Include(g => g.PremiumPackage)
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.Influencer)
+                .SingleOrDefault(g => g.ID == gigID);
 
-                //I CREATE A LIST OF ONE GIG SO I CAN USE MY OLD VIEW MODEL
-                //DONT KNOW IF THIS IS OK OR NOT BUT IT WORKS FOR NOW
-                //SURELLY THERE ARE NO GIGS WITH THE SAME ID
-                .Where(g => g.ID == gigID)
-                .ToList();
+            if (gig == null)
+                return HttpNotFound("No gig was Found");
 
-            var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
-                                $"{gigs[0].GigName}", null);
+            var viewModel = new GigDetailsViewModel()
+            {
+                Gig = gig,
+                Heading = $"{gig.GigName}",
+            };
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                viewModel.ShowActions = true;
+
+                viewModel.isFavourited = context.FavouriteGigs
+                    .Any(f => f.GigID == gigID && f.ActionerID == userId);
+
+                viewModel.isFollowing = context.FavouriteInfluencers
+                    .Any(f => f.InfluencerID == gig.InfluencerID && f.FollowerID == userId);
+            }
+            
             return View("Details", viewModel);
         }
 
@@ -55,6 +69,7 @@ namespace AuroraProject.Controllers
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.SpecificIndustry.Industry)
                 .Include(g => g.Influencer)
+                .Where(g => !g.IsDisabled)
                 .ToList();
 
             if (specificIndustryID != null)
@@ -73,15 +88,32 @@ namespace AuroraProject.Controllers
 
             if (specificIndustryID == null && String.IsNullOrEmpty(query))
             {
+                // SEND IT ELSEWHERE
                 return RedirectToAction("Mine");
             }
 
             // SORT THE GIG WITH THE CORRECT SORTER
-            Sorter.SortLogic(gigs);
+            Sorter.SortLogic(gigs);            
 
             // SEND GIGS TO THE VIEW
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
                 specificIndustryID == null ? "No Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Gigs", query);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var favouriteGigs = context.FavouriteGigs.Where(f => f.ActionerID == userId)
+                    .ToList()
+                    .ToLookup(f => f.GigID);
+
+                var favouriteInfluencer = context.FavouriteInfluencers.Where(f => f.FollowerID == userId)
+                    .ToList()
+                    .ToLookup(f => f.InfluencerID);
+
+                viewModel.FavouriteGigs = favouriteGigs;
+                viewModel.FavouriteInfluencers = favouriteInfluencer;
+
+            }
 
             //SEND THE SORTED LIST TO THE VIEW
             return View(viewModel);
@@ -140,6 +172,20 @@ namespace AuroraProject.Controllers
             // CREATE THE VIEW THAT WE WILL SEND
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
                "My Favourite Gigs", null);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var favouriteGigs = context.FavouriteGigs.Where(f => f.ActionerID == userId)
+                     .ToList()
+                     .ToLookup(f => f.GigID);
+
+                var favouriteInfluencer = context.FavouriteInfluencers.Where(f => f.FollowerID == userId)
+                    .ToList()
+                    .ToLookup(f => f.InfluencerID);
+
+                viewModel.FavouriteGigs = favouriteGigs;
+                viewModel.FavouriteInfluencers = favouriteInfluencer;
+            }
 
             // SEND GIGS TO THE VIEW          
             return View("Index", viewModel);

@@ -186,71 +186,73 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+            // TOGGLE FAVOURITES JS
             $(".js-toggle-favourite-gig").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
-                    .done(function () {
-                        toastr.success("Added To Favourites");
 
-                        button
-                            .removeClass("fa-heart-o")
-                            .addClass("fa-heart")
+                if (button.hasClass("fa-heart-o")) {
+                    $.post("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
+                        .done(function () {
+                            toastr.success("Added To Favourites");
 
-                    })
-                    .fail(function () {
-                        toastr.error("Failed Adding to Favourites");
-                    });
+                            button
+                                .removeClass("fa-heart-o")
+                                .addClass("fa-heart")
+
+                        })
+                        .fail(function () {
+                            toastr.error("Failed Adding to Favourites");
+                        });
+                }
+                else {
+                    $.delete("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
+                        .done(function () {
+                            toastr.success("Removed from Favourites");
+
+                            button
+                                .removeClass("fa-heart")
+                                .addClass("fa-heart-o")
+
+                        })
+                        .fail(function () {
+                            toastr.error("Failed Removing from Favourites");
+                        });
+                }
+
             });
 
             $(".js-toggle-favourite-influencer").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
-                    .done(function () {
-                        toastr.success("Added To Favourites");
 
-                        button
-                            .removeClass("fa-heart-o")
-                            .addClass("fa-heart")
+                if (button.hasClass("fa-heart-o")) {
+                    $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
+                        .done(function () {
+                            toastr.success("Influencer Added To Favourites");
 
-                    })
-                    .fail(function () {
-                        toastr.error("Failed Adding to Favourites");
-                    });
+                            button
+                                .removeClass("fa-heart-o")
+                                .addClass("fa-heart")
+
+                        })
+                        .fail(function () {
+                            toastr.error("Failed Adding to Favourites");
+                        });
+                }
+                else {
+                    $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
+                        .done(function () {
+                            toastr.success("Influencer from Favourites");
+
+                            button
+                                .removeClass("fa-heart")
+                                .addClass("fa-heart-o")
+
+                        })
+                        .fail(function () {
+                            toastr.error("Failed Removing from Favourites");
+                        });
+                }
             })
-
-            //$(function () {
-            //    var cursor;
-            //    $("#cmd").click(function () {
-            //        $("input").focus();
-            //        cursor = window.setInterval(function () {
-            //            if ($("#cursor").css("visibility") === "visible") {
-            //                $("#cursor").css({
-            //                    visibility: "hidden"
-            //                });
-            //            } else {
-            //                $("#cursor").css({
-            //                    visibility: "visible"
-            //                });
-            //            }
-            //        }, 500);
-            //    });
-
-            //    $("input").keyup(function () {
-            //        $("#cmd span").text($(this).val());
-            //    });
-
-            //    $("input").blur(function () {
-            //        clearInterval(cursor);
-            //        $("#cursor").css({
-            //            visibility: "visible"
-            //        });
-            //    });
-            //});
-
-            //$(document).ready(function () {
-            //    $("#cmd").trigger("click");
-            //});
-
         });
     </script>
 }

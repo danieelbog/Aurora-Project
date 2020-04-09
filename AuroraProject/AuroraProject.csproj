@@ -315,6 +315,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionViewModel.cs" />
+    <Compile Include="ViewModels\GigViewModels\GigDetailsViewModel.cs" />
     <Compile Include="ViewModels\GigViewModels\GigFormViewModel.cs" />
     <Compile Include="ViewModels\GigViewModels\GigsViewModel.cs" />
     <Compile Include="ViewModels\InfluencerViewModels\InfluencerFormViewModel.cs" />

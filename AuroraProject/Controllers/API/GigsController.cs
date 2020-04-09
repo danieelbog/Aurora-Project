@@ -20,6 +20,26 @@ namespace AuroraProject.Controllers.API
             context = new ApplicationDbContext();
         }
 
+
+        //POST: api/favourites
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult Enable(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var gig = context.Gigs.SingleOrDefault(g => g.ID == id);
+
+            if (gig == null)
+                return BadRequest("The Gig Was not Found");
+
+            gig.Enable();
+
+            context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpDelete]
         public IHttpActionResult Disable(int id)
         {
@@ -28,14 +48,12 @@ namespace AuroraProject.Controllers.API
                 .Include(g => g.Influencer)
                 .Single(g => g.ID == id && g.UserID == userId && g.Influencer.User.Id == userId);
 
-            if (gig.IsDisabled)
-                gig.Enable();
-            else
-                gig.Disable();
+            gig.Disable();
 
             context.SaveChanges();
 
             return Ok();
         }
+
     }
 }

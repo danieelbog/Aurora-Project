@@ -41,5 +41,22 @@ namespace AuroraProject.Controllers.API
 
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteFollow(FavouriteInfluencerDto favouriteInfluencerDto)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var favorite = context.FavouriteInfluencers
+                .SingleOrDefault(a => a.InfluencerID == favouriteInfluencerDto.InfluencerID && a.FollowerID == userId);
+
+            if (favorite == null)
+                return NotFound();
+
+            context.FavouriteInfluencers.Remove(favorite);
+            context.SaveChanges();
+
+            return Ok(favouriteInfluencerDto.InfluencerID);
+        }
     }
 }
