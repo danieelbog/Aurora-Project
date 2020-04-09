@@ -21,17 +21,19 @@ namespace AuroraProject.ViewModels
         [Range(0, 10000)]
         [DataType(DataType.Currency)]
         public float Transaction { get; set; }
+        public IEnumerable<UserNotification> UserNotifications { get; set; }
 
         public WalletViewModel()
         {
 
         }
 
-        public WalletViewModel(float value, string userFullName, string pageName)
+        public WalletViewModel(float value, string userFullName, string pageName, IEnumerable<UserNotification> userNotifications)
         {
             Value = value;
             UserFullName = userFullName;
             PageName = pageName;
+            UserNotifications = userNotifications;
         }
 
 

@@ -49,15 +49,14 @@
                 </div>
             }
 
+            <p class="history-card-txt"><b>History</b></p>
             <div class="txn-history">
-                <p class="history-card-txt"><b>History</b></p>
-                <p class="txn-list">Payment to the Shop<span class="debit-amount">-100$</span></p>
-
-                <p class="txn-list">Payment to Aurora Shop<span class="debit-amount">150$</span></p>
-
-                <p class="txn-list">Credit from Abc ltd<span class="credit-amount">-300$</span></p>
-
-                <p class="txn-list">Transfer from JohnSmith<span class="credit-amount">+100$</span></p>
+                @foreach (var notification in Model.UserNotifications)
+                {
+                    <p class="txn-list">
+                        @notification.Notification.Message
+                    </p>
+                }
             </div>
 
             <div class="footer-menu">

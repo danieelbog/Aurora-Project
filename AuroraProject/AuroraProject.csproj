@@ -282,6 +282,10 @@
     <Compile Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.designer.cs">
       <DependentUpon>202004061120555_FilesAndRelationWithInfluencer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004090820300_NotificationsModels.cs" />
+    <Compile Include="Migrations\202004090820300_NotificationsModels.designer.cs">
+      <DependentUpon>202004090820300_NotificationsModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
@@ -291,9 +295,10 @@
     <Compile Include="Models\EconomicClasses\Auction.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
-    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileClasses\File.cs" />
     <Compile Include="Models\InfluencerClasses\Influencer.cs" />
     <Compile Include="Models\AccountClasses\MembershipType.cs" />
+    <Compile Include="Models\NotificationsClasses\Notification.cs" />
     <Compile Include="Models\SortingClasses\QuickSort.cs" />
     <Compile Include="Models\SortingClasses\Sorter.cs" />
     <Compile Include="Models\SortingClasses\BucketSort.cs" />
@@ -305,6 +310,7 @@
     <Compile Include="Models\GigClasses\Gig.cs" />
     <Compile Include="Models\IndustryClasses\SpecificIndustry.cs" />
     <Compile Include="Models\EconomicClasses\Wallet.cs" />
+    <Compile Include="Models\NotificationsClasses\UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
@@ -595,6 +601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.resx">
       <DependentUpon>202004061120555_FilesAndRelationWithInfluencer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004090820300_NotificationsModels.resx">
+      <DependentUpon>202004090820300_NotificationsModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

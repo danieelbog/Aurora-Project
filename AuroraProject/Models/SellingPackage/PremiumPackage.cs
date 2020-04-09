@@ -46,13 +46,19 @@ namespace AuroraProject.Models
             DeliveryTime = updatedViewModel.PremiumDeliveryTime;
         }
 
-        public void SellPackage(ApplicationUser user, Wallet toUserWallet, AuroraWallet toAuroraWallet)
+        public void SellPackage(ApplicationUser buyerUser, ApplicationUser sellerUser, AuroraWallet toAuroraWallet)
         {
             var auroraMortage = Price * 0.05f;
             var clearPrice = Price - auroraMortage;
 
-            user.TransferMoneyToAurora(user.Wallet, toAuroraWallet, auroraMortage);
-            user.TransferMoneyToUser(user.Wallet, toUserWallet, clearPrice);
+            buyerUser.TransferMoneyToAurora(buyerUser.Wallet, toAuroraWallet, auroraMortage);
+            buyerUser.TransferMoneyToUser(buyerUser.Wallet, sellerUser.Wallet, clearPrice);
+
+            var purchaseNotification = Notification.GigPurchased(this, sellerUser.UserFullName);
+            var soldNotification = Notification.GigSold(this, buyerUser.UserFullName);
+
+            buyerUser.Notify(purchaseNotification);
+            sellerUser.Notify(soldNotification);
         }
     }
 }

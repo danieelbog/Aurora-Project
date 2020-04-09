@@ -23,6 +23,8 @@ namespace AuroraProject.Models
         public DbSet<AuroraWallet> AuroraWallets { get; set; }
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }
 
 
         public ApplicationDbContext()
@@ -54,6 +56,11 @@ namespace AuroraProject.Models
             modelBuilder.Entity<ApplicationUser>()
                 .HasRequired(u => u.Wallet)
                 .WithRequiredPrincipal(w => w.Owner);
+
+            modelBuilder.Entity<UserNotification>()
+                .HasRequired(n => n.User)
+                .WithMany(u => u.UserNotifications)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }

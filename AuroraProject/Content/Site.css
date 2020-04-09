@@ -1279,20 +1279,30 @@ img.OurLogo {
 
 .txn-history {
     text-align: left;
+    overflow-y: scroll;
+    height: 10em;
 }
 
-.txn-history {
+    .txn-history::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+
+.history-card-txt{
     text-align: left;
 }
 
 .history-card-txt b {
     color: floralwhite;
+    font-size: 20px;
+    top: 1.5em;
+    position: relative;
+    left: 0.4em;
 }
 
 .txn-list {
-    background-color: floralwhite;
+    background-color: transparent;
     padding: 12px 10px;
-    color: #777;
+    color: white;
     font-size: 14px;
     margin: 7px 0;
 }

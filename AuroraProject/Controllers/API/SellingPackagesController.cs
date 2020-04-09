@@ -37,13 +37,13 @@ namespace AuroraProject.Controllers.API
             var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
 
             if (gigDto.BasicPackageID != null && gigDto.AdvancedPackageID == null && gigDto.PremiumPackageID == null)
-                context.BasicPackages.Single(b => b.ID == gigDto.BasicPackageID).SellPackage(buyer, gig.User.Wallet, auroraWallet);
+                context.BasicPackages.Single(b => b.ID == gigDto.BasicPackageID).SellPackage(buyer, gig.User, auroraWallet);
 
             else if (gigDto.BasicPackageID == null && gigDto.AdvancedPackageID != null && gigDto.PremiumPackageID == null)
-                context.AdvancedPackages.Single(b => b.ID == gigDto.AdvancedPackageID).SellPackage(buyer, gig.User.Wallet, auroraWallet);
+                context.AdvancedPackages.Single(b => b.ID == gigDto.AdvancedPackageID).SellPackage(buyer, gig.User, auroraWallet);
 
             else if (gigDto.BasicPackageID == null && gigDto.AdvancedPackageID == null && gigDto.PremiumPackageID != null)
-                context.PremiumPackages.Single(b => b.ID == gigDto.PremiumPackageID).SellPackage(buyer, gig.User.Wallet, auroraWallet);
+                context.PremiumPackages.Single(b => b.ID == gigDto.PremiumPackageID).SellPackage(buyer, gig.User, auroraWallet);
             else
                 return BadRequest();
 

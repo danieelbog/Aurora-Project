@@ -39,10 +39,15 @@ namespace AuroraProject.Models
         //NAVIGATION TO WALLET
         public Wallet Wallet { get; set; }
 
+        //RELATION WITH USER NOTIFICATION
+        public ICollection<UserNotification> UserNotifications { get; set; }
+
+
         public ApplicationUser()
         {
             Gigs = new Collection<FavouriteGig>();
             Influencers = new Collection<FavouriteInfluencer>();
+            UserNotifications = new Collection<UserNotification>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -86,6 +91,11 @@ namespace AuroraProject.Models
                 toWallet.AddMoney(amount, toWallet.ID);
             }
 
+        }
+
+        public void Notify(Notification notification)
+        {
+            UserNotifications.Add(new UserNotification(this, notification));
         }
     }
 }

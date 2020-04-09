@@ -19,6 +19,6 @@ namespace AuroraProject.Interfaces
 
         int DeliveryTime { get; set; }
 
-        void SellPackage(ApplicationUser user, Wallet toUserWallet, AuroraWallet toAuroraWallet);
+        void SellPackage(ApplicationUser buyerUser, ApplicationUser sellerUser, AuroraWallet toAuroraWallet);
     }
 }

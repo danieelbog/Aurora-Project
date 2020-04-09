@@ -27,14 +27,22 @@ namespace AuroraProject.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
+            //var wallet = context.Wallets
+            //    .Include(w => w.Owner)
+            //    .Include(w => w.Owner.UserNotifications)
+            //    .Single(w => w.Owner.Id == userId);
+
             var wallet = context.Wallets
-                .Include(w => w.Owner)
-                .Single(w => w.Owner.Id == userId);
+                .Include(w => w.Owner.UserNotifications)
+                .Include(w => w.Owner.UserNotifications.Select(u => u.Notification))
+                .SingleOrDefault(w => w.Owner.Id == userId);
+
+            //var notifications = context.UserNotifications.Include(n => n.Notification).ToList();
 
             if (wallet == null)
                 return HttpNotFound("You dont have a wallet?");
 
-            var viewModel = new WalletViewModel(wallet.Value, wallet.Owner.UserFullName, "My Wallet");
+            var viewModel = new WalletViewModel(wallet.Value, wallet.Owner.UserFullName, "My Wallet", wallet.Owner.UserNotifications);
 
             return View("MyWallet", viewModel);
         }
