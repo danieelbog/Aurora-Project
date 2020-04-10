@@ -32,7 +32,7 @@
             <div class="amount-box text-center">
                 <img src="~/Content/Images/Images/wallet.png">
                 <p>Total Balance</p>
-                <p class="amount">$ @Model.Value</p>
+                <p class="amount">$ @Model.Value.ToString(".00")</p>
             </div>
 
             @using (Html.BeginForm("Update", "Wallet", FormMethod.Post, new { role = "form" }))
@@ -50,15 +50,27 @@
             }
 
             <p class="history-card-txt"><b>History</b></p>
+            <hr />
             <div class="txn-history">
-                @foreach (var notification in Model.UserNotifications)
+                @foreach (var notification in Model.UserNotifications.Reverse())
                 {
-                    <p class="txn-list">
+                    <p class="txn-list txn-list-purchase @(notification.Notification.Type != NotificationType.PurchaseGig ? "txn-list-purchase" : "txn-list-sell")">
                         @notification.Notification.Message
+
+                        <span class="credit-amount @(notification.IsRead ? "d-none": "")">
+                            New
+                        </span>
+
+                        <button class="btn js-delete-notification delete-notification notification-span" data-notification-id="@notification.NotificationId">
+                            Delete
+                        </button>
+
+                        <button class="btn js-read-notification read-notificaction notification-span @(notification.IsRead ? "d-none": "")" data-notification-id="@notification.NotificationId">
+                            Read
+                        </button>
                     </p>
                 }
             </div>
-
             <div class="footer-menu">
             </div>
         </div>
@@ -66,6 +78,66 @@
 </div>
 
 @section scripts {
+
+    <script>
+        $(document).ready(function () {
+            // READ NOTIFICATION JS
+            $(".js-read-notification").click(function (e) {
+                let button = $(e.target);
+                let newText = button.parent().find("span");
+
+                $.post("/api/notifications", { NotificationID: button.attr("data-notification-id") })
+                    .done(function () {
+
+                        newText.addClass("d-none");
+                        button.addClass("d-none");
+                        toastr.success("Notificatiom Read");                       
+
+                    }).then(function () {
+                        $.getJSON("/api/notifications", function (notifications) {
+                            if (notifications.length == 0)
+                                return;
+                            $(".js-notifications-count")
+                                .text(notifications.length)
+                                .removeClass("hide");
+
+                            console.log(notifications.length);
+                        });
+                    })
+                    .fail(function () {
+
+                        if (newText.hasClass("d-none")) {
+                            toastr.error("Notification is Already Read");
+                        }
+                        else {
+                            toastr.error("Failed to Read Notification");
+                        }
+                    })               
+            });            
+
+            $(".js-delete-notification").click(function (e) {
+                let button = $(e.target);
+                let newText = button.parent();
+
+                $.ajax({
+                    url: "/api/notifications/" + button.attr("data-notification-id"),
+                    method: "DELETE"
+                })
+                    .done(function () {
+                        newText.addClass("d-none");
+                        toastr.success("Notification Deleted");
+                    })
+                    .fail(function () {
+                        toastr.error("Faled to Delete");
+                    })
+            })
+        });
+
+    </script>
+
+
+
+
     @Scripts.Render("~/bundles/jqueryval")
 }
 

@@ -146,7 +146,8 @@ textarea {
     border: solid 1px rgb(118,30,131);
     text-align: left;
     align-self: stretch;
-    left: -55% !important;
+    left: 50% !important;
+    transform:translate(-68%);
 }
 
     .logged-dropdown.show {
@@ -1287,34 +1288,90 @@ img.OurLogo {
         display: none; /* Safari and Chrome */
     }
 
-.history-card-txt{
+.history-card-txt {
     text-align: left;
 }
 
-.history-card-txt b {
-    color: floralwhite;
-    font-size: 20px;
-    top: 1.5em;
-    position: relative;
-    left: 0.4em;
-}
+    .history-card-txt b {
+        color: floralwhite;
+        font-size: 20px;
+        top: 1em;
+        position: relative;
+        left: 0.4em;
+    }
 
 .txn-list {
-    background-color: transparent;
+    background-color: white;
     padding: 12px 10px;
-    color: white;
     font-size: 14px;
     margin: 7px 0;
+    border-radius: 10px;
 }
 
-.debit-amount {
+.txn-list-purchase {
+    color: forestgreen;
+}
+
+.txn-list-sell {
     color: red;
-    float: right;
+}
+
+/*CREDIT DEBIT CARD*/
+.debit-amount {
+    color: purple;
+    position: relative;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+    top: -10px;
+    left: -5px;
 }
 
 .credit-amount {
-    color: green;
+    color: purple;
+    position: relative;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+    top: -10px;
+    left: -5px;
+}
+
+.notification-span{
     float: right;
+    display: none;
+    cursor: pointer;
+    color: var(--main-navbarText-color);
+    outline:none;
+    border: none;
+    background-color: transparent;
+    box-shadow: none !important;
+    font-size: 12px;
+    top: -3px;
+    position:relative;
+}
+
+.wallet-badge {
+    position: relative;
+    top: -13px;
+    color: purple;
+    font-size:14px;
+    font-weight: 800;
+    border-radius: 45%;
+    padding: 3px;
+    margin: 1px;
+}
+
+.txn-list:hover .notification-span {
+    display: block;
+}
+
+.read-notificaction:hover {
+    color: var(--main-navbarTextPro-color-hover) !important;
+}
+
+.delete-notification:hover {
+    color: var(--main-navbarTextPro-color-hover) !important;
 }
 
 .footer-menu {
@@ -1431,7 +1488,6 @@ input[type=number]::-webkit-outer-spin-button {
     width: 25%;
     -webkit-animation: mover 2s infinite alternate;
     animation: mover 1s infinite alternate;
-    
 }
 
 @-webkit-keyframes mover {
@@ -1466,34 +1522,34 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 1em !important;
     justify-content: center;
     left: -50%;
-    transform:translate(50%);
+    transform: translate(50%);
 }
 
     .register .register-form div {
         display: inline;
         justify-content: center;
-        text-align:center;
+        text-align: center;
     }
 
-    .btn-submit-form {
-        margin-top: 1em;
-        border: none;
-        padding: 1em;
-        color: var(--main-buttonText-color);
-        font-weight: 600;
-        width: 20em;
-        height: 3em;
-        top: -2em;
-        position: relative;
-        cursor: pointer;
-        font-size: 16px;
-        transition: .6s;
-        background-color: #6a13f3;
-        left: 50%;
-        transform: translate(-53%);
-        outline: none;
-        box-shadow: none;
-    }
+.btn-submit-form {
+    margin-top: 1em;
+    border: none;
+    padding: 1em;
+    color: var(--main-buttonText-color);
+    font-weight: 600;
+    width: 20em;
+    height: 3em;
+    top: -2em;
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .6s;
+    background-color: #6a13f3;
+    left: 50%;
+    transform: translate(-53%);
+    outline: none;
+    box-shadow: none;
+}
 
     .btn-submit-form:hover {
         background-color: var(--main-navbarTextPro-color-hover);
@@ -1501,15 +1557,15 @@ input[type=number]::-webkit-outer-spin-button {
         outline: none;
     }
 
-    .register .nav-tabs {
-        border: none;
-        background-color: transparent !important;
-        width: 95%;
-        left: 0%;
-        transform: translate(5%,0);
-        margin: 1em;
-        /*float: right;*/
-    }
+.register .nav-tabs {
+    border: none;
+    background-color: transparent !important;
+    width: 95%;
+    left: 0%;
+    transform: translate(5%,0);
+    margin: 1em;
+    /*float: right;*/
+}
 
     .register .nav-tabs .nav-item {
         justify-content: center;
@@ -1518,25 +1574,25 @@ input[type=number]::-webkit-outer-spin-button {
         display: flex;
     }
 
-        .register .nav-tabs .nav-link {
-            padding: 0.9em;
-            font-size: 15px;
-            height: 48px;
-            width: 160px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--main-navbarText-color);
-        }
+    .register .nav-tabs .nav-link {
+        padding: 0.9em;
+        font-size: 15px;
+        height: 48px;
+        width: 160px;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--main-navbarText-color);
+    }
 
         .register .nav-tabs .nav-link:hover {
             border: none;
         }
 
-            .register .nav-tabs .nav-link.active {
-                color: floralwhite;
-                background-color: #6a13f3;
-                border: none;
-            }
+        .register .nav-tabs .nav-link.active {
+            color: floralwhite;
+            background-color: #6a13f3;
+            border: none;
+        }
 
 
 
@@ -1607,28 +1663,28 @@ input[type=number]::-webkit-outer-spin-button {
         border: solid 1px;
     }
 
-    .register-form .form-group .custom-file-upload:hover {
-        background-color: var(--main-navbarTextPro-color-hover);
-        color: white;
-    }
+        .register-form .form-group .custom-file-upload:hover {
+            background-color: var(--main-navbarTextPro-color-hover);
+            color: white;
+        }
 
 .upload-image {
     display: table-caption !important;
     width: 15em;
 }
 
-.upload-image div {
-    height: auto;
-    margin: 10px;
-    position: relative;
-    width: 10px;
-}
+    .upload-image div {
+        height: auto;
+        margin: 10px;
+        position: relative;
+        width: 10px;
+    }
 
-.upload-image img {
-   border: solid 1px var(--main-navbarTextPro-color-hover);
-   border-radius: 25px;
-   position: relative;
-   left: 0%;
-   transform:translate(-1%);
-   top: -1em;
-}
+    .upload-image img {
+        border: solid 1px var(--main-navbarTextPro-color-hover);
+        border-radius: 25px;
+        position: relative;
+        left: 0%;
+        transform: translate(-1%);
+        top: -1em;
+    }

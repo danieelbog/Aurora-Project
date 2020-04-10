@@ -22,8 +22,6 @@ namespace AuroraProject.Models
         public string SellerName { get; set; }
 
         public NotificationType Type { get; private set; }
-
-        [Required]
         public ISellingPackage SellingPackage { get; private set; }
 
         protected Notification()
@@ -56,7 +54,7 @@ namespace AuroraProject.Models
         {
             var sellNotification = new Notification(NotificationType.SellGig, sellingPackage, null, buyerName);
 
-            sellNotification.Message = $"{sellingPackage.PackageName} was purchased for {sellingPackage.Price}$ at {sellNotification.DateTime} by {sellNotification.BuyerName}";
+            sellNotification.Message = $"{sellingPackage.PackageName} was sold for {sellingPackage.Price}$ at {sellNotification.DateTime} to {sellNotification.BuyerName}";
 
             return sellNotification;
         }

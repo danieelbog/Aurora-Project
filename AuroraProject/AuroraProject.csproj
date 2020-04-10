@@ -194,6 +194,7 @@
     <Compile Include="Controllers\API\FavouriteInfluencersController.cs" />
     <Compile Include="Controllers\API\GigsController.cs" />
     <Compile Include="Controllers\API\InfluencersController.cs" />
+    <Compile Include="Controllers\API\NotificationsController.cs" />
     <Compile Include="Controllers\API\SellingPackagesController.cs" />
     <Compile Include="Controllers\EconomicControllers\AuctionController.cs" />
     <Compile Include="Controllers\FileController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="DTO\GigDto.cs" />
     <Compile Include="DTO\InfluencerDto.cs" />
     <Compile Include="DTO\PremiumPackageDto.cs" />
+    <Compile Include="DTO\NotificationDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

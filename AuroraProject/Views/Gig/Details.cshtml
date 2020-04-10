@@ -198,6 +198,17 @@
                                 })
                                     .done(function () {
                                         toastr.success("Purchased " + "@Model.Heading");
+
+                                        $.getJSON("/api/notifications", function (notifications) {
+                                            if (notifications.length == 0)
+                                                return;
+
+                                            $(".js-notifications-count")
+                                                .text(notifications.length)
+                                                .removeClass("hide")
+                                                .addClass("animated bounceInDown");
+                                        });
+
                                     })
                                     .fail(function () {
                                         toastr.error("Failed to Purchase " + "@Model.Heading");
@@ -228,14 +239,14 @@
                     buttons: {
                         no: {
                             label: 'Cancel',
-                            className: 'btn-default',
+                            className: 'btn bootbox-cancel-btn shadow-none',
                             callback: function () {
                                 bootbox.hideAll();
                             }
                         },
                         yes: {
                             label: 'Continue',
-                            className: 'btn-danger',
+                            className: 'btn bootbox-confirm-btn shadow-none',
                             callback: function () {
                                 $.ajax({
                                     url: '/api/sellingPackages',
@@ -244,6 +255,16 @@
                                 })
                                     .done(function () {
                                         toastr.success("Purchased " + "@Model.Heading");
+
+                                        $.getJSON("/api/notifications", function (notifications) {
+                                            if (notifications.length == 0)
+                                                return;
+
+                                            $(".js-notifications-count")
+                                                .text(notifications.length)
+                                                .removeClass("hide")
+                                                .addClass("animated bounceInDown");
+                                        });
                                     })
                                     .fail(function () {
                                         toastr.error("Failed to Purchase " + "@Model.Heading");
@@ -275,14 +296,14 @@
                     buttons: {
                         no: {
                             label: 'Cancel',
-                            className: 'btn-default',
+                            className: 'btn bootbox-cancel-btn shadow-none',
                             callback: function () {
                                 bootbox.hideAll();
                             }
                         },
                         yes: {
                             label: 'Continue',
-                            className: 'btn-danger',
+                            className: 'btn bootbox-confirm-btn shadow-none',
                             callback: function () {
                                 $.ajax({
                                     url: '/api/sellingPackages',
@@ -291,6 +312,16 @@
                                 })
                                     .done(function () {
                                         toastr.success("Purchased " + "@Model.Heading");
+
+                                        $.getJSON("/api/notifications", function (notifications) {
+                                            if (notifications.length == 0)
+                                                return;
+
+                                            $(".js-notifications-count")
+                                                .text(notifications.length)
+                                                .removeClass("hide")
+                                                .addClass("animated bounceInDown");
+                                        });
                                     })
                                     .fail(function () {
                                         toastr.error("Failed to Purchase " + "@Model.Heading");
