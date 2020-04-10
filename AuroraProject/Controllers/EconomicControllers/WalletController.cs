@@ -53,7 +53,9 @@ namespace AuroraProject.Controllers
         public ActionResult Update(WalletViewModel viewModel, string submitButton)
         {
             var userId = User.Identity.GetUserId();
-            var walletDb = context.Wallets.Single(w => w.Owner.Id == userId);
+            var walletDb = context.Wallets
+                .Include(w => w.Owner)
+                .Single(w => w.Owner.Id == userId);
 
             if (walletDb == null || viewModel.Transaction < 0)
                 return HttpNotFound("You dont have a wallet?");
@@ -62,10 +64,18 @@ namespace AuroraProject.Controllers
             {
                 case "AddMoney":
                     walletDb.AddMoney(viewModel.Transaction, walletDb.ID);
+
+                    var depostiNotification = Notification.MoneyDeposited(viewModel.Transaction);
+                    walletDb.Owner.Notify(depostiNotification);
+
                     context.SaveChanges();
                     break;
                 case "WithdrawMoney":
                     walletDb.WithdrawMoney(viewModel.Transaction, walletDb.ID);
+
+                    var withdrawNotification = Notification.MoneyWithdroawed(viewModel.Transaction);
+                    walletDb.Owner.Notify(withdrawNotification);
+
                     context.SaveChanges();
                     break;
                 default:

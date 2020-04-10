@@ -54,7 +54,7 @@
             <div class="txn-history">
                 @foreach (var notification in Model.UserNotifications.Reverse())
                 {
-                    <p class="txn-list txn-list-purchase @(notification.Notification.Type != NotificationType.PurchaseGig ? "txn-list-purchase" : "txn-list-sell")">
+                    <p class="txn-list txn-list-purchase @(notification.Notification.Type != NotificationType.PurchaseGig && notification.Notification.Type != NotificationType.WithdrawMoney? "txn-list-purchase" : "txn-list-sell")">
                         @notification.Notification.Message
 
                         <span class="credit-amount @(notification.IsRead ? "d-none": "")">
