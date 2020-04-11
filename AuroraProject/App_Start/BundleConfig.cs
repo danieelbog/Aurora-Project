@@ -21,6 +21,9 @@ namespace AuroraProject
                         //FAVOURITE INFLUENCER
                         "~/Scripts/app/services/favouriteInfluencerService.js",
                         "~/Scripts/app/controllers/favouriteInfluencerController.js",
+                        //GET NOTIFICATIONS
+                        "~/Scripts/app/services/notificationService.js",
+                        "~/Scripts/app/controllers/notificationController.js",
                         //PURCHASE PACKAGE SERVICE
                         "~/Scripts/app/services/purchaseService.js",
                         //PURCHASE BASIC PACKAGE

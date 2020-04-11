@@ -50,16 +50,7 @@
         toastr.success("Purchased " + packageName);
         console.log("OK")
 
-
-        $.getJSON("/api/notifications", function (notifications) {
-            if (notifications.length == 0)
-                return;
-
-            $(".js-notifications-count")
-                .text(notifications.length)
-                .removeClass("hide")
-                .addClass("animated bounceInDown");
-        });
+        NotificationController.initial();
     }
 
     let fail = function (packageName) {
