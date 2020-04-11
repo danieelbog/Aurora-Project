@@ -9,8 +9,19 @@ namespace AuroraProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        //DISABLE GIG
                         "~/Scripts/app/services/disableGigService.js",
                         "~/Scripts/app/controllers/disableGigController.js",
+                        //FORM INPUT CHECK FOR INFLUENCER FORM AND GIG FORM
+                        "~/Scripts/app/services/formInputCheckService.js",
+                        "~/Scripts/app/controllers/formInputCheckController.js",
+                        // FAVOURITE GIG
+                        "~/Scripts/app/services/favouriteGigService.js",
+                        "~/Scripts/app/controllers/favourtieGigController.js",
+                        //FAVOURITE INFLUENCER
+                        "~/Scripts/app/services/favouriteInfluencerService.js",
+                        "~/Scripts/app/controllers/favouriteInfluencerController.js",
+                        //APP JS
                         "~/Scripts/app.app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(

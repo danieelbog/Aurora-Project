@@ -94,73 +94,8 @@
     <script>
         $(document).ready(function () {
 
-            // TOGGLE FAVOURITES JS
-            $(".js-toggle-favourite-gig").click(function (e) {
-                var button = $(e.target);
-
-                if (button.hasClass("fa-heart-o")) {
-                    $.post("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
-                        .done(function () {
-                            toastr.success("Added To Favourites");
-
-                            button
-                                .removeClass("fa-heart-o")
-                                .addClass("fa-heart")
-
-                        })
-                        .fail(function () {
-                            toastr.error("Failed Adding to Favourites");
-                        });
-                }
-                else {
-                    $.delete("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
-                        .done(function () {
-                            toastr.success("Removed from Favourites");
-
-                            button
-                                .removeClass("fa-heart")
-                                .addClass("fa-heart-o")
-
-                        })
-                        .fail(function () {
-                            toastr.error("Failed Removing from Favourites");
-                        });
-                }
-
-            });
-
-            $(".js-toggle-favourite-influencer").click(function (e) {
-                var button = $(e.target);
-
-                if (button.hasClass("fa-heart-o")) {
-                    $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
-                        .done(function () {
-                            toastr.success("Influencer Added To Favourites");
-
-                            button
-                                .removeClass("fa-heart-o")
-                                .addClass("fa-heart")
-
-                        })
-                        .fail(function () {
-                            toastr.error("Failed Adding to Favourites");
-                        });
-                }
-                else {
-                    $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
-                        .done(function () {
-                            toastr.success("Influencer from Favourites");
-
-                            button
-                                .removeClass("fa-heart")
-                                .addClass("fa-heart-o")
-
-                        })
-                        .fail(function () {
-                            toastr.error("Failed Removing from Favourites");
-                        });
-                }
-            })
+            FavouriteGigController.initial();
+            FavouriteInfluencerController.initial();
 
             //PURCHASE BASIC PACKAGE JS
             $('#purchace-gig-basic').submit(function (e) {
