@@ -9,6 +9,9 @@ namespace AuroraProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        //FORM INPUT CHECK FOR INFLUENCER FORM AND GIG FORM
+                        "~/Scripts/app/services/updateMyProfileService.js",
+                        "~/Scripts/app/controllers/updateMyProfileController.js",
                         //DISABLE GIG
                         "~/Scripts/app/services/disableGigService.js",
                         "~/Scripts/app/controllers/disableGigController.js",
