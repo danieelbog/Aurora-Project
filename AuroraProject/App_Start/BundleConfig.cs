@@ -8,6 +8,11 @@ namespace AuroraProject
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app/services/disableGigService.js",
+                        "~/Scripts/app/controllers/disableGigController.js",
+                        "~/Scripts/app.app.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.bundle.min.js",

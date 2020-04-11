@@ -194,39 +194,7 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            $(".js-disable-gig").click(function (e) {
-                link = $(e.target);
-
-                if (link.hasClass("fa-eye-slash")) {
-                    $.ajax({
-                        url: "/api/gigs/" + link.attr("data-gig-id"),
-                        method: "DELETE"
-                    })
-                        .done(function () {
-                            toastr.success("Gig Hidden");
-                            link.removeClass("fa-eye-slash")
-                            link.addClass("fa-eye")
-                        })
-                        .fail(function () {
-                            toastr.error("Faled to Hide Gig");
-                        })
-                }
-                else {
-                    $.ajax({
-                        url: "/api/gigs/" + link.attr("data-gig-id"),
-                        method: "POST"
-                    })
-                        .done(function () {
-                            toastr.success("Gig Visible");
-                            link.removeClass("fa-eye")
-                            link.addClass("fa-eye-slash")
-                        })
-                        .fail(function () {
-                            toastr.error("Faled to Hide Gig");
-                        })
-                }
-            })
-
+            DisableGigController.initial();
         });
     </script>
 }
