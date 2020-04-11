@@ -24,6 +24,12 @@ namespace AuroraProject
                         //GET NOTIFICATIONS
                         "~/Scripts/app/services/notificationService.js",
                         "~/Scripts/app/controllers/notificationController.js",
+                        //READ NOTIFICATION
+                        "~/Scripts/app/services/readNotificationService.js",
+                        "~/Scripts/app/controllers/readNotificationController.js",
+                        //DELETE NOTIFICATION
+                        "~/Scripts/app/services/deleteNotificationService.js",
+                        "~/Scripts/app/controllers/deleteNotificationController.js",
                         //PURCHASE PACKAGE SERVICE
                         "~/Scripts/app/services/purchaseService.js",
                         //PURCHASE BASIC PACKAGE

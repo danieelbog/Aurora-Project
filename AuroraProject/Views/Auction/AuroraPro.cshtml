@@ -185,34 +185,10 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            $(".js-toggle-favourite-gig").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/favouriteGigs", { GigID: button.attr("data-gig-id") })
-                    .done(function () {
-                        button
-                            .removeClass("fa-heart-o")
-                            .addClass("fa-heart")
-                    })
-                    .fail(function () {
-                        alert("WTF")
-                    });
-            });
-
-            $(".js-toggle-favourite-influencer").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/favouriteInfluencers", { InfluencerID: button.attr("data-influencer-id") })
-                    .done(function () {
-                        toastr.success("Added To Favourites");
-
-                        button
-                            .removeClass("fa-heart-o")
-                            .addClass("fa-heart")
-
-                    })
-                    .fail(function () {
-                        toastr.error("Failed Adding to Favourites");
-                    });
-            })
+            //FAVOURITE GIG
+            FavouriteGigController.initial();
+            //FAVOURITE INFLUENCER
+            FavouriteInfluencerController.initial();
         });
     </script>
 }

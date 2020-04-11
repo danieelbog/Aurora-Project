@@ -1,6 +1,6 @@
-﻿
-let NotificationController = function (notificationService) {
+﻿let NotificationController = function (notificationService) {
     let initial = function () {
+
         notificationService.getNotifications(countNotifications);
     }
 
@@ -16,4 +16,3 @@ let NotificationController = function (notificationService) {
     }
 
 }(NotificationService);
-

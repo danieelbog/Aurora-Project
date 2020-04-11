@@ -81,63 +81,14 @@
 
     <script>
         $(document).ready(function () {
+            // GET NOTIFICATIONS
+            NotificationController.initial();
             // READ NOTIFICATION JS
-            $(".js-read-notification").click(function (e) {
-                let button = $(e.target);
-                let newText = button.parent().find("span");
-
-                $.post("/api/notifications", { NotificationID: button.attr("data-notification-id") })
-                    .done(function () {
-
-                        newText.addClass("d-none");
-                        button.addClass("d-none");
-                        toastr.success("Notificatiom Read");                       
-
-                    }).then(function () {
-                        $.getJSON("/api/notifications", function (notifications) {
-                            if (notifications.length == 0)
-                                return;
-                            $(".js-notifications-count")
-                                .text(notifications.length)
-                                .removeClass("hide");
-
-                            console.log(notifications.length);
-                        });
-                    })
-                    .fail(function () {
-
-                        if (newText.hasClass("d-none")) {
-                            toastr.error("Notification is Already Read");
-                        }
-                        else {
-                            toastr.error("Failed to Read Notification");
-                        }
-                    })               
-            });            
-
-            $(".js-delete-notification").click(function (e) {
-                let button = $(e.target);
-                let newText = button.parent();
-
-                $.ajax({
-                    url: "/api/notifications/" + button.attr("data-notification-id"),
-                    method: "DELETE"
-                })
-                    .done(function () {
-                        newText.addClass("d-none");
-                        toastr.success("Notification Deleted");
-                    })
-                    .fail(function () {
-                        toastr.error("Faled to Delete");
-                    })
-            })
+            ReadNotificationController.initial();
+            // DELETE NOTIFICATIONS
+            DeleteNotificationController.initial();
         });
-
     </script>
-
-
-
-
     @Scripts.Render("~/bundles/jqueryval")
 }
 
