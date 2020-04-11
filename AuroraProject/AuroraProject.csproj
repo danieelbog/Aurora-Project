@@ -358,10 +358,14 @@
     <Content Include="Scripts\app\controllers\favouriteInfluencerController.js" />
     <Content Include="Scripts\app\controllers\favourtieGigController.js" />
     <Content Include="Scripts\app\controllers\formInputCheckController.js" />
+    <Content Include="Scripts\app\controllers\purchaseAdvancedController.js" />
+    <Content Include="Scripts\app\controllers\purchaseBasicController.js" />
+    <Content Include="Scripts\app\controllers\purchasePremiumController.js" />
     <Content Include="Scripts\app\services\disableGigService.js" />
     <Content Include="Scripts\app\services\favouriteGigService.js" />
     <Content Include="Scripts\app\services\favouriteInfluencerService.js" />
     <Content Include="Scripts\app\services\formInputCheckService.js" />
+    <Content Include="Scripts\app\services\purchaseService.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

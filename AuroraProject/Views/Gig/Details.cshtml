@@ -68,19 +68,19 @@
         {
             <div>
                 <form id="purchace-gig-basic">
-                    <button class="btn btn-danger basicPackageBtn" data-sellingPackage-id="@Model.Gig.BasicPackageID" data-gig-id="@Model.Gig.ID">
+                    <button id="basic" class="btn btn-danger basicPackageBtn" data-sellingPackage-id="@Model.Gig.BasicPackageID" data-gig-id="@Model.Gig.ID">
                         @Model.Gig.BasicPackage.PackageName
                     </button>
                 </form>
 
                 <form id="purchace-gig-advanced">
-                    <button class="btn btn-info advancedPackageBtn" data-sellingPackage-id="@Model.Gig.AdvancedPackageID" data-gig-id="@Model.Gig.ID">
+                    <button id="advanced" class="btn btn-info advancedPackageBtn" data-sellingPackage-id="@Model.Gig.AdvancedPackageID" data-gig-id="@Model.Gig.ID">
                         @Model.Gig.AdvancedPackage.PackageName
                     </button>
                 </form>
 
                 <form id="purchace-gig-premium">
-                    <button class="btn btn-success premiumPackagebtn" data-sellingPackage-id="@Model.Gig.PremiumPackageID" data-gig-id="@Model.Gig.ID">
+                    <button id="premium" class="btn btn-success premiumPackagebtn" data-sellingPackage-id="@Model.Gig.PremiumPackageID" data-gig-id="@Model.Gig.ID">
                         @Model.Gig.PremiumPackage.PackageName
                     </button>
                 </form>
@@ -94,179 +94,16 @@
     <script>
         $(document).ready(function () {
 
+            //FAVOURITE GIG
             FavouriteGigController.initial();
+            //FAVOURITE INFLUENCER
             FavouriteInfluencerController.initial();
-
             //PURCHASE BASIC PACKAGE JS
-            $('#purchace-gig-basic').submit(function (e) {
-                let viewModel = {};
-
-                e.preventDefault(e.target.firstChild);
-
-                let packageButton = $(e.target.children);
-
-                viewModel.BasicPackageID = packageButton.attr("data-sellingPackage-id")
-                viewModel.ID = packageButton.attr("data-gig-id")
-
-                 bootbox.dialog({
-                    title: 'Confirm Purchase',
-                    message: '<p>Are you sure you want to purchase the Selected Service of the Gig?</p>',
-                    size: 'large',
-                    onEscape: true,
-                    backdrop: true,
-                    buttons: {
-                        no: {
-                            label: 'Cancel',
-                            className: 'btn bootbox-cancel-btn shadow-none',
-                            callback: function () {
-                                bootbox.hideAll();
-                            }
-                        },
-                        yes: {
-                            label: 'Continue',
-                            className: 'btn bootbox-confirm-btn shadow-none',
-                            callback: function () {
-                                $.ajax({
-                                    url: '/api/sellingPackages',
-                                    method: 'post',
-                                    data: viewModel
-                                })
-                                    .done(function () {
-                                        toastr.success("Purchased " + "@Model.Heading");
-
-                                        $.getJSON("/api/notifications", function (notifications) {
-                                            if (notifications.length == 0)
-                                                return;
-
-                                            $(".js-notifications-count")
-                                                .text(notifications.length)
-                                                .removeClass("hide")
-                                                .addClass("animated bounceInDown");
-                                        });
-
-                                    })
-                                    .fail(function () {
-                                        toastr.error("Failed to Purchase " + "@Model.Heading");
-                                    });
-                            }
-                        }
-                    }
-                })
-            });
-
-            //PURCHASE ADVANCED PACKAGE JS
-            $('#purchace-gig-advanced').submit(function (e) {
-                let viewModel = {};
-
-                e.preventDefault(e.target.firstChild);
-
-                let packageButton = $(e.target.children);
-
-                viewModel.AdvancedPackageID = packageButton.attr("data-sellingPackage-id")
-                viewModel.ID = packageButton.attr("data-gig-id")
-
-                 bootbox.dialog({
-                    title: 'Confirm Purchase',
-                    message: '<p>Are you sure you want to purchase the Selected Service of the Gig?</p>',
-                    size: 'large',
-                    onEscape: true,
-                    backdrop: true,
-                    buttons: {
-                        no: {
-                            label: 'Cancel',
-                            className: 'btn bootbox-cancel-btn shadow-none',
-                            callback: function () {
-                                bootbox.hideAll();
-                            }
-                        },
-                        yes: {
-                            label: 'Continue',
-                            className: 'btn bootbox-confirm-btn shadow-none',
-                            callback: function () {
-                                $.ajax({
-                                    url: '/api/sellingPackages',
-                                    method: 'post',
-                                    data: viewModel
-                                })
-                                    .done(function () {
-                                        toastr.success("Purchased " + "@Model.Heading");
-
-                                        $.getJSON("/api/notifications", function (notifications) {
-                                            if (notifications.length == 0)
-                                                return;
-
-                                            $(".js-notifications-count")
-                                                .text(notifications.length)
-                                                .removeClass("hide")
-                                                .addClass("animated bounceInDown");
-                                        });
-                                    })
-                                    .fail(function () {
-                                        toastr.error("Failed to Purchase " + "@Model.Heading");
-                                    });
-                            }
-                        }
-                    }
-                })
-
-            });
-
-            //PURCHASE PREMIUM PACKAGE JS
-            $('#purchace-gig-premium').submit(function (e) {
-                let viewModel = {};
-
-                e.preventDefault(e.target.firstChild);
-
-                let packageButton = $(e.target.children);
-
-                viewModel.PremiumPackageID = packageButton.attr("data-sellingPackage-id")
-                viewModel.ID = packageButton.attr("data-gig-id")
-
-                 bootbox.dialog({
-                    title: 'Confirm Purchase',
-                    message: '<p>Are you sure you want to purchase the Selected Service of the Gig?</p>',
-                    size: 'large',
-                    onEscape: true,
-                    backdrop: true,
-                    buttons: {
-                        no: {
-                            label: 'Cancel',
-                            className: 'btn bootbox-cancel-btn shadow-none',
-                            callback: function () {
-                                bootbox.hideAll();
-                            }
-                        },
-                        yes: {
-                            label: 'Continue',
-                            className: 'btn bootbox-confirm-btn shadow-none',
-                            callback: function () {
-                                $.ajax({
-                                    url: '/api/sellingPackages',
-                                    method: 'post',
-                                    data: viewModel
-                                })
-                                    .done(function () {
-                                        toastr.success("Purchased " + "@Model.Heading");
-
-                                        $.getJSON("/api/notifications", function (notifications) {
-                                            if (notifications.length == 0)
-                                                return;
-
-                                            $(".js-notifications-count")
-                                                .text(notifications.length)
-                                                .removeClass("hide")
-                                                .addClass("animated bounceInDown");
-                                        });
-                                    })
-                                    .fail(function () {
-                                        toastr.error("Failed to Purchase " + "@Model.Heading");
-                                    });
-                            }
-                        }
-                    }
-                })
-
-            });
+            PurchaseBasicController.initial(@Model.Heading);
+            //PURCHASE BASIC PACKAGE JS
+            PurchaseAdvancedController.initial(@Model.Heading);
+            //PURCHASE BASIC PACKAGE JS
+            PurchasePremiumController.initial(@Model.Heading);
 
 
         });

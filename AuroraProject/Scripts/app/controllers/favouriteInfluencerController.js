@@ -3,26 +3,27 @@
     let button;
     let initial = function () {
         $(".js-toggle-favourite-influencer").click(toggleFavourite);
+    }
 
-        let toggleFavourite = function () {
-            button = $(e.target);
-            let influencerId = button.attr("data-influencer-id");
+    let toggleFavourite = function () {
 
-            if (button.hasClass("fa-heart-o"))
-                favouriteInfluencerService.favouriteInfluencer(influencerId, done, fail);
-            else
-                favouriteInfluencerService.unfavouriteInfluencer(influencerId, done, fail);
-        }
+        button = $(e.target);
+        let influencerId = button.attr("data-influencer-id");
 
-        let done = function () {
+        if (button.hasClass("fa-heart-o"))
+            favouriteInfluencerService.favouriteInfluencer(influencerId, done, fail);
+        else
+            favouriteInfluencerService.unfavouriteInfluencer(influencerId, done, fail);
+    }
 
-            button.hasClass("fa-heart-o") ? toastr.success("Influencer Added To Favourites") : toastr.success("Influencer Removed from Favourites");
-            button.toggleClass("fa-heart-o").toggleClass("fa-heart");
-        }
+    let done = function () {
 
-        let fail = function () {
-            button.hasClass("fa-heart-o") ? toastr.error("Failed Adding to Favourites") : toastr.error("Failed Removing from Favourites");
-        }
+        button.hasClass("fa-heart-o") ? toastr.success("Influencer Added To Favourites") : toastr.success("Influencer Removed from Favourites");
+        button.toggleClass("fa-heart-o").toggleClass("fa-heart");
+    }
+
+    let fail = function () {
+        button.hasClass("fa-heart-o") ? toastr.error("Failed Adding to Favourites") : toastr.error("Failed Removing from Favourites");
     }
 
     return {
