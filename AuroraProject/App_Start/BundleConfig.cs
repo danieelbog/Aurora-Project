@@ -43,6 +43,8 @@ namespace AuroraProject
                         "~/Scripts/app/controllers/purchasePremiumController.js",
                         //SEARCH CONTROLLER
                         "~/Scripts/app/controllers/searchController.js",
+                        //HOVER CONTROLLER
+                        "~/Scripts/app/controllers/hoverIndustryController.js",
                         //APP JS
                         "~/Scripts/app.app.js"));
 

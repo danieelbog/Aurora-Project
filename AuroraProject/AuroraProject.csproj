@@ -359,6 +359,7 @@
     <Content Include="Scripts\app\controllers\favouriteInfluencerController.js" />
     <Content Include="Scripts\app\controllers\favourtieGigController.js" />
     <Content Include="Scripts\app\controllers\formInputCheckController.js" />
+    <Content Include="Scripts\app\controllers\hoverIndustryController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
     <Content Include="Scripts\app\controllers\purchaseAdvancedController.js" />
     <Content Include="Scripts\app\controllers\purchaseBasicController.js" />
