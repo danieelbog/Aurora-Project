@@ -52,24 +52,35 @@
             <p class="history-card-txt"><b>History</b></p>
             <hr />
             <div class="txn-history">
-                @foreach (var notification in Model.UserNotifications.Reverse())
+                @if (Model.UserNotifications.Count() != 0)
                 {
-                    <p class="txn-list txn-list-purchase @(notification.Notification.Type != NotificationType.PurchaseGig && notification.Notification.Type != NotificationType.WithdrawMoney? "txn-list-purchase" : "txn-list-sell")">
-                        @notification.Notification.Message
+                    foreach (var notification in Model.UserNotifications.Reverse())
+                    {
+                        <p class="txn-list txn-list-purchase @(notification.Notification.Type != NotificationType.PurchaseGig && notification.Notification.Type != NotificationType.WithdrawMoney? "txn-list-purchase" : "txn-list-sell")">
+                            @notification.Notification.Message
 
-                        <span class="credit-amount @(notification.IsRead ? "d-none": "")">
-                            New
-                        </span>
+                            <span class="credit-amount @(notification.IsRead ? "d-none": "")">
+                                New
+                            </span>
 
-                        <button class="btn js-delete-notification delete-notification notification-span" data-notification-id="@notification.NotificationId">
-                            Delete
-                        </button>
+                            <button class="btn js-delete-notification delete-notification notification-span" data-notification-id="@notification.NotificationId">
+                                Delete
+                            </button>
 
-                        <button class="btn js-read-notification read-notificaction notification-span @(notification.IsRead ? "d-none": "")" data-notification-id="@notification.NotificationId">
-                            Read
-                        </button>
+                            <button class="btn js-read-notification read-notificaction notification-span @(notification.IsRead ? "d-none": "")" data-notification-id="@notification.NotificationId">
+                                Read
+                            </button>
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p class="txn-list txn-list-purchase">
+                        No notifications
                     </p>
                 }
+
+
             </div>
             <div class="footer-menu">
             </div>

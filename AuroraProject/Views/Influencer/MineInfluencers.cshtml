@@ -4,114 +4,14 @@
 }
 <div class="container-fluid card-container-fluid">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">Mine Favourite Influencers</a></h6>
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">My Favourite Influencers</a></h6>
 
     <div class="page-decoration container">
-        <h1 class="page-heading">"Mine Favourite Influencers"</h1>
-        <p class="page-descreption">A fact about the user, based on his avtivity to make his day</p>
+        <h1 class="page-heading">My Favourite Influencers</h1>
+        <p class="page-descreption">A fact about the user, based on his avtivity to make his day</p>       
 
         <div class="sorting-div">
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Influencer Options<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Rating
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Name
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Most Followed
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Online
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Card Options<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Most Endoresed
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Lowest Price
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Delivery Time<b class="caret"></b></div>
-                <div class="dropdown-menu">
-                    <div>
-                        <div class="checkbox">
-                            Express
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 3 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 5 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="checkbox">
-                            <label>
-                                Up to 7 Days
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="sorting-div">
-            @*<p class="services-count">Cards Available: @Model.Gigs.Count()</p>*@
+            <p class="services-count">Influencers Available: @Model.Count()</p>
         </div>
     </div>
 

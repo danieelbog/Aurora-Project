@@ -13,7 +13,7 @@
                     <div class="dropdown-menu  div-specificInd" aria-labelledby="dropdownMenuButton">
                         @foreach (var item in Model.Where(spi => spi.IndustryID == industry.ID))
                         {
-                            @Html.ActionLink(item.Name, "GigsPerIndustry", "SpecificIndustry", new { specificIndustryID = item.ID }, new { @class = "dropdown-item a-specificInd animated fadeIn" })
+                            @Html.ActionLink(item.Name, "GigsPerIndustry", "SpecificIndustry", new { specificIndustryID = item.ID }, new { @class = "dropdown-item a-specificInd" })
                         }
                     </div>
                 </li>

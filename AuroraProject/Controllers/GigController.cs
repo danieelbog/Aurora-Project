@@ -97,7 +97,7 @@ namespace AuroraProject.Controllers
 
             // SEND GIGS TO THE VIEW
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
-                specificIndustryID == null ? "No Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Gigs", query);
+                specificIndustryID == null ? $"Following Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Gigs", query);
 
             if (User.Identity.IsAuthenticated)
             {
