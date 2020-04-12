@@ -53,7 +53,7 @@ namespace AuroraProject.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gigs = context.Gigs.Where(g => g.UserID == userId).ToList();
+            var gigs = context.Gigs.Where(g => g.UserID == userId && g.IsDisabled == false).ToList();
 
             // CREATE VIEW MODEL TO SEND IT TO THE VIEW
             var viewModel = new AuctionFormViewModel(0, 0, gigs);

@@ -262,7 +262,6 @@ textarea {
         left: -16px;
         top: -8px
     }
-
 }
 
 /*BUTTONS FOR SMALL SCREEN VIEWS*/
@@ -616,28 +615,42 @@ textarea {
 
 .auction-form-profile {
     position: fixed;
-    background-color: purple;
-    left: 46%;
-    top: 25%;
+    background-color: white;
+    left: 48%;
+    top: 19.5rem;
     margin: 1em;
-    width: 50%;
+    width: 45%;
     justify-content: center !important;
+    box-shadow: 0px 0px 10px 2px floralwhite;
     align-content: center;
     text-align: center;
     margin: 2em;
     overflow: scroll;
     overflow-x: hidden;
-    height: 50%;
+    height: 51%;
+    padding: 1.5em;
+    color: var(--main-navbarText-color);
 }
 
-    .auction-form-profile::-webkit-scrollbar {
-        display: none;
+.btn-auction-submit {
+    color: white;
+    background-color: var(--main-navbarTextPro-color);
+    width: 15rem;
+}
+
+    .btn-auction-submit:hover {
+        color: white;
+        background-color: var(--main-navbarTextPro-color-hover);
     }
+
+.auction-form-profile::-webkit-scrollbar {
+    display: none;
+}
 
 @media (min-width: 1691px) {
     .auction-form-profile {
         width: 60%;
-        left: 34%;
+        left: 35%;
     }
 }
 
@@ -656,27 +669,44 @@ textarea {
 
 .container-auction div {
     margin: 1em;
+    padding: 0.5em;
 }
 
-    .container-auction div .form-control {
-        align-self: center;
-        justify-self: center;
-        display: inline-block;
-    }
+.auction-div {
+    box-shadow: 0px 1px 10px 0.1px var(--main-navbarTextPro-color-hover);
+}
+
+.container-auction div .form-control {
+    align-self: center;
+    justify-self: center;
+    display: inline-block;
+    align-self: center;
+    display: initial;
+    position: relative;
+    outline: none;
+    border: none;
+    box-shadow: 0px 1px 0px 0px rgba(118,30,131, 0.5);
+    font-size: 16px;
+    height: 3em;
+    color: var(--main-navbarTextPro-color-hover);
+}
+
+.container-auction div .form-control::-webkit-input-placeholder {
+    color: var(--main-navbarTextPro-color);
+    opacity: 0.5;
+    font-size: 16px;
+}
 
 .sidebar {
     grid-area: sidebar;
     background: white;
     padding: 0px 0px 10px 0px;
     border-radius: 5px;
-    border: 2px solid;
-    border-image-source: linear-gradient(45deg, rgb(249,107,142,1), rgb(218,103,230,1), rgba(130,125,253,1));
-    border-image-slice: 1;
+    border: none;
+    box-shadow: 0px 0px 10px 2px floralwhite;
     margin-left: .1rem !important;
     height: auto !important;
     justify-content: center;
-    /*height: 120vh !important;*/
-    /*width: 30rem !important;*/
 }
 
 .mine-profile-ul {
@@ -707,7 +737,7 @@ textarea {
         width: 14em !important;
         height: 12em !important;
         /*padding: 1em;*/
-        border-radius: 100px !important;
+        /*border-radius: 100px !important;*/
         margin: 0 0 1em 0;
         box-shadow: 0px 0px 15px 0.7px rgba(118,30,131, 1);
     }
@@ -746,14 +776,11 @@ b {
     opacity: 1;
     text-decoration: none;
     position: relative;
-    /*display: flex;*/
-    /*TRY THIS EFFECT TOO*/
     display: grid;
     justify-content: center;
     top: 0%;
     left: 50%;
     transform: translate(-50%, 0%);
-    /*margin-left: 70px;*/
     cursor: pointer;
 }
 
@@ -766,10 +793,8 @@ b {
 /* ACTION BTN */
 .mine-profile-label {
     color: #660066;
-    /*opacity: 0.6;*/
     margin-right: 16em;
     width: 80%;
-    /*pointer-events: none;*/
 }
 
     .mine-profile-label:hover {
@@ -814,14 +839,11 @@ b {
 
 .mine-profile-input {
     outline: none;
-    /*border-left: solid 1px !important;
-    border-right: solid 1px !important;*/
     width: 100%;
     height: auto;
     position: relative;
     vertical-align: middle;
     text-align: center;
-    /*border-radius: 5px;*/
     box-shadow: 0px 1px 0px 0px rgba(118,30,131, 0.5);
     padding: 25px 0 0 0;
     overflow: hidden;
@@ -832,14 +854,11 @@ b {
 
 .mineProfile-custom-dropdown {
     outline: none;
-    /*border-left: solid 1px !important;
-    border-right: solid 1px !important;*/
     width: 120%;
     position: relative;
     height: auto;
     position: relative;
     vertical-align: middle;
-    /*border-radius: 5px;*/
     box-shadow: 0px 1px 0px 0px rgba(118,30,131, 0.5);
     line-height: 0px;
     padding: 15px 0 25px 0;
@@ -857,6 +876,7 @@ b {
     transition: .6s;
     width: 12.5em;
     display: grid;
+    display: none;
 }
 
     .my-profile-button-update:hover {
@@ -871,6 +891,7 @@ b {
     transition: .6s;
     width: 12.5em;
     display: grid;
+    display: none;
 }
 
     .my-profile-button-cancel:hover {

@@ -6,35 +6,35 @@
 
 
     <div class="container container-auction">
-        <h2>Add a Gig</h2>
+        <h2>Add a Gig to Pro Service</h2>
         <div>
             @Html.DropDownListFor(g => g.GigID, new SelectList(Model.Gigs, "ID", "GigName"), "--Select--", new { @class = "form-control" })
             @Html.ValidationMessageFor(i => i.GigID)
         </div>
         <div>
-            @Html.TextBoxFor(m => m.Bet, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Bet, new { @class = "form-control", @placeholder = "Your Bet", @Value = "" })
             @Html.ValidationMessageFor(m => m.Bet)
         </div>
         <div>
-            <button type="submit" class="btn btn-primary" value="Save" name="actionButton">Save</button>
+            <button type="submit" class="btn btn-auction-submit shadow-none" value="Save" name="actionButton">Bet</button>
         </div>
 
 
         @foreach (var gig in Model.Gigs)
         {
-            <div class="dropdown-divider"></div>
-            <h2>Add a Gig</h2>
-            <div>
-                @gig.GigName
-            </div>
-            <div>
-                @if (Model.PositionOnMarket != 0)
-                {
-                    Model.PositionOnMarket += 1;
-                }
-            </div>
-            <div>
-                @Model.Bet
+            <div class="auction-div">
+                <h2>
+                    <span>Name:</span>
+                    @gig.GigName
+                </h2>
+                <div>
+                    <p>Current Position On Market</p>
+                    @(Model.PositionOnMarket)
+                </div>
+                <div>
+                    <p>Previous Bets Made</p>
+                    @Model.Bet
+                </div>
             </div>
         }
 
