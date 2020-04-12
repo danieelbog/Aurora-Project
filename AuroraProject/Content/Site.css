@@ -146,12 +146,13 @@ textarea {
     border: solid 1px rgb(118,30,131);
     text-align: left;
     align-self: stretch;
-    left: 50% !important;
-    transform:translate(-68%);
 }
 
     .logged-dropdown.show {
         display: inline-grid !important;
+        position: relative;
+        left: 50% !important;
+        transform: translate(-68%);
     }
 
 
@@ -163,13 +164,17 @@ textarea {
 @media (max-width: 991px) {
     .logged-dropdown.show {
         border: none;
+        /*left: 11em !important;*/
+        top: -1em !important;
+        position: relative;
+        width: 73%;
     }
 
     .logged-dropdown {
-        left: 100% !important;
         text-align: right;
+        background-color: transparent;
         align-self: stretch;
-        display: contents;
+        transform: none;
     }
 }
 
@@ -233,6 +238,31 @@ textarea {
     float: left !important;
     position: relative;
     top: -4rem;
+}
+
+@media (max-width: 991px) {
+    .nav-Industry {
+        border: none !important;
+        box-shadow: none;
+        position: absolute;
+        width: 50%;
+        z-index: 3;
+        top: 4.718em;
+        background-color: transparent !important;
+    }
+
+    .toggler-industry {
+        position: absolute;
+        top: -2.94em;
+    }
+
+    #navbarNav-Industry {
+        background-color: #f8f9fa;
+        position: relative;
+        left: -16px;
+        top: -8px
+    }
+
 }
 
 /*BUTTONS FOR SMALL SCREEN VIEWS*/
@@ -1339,25 +1369,25 @@ img.OurLogo {
     left: -5px;
 }
 
-.notification-span{
+.notification-span {
     float: right;
     display: none;
     cursor: pointer;
     color: var(--main-navbarText-color);
-    outline:none;
+    outline: none;
     border: none;
     background-color: transparent;
     box-shadow: none !important;
     font-size: 12px;
     top: -3px;
-    position:relative;
+    position: relative;
 }
 
 .wallet-badge {
     position: relative;
     top: -13px;
     color: purple;
-    font-size:14px;
+    font-size: 14px;
     font-weight: 800;
     border-radius: 45%;
     padding: 3px;
@@ -1690,8 +1720,8 @@ input[type=number]::-webkit-outer-spin-button {
         top: -1em;
     }
 
-    .form-group span span {
-        color: red;
-        display: block;
-        position: relative;
-    } 
+.form-group span span {
+    color: red;
+    display: block;
+    position: relative;
+}
