@@ -20,20 +20,20 @@
         </div>
 
 
-        @foreach (var gig in Model.Gigs)
+        @foreach (var auction in Model.Auctions)
         {
             <div class="auction-div">
                 <h2>
                     <span>Name:</span>
-                    @gig.GigName
+                    @auction.Gig.GigName
                 </h2>
                 <div>
                     <p>Current Position On Market</p>
-                    @(Model.PositionOnMarket)
+                    @auction.PositionOnMarket
                 </div>
                 <div>
                     <p>Previous Bets Made</p>
-                    @Model.Bet
+                    @auction.Bet
                 </div>
             </div>
         }

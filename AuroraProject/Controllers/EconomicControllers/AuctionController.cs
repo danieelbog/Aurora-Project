@@ -54,9 +54,25 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             var gigs = context.Gigs.Where(g => g.UserID == userId && g.IsDisabled == false).ToList();
+            var auctions = context.Auctions.Where(a => a.Gig.UserID == userId).Include(a => a.Gig).ToList();
+
+            BubbleSort.SortDescendingBet(auctions);
+
+            foreach (var auction in auctions)
+            {
+                int index = auctions.IndexOf(auction);
+                auction.PositionOnMarket = index + 1;
+                context.SaveChanges();
+            }
 
             // CREATE VIEW MODEL TO SEND IT TO THE VIEW
-            var viewModel = new AuctionFormViewModel(0, 0, gigs);
+            var viewModel = new AuctionFormViewModel
+            {
+                Gigs = gigs,
+                Auctions = auctions
+            };
+
+            BubbleSort.SortDescendingBet(auctions);
 
             return PartialView("_Auction", viewModel);
         }
@@ -79,9 +95,17 @@ namespace AuroraProject.Controllers
 
             var auctions = context.Auctions.Where(a => a.SpecificIndustryID == gig.SpecificIndustry.ID).ToList();
 
-            viewModel.GigID = gig.ID;
+            if (context.Auctions.SingleOrDefault(a => a.GigID == viewModel.GigID) != null)
+                context.Auctions.Remove(context.Auctions.SingleOrDefault(a => a.GigID == viewModel.GigID));
 
-            var auction = Auction.CreateAuction(viewModel, auctions, gig, context.AuroraWallets.Single(a => a.ID == 1));
+            var auction = Auction.CreateAuction(viewModel, gig, context.AuroraWallets.Single(a => a.ID == 1));
+
+
+            auctions.Add(auction);
+            BubbleSort.SortDescendingBet(auctions);
+            int index = auctions.IndexOf(auction);
+            auction.PositionOnMarket = index;
+
 
             context.Auctions.Add(auction);
             context.SaveChanges();

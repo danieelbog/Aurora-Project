@@ -32,17 +32,11 @@ namespace AuroraProject.Models
             SpecificIndustryID = specificIndustryID;
         }
 
-        public static Auction CreateAuction(AuctionFormViewModel viewModel, List<Auction> allRelatedAuctions, Gig gig, AuroraWallet auroraWallet)
+        public static Auction CreateAuction(AuctionFormViewModel viewModel, Gig gig, AuroraWallet auroraWallet)
         {
             gig.User.TransferMoneyToAurora(gig.User.Wallet, auroraWallet, viewModel.Bet);
 
             var auction = new Auction(viewModel, gig.SpecificIndustryID);            
-
-            allRelatedAuctions.Add(auction);
-
-            BubbleSort.SortDescendingBet(allRelatedAuctions);
-
-            auction.PositionOnMarket = allRelatedAuctions.FindIndex(a => a.GigID == viewModel.GigID);
 
             return auction;
         }

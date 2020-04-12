@@ -15,6 +15,7 @@ namespace AuroraProject.ViewModels
         [Required]
         public int GigID { get; set; }
         public IEnumerable<Gig> Gigs { get; set; }
+        public IEnumerable<Auction> Auctions { get; set; }
 
         public AuctionFormViewModel()
         {
