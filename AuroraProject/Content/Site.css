@@ -1534,11 +1534,11 @@ input[type=number]::-webkit-outer-spin-button {
 .btn-submit-form {
     margin-top: 1em;
     border: none;
-    padding: 1em;
+    padding: 0.8em;
     color: var(--main-buttonText-color);
     font-weight: 600;
     width: 20em;
-    height: 3em;
+    /*height: 3em;*/
     top: -2em;
     position: relative;
     cursor: pointer;
@@ -1547,8 +1547,8 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #6a13f3;
     left: 50%;
     transform: translate(-53%);
-    outline: none;
-    box-shadow: none;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
     .btn-submit-form:hover {
@@ -1560,11 +1560,10 @@ input[type=number]::-webkit-outer-spin-button {
 .register .nav-tabs {
     border: none;
     background-color: transparent !important;
-    width: 95%;
-    left: 0%;
-    transform: translate(5%,0);
+    width: 94%;
+    left: 15px;
+    position: relative;
     margin: 1em;
-    /*float: right;*/
 }
 
     .register .nav-tabs .nav-item {
@@ -1688,3 +1687,9 @@ input[type=number]::-webkit-outer-spin-button {
         transform: translate(-1%);
         top: -1em;
     }
+
+    .form-group span span {
+        color: red;
+        display: block;
+        position: relative;
+    } 

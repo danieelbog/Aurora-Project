@@ -364,6 +364,7 @@
     <Content Include="Scripts\app\controllers\purchaseBasicController.js" />
     <Content Include="Scripts\app\controllers\purchasePremiumController.js" />
     <Content Include="Scripts\app\controllers\readNotificationController.js" />
+    <Content Include="Scripts\app\controllers\searchController.js" />
     <Content Include="Scripts\app\controllers\updateMyProfileController.js" />
     <Content Include="Scripts\app\services\deleteNotificationService.js" />
     <Content Include="Scripts\app\services\disableGigService.js" />
@@ -561,7 +562,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

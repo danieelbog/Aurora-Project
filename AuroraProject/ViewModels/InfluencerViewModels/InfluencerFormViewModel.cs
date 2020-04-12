@@ -49,7 +49,7 @@ namespace AuroraProject.ViewModels
         public string AboutTheInfluencer { get; set; }
 
         // RELATION WITH MEMBERSHIP TYPE
-        [Required(ErrorMessage = "Please pick a membershipt type")]
+        [Required(ErrorMessage = "Please pick a membership type")]
         [Display(Name = "Membership Type")]
         public int MembershipTypeID { get; set; }
 
