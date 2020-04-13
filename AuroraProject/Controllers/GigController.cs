@@ -210,7 +210,7 @@ namespace AuroraProject.Controllers
 
         //GET: GIG FOR EDIT
         [Authorize]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int gigID)
         {
             var userId = User.Identity.GetUserId();
 
@@ -222,7 +222,7 @@ namespace AuroraProject.Controllers
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.Influencer)
                 .Include(i => i.FileUploads)
-                .SingleOrDefault(g => g.ID == id && g.User.Id == userId);
+                .SingleOrDefault(g => g.ID == gigID && g.User.Id == userId);
 
             //CHECK IF THE GIG EXIST
             if (gig == null)
@@ -272,7 +272,7 @@ namespace AuroraProject.Controllers
             if (upload != null && upload.ContentLength > 0)
             {
                 //WE WILL CREATE A NEW FILE WITH THE TYPE OF AVATAR (THIS IS WHAT I NEED HERE)
-                var background = FileUpload.GiveGigBackground(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, gig.ID);
+                var background = FileUpload.GiveGigBackground(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Photo, gig.ID);
 
                 //BLACK MAGIC
                 using (var reader = new System.IO.BinaryReader(upload.InputStream))
@@ -307,6 +307,7 @@ namespace AuroraProject.Controllers
                 .Include(g => g.AdvancedPackage)
                 .Include(g => g.BasicPackage)
                 .Include(g => g.Influencer)
+                .Include(g => g.Influencer.FileUploads)
                 .Include(i => i.FileUploads)
                 .SingleOrDefault(g => g.ID == updatedViewModel.GigID && g.UserID == userId);
 
@@ -323,7 +324,7 @@ namespace AuroraProject.Controllers
                     context.FileUploads.Remove(gigDB.FileUploads.First(f => f.FileType == FileType.Photo));
 
                 // THEN WE WILL CREATE NEW FILE AND GIVE IT TO THE USER
-                var background = FileUpload.GiveInfluencerAvatar(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Photo, gigDB.ID);
+                var background = FileUpload.GiveGigBackground(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Photo, gigDB.ID);
 
                 // BLACK MAGIC
                 using (var reader = new System.IO.BinaryReader(upload.InputStream))

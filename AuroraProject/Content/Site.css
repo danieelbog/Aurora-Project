@@ -40,6 +40,16 @@ textarea {
 }
 
 
+/*IMAGE FLUID*/
+.img-fluid {
+    max-width: 100%;
+    max-height: inherit;
+}
+
+.pmd-card-media {
+    max-height: 13em;
+}
+
 /*CUSTOM LAYOUT NAVBAR*/
 .navbar-brand {
     width: 6em;
@@ -1722,7 +1732,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .upload-image {
     display: table-caption !important;
-    width: 15em;
+    width: 16em;
 }
 
     .upload-image div {

@@ -24,7 +24,7 @@
                     {
 
                         <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img src="~/File?id=@Model.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
+                            <img class="img-fluid" src="~/File?id=@Model.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
                         </a>
                     }
                     else
@@ -42,19 +42,19 @@
 
                 </div>
             </div>
-            @if (Model.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+            @if (Model.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Photo))
             {
 
-                <div class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = Model.Gig.ID })">
-                    <img src="~/File?id=@Model.Gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" alt="Gig Background" width="1184" height="666" class="img-fluid">
-                </div>
+                <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = Model.Gig.ID })">
+                    <img class="img-fluid" src="~/File?id=@Model.Gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666" class="img-fluid">
+                </a>
             }
             else
             {
 
-                <div class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = Model.Gig.ID })">
+                <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = Model.Gig.ID })">
                     <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
-                </div>
+                </a>
             }
 
             @*<div class="btn-group align-self-stretch">
