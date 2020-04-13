@@ -559,6 +559,7 @@
     <Content Include="Views\Industry\AuroraProIndustries.cshtml" />
     <Content Include="Views\SpecificIndustry\AuroraProSpecificIndustries.cshtml" />
     <Content Include="Views\Gig\Details.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

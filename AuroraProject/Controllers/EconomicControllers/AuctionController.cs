@@ -100,11 +100,10 @@ namespace AuroraProject.Controllers
 
             var auction = Auction.CreateAuction(viewModel, gig, context.AuroraWallets.Single(a => a.ID == 1));
 
-
-            auctions.Add(auction);
-            BubbleSort.SortDescendingBet(auctions);
-            int index = auctions.IndexOf(auction);
-            auction.PositionOnMarket = index;
+            //auctions.Add(auction);
+            //BubbleSort.SortDescendingBet(auctions);
+            //int index = auctions.IndexOf(auction);
+            //auction.PositionOnMarket = index;
 
 
             context.Auctions.Add(auction);

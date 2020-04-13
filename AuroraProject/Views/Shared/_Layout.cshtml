@@ -37,12 +37,15 @@
     @{Html.RenderAction("Index", "SpecificIndustry");}
 
     @RenderBody()
-    <div class="container body-content">
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    @*<div class="container body-content">
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
+    @Html.Partial("_Footer")
+
+
 
     @Scripts.Render("~/bundles/lib")
     @Scripts.Render("~/bundles/app")
