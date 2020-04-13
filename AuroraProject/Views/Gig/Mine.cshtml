@@ -132,9 +132,20 @@
                     <div class="media-body">
                         @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
 
-                        <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img src="http://propeller.in/components/list/img/40x40.png" width="40" height="40">
-                        </a>
+                        @if (gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                        {
+
+                            <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
+                                <img src="~/File?id=@gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
+                                <img src="http://propeller.in/components/list/img/40x40.png" width="40" height="40">
+                            </a>
+                        }
+
                         <h3 class="card-title text-center">
                             @gig.User.UserFullName
 
@@ -153,9 +164,20 @@
 
                     </div>
                 </div>
-                <div class="pmd-card-media">
-                    <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
-                </div>
+                @if (gig.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                {
+
+                    <div class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
+                        <img src="~/File?id=@gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" alt="Gig Background" width="1184" height="666" class="img-fluid">
+                    </div>
+                }
+                else
+                {
+
+                    <div class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
+                        <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
+                    </div>
+                }
 
                 @*<div class="btn-group align-self-stretch">
                         <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>

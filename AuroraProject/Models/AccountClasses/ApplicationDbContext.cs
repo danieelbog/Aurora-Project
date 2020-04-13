@@ -22,7 +22,7 @@ namespace AuroraProject.Models
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<AuroraWallet> AuroraWallets { get; set; }
         public DbSet<Auction> Auctions { get; set; }
-        public DbSet<File> Files { get; set; }
+        public DbSet<FileUpload> FileUploads { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
 

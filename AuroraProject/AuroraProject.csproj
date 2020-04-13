@@ -288,6 +288,10 @@
     <Compile Include="Migrations\202004090820300_NotificationsModels.designer.cs">
       <DependentUpon>202004090820300_NotificationsModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.cs" />
+    <Compile Include="Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.designer.cs">
+      <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
     <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
@@ -297,7 +301,7 @@
     <Compile Include="Models\EconomicClasses\Auction.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
     <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
-    <Compile Include="Models\FileClasses\File.cs" />
+    <Compile Include="Models\FileClasses\FileUpload.cs" />
     <Compile Include="Models\InfluencerClasses\Influencer.cs" />
     <Compile Include="Models\AccountClasses\MembershipType.cs" />
     <Compile Include="Models\NotificationsClasses\Notification.cs" />
@@ -629,6 +633,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004090820300_NotificationsModels.resx">
       <DependentUpon>202004090820300_NotificationsModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.resx">
+      <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

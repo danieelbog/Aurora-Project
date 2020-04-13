@@ -34,6 +34,7 @@ namespace AuroraProject.Controllers
                 .Include(g => g.Gig.SpecificIndustry)
                 .Include(g => g.Gig.SpecificIndustry.Industry)
                 .Include(g => g.Gig.Influencer)
+                .Include(g => g.Gig.Influencer.FileUploads)
                 .Where(g => g.SpecificIndustryID == specificIndustryID)
                 .ToList();
 
@@ -99,12 +100,6 @@ namespace AuroraProject.Controllers
                 context.Auctions.Remove(context.Auctions.SingleOrDefault(a => a.GigID == viewModel.GigID));
 
             var auction = Auction.CreateAuction(viewModel, gig, context.AuroraWallets.Single(a => a.ID == 1));
-
-            //auctions.Add(auction);
-            //BubbleSort.SortDescendingBet(auctions);
-            //int index = auctions.IndexOf(auction);
-            //auction.PositionOnMarket = index;
-
 
             context.Auctions.Add(auction);
             context.SaveChanges();

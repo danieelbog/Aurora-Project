@@ -18,9 +18,9 @@
         <div class="sidebar">
             <nav>
                 <ul class="mine-profile-ul">
-                    @if (Model.Files.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                    @if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
                     {
-                        <li class="GalGadot"><img src="~/File?id=@Model.Files.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).FileId" alt="avatar" style="width: 100px; height: 100px; border-radius: 50%;"><hr class="text-hide" /><p>@Model.FullName</p> <hr /></li>
+                        <li class="GalGadot"><img src="~/File?id=@Model.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" alt="avatar" style="width: 100px; height: 100px; border-radius: 50%;"><hr class="text-hide" /><p>@Model.FullName</p> <hr /></li>
                     }
                     else
                     {

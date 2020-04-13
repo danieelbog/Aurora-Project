@@ -32,6 +32,8 @@ namespace AuroraProject.Controllers
                 .Include(g => g.PremiumPackage)
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.Influencer)
+                .Include(g => g.Influencer.FileUploads)
+                .Include(i => i.FileUploads)
                 .SingleOrDefault(g => g.ID == gigID);
 
             if (gig == null)
@@ -55,7 +57,7 @@ namespace AuroraProject.Controllers
                 viewModel.isFollowing = context.FavouriteInfluencers
                     .Any(f => f.InfluencerID == gig.InfluencerID && f.FollowerID == userId);
             }
-            
+
             return View("Details", viewModel);
         }
 
@@ -69,6 +71,8 @@ namespace AuroraProject.Controllers
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.SpecificIndustry.Industry)
                 .Include(g => g.Influencer)
+                .Include(g => g.Influencer.FileUploads)
+                .Include(i => i.FileUploads)
                 .Where(g => !g.IsDisabled)
                 .ToList();
 
@@ -93,7 +97,7 @@ namespace AuroraProject.Controllers
             }
 
             // SORT THE GIG WITH THE CORRECT SORTER
-            Sorter.SortLogic(gigs);            
+            Sorter.SortLogic(gigs);
 
             // SEND GIGS TO THE VIEW
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
@@ -138,6 +142,8 @@ namespace AuroraProject.Controllers
                 .Include(g => g.BasicPackage)
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.Influencer)
+                .Include(g => g.Influencer.FileUploads)
+                .Include(i => i.FileUploads)
                 .ToList();
 
             // SORT THE GIG WITH THE CORRECT SORTER
@@ -164,6 +170,8 @@ namespace AuroraProject.Controllers
                 .Include(g => g.BasicPackage)
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.Influencer)
+                .Include(g => g.Influencer.FileUploads)
+                .Include(i => i.FileUploads)
                 .ToList();
 
             // SORT THE GIG WITH THE CORRECT SORTER
@@ -213,6 +221,7 @@ namespace AuroraProject.Controllers
                 .Include(g => g.PremiumPackage)
                 .Include(g => g.SpecificIndustry)
                 .Include(g => g.Influencer)
+                .Include(i => i.FileUploads)
                 .SingleOrDefault(g => g.ID == id && g.User.Id == userId);
 
             //CHECK IF THE GIG EXIST
@@ -229,7 +238,7 @@ namespace AuroraProject.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(GigFormViewModel gigFormViewModel)
+        public ActionResult Create(GigFormViewModel gigFormViewModel, HttpPostedFileBase upload)
         {
             // CHECK IF MODEL IS VALID
             if (!ModelState.IsValid)
@@ -257,6 +266,25 @@ namespace AuroraProject.Controllers
 
             // Create a Gig                    
             var gig = new Gig(gigFormViewModel, userId, infleuncer.ID);
+
+
+            //IF THERE IS NEW FILE UPLOADED
+            if (upload != null && upload.ContentLength > 0)
+            {
+                //WE WILL CREATE A NEW FILE WITH THE TYPE OF AVATAR (THIS IS WHAT I NEED HERE)
+                var background = FileUpload.GiveGigBackground(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, gig.ID);
+
+                //BLACK MAGIC
+                using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                {
+                    background.Content = reader.ReadBytes(upload.ContentLength);
+                }
+
+                // GIVE INFLUENCER THE LIST OF FILES WITH THE AVATAR FILE
+                gig.FileUploads = new List<FileUpload> { background };
+            }
+
+
             context.Gigs.Add(gig);
 
             context.SaveChanges();
@@ -269,7 +297,7 @@ namespace AuroraProject.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(GigFormViewModel updatedViewModel)
+        public ActionResult Update(GigFormViewModel updatedViewModel, HttpPostedFileBase upload)
         {
             var userId = User.Identity.GetUserId();
 
@@ -279,6 +307,7 @@ namespace AuroraProject.Controllers
                 .Include(g => g.AdvancedPackage)
                 .Include(g => g.BasicPackage)
                 .Include(g => g.Influencer)
+                .Include(i => i.FileUploads)
                 .SingleOrDefault(g => g.ID == updatedViewModel.GigID && g.UserID == userId);
 
             //CHECK IF THE GIG EXIST
@@ -286,6 +315,26 @@ namespace AuroraProject.Controllers
                 return HttpNotFound();
 
             gigDB.Modify(updatedViewModel);
+
+            // IF THERE IS MEW FILE UPLOADED THEN WE WILL DELETE THE GIG FILE FOR NACKGROUND FROM HIS FILES
+            if (upload != null && upload.ContentLength > 0)
+            {
+                if (gigDB.FileUploads.Any(f => f.FileType == FileType.Photo))
+                    context.FileUploads.Remove(gigDB.FileUploads.First(f => f.FileType == FileType.Photo));
+
+                // THEN WE WILL CREATE NEW FILE AND GIVE IT TO THE USER
+                var background = FileUpload.GiveInfluencerAvatar(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Photo, gigDB.ID);
+
+                // BLACK MAGIC
+                using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                {
+                    background.Content = reader.ReadBytes(upload.ContentLength);
+                }
+
+                // WE ADD THE LIST WITH THE NEW AVATAR FILE TO THE INFLUENCER LIST
+                gigDB.FileUploads = new List<FileUpload> { background };
+            }
+
 
             // GO TO DB AND SAVE CHANGES
             context.SaveChanges();
@@ -306,6 +355,7 @@ namespace AuroraProject.Controllers
             .Include(g => g.BasicPackage)
             .Include(g => g.AdvancedPackage)
             .Include(g => g.PremiumPackage)
+            .Include(i => i.FileUploads)
             .SingleOrDefault(g => g.ID == gigFormViewModel.GigID);
 
             // CHECK IF GIG EXIST

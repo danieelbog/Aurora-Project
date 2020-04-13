@@ -30,7 +30,7 @@ namespace AuroraProject.Controllers
             // BRING THE INFLUENCERS THAT THE USER HAS FAVOURITED WITH ALL THEIR NEEDED PROPERTIES
             var influencers = context.FavouriteInfluencers
                 .Where(f => f.FollowerID == userId)
-                .Select(f => f.Influencer).Include(i => i.Files)
+                .Select(f => f.Influencer).Include(i => i.FileUploads)
                 .Include(f => f.User)
                 .Include(f => f.User.Gigs)
                 .ToList();
@@ -45,7 +45,7 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
             var influencer = context.Influencers
                 .Include(i => i.MembershipType)
-                .Include(i => i.Files)
+                .Include(i => i.FileUploads)
                 .Include(i => i.User)
                 .SingleOrDefault(i => i.User.Id == userId);
 
@@ -72,7 +72,7 @@ namespace AuroraProject.Controllers
             // GETTING THE USER'S INFLUENCER
             var influencer = context.Influencers
                 .Include(i => i.User)
-                .Include(i => i.Files)
+                .Include(i => i.FileUploads)
                 .SingleOrDefault(i => i.User.Id == userId);
 
             // IF THE INFLUENCER ID IS NULL THEN WE WILL SEND IT TO THE CREATE
@@ -124,7 +124,7 @@ namespace AuroraProject.Controllers
                 if (upload != null && upload.ContentLength > 0)
                 {
                     //WE WILL CREATE A NEW FILE WITH THE TYPE OF AVATAR (THIS IS WHAT I NEED HERE)
-                    var avatar = new File(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencer.ID);
+                    var avatar = FileUpload.GiveInfluencerAvatar(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencer.ID);
 
                     //BLACK MAGIC
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
@@ -133,7 +133,7 @@ namespace AuroraProject.Controllers
                     }
 
                     // GIVE INFLUENCER THE LIST OF FILES WITH THE AVATAR FILE
-                    influencer.Files = new List<File> { avatar };
+                    influencer.FileUploads = new List<FileUpload> { avatar };
                 }
 
                 context.Influencers.Add(influencer);
@@ -163,7 +163,7 @@ namespace AuroraProject.Controllers
                 .Include(i => i.MembershipType)
                 .Include(i => i.User)
                 .Include(i => i.User.Wallet)
-                .Include(i => i.Files)
+                .Include(i => i.FileUploads)
                 .SingleOrDefault(i => i.ID == viewModel.ID && i.User.Id == userId);
 
             // CHECK IF THE INFLUENCER EXIST
@@ -183,11 +183,11 @@ namespace AuroraProject.Controllers
                 // IF THERE IS MEW FILE UPLOADED THEN WE WILL DELETE THE INFLUENCER FILE FOR AVATAR FROM HIS FILES
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    if (influencerDb.Files.Any(f => f.FileType == FileType.Avatar))
-                        context.Files.Remove(influencerDb.Files.First(f => f.FileType == FileType.Avatar));
+                    if (influencerDb.FileUploads.Any(f => f.FileType == FileType.Avatar))
+                        context.FileUploads.Remove(influencerDb.FileUploads.First(f => f.FileType == FileType.Avatar));
 
                     // THEN WE WILL CREATE NEW FILE AND GIVE IT TO THE USER
-                    var avatar = new File(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencerDb.ID);
+                    var avatar = FileUpload.GiveInfluencerAvatar(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencerDb.ID);
 
                     // BLACK MAGIC
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
@@ -196,7 +196,7 @@ namespace AuroraProject.Controllers
                     }
 
                     // WE ADD THE LIST WITH THE NEW AVATAR FILE TO THE INFLUENCER LIST
-                    influencerDb.Files = new List<File> { avatar };
+                    influencerDb.FileUploads = new List<FileUpload> { avatar };
                 }
 
             }

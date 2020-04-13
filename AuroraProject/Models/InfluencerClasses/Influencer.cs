@@ -51,7 +51,7 @@ namespace AuroraProject.Models
         public ICollection<FavouriteInfluencer> Followers { get; set; }
 
         //RELATION WITH FILE - UPLOADING IMAGES ETC
-        public ICollection<File> Files { get; set; }
+        public ICollection<FileUpload> FileUploads { get; set; }
 
 
         protected Influencer()

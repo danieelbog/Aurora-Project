@@ -18,7 +18,7 @@ namespace AuroraProject.Controllers
         // GET: File
         public ActionResult Index(int id)
         {
-            var fileToRetrieve = context.Files.Find(id);
+            var fileToRetrieve = context.FileUploads.Find(id);
             return File(fileToRetrieve.Content, fileToRetrieve.ContentType);
         }
     }

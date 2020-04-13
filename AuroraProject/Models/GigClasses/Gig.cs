@@ -21,10 +21,6 @@ namespace AuroraProject.Models
         public string GigName { get; set; }
 
         [Required]
-        [Display(Name = "Gig Wallpaper")]
-        public string GigWallpaper { get; set; }
-
-        [Required]
         [StringLength(255)]
         public string Descreption { get; set; }
 
@@ -59,6 +55,10 @@ namespace AuroraProject.Models
         //RELATIONSHIP WITH FAVORITE GIGS
         public ICollection<FavouriteGig> Actioners { get; set; }
 
+        //RELATIONSHIP WITH FILES (BACKGROUND)
+        public virtual ICollection<FileUpload> FileUploads { get; set; }
+
+
         protected Gig()
         {
             Actioners = new Collection<FavouriteGig>();
@@ -68,7 +68,6 @@ namespace AuroraProject.Models
         {
             UserRating = viewModel.UserRating;
             GigName = viewModel.GigName;
-            GigWallpaper = viewModel.GigWallpaper;
             Descreption = viewModel.Descreption;
             BasicPackageID = viewModel.BasicPackageID;
             AdvancedPackageID = viewModel.BasicPackageID;
@@ -84,7 +83,6 @@ namespace AuroraProject.Models
             //CODE FOR GIG
             Descreption = updatedViewModel.Descreption;
             GigName = updatedViewModel.GigName;
-            GigWallpaper = updatedViewModel.GigWallpaper;
             UserRating = updatedViewModel.UserRating;
 
             //CODE FOR BASIC PACKAGE

@@ -24,10 +24,6 @@ namespace AuroraProject.ViewModels
         [MaxLength(25, ErrorMessage ="Gig name must be up to 25 charachters")]
         public string GigName { get; set; }
 
-        [Required(ErrorMessage = "You must chose a Wallpaper for your Gig")]
-        [Display(Name = "Add a Wallpaper to your Gig")]
-        public string GigWallpaper { get; set; }
-
         [Required(ErrorMessage = "You must write a small Descreption for your Gig")]
         [StringLength(40, ErrorMessage = "Descreption must be up to 40 charachters")]
         [DataType(DataType.MultilineText)]
@@ -100,14 +96,19 @@ namespace AuroraProject.ViewModels
         //VIEW PROPERTIES
         public string PageName { get; set; }
         public string ButtonName { get; set; }
+
+        // RELATION WITH FILE
+        public IEnumerable<FileUpload> FileUploads { get; set; }
+        public HttpPostedFileBase upload { get; set; }
+
         public string Action
         {
             get
             {
                 Expression<Func<GigController, ActionResult>> update =
-                    (c => c.Update(this));
+                    (c => c.Update(this, upload));
                 Expression<Func<GigController, ActionResult>> create =
-                    (c => c.Create(this));
+                    (c => c.Create(this, upload));
                 //Expression<Func<GigController, ActionResult>> delete =
                 //    (c => c.Delete(this));
 
@@ -129,7 +130,6 @@ namespace AuroraProject.ViewModels
             GigID = gig.ID;
             UserRating = gig.UserRating;
             GigName = gig.GigName;
-            GigWallpaper = gig.GigWallpaper;
             Descreption = gig.Descreption;
             BasicPackageID = gig.BasicPackageID;
             BasicPrice = gig.BasicPackage.Price;
@@ -152,6 +152,9 @@ namespace AuroraProject.ViewModels
             //VIEW PROPERTIES
             PageName = pageName;
             ButtonName = buttonName;
+
+            //FILES
+            FileUploads = gig.FileUploads;
         }
 
         public static GigFormViewModel CreateFormViewModel(Gig gig, IEnumerable<SpecificIndustry> specificIndustries, string pageName, string buttonName)

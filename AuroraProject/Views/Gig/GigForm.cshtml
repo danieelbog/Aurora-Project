@@ -36,14 +36,43 @@
                 <hr />
             </ul>
 
-            @using (Html.BeginForm(Model.Action, "Gig"))
+            @using (Html.BeginForm(Model.Action, "Gig", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", role = "form" }))
             {
                 @Html.AntiForgeryToken()
 
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent">                   
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row register-form">
                             <div class="col-md-12">
+
+                                <div>
+                                    <div class="form-group upload-image">
+                                        @if (Model.FileUploads != null)
+                                        {
+                                            if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Photo))
+                                            {
+                                                <div>
+                                                    <div>
+                                                        <img src="~/File?id=@Model.FileUploads.First(f => f.FileType == FileType.Photo).ID" alt="avatar" width="185" height="185" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                        <div class="form-group">
+                                            <div>
+                                                <label for="Avatar" class="custom-file-upload form-control">
+                                                    @Model.ButtonName Background
+                                                </label>
+                                                <input type="file" id="Avatar" name="upload" style="display:none" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                </div>
+
+
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.GigName, new { @class = "form-control", @placeholder = "Gig Title *" })
                                     @Html.ValidationMessageFor(m => m.GigName)
@@ -51,10 +80,6 @@
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.UserRating, new { @class = "form-control", @placeholder = "User Rating *", @Value = "" })
                                     @Html.ValidationMessageFor(m => m.UserRating)
-                                </div>
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.GigWallpaper, new { @class = "form-control", @placeholder = "Gig Wallpaper *" })
-                                    @Html.ValidationMessageFor(m => m.GigWallpaper)
                                 </div>
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.Descreption, new { @class = "form-control", @placeholder = "Description *" })

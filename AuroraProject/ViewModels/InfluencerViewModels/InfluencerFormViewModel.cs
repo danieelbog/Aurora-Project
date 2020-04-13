@@ -67,7 +67,7 @@ namespace AuroraProject.ViewModels
 
 
         // RELATION WITH FILE
-        public IEnumerable<File> Files { get; set; }
+        public IEnumerable<FileUpload> FileUploads { get; set; }
         public HttpPostedFileBase upload { get; set; }
 
         // WHAT ACTION SHOULD RUN IS DECIDED HERE
@@ -115,7 +115,7 @@ namespace AuroraProject.ViewModels
             FullName = fullName;
 
             //FILES
-            Files = influencer.Files;
+            FileUploads = influencer.FileUploads;
         }
 
         public static InfluencerFormViewModel CreateFormViewModel(Influencer influencer, IEnumerable<MembershipType> membershipTypes, string pageName, string buttonName, string fullName)
