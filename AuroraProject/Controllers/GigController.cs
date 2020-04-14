@@ -7,15 +7,19 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers
 {
     public class GigController : Controller
     {
-        private ApplicationDbContext context;
-        public GigController()
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork; public GigController()
+        
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
         protected override void Dispose(bool disposing)
         {
@@ -25,25 +29,12 @@ namespace AuroraProject.Controllers
         //GET: THE DETAILS OF A GIG
         public ActionResult Details(int gigID)
         {
-            var gig = context.Gigs
-                .Include(g => g.User)
-                .Include(g => g.BasicPackage)
-                .Include(g => g.AdvancedPackage)
-                .Include(g => g.PremiumPackage)
-                .Include(g => g.SpecificIndustry)
-                .Include(g => g.Influencer)
-                .Include(g => g.Influencer.FileUploads)
-                .Include(i => i.FileUploads)
-                .SingleOrDefault(g => g.ID == gigID);
+            var gig = unitOfWork.GigsRepository.GetGigForDetails(gigID);
 
             if (gig == null)
                 return HttpNotFound("No gig was Found");
 
-            var viewModel = new GigDetailsViewModel()
-            {
-                Gig = gig,
-                Heading = $"{gig.GigName}",
-            };
+            var viewModel = new GigDetailsViewModel(gig, $"{gig.GigName}");
 
             if (User.Identity.IsAuthenticated)
             {
@@ -51,11 +42,9 @@ namespace AuroraProject.Controllers
 
                 viewModel.ShowActions = true;
 
-                viewModel.isFavourited = context.FavouriteGigs
-                    .Any(f => f.GigID == gigID && f.ActionerID == userId);
+                viewModel.isFavourited = unitOfWork.GigsRepository.GetFavouriteGigs(gigID, userId) != null;
 
-                viewModel.isFollowing = context.FavouriteInfluencers
-                    .Any(f => f.InfluencerID == gig.InfluencerID && f.FollowerID == userId);
+                viewModel.isFollowing = unitOfWork.InfluencerRepository.GetFavouriteInfluencers(gig.InfluencerID, userId) != null;
             }
 
             return View("Details", viewModel);

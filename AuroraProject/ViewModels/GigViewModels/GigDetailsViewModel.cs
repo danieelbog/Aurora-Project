@@ -15,7 +15,15 @@ namespace AuroraProject.ViewModels
 
         public bool isFavourited { get; set; }
         public bool isFollowing { get; set; }
-        
 
+        public GigDetailsViewModel()
+        {
+
+        }
+        public GigDetailsViewModel(Gig gig, string heading)
+        {
+            Gig = gig;
+            Heading = heading;
+        }
     }
 }
