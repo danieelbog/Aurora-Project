@@ -6,18 +6,17 @@ using System.Web;
 
 namespace AuroraProject.Repositories
 {
-    public class InfluencerRepository
+    public class ApplicationUserRepository
     {
         private readonly ApplicationDbContext _context;
-        public InfluencerRepository(ApplicationDbContext context)
+        public ApplicationUserRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public Influencer GetInfluencerForUser(string userId)
+        public ApplicationUser GetUser(string userId)
         {
-            return _context.Influencers.SingleOrDefault(i => i.User.Id == userId);
+            return _context.Users.SingleOrDefault(u => u.Id == userId);
         }
-
     }
 }

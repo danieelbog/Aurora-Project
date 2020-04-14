@@ -319,8 +319,16 @@
     <Compile Include="Models\NotificationsClasses\UserNotification.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdvancedPackageRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="Repositories\BasicPackageRepository.cs" />
+    <Compile Include="Repositories\FavouriteGigRepository.cs" />
+    <Compile Include="Repositories\FavouriteInfluencerRepository.cs" />
+    <Compile Include="Repositories\FileUploadRepository.cs" />
     <Compile Include="Repositories\GigRepository.cs" />
     <Compile Include="Repositories\InfluencerRepository.cs" />
+    <Compile Include="Repositories\PremiumPackageRepository.cs" />
+    <Compile Include="Repositories\SpecificIndustryRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionViewModel.cs" />

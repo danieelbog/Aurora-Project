@@ -26,6 +26,13 @@ namespace AuroraProject.Controllers
             context.Dispose();
         }
 
+        //SEARCH GIGS
+        [HttpPost]
+        public ActionResult Search(GigsViewModel gigsViewModel)
+        {
+            return RedirectToAction("Index", new { query = gigsViewModel.SearchTerm });
+        }
+
         //GET: THE DETAILS OF A GIG
         public ActionResult Details(int gigID)
         {
@@ -42,9 +49,9 @@ namespace AuroraProject.Controllers
 
                 viewModel.ShowActions = true;
 
-                viewModel.isFavourited = unitOfWork.GigsRepository.GetFavouriteGigs(gigID, userId) != null;
+                viewModel.isFavourited = unitOfWork.FavouriteGigRepository.GetFavouriteGig(gigID, userId) != null;
 
-                viewModel.isFollowing = unitOfWork.InfluencerRepository.GetFavouriteInfluencers(gig.InfluencerID, userId) != null;
+                viewModel.isFollowing = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencer(gig.InfluencerID, userId) != null;
             }
 
             return View("Details", viewModel);
@@ -53,71 +60,34 @@ namespace AuroraProject.Controllers
         // GET: ALL GIGS
         public ActionResult Index(int? specificIndustryID, string query = null)
         {
-            // BRING THE GIGS WITH THE DATA I WANT
-            var gigs = context.Gigs
-                .Include(g => g.User)
-                .Include(g => g.BasicPackage)
-                .Include(g => g.SpecificIndustry)
-                .Include(g => g.SpecificIndustry.Industry)
-                .Include(g => g.Influencer)
-                .Include(g => g.Influencer.FileUploads)
-                .Include(i => i.FileUploads)
-                .Where(g => !g.IsDisabled)
-                .ToList();
-
-            if (specificIndustryID != null)
-                gigs = gigs.Where(g => g.SpecificIndustryID == specificIndustryID).ToList();
-
-            if (!String.IsNullOrWhiteSpace(query))
-            {
-                gigs = gigs
-                    .Where(g =>
-                                g.User.FirstName.Contains(query) ||
-                                g.User.LastName.Contains(query) ||
-                                g.User.UserFullName.Contains(query) ||
-                                g.SpecificIndustry.Name.Contains(query) ||
-                                g.GigName.Contains(query)).ToList();
-            }
-
             if (specificIndustryID == null && String.IsNullOrEmpty(query))
             {
                 // SEND IT ELSEWHERE
                 return RedirectToAction("Mine");
             }
 
-            // SORT THE GIG WITH THE CORRECT SORTER
-            Sorter.SortLogic(gigs);
+            var gigs = unitOfWork.GigsRepository.GetGigsForIndexWithSearch(specificIndustryID, query);
 
             // SEND GIGS TO THE VIEW
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
-                specificIndustryID == null ? $"Following Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Gigs", query);
+                specificIndustryID == null ? $"Following Gigs were Found" : $"All {unitOfWork.SpecificIndustryRepository.GetSpecificIndustry(specificIndustryID).Name} Gigs", query);
 
             if (User.Identity.IsAuthenticated)
             {
                 var userId = User.Identity.GetUserId();
-                var favouriteGigs = context.FavouriteGigs.Where(f => f.ActionerID == userId)
+
+                viewModel.FavouriteGigs = unitOfWork.FavouriteGigRepository.GetFavouriteGigs(userId)
                     .ToList()
                     .ToLookup(f => f.GigID);
 
-                var favouriteInfluencer = context.FavouriteInfluencers.Where(f => f.FollowerID == userId)
+                viewModel.FavouriteInfluencers = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencers(userId)
                     .ToList()
                     .ToLookup(f => f.InfluencerID);
-
-                viewModel.FavouriteGigs = favouriteGigs;
-                viewModel.FavouriteInfluencers = favouriteInfluencer;
-
             }
 
             //SEND THE SORTED LIST TO THE VIEW
             return View(viewModel);
-        }
-
-        //SEARCH GIGS
-        [HttpPost]
-        public ActionResult Search(GigsViewModel gigsViewModel)
-        {
-            return RedirectToAction("Index", new { query = gigsViewModel.SearchTerm });
-        }
+        }               
 
         // MY POSTED GIGS
         [Authorize]
@@ -125,22 +95,11 @@ namespace AuroraProject.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gigs = context.Gigs
-                .Where(g => g.UserID == userId)
-                .Include(g => g.User)
-                .Include(g => g.BasicPackage)
-                .Include(g => g.SpecificIndustry)
-                .Include(g => g.Influencer)
-                .Include(g => g.Influencer.FileUploads)
-                .Include(i => i.FileUploads)
-                .ToList();
-
-            // SORT THE GIG WITH THE CORRECT SORTER
-            Sorter.SortLogic(gigs);
+            var gigs = unitOfWork.GigsRepository.GetGigsForMine(userId);            
 
             // CREATE THE VIEW THAT WE WILL SEND
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
-               $"All {ApplicationUser.FullName(context.Users.SingleOrDefault(u => u.Id == userId))} Gigs", null);
+               $"All {ApplicationUser.FullName(unitOfWork.ApplicationUserRepository.GetUser(userId))} Gigs", null);
 
             // SEND GIGS TO THE VIEW          
             return View(viewModel);
@@ -152,19 +111,7 @@ namespace AuroraProject.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gigs = context.FavouriteGigs
-                .Where(f => f.ActionerID == userId)
-                .Select(f => f.Gig)
-                .Include(g => g.User)
-                .Include(g => g.BasicPackage)
-                .Include(g => g.SpecificIndustry)
-                .Include(g => g.Influencer)
-                .Include(g => g.Influencer.FileUploads)
-                .Include(i => i.FileUploads)
-                .ToList();
-
-            // SORT THE GIG WITH THE CORRECT SORTER
-            Sorter.SortLogic(gigs);
+            var gigs = unitOfWork.FavouriteGigRepository.GetFavouriteGigsFullInfo(userId);
 
             // CREATE THE VIEW THAT WE WILL SEND
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
@@ -172,16 +119,13 @@ namespace AuroraProject.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                var favouriteGigs = context.FavouriteGigs.Where(f => f.ActionerID == userId)
-                     .ToList()
-                     .ToLookup(f => f.GigID);
+                viewModel.FavouriteGigs = unitOfWork.FavouriteGigRepository.GetFavouriteGigs(userId)
+                    .ToList()
+                    .ToLookup(f => f.GigID);
 
-                var favouriteInfluencer = context.FavouriteInfluencers.Where(f => f.FollowerID == userId)
+                viewModel.FavouriteInfluencers = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencers(userId)
                     .ToList()
                     .ToLookup(f => f.InfluencerID);
-
-                viewModel.FavouriteGigs = favouriteGigs;
-                viewModel.FavouriteInfluencers = favouriteInfluencer;
             }
 
             // SEND GIGS TO THE VIEW          
@@ -192,7 +136,7 @@ namespace AuroraProject.Controllers
         public ActionResult Create()
         {
             // CREATE VIEW MODEL TO SEND IT TO THE VIEW
-            var viewModel = GigFormViewModel.CreateFormViewModel(null, context.SpecificIndustries.ToList(), "Create New Gig", "Save");
+            var viewModel = GigFormViewModel.CreateFormViewModel(null, unitOfWork.SpecificIndustryRepository.GetSpecificIndustries(), "Create New Gig", "Save");
 
             return View("GigForm", viewModel);
         }
@@ -204,20 +148,16 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             // BRING GIG FROM DB WITH ALL ITS FOLLOWINGS
-            var gig = context.Gigs
-                .Include(g => g.BasicPackage)
-                .Include(g => g.AdvancedPackage)
-                .Include(g => g.PremiumPackage)
-                .Include(g => g.SpecificIndustry)
-                .Include(g => g.Influencer)
-                .Include(i => i.FileUploads)
-                .SingleOrDefault(g => g.ID == gigID && g.User.Id == userId);
+            var gig = unitOfWork.GigsRepository.GetGigForForm(gigID);
 
             //CHECK IF THE GIG EXIST
             if (gig == null)
                 return HttpNotFound();
 
-            var viewModel = GigFormViewModel.CreateFormViewModel(gig, context.SpecificIndustries.ToList(), "Update your Gig", "Update");
+            if(gig.UserID != userId)
+                return new HttpUnauthorizedResult();
+
+            var viewModel = GigFormViewModel.CreateFormViewModel(gig, unitOfWork.SpecificIndustryRepository.GetSpecificIndustries(), "Update your Gig", "Update");
 
             // GO TO CREATE VIEW
             return View("GigForm", viewModel);
@@ -238,18 +178,18 @@ namespace AuroraProject.Controllers
 
             //Create a Basic Selling Package
             var basicPackage = new BasicPackage(gigFormViewModel);
-            context.BasicPackages.Add(basicPackage);
+            unitOfWork.BasicPackageRepository.AddBasicPackage(basicPackage);
 
             //Create an Advanced Selling Package
             var advancedPackage = new AdvancedPackage(gigFormViewModel);
-            context.AdvancedPackages.Add(advancedPackage);
+            unitOfWork.AdvancedPackageRepository.AddAdvancedPackage(advancedPackage);
 
             //Create a Premium Selling Package
             var premiumPackage = new PremiumPackage(gigFormViewModel);
-            context.PremiumPackages.Add(premiumPackage);
+            unitOfWork.PremiumPackageRepository.AddPremiumPackage(premiumPackage);
 
             //Get the user Id in order to bind everything together
-            var infleuncer = context.Influencers.SingleOrDefault(i => i.User.Id == userId);
+            var infleuncer = unitOfWork.InfluencerRepository.GetInfluencerForUser(userId);
             if (infleuncer == null)
                 return HttpNotFound();
 
@@ -273,10 +213,9 @@ namespace AuroraProject.Controllers
                 gig.FileUploads = new List<FileUpload> { background };
             }
 
+            unitOfWork.GigsRepository.AddGig(gig);
 
-            context.Gigs.Add(gig);
-
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             // WHEN EVERYTHING IS DONE GO TO INDEX
             return RedirectToAction("Index");
@@ -291,18 +230,14 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             //GET THE EXISTING GIG FOR UPDATE
-            var gigDB = context.Gigs
-                .Include(g => g.PremiumPackage)
-                .Include(g => g.AdvancedPackage)
-                .Include(g => g.BasicPackage)
-                .Include(g => g.Influencer)
-                .Include(g => g.Influencer.FileUploads)
-                .Include(i => i.FileUploads)
-                .SingleOrDefault(g => g.ID == updatedViewModel.GigID && g.UserID == userId);
+            var gigDB = unitOfWork.GigsRepository.GetGigForForm(updatedViewModel.GigID);
 
             //CHECK IF THE GIG EXIST
             if (gigDB == null)
                 return HttpNotFound();
+
+            if (gigDB.UserID != userId)
+                return new HttpUnauthorizedResult();
 
             gigDB.Modify(updatedViewModel);
 
@@ -310,7 +245,7 @@ namespace AuroraProject.Controllers
             if (upload != null && upload.ContentLength > 0)
             {
                 if (gigDB.FileUploads.Any(f => f.FileType == FileType.Photo))
-                    context.FileUploads.Remove(gigDB.FileUploads.First(f => f.FileType == FileType.Photo));
+                    unitOfWork.FileUploadRepository.RemoveGigPhotoFileUpload(gigDB);
 
                 // THEN WE WILL CREATE NEW FILE AND GIVE IT TO THE USER
                 var background = FileUpload.GiveGigBackground(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Photo, gigDB.ID);
@@ -325,49 +260,48 @@ namespace AuroraProject.Controllers
                 gigDB.FileUploads = new List<FileUpload> { background };
             }
 
-
             // GO TO DB AND SAVE CHANGES
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             // WHEN EVERYTHING IS DONE GO TO INDEX
             return RedirectToAction("Index");
         }
 
-        //DELETE: DELETE A GIG
-        [Authorize]
-        [HttpDelete]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(GigFormViewModel gigFormViewModel)
-        {
-            // BRING THE GIG FROM DB WITH ITS CONTAININGS
-            var gig = context.Gigs
-            .Include(g => g.BasicPackage)
-            .Include(g => g.AdvancedPackage)
-            .Include(g => g.PremiumPackage)
-            .Include(i => i.FileUploads)
-            .SingleOrDefault(g => g.ID == gigFormViewModel.GigID);
+        ////DELETE: DELETE A GIG
+        //[Authorize]
+        //[HttpDelete]
+        //[ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(GigFormViewModel gigFormViewModel)
+        //{
+        //    // BRING THE GIG FROM DB WITH ITS CONTAININGS
+        //    var gig = context.Gigs
+        //    .Include(g => g.BasicPackage)
+        //    .Include(g => g.AdvancedPackage)
+        //    .Include(g => g.PremiumPackage)
+        //    .Include(i => i.FileUploads)
+        //    .SingleOrDefault(g => g.ID == gigFormViewModel.GigID);
 
-            // CHECK IF GIG EXIST
-            if (gig == null)
-                return HttpNotFound();
+        //    // CHECK IF GIG EXIST
+        //    if (gig == null)
+        //        return HttpNotFound();
 
-            // INITIALIZE THE OTHER ENTITIES FOR DELATION
-            var basicPackage = gig.BasicPackage;
-            var advancedPackage = gig.AdvancedPackage;
-            var premiumPackage = gig.PremiumPackage;
+        //    // INITIALIZE THE OTHER ENTITIES FOR DELATION
+        //    var basicPackage = gig.BasicPackage;
+        //    var advancedPackage = gig.AdvancedPackage;
+        //    var premiumPackage = gig.PremiumPackage;
 
-            // DELETE EVERYTHING RELATED TO THE GIG
-            context.Gigs.Remove(gig);
-            context.BasicPackages.Remove(basicPackage);
-            context.AdvancedPackages.Remove(advancedPackage);
-            context.PremiumPackages.Remove(premiumPackage);
+        //    // DELETE EVERYTHING RELATED TO THE GIG
+        //    context.Gigs.Remove(gig);
+        //    context.BasicPackages.Remove(basicPackage);
+        //    context.AdvancedPackages.Remove(advancedPackage);
+        //    context.PremiumPackages.Remove(premiumPackage);
 
-            // GO TO DB AND SAVE CHANGES
-            context.SaveChanges();
+        //    // GO TO DB AND SAVE CHANGES
+        //    context.SaveChanges();
 
-            // WHEN EVERYTHING IS DONE GO TO INDEX
-            return RedirectToAction("Index");
-        }
+        //    // WHEN EVERYTHING IS DONE GO TO INDEX
+        //    return RedirectToAction("Index");
+        //}
     }
 }
