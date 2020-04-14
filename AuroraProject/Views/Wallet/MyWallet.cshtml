@@ -93,11 +93,11 @@
     <script>
         $(document).ready(function () {
             // GET NOTIFICATIONS
-            NotificationController.initial();
+            NotificationController.getNotifications();
             // READ NOTIFICATION JS
-            ReadNotificationController.initial();
+            NotificationController.readNotifications();
             // DELETE NOTIFICATIONS
-            DeleteNotificationController.initial();
+            NotificationController.deleteNotification();
         });
     </script>
     @Scripts.Render("~/bundles/jqueryval")

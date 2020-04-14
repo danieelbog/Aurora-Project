@@ -1,4 +1,4 @@
-﻿let FavouriteInfluencerController = function (favouriteInfluencerService) {
+﻿let InfluencerController = function (influencerService) {
 
     let button;
     let initial = function () {
@@ -11,9 +11,9 @@
         let influencerId = button.attr("data-influencer-id");
 
         if (button.hasClass("fa-heart-o"))
-            favouriteInfluencerService.favouriteInfluencer(influencerId, done, fail);
+            influencerService.favouriteInfluencer(influencerId, done, fail);
         else
-            favouriteInfluencerService.unfavouriteInfluencer(influencerId, done, fail);
+            influencerService.unfavouriteInfluencer(influencerId, done, fail);
     }
 
     let done = function () {
@@ -29,4 +29,4 @@
     return {
         initial: initial
     }
-}(FavouriteInfluencerService);
+}(InfluencerService);

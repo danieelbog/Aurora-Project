@@ -1,4 +1,4 @@
-﻿let FavouriteInfluencerService = function () {
+﻿let InfluencerService = function () {
     let favouriteInfluencer = function (influencerId, done, fail) {
         $.post("/api/favouriteInfluencers", { InfluencerID: influencerId })
             .done(done)

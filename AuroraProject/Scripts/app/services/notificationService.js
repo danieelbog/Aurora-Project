@@ -11,7 +11,24 @@
         });
     }
 
+    let readNotification = function (notificationId, done, fail) {
+        $.post("/api/notifications", { NotificationID: notificationId })
+            .done(done)
+            .fail(fail)
+    }
+
+    let deleteNotification = function (notificationId, done, fail) {
+        $.ajax({
+            url: "/api/notifications/" + notificationId,
+            method: "DELETE"
+        })
+            .done(done)
+            .fail(fail)
+    }
+
     return {
-        getNotifications: getNotifications
+        getNotifications: getNotifications,
+        readNotification: readNotification,
+        deleteNotification: deleteNotification,
     }
 }();

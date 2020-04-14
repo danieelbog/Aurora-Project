@@ -317,6 +317,7 @@
     <Compile Include="Models\IndustryClasses\SpecificIndustry.cs" />
     <Compile Include="Models\EconomicClasses\Wallet.cs" />
     <Compile Include="Models\NotificationsClasses\UserNotification.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
@@ -358,27 +359,19 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\controllers\deleteNotificationController.js" />
-    <Content Include="Scripts\app\controllers\disableGigController.js" />
-    <Content Include="Scripts\app\controllers\favouriteInfluencerController.js" />
-    <Content Include="Scripts\app\controllers\favourtieGigController.js" />
+    <Content Include="Scripts\app\controllers\gigController.js" />
+    <Content Include="Scripts\app\controllers\influencerController.js" />
     <Content Include="Scripts\app\controllers\formInputCheckController.js" />
     <Content Include="Scripts\app\controllers\hoverIndustryController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
-    <Content Include="Scripts\app\controllers\purchaseAdvancedController.js" />
-    <Content Include="Scripts\app\controllers\purchaseBasicController.js" />
-    <Content Include="Scripts\app\controllers\purchasePremiumController.js" />
-    <Content Include="Scripts\app\controllers\readNotificationController.js" />
+    <Content Include="Scripts\app\controllers\purchaseController.js" />
     <Content Include="Scripts\app\controllers\searchController.js" />
     <Content Include="Scripts\app\controllers\updateMyProfileController.js" />
-    <Content Include="Scripts\app\services\deleteNotificationService.js" />
-    <Content Include="Scripts\app\services\disableGigService.js" />
-    <Content Include="Scripts\app\services\favouriteGigService.js" />
-    <Content Include="Scripts\app\services\favouriteInfluencerService.js" />
+    <Content Include="Scripts\app\services\gigService.js" />
+    <Content Include="Scripts\app\services\influencerService.js" />
     <Content Include="Scripts\app\services\formInputCheckService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\app\services\purchaseService.js" />
-    <Content Include="Scripts\app\services\readNotificationService.js" />
     <Content Include="Scripts\app\services\updateMyProfileService.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -567,6 +560,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

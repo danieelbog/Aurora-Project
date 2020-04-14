@@ -9,38 +9,24 @@ namespace AuroraProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        //FORM INPUT CHECK FOR INFLUENCER FORM AND GIG FORM
+                        //MY PROFILE UPDATE
                         "~/Scripts/app/services/updateMyProfileService.js",
                         "~/Scripts/app/controllers/updateMyProfileController.js",
-                        //DISABLE GIG
-                        "~/Scripts/app/services/disableGigService.js",
-                        "~/Scripts/app/controllers/disableGigController.js",
+                        //GIG
+                        "~/Scripts/app/services/gigService.js",
+                        "~/Scripts/app/controllers/gigController.js",
                         //FORM INPUT CHECK FOR INFLUENCER FORM AND GIG FORM
                         "~/Scripts/app/services/formInputCheckService.js",
                         "~/Scripts/app/controllers/formInputCheckController.js",
-                        // FAVOURITE GIG
-                        "~/Scripts/app/services/favouriteGigService.js",
-                        "~/Scripts/app/controllers/favourtieGigController.js",
-                        //FAVOURITE INFLUENCER
-                        "~/Scripts/app/services/favouriteInfluencerService.js",
-                        "~/Scripts/app/controllers/favouriteInfluencerController.js",
-                        //GET NOTIFICATIONS
+                        //INFLUENCER
+                        "~/Scripts/app/services/influencerService.js",
+                        "~/Scripts/app/controllers/influencerController.js",
+                        //NOTIFICATIONS
                         "~/Scripts/app/services/notificationService.js",
                         "~/Scripts/app/controllers/notificationController.js",
-                        //READ NOTIFICATION
-                        "~/Scripts/app/services/readNotificationService.js",
-                        "~/Scripts/app/controllers/readNotificationController.js",
-                        //DELETE NOTIFICATION
-                        "~/Scripts/app/services/deleteNotificationService.js",
-                        "~/Scripts/app/controllers/deleteNotificationController.js",
-                        //PURCHASE PACKAGE SERVICE
+                        //PURCHASE SELLING PACKAGE
                         "~/Scripts/app/services/purchaseService.js",
-                        //PURCHASE BASIC PACKAGE
-                        "~/Scripts/app/controllers/purchaseBasicController.js",
-                        //PURCHASE ADVANCED PACKAGE
-                        "~/Scripts/app/controllers/purchaseAdvancedController.js",
-                        //PURCHASE PREMIUM PACKAGE
-                        "~/Scripts/app/controllers/purchasePremiumController.js",
+                        "~/Scripts/app/controllers/purchaseController.js",
                         //SEARCH CONTROLLER
                         "~/Scripts/app/controllers/searchController.js",
                         //HOVER CONTROLLER

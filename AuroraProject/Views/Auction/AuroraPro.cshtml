@@ -160,7 +160,7 @@
                 {
 
                     <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = auction.Gig.ID })">
-                        <img class="img-fluid" src="~/File?id=@auction.Gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666" class="img-fluid">
+                        <img class="img-fluid" src="~/File?id=@auction.Gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
                     </a>
                 }
                 else
@@ -208,7 +208,7 @@
     <script>
         $(document).ready(function () {
             //FAVOURITE GIG
-            FavouriteGigController.initial();
+            GigController.favouriteGig();
             //FAVOURITE INFLUENCER
             FavouriteInfluencerController.initial();
         });
