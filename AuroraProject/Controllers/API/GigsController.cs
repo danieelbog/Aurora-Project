@@ -7,17 +7,20 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
-
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers.API
 {
     [Authorize]
     public class GigsController : ApiController
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public GigsController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
 
 
@@ -28,14 +31,17 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            var gig = context.Gigs.SingleOrDefault(g => g.ID == id);
+            var gig = unitOfWork.GigsRepository.GetGigForDetails(id);
 
             if (gig == null)
                 return BadRequest("The Gig Was not Found");
 
+            if (gig.UserID != userId)
+                return Unauthorized();
+
             gig.Enable();
 
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok();
         }
@@ -44,13 +50,18 @@ namespace AuroraProject.Controllers.API
         public IHttpActionResult Disable(int id)
         {
             var userId = User.Identity.GetUserId();
-            var gig = context.Gigs
-                .Include(g => g.Influencer)
-                .Single(g => g.ID == id && g.UserID == userId && g.Influencer.User.Id == userId);
+
+            var gig = unitOfWork.GigsRepository.GetGigForDetails(id);
+
+            if (gig == null)
+                return BadRequest("The Gig Was not Found");
+
+            if (gig.UserID != userId)
+                return Unauthorized();
 
             gig.Disable();
 
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok();
         }

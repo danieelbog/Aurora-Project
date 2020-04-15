@@ -15,10 +15,10 @@ namespace AuroraProject.Repositories
             _context = context;
         }
 
-        public IEnumerable<FavouriteInfluencer> GetFavouriteInfluencer(int influencerId, string userId)
+        public FavouriteInfluencer GetFavouriteInfluencer(int influencerId, string userId)
         {
             return _context.FavouriteInfluencers
-                    .Where(f => f.InfluencerID == influencerId && f.FollowerID == userId);
+                    .Single(f => f.InfluencerID == influencerId && f.FollowerID == userId);
         }
 
         public IEnumerable<FavouriteInfluencer> GetFavouriteInfluencers(string userId)
@@ -35,6 +35,16 @@ namespace AuroraProject.Repositories
                 .Include(i => i.User)
                 .Include(i => i.User.Gigs)
                 .ToList();
+        }
+
+        public void AddFavouriteInfluencer(FavouriteInfluencer favouriteInfluencer)
+        {
+            _context.FavouriteInfluencers.Add(favouriteInfluencer);
+        }
+
+        public void RemoveFavouriteInfluencer(FavouriteInfluencer favouriteInfluencer)
+        {
+            _context.FavouriteInfluencers.Remove(favouriteInfluencer);
         }
     }
 }

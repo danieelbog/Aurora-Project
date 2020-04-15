@@ -8,17 +8,20 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using AuroraProject.DTO;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers.API
 {
     [Authorize]
     public class InfluencersController : ApiController
     {
-        private ApplicationDbContext context;
-
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public InfluencersController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
 
         [HttpPut]
@@ -26,15 +29,14 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            var influencerDb = context.Influencers
-                .Include(i => i.MembershipType)
-                .Include(i => i.User)
-                .Include(i => i.User.Wallet)
-                .SingleOrDefault(i => i.ID == influencerDto.InfluencerID && i.User.Id == userId);
+            var influencerDb = unitOfWork.InfluencerRepository.GetInfluencerForUpdate(influencerDto.InfluencerID);
             if (influencerDb == null)
                 return BadRequest();
 
-            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            if (influencerDb.User.Id != userId)
+                return Unauthorized();
+
+            var auroraWallet = unitOfWork.AuroraWalletRepository.GetAuroraWallet();
             if (auroraWallet == null)
                 return BadRequest();
 
@@ -43,7 +45,7 @@ namespace AuroraProject.Controllers.API
 
 
             // SAVE CHANGES TO DB
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok();
         }

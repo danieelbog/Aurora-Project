@@ -15,10 +15,10 @@ namespace AuroraProject.Repositories
             _context = context;
         }
 
-        public IEnumerable<FavouriteGig> GetFavouriteGig(int gigID, string userId)
+        public FavouriteGig GetFavouriteGig(int gigID, string userId)
         {
             return _context.FavouriteGigs
-                    .Where(f => f.GigID == gigID && f.ActionerID == userId);
+                    .Single(f => f.GigID == gigID && f.ActionerID == userId);
         }
 
         public IEnumerable<FavouriteGig> GetFavouriteGigs(string userId)
@@ -43,6 +43,16 @@ namespace AuroraProject.Repositories
             Sorter.SortLogic(gigs);
 
             return gigs;
+        }
+
+        public void AddFavouriteGig(FavouriteGig favouriteGig)
+        {
+            _context.FavouriteGigs.Add(favouriteGig);
+        }
+
+        public void RemoveFavouriteGig(FavouriteGig favouriteGig)
+        {
+            _context.FavouriteGigs.Remove(favouriteGig);
         }
     }
 }

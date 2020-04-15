@@ -1,5 +1,6 @@
 ﻿using AuroraProject.DTO;
 using AuroraProject.Models;
+using AuroraProject.Persistence;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,13 @@ namespace AuroraProject.Controllers.API
     [Authorize]
     public class FavouriteInfluencersController : ApiController
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public FavouriteInfluencersController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
 
         //FOLLOWER = USER
@@ -27,8 +31,8 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            if (context.FavouriteInfluencers.Any(f => f.FollowerID == userId && f.InfluencerID == favouriteInfluencerDto.InfluencerID))
-                return BadRequest("You already have this Influencer in your favourites");
+            if (unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencers(userId).Any(f => f.FollowerID == userId && f.InfluencerID == favouriteInfluencerDto.InfluencerID))
+                return BadRequest("You already have this Influencer as your favourite");
 
             var favorite = new FavouriteInfluencer
             {
@@ -36,8 +40,8 @@ namespace AuroraProject.Controllers.API
                 InfluencerID = favouriteInfluencerDto.InfluencerID
             };
 
-            context.FavouriteInfluencers.Add(favorite);
-            context.SaveChanges();
+            unitOfWork.FavouriteInfluencerRepository.AddFavouriteInfluencer(favorite);
+            unitOfWork.Complete();
 
             return Ok();
         }
@@ -47,14 +51,13 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            var favorite = context.FavouriteInfluencers
-                .SingleOrDefault(a => a.InfluencerID == favouriteInfluencerDto.InfluencerID && a.FollowerID == userId);
+            var favorite = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencer(favouriteInfluencerDto.InfluencerID, userId);
 
             if (favorite == null)
                 return NotFound();
 
-            context.FavouriteInfluencers.Remove(favorite);
-            context.SaveChanges();
+            unitOfWork.FavouriteInfluencerRepository.RemoveFavouriteInfluencer(favorite);
+            unitOfWork.Complete();
 
             return Ok(favouriteInfluencerDto.InfluencerID);
         }

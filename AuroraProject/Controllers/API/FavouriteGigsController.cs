@@ -1,5 +1,6 @@
 ﻿using AuroraProject.DTO;
 using AuroraProject.Models;
+using AuroraProject.Persistence;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,13 @@ namespace AuroraProject.Controllers.API
     [Authorize]
     public class FavouriteGigsController : ApiController
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public FavouriteGigsController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
 
         //FOLLOWER = ACTIONER
@@ -29,7 +33,7 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            if (context.FavouriteGigs.Any(f => f.ActionerID == userId && f.GigID == favouriteGigDto.GigID))
+            if (unitOfWork.FavouriteGigRepository.GetFavouriteGigs(userId).Any(f => f.ActionerID == userId && f.GigID == favouriteGigDto.GigID))
                 return BadRequest("You already have it in your favourites");
 
             var favorite = new FavouriteGig
@@ -38,8 +42,8 @@ namespace AuroraProject.Controllers.API
                 GigID = favouriteGigDto.GigID
             };
 
-            context.FavouriteGigs.Add(favorite);
-            context.SaveChanges();
+            unitOfWork.FavouriteGigRepository.AddFavouriteGig(favorite);
+            unitOfWork.Complete();
 
             return Ok();
         }
@@ -50,14 +54,13 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            var favorite = context.FavouriteGigs
-                .SingleOrDefault(a => a.GigID == favouriteGigDto.GigID && a.ActionerID == userId);
+            var favorite = unitOfWork.FavouriteGigRepository.GetFavouriteGig(favouriteGigDto.GigID, userId);
 
             if (favorite == null)
                 return NotFound();
 
-            context.FavouriteGigs.Remove(favorite);
-            context.SaveChanges();
+            unitOfWork.FavouriteGigRepository.RemoveFavouriteGig(favorite);
+            unitOfWork.Complete();
 
             return Ok(favorite.GigID);
         }
