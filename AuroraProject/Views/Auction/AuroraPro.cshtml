@@ -1,4 +1,4 @@
-﻿@model AuroraProject.ViewModels.AuctionViewModel
+﻿@model AuroraProject.Core.ViewModels.AuctionViewModel
 @{
     ViewBag.Title = Model.Heading;
 }
@@ -134,11 +134,11 @@
                     <div class="media-body">
                         @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
 
-                        @if (auction.Gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                        @if (auction.Gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
                         {
 
                             <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                                <img class="img-fluid" src="~/File?id=@auction.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
+                                <img class="img-fluid" src="~/File?id=@auction.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
                             </a>
                         }
                         else
@@ -156,11 +156,11 @@
 
                     </div>
                 </div>
-                @if (auction.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Photo))
+                @if (auction.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
                 {
 
                     <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = auction.Gig.ID })">
-                        <img class="img-fluid" src="~/File?id=@auction.Gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
+                        <img class="img-fluid" src="~/File?id=@auction.Gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
                     </a>
                 }
                 else

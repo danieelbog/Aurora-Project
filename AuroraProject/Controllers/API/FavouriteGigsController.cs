@@ -1,5 +1,6 @@
-﻿using AuroraProject.DTO;
-using AuroraProject.Models;
+﻿using AuroraProject.Core;
+using AuroraProject.Core.DTO;
+using AuroraProject.Core.Models;
 using AuroraProject.Persistence;
 using Microsoft.AspNet.Identity;
 using System;

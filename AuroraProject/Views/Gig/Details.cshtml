@@ -1,4 +1,4 @@
-﻿@model AuroraProject.ViewModels.GigDetailsViewModel
+﻿@model AuroraProject.Core.ViewModels.GigDetailsViewModel
 @{
     ViewBag.Title = Model.Heading;
 }
@@ -20,11 +20,11 @@
                 <div class="media-body">
                     @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
 
-                    @if (Model.Gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                    @if (Model.Gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
                     {
 
                         <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img class="img-fluid" src="~/File?id=@Model.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
+                            <img class="img-fluid" src="~/File?id=@Model.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
                         </a>
                     }
                     else
@@ -42,11 +42,11 @@
 
                 </div>
             </div>
-            @if (Model.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Photo))
+            @if (Model.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
             {
 
                 <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = Model.Gig.ID })">
-                    <img class="img-fluid" src="~/File?id=@Model.Gig.FileUploads.First(f => f.FileType == AuroraProject.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
+                    <img class="img-fluid" src="~/File?id=@Model.Gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
                 </a>
             }
             else

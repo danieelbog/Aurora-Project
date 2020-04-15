@@ -1,5 +1,5 @@
-﻿using AuroraProject.DTO;
-using AuroraProject.Models;
+﻿using AuroraProject.Core.DTO;
+using AuroraProject.Core.Models;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

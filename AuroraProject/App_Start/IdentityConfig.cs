@@ -10,7 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using AuroraProject.Models;
+using AuroraProject.Core.Models;
+using AuroraProject.Persistence;
 
 namespace AuroraProject
 {

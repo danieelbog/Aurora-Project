@@ -1,5 +1,6 @@
-﻿using AuroraProject.Models;
-using AuroraProject.Repositories;
+﻿using AuroraProject.Core;
+using AuroraProject.Core.Repositories;
+using AuroraProject.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

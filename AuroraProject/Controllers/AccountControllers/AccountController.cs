@@ -8,9 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using AuroraProject.Models;
-using AuroraProject.ViewModels;
 using AuroraProject.Persistence;
+using AuroraProject.Core.Models;
+using AuroraProject.Core;
+using AuroraProject.Core.ViewModels;
 
 namespace AuroraProject.Controllers
 {

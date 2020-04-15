@@ -1,4 +1,5 @@
-﻿using AuroraProject.Models;
+﻿using AuroraProject.Core;
+using AuroraProject.Core.Models;
 using AuroraProject.Persistence;
 using System;
 using System.Collections.Generic;

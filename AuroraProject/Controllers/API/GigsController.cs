@@ -1,4 +1,4 @@
-﻿using AuroraProject.Models;
+﻿using AuroraProject.Core.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using AuroraProject.Persistence;
+using AuroraProject.Core;
 
 namespace AuroraProject.Controllers.API
 {

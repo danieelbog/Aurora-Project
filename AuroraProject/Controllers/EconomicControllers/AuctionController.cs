@@ -1,5 +1,5 @@
-﻿using AuroraProject.Models;
-using AuroraProject.ViewModels;
+﻿using AuroraProject.Core.Models;
+using AuroraProject.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using AuroraProject.Persistence;
+using AuroraProject.Core;
 
 namespace AuroraProject.Controllers
 {

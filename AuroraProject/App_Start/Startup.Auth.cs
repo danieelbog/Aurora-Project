@@ -5,7 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using AuroraProject.Models;
+using AuroraProject.Core.Models;
+using AuroraProject.Persistence;
 
 namespace AuroraProject
 {

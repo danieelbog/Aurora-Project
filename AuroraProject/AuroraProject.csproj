@@ -225,173 +225,173 @@
     <Compile Include="Controllers\API\NotificationsController.cs" />
     <Compile Include="Controllers\API\SellingPackagesController.cs" />
     <Compile Include="Controllers\EconomicControllers\AuctionController.cs" />
-    <Compile Include="Controllers\FileController.cs" />
-    <Compile Include="Controllers\GigController.cs" />
+    <Compile Include="Controllers\MainEntitiesControllers\FileController.cs" />
+    <Compile Include="Controllers\MainEntitiesControllers\GigController.cs" />
     <Compile Include="Controllers\IndustryContollers\IndustryController.cs" />
-    <Compile Include="Controllers\InfluencerController.cs" />
+    <Compile Include="Controllers\MainEntitiesControllers\InfluencerController.cs" />
     <Compile Include="Controllers\IndustryContollers\SpecificIndustryController.cs" />
     <Compile Include="Controllers\EconomicControllers\WalletController.cs" />
-    <Compile Include="DTO\AdvancedPackageDto.cs" />
-    <Compile Include="DTO\BasicPackageDto.cs" />
-    <Compile Include="DTO\FavouriteGigDto.cs" />
-    <Compile Include="DTO\FavouriteInfluencerDto.cs" />
-    <Compile Include="DTO\GigDto.cs" />
-    <Compile Include="DTO\InfluencerDto.cs" />
-    <Compile Include="DTO\PremiumPackageDto.cs" />
-    <Compile Include="DTO\NotificationDto.cs" />
+    <Compile Include="Core\DTO\AdvancedPackageDto.cs" />
+    <Compile Include="Core\DTO\BasicPackageDto.cs" />
+    <Compile Include="Core\DTO\FavouriteGigDto.cs" />
+    <Compile Include="Core\DTO\FavouriteInfluencerDto.cs" />
+    <Compile Include="Core\DTO\GigDto.cs" />
+    <Compile Include="Core\DTO\InfluencerDto.cs" />
+    <Compile Include="Core\DTO\PremiumPackageDto.cs" />
+    <Compile Include="Core\DTO\NotificationDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\ISellingPackage.cs" />
-    <Compile Include="Interfaces\ISortStrategy.cs" />
-    <Compile Include="Migrations\202004020441197_InitialModel.cs" />
-    <Compile Include="Migrations\202004020441197_InitialModel.designer.cs">
+    <Compile Include="Core\Repositories\ISellingPackage.cs" />
+    <Compile Include="Core\Repositories\ISortStrategy.cs" />
+    <Compile Include="Persistence\Migrations\202004020441197_InitialModel.cs" />
+    <Compile Include="Persistence\Migrations\202004020441197_InitialModel.designer.cs">
       <DependentUpon>202004020441197_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020452396_GigWithSellingPackages.cs" />
-    <Compile Include="Migrations\202004020452396_GigWithSellingPackages.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020452396_GigWithSellingPackages.cs" />
+    <Compile Include="Persistence\Migrations\202004020452396_GigWithSellingPackages.designer.cs">
       <DependentUpon>202004020452396_GigWithSellingPackages.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020456210_IndustryClasses.cs" />
-    <Compile Include="Migrations\202004020456210_IndustryClasses.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020456210_IndustryClasses.cs" />
+    <Compile Include="Persistence\Migrations\202004020456210_IndustryClasses.designer.cs">
       <DependentUpon>202004020456210_IndustryClasses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020519315_BasicUserModelUpdate.cs" />
-    <Compile Include="Migrations\202004020519315_BasicUserModelUpdate.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020519315_BasicUserModelUpdate.cs" />
+    <Compile Include="Persistence\Migrations\202004020519315_BasicUserModelUpdate.designer.cs">
       <DependentUpon>202004020519315_BasicUserModelUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020520078_PopulateIndustries.cs" />
-    <Compile Include="Migrations\202004020520078_PopulateIndustries.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020520078_PopulateIndustries.cs" />
+    <Compile Include="Persistence\Migrations\202004020520078_PopulateIndustries.designer.cs">
       <DependentUpon>202004020520078_PopulateIndustries.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020522210_PopulateSpecificIndustry.cs" />
-    <Compile Include="Migrations\202004020522210_PopulateSpecificIndustry.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020522210_PopulateSpecificIndustry.cs" />
+    <Compile Include="Persistence\Migrations\202004020522210_PopulateSpecificIndustry.designer.cs">
       <DependentUpon>202004020522210_PopulateSpecificIndustry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.cs" />
-    <Compile Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020527544_BasicInfluencerAndMembershipTypes.cs" />
+    <Compile Include="Persistence\Migrations\202004020527544_BasicInfluencerAndMembershipTypes.designer.cs">
       <DependentUpon>202004020527544_BasicInfluencerAndMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020532453_PopulateMembershipTypes.cs" />
-    <Compile Include="Migrations\202004020532453_PopulateMembershipTypes.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020532453_PopulateMembershipTypes.cs" />
+    <Compile Include="Persistence\Migrations\202004020532453_PopulateMembershipTypes.designer.cs">
       <DependentUpon>202004020532453_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020539073_FavouriteGig.cs" />
-    <Compile Include="Migrations\202004020539073_FavouriteGig.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020539073_FavouriteGig.cs" />
+    <Compile Include="Persistence\Migrations\202004020539073_FavouriteGig.designer.cs">
       <DependentUpon>202004020539073_FavouriteGig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020542528_FavouriteInfluencer.cs" />
-    <Compile Include="Migrations\202004020542528_FavouriteInfluencer.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020542528_FavouriteInfluencer.cs" />
+    <Compile Include="Persistence\Migrations\202004020542528_FavouriteInfluencer.designer.cs">
       <DependentUpon>202004020542528_FavouriteInfluencer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020547575_INFLUENCER_USER_RELATION.cs" />
-    <Compile Include="Migrations\202004020547575_INFLUENCER_USER_RELATION.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020547575_INFLUENCER_USER_RELATION.cs" />
+    <Compile Include="Persistence\Migrations\202004020547575_INFLUENCER_USER_RELATION.designer.cs">
       <DependentUpon>202004020547575_INFLUENCER_USER_RELATION.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020555100_WALLET_USER_RELATION.cs" />
-    <Compile Include="Migrations\202004020555100_WALLET_USER_RELATION.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020555100_WALLET_USER_RELATION.cs" />
+    <Compile Include="Persistence\Migrations\202004020555100_WALLET_USER_RELATION.designer.cs">
       <DependentUpon>202004020555100_WALLET_USER_RELATION.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.cs" />
-    <Compile Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.designer.cs">
+    <Compile Include="Persistence\Migrations\202004020606413_GIG_INFLUENCER_RELATION.cs" />
+    <Compile Include="Persistence\Migrations\202004020606413_GIG_INFLUENCER_RELATION.designer.cs">
       <DependentUpon>202004020606413_GIG_INFLUENCER_RELATION.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004031320024_AuroraWallet.cs" />
-    <Compile Include="Migrations\202004031320024_AuroraWallet.designer.cs">
+    <Compile Include="Persistence\Migrations\202004031320024_AuroraWallet.cs" />
+    <Compile Include="Persistence\Migrations\202004031320024_AuroraWallet.designer.cs">
       <DependentUpon>202004031320024_AuroraWallet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004031321299_PopulateAuroraWallet.cs" />
-    <Compile Include="Migrations\202004031321299_PopulateAuroraWallet.designer.cs">
+    <Compile Include="Persistence\Migrations\202004031321299_PopulateAuroraWallet.cs" />
+    <Compile Include="Persistence\Migrations\202004031321299_PopulateAuroraWallet.designer.cs">
       <DependentUpon>202004031321299_PopulateAuroraWallet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004041707222_AuctionModel.cs" />
-    <Compile Include="Migrations\202004041707222_AuctionModel.designer.cs">
+    <Compile Include="Persistence\Migrations\202004041707222_AuctionModel.cs" />
+    <Compile Include="Persistence\Migrations\202004041707222_AuctionModel.designer.cs">
       <DependentUpon>202004041707222_AuctionModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.cs" />
-    <Compile Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.designer.cs">
+    <Compile Include="Persistence\Migrations\202004061120555_FilesAndRelationWithInfluencer.cs" />
+    <Compile Include="Persistence\Migrations\202004061120555_FilesAndRelationWithInfluencer.designer.cs">
       <DependentUpon>202004061120555_FilesAndRelationWithInfluencer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004090820300_NotificationsModels.cs" />
-    <Compile Include="Migrations\202004090820300_NotificationsModels.designer.cs">
+    <Compile Include="Persistence\Migrations\202004090820300_NotificationsModels.cs" />
+    <Compile Include="Persistence\Migrations\202004090820300_NotificationsModels.designer.cs">
       <DependentUpon>202004090820300_NotificationsModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.cs" />
-    <Compile Include="Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.designer.cs">
+    <Compile Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.cs" />
+    <Compile Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.designer.cs">
       <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountClasses\AccountViewModels.cs" />
-    <Compile Include="Models\AccountClasses\ApplicationDbContext.cs" />
-    <Compile Include="Models\AccountClasses\ApplicationUser.cs" />
-    <Compile Include="Models\AccountClasses\ManageViewModels.cs" />
-    <Compile Include="Models\EconomicClasses\AuroraWallet.cs" />
-    <Compile Include="Models\EconomicClasses\Auction.cs" />
-    <Compile Include="Models\FavouriteClasses\FavouriteGig.cs" />
-    <Compile Include="Models\FavouriteClasses\FavouriteInfluencer.cs" />
-    <Compile Include="Models\FileClasses\FileUpload.cs" />
-    <Compile Include="Models\InfluencerClasses\Influencer.cs" />
-    <Compile Include="Models\AccountClasses\MembershipType.cs" />
-    <Compile Include="Models\NotificationsClasses\Notification.cs" />
-    <Compile Include="Models\SortingClasses\QuickSort.cs" />
-    <Compile Include="Models\SortingClasses\Sorter.cs" />
-    <Compile Include="Models\SortingClasses\BucketSort.cs" />
-    <Compile Include="Models\SortingClasses\BubbleSort.cs" />
-    <Compile Include="Models\IndustryClasses\Industry.cs" />
-    <Compile Include="Models\SellingPackage\AdvancedPackage.cs" />
-    <Compile Include="Models\SellingPackage\PremiumPackage.cs" />
-    <Compile Include="Models\SellingPackage\BasicPackage.cs" />
-    <Compile Include="Models\GigClasses\Gig.cs" />
-    <Compile Include="Models\IndustryClasses\SpecificIndustry.cs" />
-    <Compile Include="Models\EconomicClasses\Wallet.cs" />
-    <Compile Include="Models\NotificationsClasses\UserNotification.cs" />
-    <Compile Include="Persistence\IUnitOfWork.cs" />
+    <Compile Include="Persistence\Migrations\Configuration.cs" />
+    <Compile Include="Core\ViewModels\UserViewModels\AccountViewModels.cs" />
+    <Compile Include="Persistence\ApplicationDbContext.cs" />
+    <Compile Include="Core\Models\AccountClasses\ApplicationUser.cs" />
+    <Compile Include="Core\ViewModels\UserViewModels\ManageViewModels.cs" />
+    <Compile Include="Core\Models\EconomicClasses\AuroraWallet.cs" />
+    <Compile Include="Core\Models\EconomicClasses\Auction.cs" />
+    <Compile Include="Core\Models\FavouriteClasses\FavouriteGig.cs" />
+    <Compile Include="Core\Models\FavouriteClasses\FavouriteInfluencer.cs" />
+    <Compile Include="Core\Models\FileClasses\FileUpload.cs" />
+    <Compile Include="Core\Models\InfluencerClasses\Influencer.cs" />
+    <Compile Include="Core\Models\AccountClasses\MembershipType.cs" />
+    <Compile Include="Core\Models\NotificationsClasses\Notification.cs" />
+    <Compile Include="Core\Models\SortingClasses\QuickSort.cs" />
+    <Compile Include="Core\Models\SortingClasses\Sorter.cs" />
+    <Compile Include="Core\Models\SortingClasses\BucketSort.cs" />
+    <Compile Include="Core\Models\SortingClasses\BubbleSort.cs" />
+    <Compile Include="Core\Models\IndustryClasses\Industry.cs" />
+    <Compile Include="Core\Models\SellingPackage\AdvancedPackage.cs" />
+    <Compile Include="Core\Models\SellingPackage\PremiumPackage.cs" />
+    <Compile Include="Core\Models\SellingPackage\BasicPackage.cs" />
+    <Compile Include="Core\Models\GigClasses\Gig.cs" />
+    <Compile Include="Core\Models\IndustryClasses\SpecificIndustry.cs" />
+    <Compile Include="Core\Models\EconomicClasses\Wallet.cs" />
+    <Compile Include="Core\Models\NotificationsClasses\UserNotification.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AdvancedPackageRepository.cs" />
-    <Compile Include="Repositories\ApplicationUserRepository.cs" />
-    <Compile Include="Repositories\AuctionRepository.cs" />
-    <Compile Include="Repositories\AuroraWalletRepository.cs" />
-    <Compile Include="Repositories\BasicPackageRepository.cs" />
-    <Compile Include="Repositories\FavouriteGigRepository.cs" />
-    <Compile Include="Repositories\FavouriteInfluencerRepository.cs" />
-    <Compile Include="Repositories\FileUploadRepository.cs" />
-    <Compile Include="Repositories\GigRepository.cs" />
-    <Compile Include="Repositories\IAdvancedPackageRepository.cs" />
-    <Compile Include="Repositories\IApplicationUserRepository.cs" />
-    <Compile Include="Repositories\IAuctionRepository.cs" />
-    <Compile Include="Repositories\IAuroraWalletRepository.cs" />
-    <Compile Include="Repositories\IBasicPackageRepository.cs" />
-    <Compile Include="Repositories\IFavouriteGigRepository.cs" />
-    <Compile Include="Repositories\IFavouriteInfluencerRepository.cs" />
-    <Compile Include="Repositories\IFileUploadRepository.cs" />
-    <Compile Include="Repositories\IGigRepository.cs" />
-    <Compile Include="Repositories\IIndustryRepository.cs" />
-    <Compile Include="Repositories\IInfluencerRepository.cs" />
-    <Compile Include="Repositories\IMembershipTypeRepository.cs" />
-    <Compile Include="Repositories\IndustryRepository.cs" />
-    <Compile Include="Repositories\InfluencerRepository.cs" />
-    <Compile Include="Repositories\INotificationsRepository.cs" />
-    <Compile Include="Repositories\IPremiumPackageRepository.cs" />
-    <Compile Include="Repositories\ISpecificIndustryRepository.cs" />
-    <Compile Include="Repositories\IUserNotificationsRepository.cs" />
-    <Compile Include="Repositories\IWalletRepository.cs" />
-    <Compile Include="Repositories\MembershipTypeRepository.cs" />
-    <Compile Include="Repositories\NotificationsRepository.cs" />
-    <Compile Include="Repositories\PremiumPackageRepository.cs" />
-    <Compile Include="Repositories\SpecificIndustryRepository.cs" />
-    <Compile Include="Repositories\UserNotificationsRepository.cs" />
-    <Compile Include="Repositories\WalletRepository.cs" />
+    <Compile Include="Persistence\Repositories\AdvancedPackageRepository.cs" />
+    <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="Persistence\Repositories\AuctionRepository.cs" />
+    <Compile Include="Persistence\Repositories\AuroraWalletRepository.cs" />
+    <Compile Include="Persistence\Repositories\BasicPackageRepository.cs" />
+    <Compile Include="Persistence\Repositories\FavouriteGigRepository.cs" />
+    <Compile Include="Persistence\Repositories\FavouriteInfluencerRepository.cs" />
+    <Compile Include="Persistence\Repositories\FileUploadRepository.cs" />
+    <Compile Include="Persistence\Repositories\GigRepository.cs" />
+    <Compile Include="Core\Repositories\IAdvancedPackageRepository.cs" />
+    <Compile Include="Core\Repositories\IApplicationUserRepository.cs" />
+    <Compile Include="Core\Repositories\IAuctionRepository.cs" />
+    <Compile Include="Core\Repositories\IAuroraWalletRepository.cs" />
+    <Compile Include="Core\Repositories\IBasicPackageRepository.cs" />
+    <Compile Include="Core\Repositories\IFavouriteGigRepository.cs" />
+    <Compile Include="Core\Repositories\IFavouriteInfluencerRepository.cs" />
+    <Compile Include="Core\Repositories\IFileUploadRepository.cs" />
+    <Compile Include="Core\Repositories\IGigRepository.cs" />
+    <Compile Include="Core\Repositories\IIndustryRepository.cs" />
+    <Compile Include="Core\Repositories\IInfluencerRepository.cs" />
+    <Compile Include="Core\Repositories\IMembershipTypeRepository.cs" />
+    <Compile Include="Persistence\Repositories\IndustryRepository.cs" />
+    <Compile Include="Persistence\Repositories\InfluencerRepository.cs" />
+    <Compile Include="Core\Repositories\INotificationsRepository.cs" />
+    <Compile Include="Core\Repositories\IPremiumPackageRepository.cs" />
+    <Compile Include="Core\Repositories\ISpecificIndustryRepository.cs" />
+    <Compile Include="Core\Repositories\IUserNotificationsRepository.cs" />
+    <Compile Include="Core\Repositories\IWalletRepository.cs" />
+    <Compile Include="Persistence\Repositories\MembershipTypeRepository.cs" />
+    <Compile Include="Persistence\Repositories\NotificationsRepository.cs" />
+    <Compile Include="Persistence\Repositories\PremiumPackageRepository.cs" />
+    <Compile Include="Persistence\Repositories\SpecificIndustryRepository.cs" />
+    <Compile Include="Persistence\Repositories\UserNotificationsRepository.cs" />
+    <Compile Include="Persistence\Repositories\WalletRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
-    <Compile Include="ViewModels\EconomicViewModels\AuctionViewModel.cs" />
-    <Compile Include="ViewModels\GigViewModels\GigDetailsViewModel.cs" />
-    <Compile Include="ViewModels\GigViewModels\GigFormViewModel.cs" />
-    <Compile Include="ViewModels\GigViewModels\GigsViewModel.cs" />
-    <Compile Include="ViewModels\InfluencerViewModels\InfluencerFormViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModels\UserDetailsViewModel.cs" />
-    <Compile Include="ViewModels\EconomicViewModels\WalletViewModel.cs" />
+    <Compile Include="Core\ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\EconomicViewModels\AuctionViewModel.cs" />
+    <Compile Include="Core\ViewModels\GigViewModels\GigDetailsViewModel.cs" />
+    <Compile Include="Core\ViewModels\GigViewModels\GigFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\GigViewModels\GigsViewModel.cs" />
+    <Compile Include="Core\ViewModels\InfluencerViewModels\InfluencerFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\UserViewModels\RegisterViewModel.cs" />
+    <Compile Include="Core\ViewModels\UserViewModels\UserDetailsViewModel.cs" />
+    <Compile Include="Core\ViewModels\EconomicViewModels\WalletViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -623,6 +623,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Persistence\EntityConfiguration\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -636,61 +637,61 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004020441197_InitialModel.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020441197_InitialModel.resx">
       <DependentUpon>202004020441197_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020452396_GigWithSellingPackages.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020452396_GigWithSellingPackages.resx">
       <DependentUpon>202004020452396_GigWithSellingPackages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020456210_IndustryClasses.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020456210_IndustryClasses.resx">
       <DependentUpon>202004020456210_IndustryClasses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020519315_BasicUserModelUpdate.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020519315_BasicUserModelUpdate.resx">
       <DependentUpon>202004020519315_BasicUserModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020520078_PopulateIndustries.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020520078_PopulateIndustries.resx">
       <DependentUpon>202004020520078_PopulateIndustries.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020522210_PopulateSpecificIndustry.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020522210_PopulateSpecificIndustry.resx">
       <DependentUpon>202004020522210_PopulateSpecificIndustry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020527544_BasicInfluencerAndMembershipTypes.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020527544_BasicInfluencerAndMembershipTypes.resx">
       <DependentUpon>202004020527544_BasicInfluencerAndMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020532453_PopulateMembershipTypes.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020532453_PopulateMembershipTypes.resx">
       <DependentUpon>202004020532453_PopulateMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020539073_FavouriteGig.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020539073_FavouriteGig.resx">
       <DependentUpon>202004020539073_FavouriteGig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020542528_FavouriteInfluencer.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020542528_FavouriteInfluencer.resx">
       <DependentUpon>202004020542528_FavouriteInfluencer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020547575_INFLUENCER_USER_RELATION.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020547575_INFLUENCER_USER_RELATION.resx">
       <DependentUpon>202004020547575_INFLUENCER_USER_RELATION.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020555100_WALLET_USER_RELATION.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020555100_WALLET_USER_RELATION.resx">
       <DependentUpon>202004020555100_WALLET_USER_RELATION.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004020606413_GIG_INFLUENCER_RELATION.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004020606413_GIG_INFLUENCER_RELATION.resx">
       <DependentUpon>202004020606413_GIG_INFLUENCER_RELATION.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004031320024_AuroraWallet.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004031320024_AuroraWallet.resx">
       <DependentUpon>202004031320024_AuroraWallet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004031321299_PopulateAuroraWallet.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004031321299_PopulateAuroraWallet.resx">
       <DependentUpon>202004031321299_PopulateAuroraWallet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004041707222_AuctionModel.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004041707222_AuctionModel.resx">
       <DependentUpon>202004041707222_AuctionModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004061120555_FilesAndRelationWithInfluencer.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004061120555_FilesAndRelationWithInfluencer.resx">
       <DependentUpon>202004061120555_FilesAndRelationWithInfluencer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004090820300_NotificationsModels.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004090820300_NotificationsModels.resx">
       <DependentUpon>202004090820300_NotificationsModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.resx">
       <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

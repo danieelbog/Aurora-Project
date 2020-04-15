@@ -1,4 +1,4 @@
-﻿@model AuroraProject.ViewModels.InfluencerFormViewModel
+﻿@model AuroraProject.Core.ViewModels.InfluencerFormViewModel
 @{
     ViewBag.Title = Model.PageName;
 }
@@ -45,7 +45,7 @@
                                     <div class="form-group upload-image">
                                         @if (Model.FileUploads != null)
                                         {
-                                            if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Models.FileType.Avatar))
+                                            if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
                                             {
                                                 <div>
                                                     <div>
