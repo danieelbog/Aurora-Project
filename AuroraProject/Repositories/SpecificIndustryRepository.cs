@@ -20,7 +20,7 @@ namespace AuroraProject.Repositories
 
         public IEnumerable<SpecificIndustry> GetSpecificIndustries()
         {
-            return _context.SpecificIndustries.ToList();
+            return _context.SpecificIndustries;
         }
     }
 }

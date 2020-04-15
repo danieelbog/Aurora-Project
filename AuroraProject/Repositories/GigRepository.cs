@@ -91,7 +91,6 @@ namespace AuroraProject.Repositories
                 .Include(g => g.Influencer.FileUploads)
                 .Include(i => i.FileUploads)
                 .SingleOrDefault(g => g.ID == gigID);
-
         }
 
         public void AddGig(Gig gig)

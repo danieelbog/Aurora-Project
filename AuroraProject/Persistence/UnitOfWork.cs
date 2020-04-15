@@ -20,6 +20,8 @@ namespace AuroraProject.Persistence
         public AdvancedPackageRepository AdvancedPackageRepository { get; set; }
         public PremiumPackageRepository PremiumPackageRepository { get; set; }
         public FileUploadRepository FileUploadRepository { get; set; }
+        public MembershipTypeRepository MembershipTypeRepository { get; set; }
+        public AuroraWalletRepository AuroraWalletRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -34,6 +36,8 @@ namespace AuroraProject.Persistence
             AdvancedPackageRepository = new AdvancedPackageRepository(context);
             PremiumPackageRepository = new PremiumPackageRepository(context);
             FileUploadRepository = new FileUploadRepository(context);
+            MembershipTypeRepository = new MembershipTypeRepository(context);
+            AuroraWalletRepository = new AuroraWalletRepository(context);
         }
 
         public void Complete()

@@ -14,8 +14,8 @@ namespace AuroraProject.Controllers
     public class GigController : Controller
     {
         private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork; public GigController()
-        
+        private readonly UnitOfWork unitOfWork;         
+        public GigController()       
         {
             context = new ApplicationDbContext();
             unitOfWork = new UnitOfWork(context);
@@ -136,7 +136,7 @@ namespace AuroraProject.Controllers
         public ActionResult Create()
         {
             // CREATE VIEW MODEL TO SEND IT TO THE VIEW
-            var viewModel = GigFormViewModel.CreateFormViewModel(null, unitOfWork.SpecificIndustryRepository.GetSpecificIndustries(), "Create New Gig", "Save");
+            var viewModel = GigFormViewModel.CreateFormViewModel(null, unitOfWork.SpecificIndustryRepository.GetSpecificIndustries().ToList(), "Create New Gig", "Save");
 
             return View("GigForm", viewModel);
         }
@@ -157,7 +157,7 @@ namespace AuroraProject.Controllers
             if(gig.UserID != userId)
                 return new HttpUnauthorizedResult();
 
-            var viewModel = GigFormViewModel.CreateFormViewModel(gig, unitOfWork.SpecificIndustryRepository.GetSpecificIndustries(), "Update your Gig", "Update");
+            var viewModel = GigFormViewModel.CreateFormViewModel(gig, unitOfWork.SpecificIndustryRepository.GetSpecificIndustries().ToList(), "Update your Gig", "Update");
 
             // GO TO CREATE VIEW
             return View("GigForm", viewModel);

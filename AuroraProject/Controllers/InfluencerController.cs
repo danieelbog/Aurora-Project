@@ -7,33 +7,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers
 {
     [Authorize]
     public class InfluencerController : Controller
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;        
         public InfluencerController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
-        protected override void Dispose(bool disposing)
-        {
-            context.Dispose();
-        }
+
         //GET: Influencer
         public ActionResult MineInfluencers()
         {
             var userId = User.Identity.GetUserId();
 
             // BRING THE INFLUENCERS THAT THE USER HAS FAVOURITED WITH ALL THEIR NEEDED PROPERTIES
-            var influencers = context.FavouriteInfluencers
-                .Where(f => f.FollowerID == userId)
-                .Select(f => f.Influencer).Include(i => i.FileUploads)
-                .Include(f => f.User)
-                .Include(f => f.User.Gigs)
-                .ToList();
+            var influencers = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencersWithProperties(userId);
 
             return View("MineInfluencers", influencers);
         }
@@ -43,25 +39,19 @@ namespace AuroraProject.Controllers
         public ActionResult Details()
         {
             var userId = User.Identity.GetUserId();
-            var influencer = context.Influencers
-                .Include(i => i.MembershipType)
-                .Include(i => i.FileUploads)
-                .Include(i => i.User)
-                .SingleOrDefault(i => i.User.Id == userId);
+            var influencer = unitOfWork.InfluencerRepository.GetInfluencerForForm(userId);
 
             //CHECK IF THE INFLUENCER EXIST
             if (influencer == null)
-            {
                 return RedirectToAction("Create");
-            }
             else
             {
-                var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, context.MembershipTypes.ToList(), "My Profile", null, ApplicationUser.FullName(influencer.User));
+                var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, unitOfWork.MembershipTypeRepository.GetMembershipTypes().ToList(), 
+                    "My Profile", null, ApplicationUser.FullName(influencer.User));
 
                 return View("MyProfile", viewModel);
             }
         }
-
 
         // GET: Create
         public ActionResult Create()
@@ -70,21 +60,18 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             // GETTING THE USER'S INFLUENCER
-            var influencer = context.Influencers
-                .Include(i => i.User)
-                .Include(i => i.FileUploads)
-                .SingleOrDefault(i => i.User.Id == userId);
+            var influencer = unitOfWork.InfluencerRepository.GetInfluencerForForm(userId);
 
             // IF THE INFLUENCER ID IS NULL THEN WE WILL SEND IT TO THE CREATE
             if (influencer == null)
             {
-                var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, context.MembershipTypes.ToList(), "Add new Influencer", "Add", null);
+                var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, unitOfWork.MembershipTypeRepository.GetMembershipTypes().ToList(), "Add new Influencer", "Add", null);
                 return View("InfluencerForm", viewModel);
             }
             // ELSE WE WILL UPLOAD ALL HIS PROPERTIES AND SEND THE VIEW MODEL TO CREATE FOR UPDATE
             else
             {
-                var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, context.MembershipTypes.ToList(), "Edit Influencer Info", "Update", null);
+                var viewModel = InfluencerFormViewModel.CreateFormViewModel(influencer, unitOfWork.MembershipTypeRepository.GetMembershipTypes().ToList(), "Edit Influencer Info", "Update", null);
 
                 return View("InfluencerForm", viewModel);
             }
@@ -99,18 +86,15 @@ namespace AuroraProject.Controllers
             // BAD SCENARIO IF THE MODEL IS INVALID
             if (!ModelState.IsValid)
             {
-                //viewModel.MembershipTypes = context.MembershipTypes.ToList();
                 return RedirectToAction("Create");
             }
             
             // GET USER ID AND USER
             var userId = User.Identity.GetUserId();
-            var user = context.Users
-                .Include(u => u.Wallet)
-                .Single(u => u.Id == userId);
+            var user = unitOfWork.ApplicationUserRepository.GetUser(userId);
 
             // BRING AURORA WALLET TO ALLOW THE USER PAY US
-            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            var auroraWallet = unitOfWork.AuroraWalletRepository.GetAuroraWallet();
             if (auroraWallet == null)
                 return HttpNotFound();
 
@@ -136,13 +120,14 @@ namespace AuroraProject.Controllers
                     influencer.FileUploads = new List<FileUpload> { avatar };
                 }
 
-                context.Influencers.Add(influencer);
+                unitOfWork.InfluencerRepository.AddInfluencer(influencer);
 
                 // SAVE CHANGES TO DB
-                context.SaveChanges();
+                unitOfWork.Complete();
             }
             catch (Exception)
             {
+                // HERE YOU CAN ADD THE SAME PAGE WITH A NEW VIEW PROPERTY TO DISPLAY THAT THE PAYMENT COULDNT BE DONE
                 return RedirectToAction("Create");
             }
 
@@ -159,19 +144,17 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             // BRING THE INFLUENCER FOR EDIT
-            var influencerDb = context.Influencers
-                .Include(i => i.MembershipType)
-                .Include(i => i.User)
-                .Include(i => i.User.Wallet)
-                .Include(i => i.FileUploads)
-                .SingleOrDefault(i => i.ID == viewModel.ID && i.User.Id == userId);
+            var influencerDb = unitOfWork.InfluencerRepository.GetInfluencerForUpdate(viewModel.ID);
 
             // CHECK IF THE INFLUENCER EXIST
             if (influencerDb == null)
                 return HttpNotFound();
 
+            if(influencerDb.User.Id != userId)
+                return new HttpUnauthorizedResult();
+
             // BRING AURORA WALLET FOR RETURNING MONEY TO USER AND GETTING OUR CUT IF NEEDED
-            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            var auroraWallet = unitOfWork.AuroraWalletRepository.GetAuroraWallet();
             if (auroraWallet == null)
                 return HttpNotFound();
 
@@ -184,7 +167,7 @@ namespace AuroraProject.Controllers
                 if (upload != null && upload.ContentLength > 0)
                 {
                     if (influencerDb.FileUploads.Any(f => f.FileType == FileType.Avatar))
-                        context.FileUploads.Remove(influencerDb.FileUploads.First(f => f.FileType == FileType.Avatar));
+                        unitOfWork.FileUploadRepository.RemoveGigAvatarFileUpload(influencerDb);
 
                     // THEN WE WILL CREATE NEW FILE AND GIVE IT TO THE USER
                     var avatar = FileUpload.GiveInfluencerAvatar(System.IO.Path.GetFileName(upload.FileName), upload.ContentType, null, FileType.Avatar, influencerDb.ID);
@@ -206,7 +189,7 @@ namespace AuroraProject.Controllers
             }
 
             // SAVE CHANGES TO DB
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             // REDIRECT TO ADD A GIG (USER EXPIRIENCE)
             return RedirectToAction("Create", "Gig", null);

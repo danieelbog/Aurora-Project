@@ -25,5 +25,14 @@ namespace AuroraProject.Repositories
 
             _context.FileUploads.Remove(file);
         }
+
+        public void RemoveGigAvatarFileUpload(Influencer influencerDb)
+        {
+            var file = _context.FileUploads.Remove(influencerDb.FileUploads.First(f => f.FileType == FileType.Avatar));
+
+            _context.FileUploads.Remove(file);
+        }
+
+
     }
 }
