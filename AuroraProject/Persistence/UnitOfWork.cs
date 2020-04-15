@@ -22,6 +22,8 @@ namespace AuroraProject.Persistence
         public FileUploadRepository FileUploadRepository { get; set; }
         public MembershipTypeRepository MembershipTypeRepository { get; set; }
         public AuroraWalletRepository AuroraWalletRepository { get; set; }
+        public NotificationsRepository NotificationsRepository { get; set; }
+        public UserNotificationsRepository UserNotificationsRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -38,6 +40,8 @@ namespace AuroraProject.Persistence
             FileUploadRepository = new FileUploadRepository(context);
             MembershipTypeRepository = new MembershipTypeRepository(context);
             AuroraWalletRepository = new AuroraWalletRepository(context);
+            NotificationsRepository = new NotificationsRepository(context);
+            UserNotificationsRepository = new UserNotificationsRepository(context);
         }
 
         public void Complete()

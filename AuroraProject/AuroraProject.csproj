@@ -329,8 +329,10 @@
     <Compile Include="Repositories\GigRepository.cs" />
     <Compile Include="Repositories\InfluencerRepository.cs" />
     <Compile Include="Repositories\MembershipTypeRepository.cs" />
+    <Compile Include="Repositories\NotificationsRepository.cs" />
     <Compile Include="Repositories\PremiumPackageRepository.cs" />
     <Compile Include="Repositories\SpecificIndustryRepository.cs" />
+    <Compile Include="Repositories\UserNotificationsRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionFormViewModel.cs" />
     <Compile Include="ViewModels\EconomicViewModels\AuctionViewModel.cs" />

@@ -9,26 +9,26 @@ using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using AuroraProject.DTO;
 using AutoMapper;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers.API
 {
     [Authorize]
     public class NotificationsController : ApiController
     {
-        private ApplicationDbContext context;
-
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public NotificationsController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
 
         public IEnumerable<NotificationDto> GetNotifications()
         {
             var userId = User.Identity.GetUserId();
-            var notifications = context.UserNotifications
-                .Where(un => un.UserId == userId && !un.IsRead)
-                .Select(un => un.Notification)
-                .ToList();
+            var notifications = unitOfWork.NotificationsRepository.GetNotifications(userId);
 
             return notifications.Select(Mapper.Map<Notification, NotificationDto>);
         }
@@ -39,15 +39,17 @@ namespace AuroraProject.Controllers.API
 
             var userId = User.Identity.GetUserId();
 
-            var notification = context.UserNotifications
-                 .Single(un => un.UserId == userId && !un.IsRead && userNotificationDto.NotificationID == un.NotificationId);
+            var notification = unitOfWork.UserNotificationsRepository.GetNotifications(userNotificationDto.NotificationID);
 
             if (notification == null)
                 return BadRequest("No Notification Found");
 
+            if (notification.UserId != userId)
+                return Unauthorized();
+
             notification.Read();
 
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok();
         }
@@ -58,15 +60,17 @@ namespace AuroraProject.Controllers.API
 
             var userId = User.Identity.GetUserId();
 
-            var notification = context.UserNotifications
-                 .Single(un => un.UserId == userId && id == un.NotificationId);
+            var notification = unitOfWork.UserNotificationsRepository.GetNotifications(id);
 
             if (notification == null)
                 return BadRequest("No Notification Found");
 
-            context.UserNotifications.Remove(notification);
+            if (notification.UserId != userId)
+                return Unauthorized();
 
-            context.SaveChanges();
+            unitOfWork.UserNotificationsRepository.RemoveUserNotification(notification);
+
+            unitOfWork.Complete();
 
             return Ok(id);
         }
