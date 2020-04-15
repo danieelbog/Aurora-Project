@@ -14,9 +14,9 @@ namespace AuroraProject.Repositories
             _context = context;
         }
 
-        public void AddFileUpload(FileUpload fileUpload)
+        public FileUpload GetFile(int id)
         {
-            _context.FileUploads.Add(fileUpload);
+            return _context.FileUploads.Find(id);
         }
 
         public void RemoveGigPhotoFileUpload(Gig gigDB)

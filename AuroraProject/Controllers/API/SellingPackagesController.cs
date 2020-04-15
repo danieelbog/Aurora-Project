@@ -8,15 +8,18 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using AuroraProject.DTO;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers.API
 {
     public class SellingPackagesController : ApiController
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public SellingPackagesController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
         }
 
         [Authorize]
@@ -25,29 +28,82 @@ namespace AuroraProject.Controllers.API
         {
             var userId = User.Identity.GetUserId();
 
-            var buyer = context.Users
-                .Include(u => u.Wallet)
-                .Single(u => u.Id == userId);
+            var buyer = unitOfWork.ApplicationUserRepository.GetUser(userId);
+            if(buyer == null)
+                return NotFound();
 
-            var gig = context.Gigs
-                .Include(g => g.User)
-                .Include(g => g.User.Wallet)
-                .Single(u => u.ID == gigDto.ID);
+            var gig = unitOfWork.GigsRepository.GetGigForPurchase(gigDto.ID);
+            if(gig == null)
+                return NotFound();
 
-            var auroraWallet = context.AuroraWallets.Single(a => a.ID == 1);
+            var auroraWallet = unitOfWork.AuroraWalletRepository.GetAuroraWallet();
+            if (auroraWallet == null)
+                return NotFound();
 
             if (gigDto.BasicPackageID != null && gigDto.AdvancedPackageID == null && gigDto.PremiumPackageID == null)
-                context.BasicPackages.Single(b => b.ID == gigDto.BasicPackageID).SellPackage(buyer, gig.User, auroraWallet);
-
+            {
+                //BRING THE PACKAGE FOR PURCHASE
+                var basicPackage = unitOfWork.BasicPackageRepository.GetBasicPackagePurchase(gigDto.BasicPackageID);
+                // CHECK IF THE PACKAGE EXIST
+                if (basicPackage == null)
+                    return NotFound();
+                else
+                {
+                    // CHECK IF THE PAYMENT CAN BE DONE
+                    try
+                    {
+                        basicPackage.SellPackage(buyer, gig.User, auroraWallet);
+                    }
+                    catch (Exception)
+                    {
+                        return NotFound();
+                    }
+                }
+            }
             else if (gigDto.BasicPackageID == null && gigDto.AdvancedPackageID != null && gigDto.PremiumPackageID == null)
-                context.AdvancedPackages.Single(b => b.ID == gigDto.AdvancedPackageID).SellPackage(buyer, gig.User, auroraWallet);
-
+            {
+                //BRING THE PACKAGE FOR PURCHASE
+                var advancedPackage = unitOfWork.AdvancedPackageRepository.GetAdvancedPackagePurchase(gigDto.AdvancedPackageID);
+                // CHECK IF THE PACKAGE EXIST
+                if (advancedPackage == null)
+                    return NotFound();
+                else
+                {
+                    // CHECK IF THE PAYMENT CAN BE DONE
+                    try
+                    {
+                        advancedPackage.SellPackage(buyer, gig.User, auroraWallet);
+                    }
+                    catch (Exception)
+                    {
+                        return NotFound();
+                    }
+                }
+            }
             else if (gigDto.BasicPackageID == null && gigDto.AdvancedPackageID == null && gigDto.PremiumPackageID != null)
-                context.PremiumPackages.Single(b => b.ID == gigDto.PremiumPackageID).SellPackage(buyer, gig.User, auroraWallet);
+            {
+                //BRING THE PACKAGE FOR PURCHASE
+                var premiumPackage = unitOfWork.PremiumPackageRepository.GetPremiumPackagePurchase(gigDto.PremiumPackageID);
+                // CHECK IF THE PACKAGE EXIST
+                if (premiumPackage == null)
+                    return NotFound();
+                else
+                {
+                    // CHECK IF THE PAYMENT CAN BE DONE
+                    try
+                    {
+                        premiumPackage.SellPackage(buyer, gig.User, auroraWallet);
+                    }
+                    catch (Exception)
+                    {
+                        return NotFound();
+                    }
+                }
+            }
             else
                 return BadRequest();
 
-            context.SaveChanges();
+            unitOfWork.Complete();
             return Ok();
         }
 

@@ -1,4 +1,5 @@
 ﻿using AuroraProject.Models;
+using AuroraProject.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,20 @@ namespace AuroraProject.Controllers
 {
     public class FileController : Controller
     {
-        private ApplicationDbContext context;
+
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public FileController()
         {
             context = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(context);
+
         }
 
         // GET: File
         public ActionResult Index(int id)
         {
-            var fileToRetrieve = context.FileUploads.Find(id);
+            var fileToRetrieve = unitOfWork.FileUploadRepository.GetFile(id);
             return File(fileToRetrieve.Content, fileToRetrieve.ContentType);
         }
     }

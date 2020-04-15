@@ -23,5 +23,10 @@ namespace AuroraProject.Repositories
         {
             _context.PremiumPackages.Remove(premiumPackage);
         }
+
+        public PremiumPackage GetPremiumPackagePurchase(int? premiumPackageId)
+        {
+            return _context.PremiumPackages.Single(b => b.ID == premiumPackageId);
+        }
     }
 }

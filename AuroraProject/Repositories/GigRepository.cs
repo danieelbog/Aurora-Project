@@ -93,6 +93,14 @@ namespace AuroraProject.Repositories
                 .SingleOrDefault(g => g.ID == gigID);
         }
 
+        public Gig GetGigForPurchase(int gigId)
+        {
+            return _context.Gigs
+               .Include(g => g.User)
+               .Include(g => g.User.Wallet)
+               .Single(u => u.ID == gigId);
+        }
+
         public void AddGig(Gig gig)
         {
             _context.Gigs.Add(gig);

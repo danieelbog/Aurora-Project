@@ -23,5 +23,10 @@ namespace AuroraProject.Repositories
         {
             _context.BasicPackages.Remove(basicPackage);
         }
+
+        public BasicPackage GetBasicPackagePurchase(int? basicPackageId)
+        {
+            return _context.BasicPackages.Single(b => b.ID == basicPackageId);
+        }
     }
 }
