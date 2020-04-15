@@ -7,37 +7,27 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using AuroraProject.ViewModels;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers
 {
     [Authorize]
     public class WalletController : Controller
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public WalletController()
         {
             context = new ApplicationDbContext();
-        }
-        protected override void Dispose(bool disposing)
-        {
-            context.Dispose();
+            unitOfWork = new UnitOfWork(context);
         }
 
         //GET WALLET
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            //var wallet = context.Wallets
-            //    .Include(w => w.Owner)
-            //    .Include(w => w.Owner.UserNotifications)
-            //    .Single(w => w.Owner.Id == userId);
 
-            var wallet = context.Wallets
-                .Include(w => w.Owner.UserNotifications)
-                .Include(w => w.Owner.UserNotifications.Select(u => u.Notification))
-                .SingleOrDefault(w => w.Owner.Id == userId);
-
-            //var notifications = context.UserNotifications.Include(n => n.Notification).ToList();
+            var wallet = unitOfWork.WalletRepository.GetWallet(userId);
 
             if (wallet == null)
                 return HttpNotFound("You dont have a wallet?");
@@ -53,9 +43,7 @@ namespace AuroraProject.Controllers
         public ActionResult Update(WalletViewModel viewModel, string submitButton)
         {
             var userId = User.Identity.GetUserId();
-            var walletDb = context.Wallets
-                .Include(w => w.Owner)
-                .Single(w => w.Owner.Id == userId);
+            var walletDb = unitOfWork.WalletRepository.GetWalletForUpdate(userId);
 
             if (walletDb == null || viewModel.Transaction < 0)
                 return HttpNotFound("You dont have a wallet?");
@@ -67,16 +55,16 @@ namespace AuroraProject.Controllers
 
                     var depostiNotification = Notification.MoneyDeposited(viewModel.Transaction);
                     walletDb.Owner.Notify(depostiNotification);
+                    unitOfWork.Complete();
 
-                    context.SaveChanges();
                     break;
                 case "WithdrawMoney":
                     walletDb.WithdrawMoney(viewModel.Transaction, walletDb.ID);
 
                     var withdrawNotification = Notification.MoneyWithdroawed(viewModel.Transaction);
                     walletDb.Owner.Notify(withdrawNotification);
+                    unitOfWork.Complete();
 
-                    context.SaveChanges();
                     break;
                 default:
                     return RedirectToAction("Index");

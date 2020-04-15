@@ -101,6 +101,11 @@ namespace AuroraProject.Repositories
                .Single(u => u.ID == gigId);
         }
 
+        public IEnumerable<Gig> GetGigsForAuction(string userId)
+        {
+            return _context.Gigs.Where(g => g.UserID == userId && g.IsDisabled == false);
+        }
+
         public void AddGig(Gig gig)
         {
             _context.Gigs.Add(gig);

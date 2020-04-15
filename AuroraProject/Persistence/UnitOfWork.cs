@@ -24,6 +24,8 @@ namespace AuroraProject.Persistence
         public AuroraWalletRepository AuroraWalletRepository { get; set; }
         public NotificationsRepository NotificationsRepository { get; set; }
         public UserNotificationsRepository UserNotificationsRepository { get; set; }
+        public WalletRepository WalletRepository { get; set; }
+        public AuctionRepository AuctionRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -42,6 +44,8 @@ namespace AuroraProject.Persistence
             AuroraWalletRepository = new AuroraWalletRepository(context);
             NotificationsRepository = new NotificationsRepository(context);
             UserNotificationsRepository = new UserNotificationsRepository(context);
+            WalletRepository = new WalletRepository(context);
+            AuctionRepository = new AuctionRepository(context);
         }
 
         public void Complete()

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers
 {
@@ -14,36 +15,22 @@ namespace AuroraProject.Controllers
     public class AuctionController : Controller
     {
 
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
+        private readonly UnitOfWork unitOfWork;
         public AuctionController()
         {
             context = new ApplicationDbContext();
-        }
-        protected override void Dispose(bool disposing)
-        {
-            context.Dispose();
+            unitOfWork = new UnitOfWork(context);
         }
 
         public ActionResult AuroraPro(int? specificIndustryID)
         {
             // BRING THE GIGS WITH THE DATA I WANT
-            var auctions = context.Auctions
-                .Include(a => a.Gig)
-                .Include(a => a.Gig.User)
-                .Include(a => a.Gig.BasicPackage)
-                .Include(g => g.Gig.SpecificIndustry)
-                .Include(g => g.Gig.SpecificIndustry.Industry)
-                .Include(g => g.Gig.Influencer)
-                .Include(g => g.Gig.Influencer.FileUploads)
-                .Where(g => g.SpecificIndustryID == specificIndustryID)
-                .ToList();
-
-            // SORT THE GIG WITH THE CORRECT SORTER
-            BubbleSort.SortDescendingBet(auctions);
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(specificIndustryID);            
 
             // SEND GIGS TO THE VIEW
             var viewModel = new AuctionViewModel(auctions, User.Identity.IsAuthenticated,
-                specificIndustryID == null ? "No Gigs were Found" : $"All {context.SpecificIndustries.SingleOrDefault(sp => sp.ID == specificIndustryID).Name} Pro Gigs");
+                specificIndustryID == null ? "No Gigs were Found" : $"All {unitOfWork.SpecificIndustryRepository.GetSpecificIndustry(specificIndustryID).Name} Pro Gigs");
 
             //SEND THE SORTED LIST TO THE VIEW
             return View("AuroraPro", viewModel);
@@ -54,16 +41,14 @@ namespace AuroraProject.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gigs = context.Gigs.Where(g => g.UserID == userId && g.IsDisabled == false).ToList();
-            var auctions = context.Auctions.Where(a => a.Gig.UserID == userId).Include(a => a.Gig).ToList();
-
-            BubbleSort.SortDescendingBet(auctions);
+            var gigs = unitOfWork.GigsRepository.GetGigsForAuction(userId).ToList();
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForAuction(userId).ToList();
 
             foreach (var auction in auctions)
             {
                 int index = auctions.IndexOf(auction);
                 auction.PositionOnMarket = index + 1;
-                context.SaveChanges();
+                unitOfWork.Complete();
             }
 
             // CREATE VIEW MODEL TO SEND IT TO THE VIEW
@@ -72,8 +57,6 @@ namespace AuroraProject.Controllers
                 Gigs = gigs,
                 Auctions = auctions
             };
-
-            BubbleSort.SortDescendingBet(auctions);
 
             return PartialView("_Auction", viewModel);
         }
@@ -88,21 +71,22 @@ namespace AuroraProject.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            var gig = context.Gigs
-                .Include(g => g.User)
-                .Include(g => g.User.Wallet)
-                .Include(g => g.SpecificIndustry)
-                .Single(g => g.UserID == userId && g.ID == viewModel.GigID);
+            var gig = unitOfWork.GigsRepository.GetGigForDetails(viewModel.GigID);
+            if (gig == null)
+                return HttpNotFound();
 
-            var auctions = context.Auctions.Where(a => a.SpecificIndustryID == gig.SpecificIndustry.ID).ToList();
+            if(gig.UserID != userId)
+                return new HttpUnauthorizedResult();
 
-            if (context.Auctions.SingleOrDefault(a => a.GigID == viewModel.GigID) != null)
-                context.Auctions.Remove(context.Auctions.SingleOrDefault(a => a.GigID == viewModel.GigID));
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(gig.SpecificIndustryID).ToList();
 
-            var auction = Auction.CreateAuction(viewModel, gig, context.AuroraWallets.Single(a => a.ID == 1));
+            if (unitOfWork.AuctionRepository.GetAuctionForGig(viewModel.GigID) != null)
+                unitOfWork.AuctionRepository.RemoveAuctionForGig(viewModel.GigID);
 
-            context.Auctions.Add(auction);
-            context.SaveChanges();
+            var auction = Auction.CreateAuction(viewModel, gig, unitOfWork.AuroraWalletRepository.GetAuroraWallet());
+
+            unitOfWork.AuctionRepository.AddAuctionForGig(auction);
+            unitOfWork.Complete();
 
             // WHEN EVERYTHING IS DONE GO TO INDEX
             return RedirectToAction("Details", "influencer");
