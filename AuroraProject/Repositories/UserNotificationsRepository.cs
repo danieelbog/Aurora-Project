@@ -6,7 +6,7 @@ using System.Web;
 
 namespace AuroraProject.Repositories
 {
-    public class UserNotificationsRepository
+    public class UserNotificationsRepository : IUserNotificationsRepository
     {
         private readonly ApplicationDbContext _context;
         public UserNotificationsRepository(ApplicationDbContext context)

@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class SpecificIndustryRepository
+    public class SpecificIndustryRepository : ISpecificIndustryRepository
     {
         private readonly ApplicationDbContext _context;
         public SpecificIndustryRepository(ApplicationDbContext context)
@@ -20,7 +21,16 @@ namespace AuroraProject.Repositories
 
         public IEnumerable<SpecificIndustry> GetSpecificIndustries()
         {
-            return _context.SpecificIndustries;
+            return _context.SpecificIndustries
+                .Include(sp => sp.Industry);
         }
+
+        public IEnumerable<SpecificIndustry> GetSpecificIndustriesPerIndustry(int industryId)
+        {
+            return _context.SpecificIndustries
+                            .Where(sp => sp.IndustryID == industryId);
+        }
+
+
     }
 }

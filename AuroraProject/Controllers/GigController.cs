@@ -13,17 +13,10 @@ namespace AuroraProject.Controllers
 {
     public class GigController : Controller
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;         
-        public GigController()       
+        private readonly IUnitOfWork unitOfWork;
+        public GigController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
-
-        }
-        protected override void Dispose(bool disposing)
-        {
-            context.Dispose();
+            this.unitOfWork = unitOfWork;
         }
 
         //SEARCH GIGS

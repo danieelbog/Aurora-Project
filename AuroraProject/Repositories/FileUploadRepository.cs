@@ -6,7 +6,7 @@ using System.Web;
 
 namespace AuroraProject.Repositories
 {
-    public class FileUploadRepository
+    public class FileUploadRepository : IFileUploadRepository
     {
         private readonly ApplicationDbContext _context;
         public FileUploadRepository(ApplicationDbContext context)

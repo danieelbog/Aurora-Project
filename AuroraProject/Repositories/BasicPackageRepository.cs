@@ -6,7 +6,7 @@ using System.Web;
 
 namespace AuroraProject.Repositories
 {
-    public class BasicPackageRepository
+    public class BasicPackageRepository : IBasicPackageRepository
     {
         private readonly ApplicationDbContext _context;
         public BasicPackageRepository(ApplicationDbContext context)

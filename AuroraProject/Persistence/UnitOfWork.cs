@@ -7,25 +7,27 @@ using System.Web;
 
 namespace AuroraProject.Persistence
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        public GigRepository GigsRepository { get; private set; }
-        public InfluencerRepository InfluencerRepository { get; private set; }
-        public SpecificIndustryRepository SpecificIndustryRepository { get; set; }
-        public FavouriteGigRepository FavouriteGigRepository { get; set; }
-        public FavouriteInfluencerRepository FavouriteInfluencerRepository { get; set; }
-        public ApplicationUserRepository ApplicationUserRepository { get; set; }
-        public BasicPackageRepository BasicPackageRepository { get; set; }
-        public AdvancedPackageRepository AdvancedPackageRepository { get; set; }
-        public PremiumPackageRepository PremiumPackageRepository { get; set; }
-        public FileUploadRepository FileUploadRepository { get; set; }
-        public MembershipTypeRepository MembershipTypeRepository { get; set; }
-        public AuroraWalletRepository AuroraWalletRepository { get; set; }
-        public NotificationsRepository NotificationsRepository { get; set; }
-        public UserNotificationsRepository UserNotificationsRepository { get; set; }
-        public WalletRepository WalletRepository { get; set; }
-        public AuctionRepository AuctionRepository { get; set; }
+        public IGigRepository GigsRepository { get; private set; }
+        public IInfluencerRepository InfluencerRepository { get; private set; }
+        public ISpecificIndustryRepository SpecificIndustryRepository { get; set; }
+        public IFavouriteGigRepository FavouriteGigRepository { get; set; }
+        public IFavouriteInfluencerRepository FavouriteInfluencerRepository { get; set; }
+        public IApplicationUserRepository ApplicationUserRepository { get; set; }
+        public IBasicPackageRepository BasicPackageRepository { get; set; }
+        public IAdvancedPackageRepository AdvancedPackageRepository { get; set; }
+        public IPremiumPackageRepository PremiumPackageRepository { get; set; }
+        public IFileUploadRepository FileUploadRepository { get; set; }
+        public IMembershipTypeRepository MembershipTypeRepository { get; set; }
+        public IAuroraWalletRepository AuroraWalletRepository { get; set; }
+        public INotificationsRepository NotificationsRepository { get; set; }
+        public IUserNotificationsRepository UserNotificationsRepository { get; set; }
+        public IWalletRepository WalletRepository { get; set; }
+        public IAuctionRepository AuctionRepository { get; set; }
+        public IIndustryRepository IndustryRepository { get; set; }
+
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -46,6 +48,7 @@ namespace AuroraProject.Persistence
             UserNotificationsRepository = new UserNotificationsRepository(context);
             WalletRepository = new WalletRepository(context);
             AuctionRepository = new AuctionRepository(context);
+            IndustryRepository = new IndustryRepository(context);
         }
 
         public void Complete()

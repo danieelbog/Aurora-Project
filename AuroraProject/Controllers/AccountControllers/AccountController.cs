@@ -10,20 +10,20 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AuroraProject.Models;
 using AuroraProject.ViewModels;
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationDbContext context;
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        private readonly IUnitOfWork unitOfWork;
+        public AccountController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -61,7 +61,8 @@ namespace AuroraProject.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var user = context.Users.Single(u => u.Id == userId);
+            var user = unitOfWork.ApplicationUserRepository.GetUser(userId);
+                
             var userName = ApplicationUser.FullName(user);
 
             var viewModel = new UserDetailsViewModel(userName);

@@ -16,13 +16,10 @@ namespace AuroraProject.Controllers.API
     [Authorize]
     public class NotificationsController : ApiController
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public NotificationsController()
+        private readonly IUnitOfWork unitOfWork;
+        public NotificationsController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
-
+            this.unitOfWork = unitOfWork;
         }
 
         public IEnumerable<NotificationDto> GetNotifications()

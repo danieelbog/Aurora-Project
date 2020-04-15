@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class InfluencerRepository
+    public class InfluencerRepository : IInfluencerRepository
     {
         private readonly ApplicationDbContext _context;
         public InfluencerRepository(ApplicationDbContext context)
@@ -26,7 +26,7 @@ namespace AuroraProject.Repositories
                 .Include(i => i.MembershipType)
                 .Include(i => i.FileUploads)
                 .Include(i => i.User)
-                .SingleOrDefault(i => i.User.Id == userId);            
+                .SingleOrDefault(i => i.User.Id == userId);
         }
 
         public Influencer GetInfluencerForUpdate(int influencerId)

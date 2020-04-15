@@ -11,13 +11,10 @@ namespace AuroraProject.Controllers
     public class FileController : Controller
     {
 
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public FileController()
+        private readonly IUnitOfWork unitOfWork;
+        public FileController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
-
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: File

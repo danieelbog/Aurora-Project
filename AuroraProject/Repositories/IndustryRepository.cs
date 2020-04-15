@@ -6,17 +6,18 @@ using System.Web;
 
 namespace AuroraProject.Repositories
 {
-    public class AuroraWalletRepository : IAuroraWalletRepository
+    public class IndustryRepository : IIndustryRepository
     {
         private readonly ApplicationDbContext _context;
-        public AuroraWalletRepository(ApplicationDbContext context)
+
+        public IndustryRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public AuroraWallet GetAuroraWallet()
+        public IEnumerable<Industry> GetIndustries()
         {
-            return _context.AuroraWallets.Single(w => w.ID == 1);
+            return _context.Industries.ToList();
         }
     }
 }

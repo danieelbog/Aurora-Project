@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class FavouriteInfluencerRepository
+    public class FavouriteInfluencerRepository : IFavouriteInfluencerRepository
     {
         private readonly ApplicationDbContext _context;
         public FavouriteInfluencerRepository(ApplicationDbContext context)
@@ -18,7 +18,7 @@ namespace AuroraProject.Repositories
         public FavouriteInfluencer GetFavouriteInfluencer(int influencerId, string userId)
         {
             return _context.FavouriteInfluencers
-                    .Single(f => f.InfluencerID == influencerId && f.FollowerID == userId);
+                    .SingleOrDefault(f => f.InfluencerID == influencerId && f.FollowerID == userId);
         }
 
         public IEnumerable<FavouriteInfluencer> GetFavouriteInfluencers(string userId)

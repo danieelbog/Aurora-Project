@@ -14,13 +14,10 @@ namespace AuroraProject.Controllers.API
     [Authorize]
     public class GigsController : ApiController
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public GigsController()
+        private readonly IUnitOfWork unitOfWork;
+        public GigsController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
-
+            this.unitOfWork = unitOfWork;
         }
 
 

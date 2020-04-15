@@ -15,13 +15,10 @@ namespace AuroraProject.Controllers.API
     [Authorize]
     public class InfluencersController : ApiController
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public InfluencersController()
+        private readonly IUnitOfWork unitOfWork;
+        public InfluencersController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
-
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPut]

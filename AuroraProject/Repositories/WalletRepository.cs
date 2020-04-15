@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class WalletRepository
+    public class WalletRepository : IWalletRepository
     {
         private readonly ApplicationDbContext _context;
         public WalletRepository(ApplicationDbContext context)

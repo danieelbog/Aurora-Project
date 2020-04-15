@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class AuctionRepository
+    public class AuctionRepository : IAuctionRepository
     {
         private readonly ApplicationDbContext _context;
         public AuctionRepository(ApplicationDbContext context)

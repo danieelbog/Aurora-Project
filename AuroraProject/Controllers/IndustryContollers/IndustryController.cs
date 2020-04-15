@@ -1,4 +1,5 @@
 ﻿using AuroraProject.Models;
+using AuroraProject.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,15 @@ namespace AuroraProject.Controllers
 {
     public class IndustryController : Controller
     {
-        private ApplicationDbContext context;
-        public IndustryController()
+        private readonly IUnitOfWork unitOfWork;
+        public IndustryController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-        }
-        protected override void Dispose(bool disposing)
-        {
-            context.Dispose();
+            this.unitOfWork = unitOfWork;
         }
 
         public ActionResult AuroraProIndustries()
         {
-            var industries = context.Industries
-                .ToList();
+            var industries = unitOfWork.IndustryRepository.GetIndustries();
 
             return View("AuroraProIndustries", industries);
         }

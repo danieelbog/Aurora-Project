@@ -14,12 +14,10 @@ namespace AuroraProject.Controllers.API
 {
     public class SellingPackagesController : ApiController
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public SellingPackagesController()
+        private readonly IUnitOfWork unitOfWork;
+        public SellingPackagesController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
+            this.unitOfWork = unitOfWork;
         }
 
         [Authorize]

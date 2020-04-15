@@ -5,36 +5,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-
+using AuroraProject.Persistence;
 
 namespace AuroraProject.Controllers
 {
     public class SpecificIndustryController : Controller
     {
-        private ApplicationDbContext context;
-        public SpecificIndustryController()
+        private readonly IUnitOfWork unitOfWork;
+        public SpecificIndustryController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-        }
-        protected override void Dispose(bool disposing)
-        {
-            context.Dispose();
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: SpecificIndustry
         public ActionResult AuroraProSpecificIndustries(int industryID)
         {
-            var specificIndustries = context.SpecificIndustries
-                .Where(sp => sp.IndustryID == industryID)
-                .ToList();
+            var specificIndustries = unitOfWork.SpecificIndustryRepository.GetSpecificIndustriesPerIndustry(industryID);
 
             return View("AuroraProSpecificIndustries", specificIndustries);
         }
 
         public ActionResult Index()
         {
-            var specificIndustry = context.SpecificIndustries
-                .Include(sp => sp.Industry)
+            var specificIndustry = unitOfWork.SpecificIndustryRepository.GetSpecificIndustries()
                 .ToList();
 
             return PartialView("_Index", specificIndustry);

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AuroraProject.Repositories
 {
-    public class MembershipTypeRepository
+    public class MembershipTypeRepository : IMembershipTypeRepository
     {
         private readonly ApplicationDbContext _context;
         public MembershipTypeRepository(ApplicationDbContext context)

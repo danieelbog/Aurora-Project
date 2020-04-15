@@ -14,13 +14,12 @@ namespace AuroraProject.Controllers
     [Authorize]
     public class WalletController : Controller
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public WalletController()
+        private readonly IUnitOfWork unitOfWork;
+        public WalletController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
+            this.unitOfWork = unitOfWork;
         }
+
 
         //GET WALLET
         public ActionResult Index()

@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class ApplicationUserRepository
+    public class ApplicationUserRepository : IApplicationUserRepository
     {
         private readonly ApplicationDbContext _context;
         public ApplicationUserRepository(ApplicationDbContext context)

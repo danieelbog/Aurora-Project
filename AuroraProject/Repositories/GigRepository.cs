@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class GigRepository
+    public class GigRepository : IGigRepository
     {
         private readonly ApplicationDbContext _context;
         public GigRepository(ApplicationDbContext context)
@@ -52,6 +52,7 @@ namespace AuroraProject.Repositories
         {
             return _context.Gigs
                 .Include(g => g.User)
+                .Include(g => g.User.Wallet)
                 .Include(g => g.BasicPackage)
                 .Include(g => g.AdvancedPackage)
                 .Include(g => g.PremiumPackage)
@@ -77,7 +78,7 @@ namespace AuroraProject.Repositories
             // SORT THE GIG WITH THE CORRECT SORTER
             Sorter.SortLogic(gigs);
 
-            return gigs;            
+            return gigs;
         }
 
         public Gig GetGigForForm(int gigID)

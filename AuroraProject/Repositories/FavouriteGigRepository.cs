@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace AuroraProject.Repositories
 {
-    public class FavouriteGigRepository
+    public class FavouriteGigRepository : IFavouriteGigRepository
     {
         private readonly ApplicationDbContext _context;
         public FavouriteGigRepository(ApplicationDbContext context)
@@ -18,7 +18,7 @@ namespace AuroraProject.Repositories
         public FavouriteGig GetFavouriteGig(int gigID, string userId)
         {
             return _context.FavouriteGigs
-                    .Single(f => f.GigID == gigID && f.ActionerID == userId);
+                    .SingleOrDefault(f => f.GigID == gigID && f.ActionerID == userId);
         }
 
         public IEnumerable<FavouriteGig> GetFavouriteGigs(string userId)

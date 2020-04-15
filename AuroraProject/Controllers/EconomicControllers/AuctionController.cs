@@ -15,12 +15,10 @@ namespace AuroraProject.Controllers
     public class AuctionController : Controller
     {
 
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public AuctionController()
+        private readonly IUnitOfWork unitOfWork;
+        public AuctionController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
+            this.unitOfWork = unitOfWork;
         }
 
         public ActionResult AuroraPro(int? specificIndustryID)
@@ -78,7 +76,7 @@ namespace AuroraProject.Controllers
             if(gig.UserID != userId)
                 return new HttpUnauthorizedResult();
 
-            var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(gig.SpecificIndustryID).ToList();
+            //var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(gig.SpecificIndustryID).ToList();
 
             if (unitOfWork.AuctionRepository.GetAuctionForGig(viewModel.GigID) != null)
                 unitOfWork.AuctionRepository.RemoveAuctionForGig(viewModel.GigID);

@@ -14,13 +14,10 @@ namespace AuroraProject.Controllers.API
     [Authorize]
     public class FavouriteGigsController : ApiController
     {
-        private readonly ApplicationDbContext context;
-        private readonly UnitOfWork unitOfWork;
-        public FavouriteGigsController()
+        private readonly IUnitOfWork unitOfWork;
+        public FavouriteGigsController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(context);
-
+            this.unitOfWork = unitOfWork;
         }
 
         //FOLLOWER = ACTIONER
