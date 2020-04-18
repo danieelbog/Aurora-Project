@@ -3,15 +3,15 @@
     ViewBag.Title = Model.Heading;
 }
 
-<div class="container-fluid card-container-fluid">
+<div class="container-fluid card-container-fluid register">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
+    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
 
     <div class="page-decoration container">
-        <h1 class="page-heading">@Model.Heading</h1>
-        <p class="page-descreption">A fact about the user, based on his avtivity to make his day</p>
+        <h1 class="page-heading-b">@Model.Heading</h1>
+        <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
 
-        <div class="sorting-div">
+        <div class="sorting-div-b">
             <div class="dropdown">
                 <div href="#" data-toggle="dropdown" class="dropdown-toggle">Influencer Options<b class="caret"></b></div>
                 <div class="dropdown-menu">
@@ -118,15 +118,16 @@
 
 
         <div class="sorting-div">
-            <p class="services-count">Cards Available: @Model.Gigs.Count()</p>
+            <p class="services-count-b">Services Available: @Model.Gigs.Count()</p>
         </div>
     </div>
 
-    <div class="row justify-content-around">
+    @*NEW PART*@
+    <div class="row-card-container">
         @foreach (var gig in Model.Gigs)
         {
             <!-- Inverse Card -->
-            <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
+            <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1">
                 <div class="card-header d-flex flex-row">
 
                     <div class="media-body">
@@ -157,37 +158,28 @@
                             {
                                 <i class="fa fa-eye js-disable-gig animated fadeInDown" data-gig-id="@gig.ID"></i>
                             }
-
-
                         </h3>
                         <p class="card-subtitle text-center">@gig.Influencer.AboutTheInfluencer</p>
 
                     </div>
                 </div>
+
+
+
                 @if (gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
                 {
 
-                    <a class="pmd-card-media" href="@Url.Action("Edit", "Gig", new { gigID = gig.ID })">
-                        <img class="img-fluid" src="~/File?id=@gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666" class="img-fluid">
+                    <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
+                        <img class="img-fluid" src="~/File?id=@gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
                     </a>
                 }
                 else
                 {
 
-                    <a class="pmd-card-media" href="@Url.Action("Edit", "Gig", new { gigID = gig.ID })">
+                    <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
                         <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
                     </a>
                 }
-
-                @*<div class="btn-group align-self-stretch">
-                        <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("Edit", "Edit", "Gig", new { gig.ID }, new { @class = "dropdown-item" })
-                            <a class="dropdown-item js-disable-gig" data-gig-id="@gig.ID" href="#">Disable</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Delete</a>
-                        </div>
-                    </div>*@
 
                 <div class="card-body">
                     <h2 class="card-title">@gig.GigName</h2>
@@ -196,22 +188,21 @@
 
                 <div class="card-body m-0 p-0">
                     <div class="col-12 d-flex justify-content-between">
-                        <p class="card-subtitle mb-1 align-self-end">Delivery Time: @gig.BasicPackage.DeliveryTime</p>
+                        <p class="card-subtitle mb-1 align-self-end">Delivery Time: @gig.BasicPackage.DeliveryTime Days</p>
                         <p class="card-subtitle mb-1 align-self-end">Starting From: @gig.BasicPackage.Price $</p>
                     </div>
                 </div>
 
-                <div class="card-footer align-content-around d-flex justify-content-around">
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
-                    <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+
+                @*NEW PART*@
+                <div class="card-footer align-content-around d-flex justify-content-between">
+                    <p>Delete Gig Permanently</p>
                 </div>
             </div>
-
-
         }
     </div>
 </div>
+
 
 @section scripts {
     <script>

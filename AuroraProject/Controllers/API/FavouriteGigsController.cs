@@ -26,7 +26,6 @@ namespace AuroraProject.Controllers.API
 
         //POST: api/favourites
         [HttpPost]
-        [Authorize]
         public IHttpActionResult Favourite(FavouriteGigDto favouriteGigDto)
         {
             var userId = User.Identity.GetUserId();
@@ -47,12 +46,11 @@ namespace AuroraProject.Controllers.API
         }
 
         [HttpDelete]
-        [Authorize]
-        public IHttpActionResult DeleteFavourite(FavouriteGigDto favouriteGigDto)
+        public IHttpActionResult Unfavourite(int id)
         {
             var userId = User.Identity.GetUserId();
 
-            var favorite = unitOfWork.FavouriteGigRepository.GetFavouriteGig(favouriteGigDto.GigID, userId);
+            var favorite = unitOfWork.FavouriteGigRepository.GetFavouriteGig(id, userId);
 
             if (favorite == null)
                 return NotFound();

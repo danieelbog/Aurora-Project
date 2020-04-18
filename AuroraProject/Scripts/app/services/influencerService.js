@@ -6,7 +6,10 @@
     }
 
     let unfavouriteInfluencer = function (influencerId, done, fail) {
-        $.post("/api/favouriteInfluencers", { InfluencerID: influencerId })
+        $.ajax({
+            url: "/api/favouriteInfluencers/" + influencerId,
+            method: "delete"
+        })
             .done(done)
             .fail(fail)
     }

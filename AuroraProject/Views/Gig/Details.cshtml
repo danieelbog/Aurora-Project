@@ -3,18 +3,19 @@
     ViewBag.Title = Model.Heading;
 }
 
-<div class="container-fluid card-container-fluid">
+<div class="container-fluid card-container-fluid register">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
+    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
 
     <div class="page-decoration container">
-        <h1 class="page-heading">@Model.Heading</h1>
-        <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
+        <h1 class="page-heading-b">@Model.Heading</h1>
+        <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
     </div>
 
-    <div class="row justify-content-around">
+    @*NEW PART*@
+    <div class="row-card-container">
         <!-- Inverse Card -->
-        <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
+        <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1">
             <div class="card-header d-flex flex-row">
 
                 <div class="media-body">
@@ -36,12 +37,15 @@
 
                     <h3 class="card-title text-center">
                         @Model.Gig.User.UserFullName
-                        @*<i class="fa fa-eye-slash js-disable-gig animated fadeInDown" data-gig-id="@gig.ID"></i>*@
+                        <i class="fa @(Model.isFollowing ? "fa-heart" : "fa-heart-o") js-toggle-favourite-influencer animated fadeInDown" data-influencer-id="@Model.Gig.InfluencerID"></i>
                     </h3>
                     <p class="card-subtitle text-center">@Model.Gig.Influencer.AboutTheInfluencer</p>
 
                 </div>
             </div>
+
+
+
             @if (Model.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
             {
 
@@ -57,16 +61,6 @@
                 </a>
             }
 
-            @*<div class="btn-group align-self-stretch">
-                    <i class="btn fa fa-bars dropdown-menu-mineGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu">
-                        @Html.ActionLink("Edit", "Edit", "Gig", new { gig.ID }, new { @class = "dropdown-item" })
-                        <a class="dropdown-item js-disable-gig" data-gig-id="@gig.ID" href="#">Disable</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Delete</a>
-                    </div>
-                </div>*@
-
             <div class="card-body">
                 <h2 class="card-title">@Model.Gig.GigName</h2>
                 <p class="card-text">@Model.Gig.Descreption</p>
@@ -74,17 +68,21 @@
 
             <div class="card-body m-0 p-0">
                 <div class="col-12 d-flex justify-content-between">
-                    <p class="card-subtitle mb-1 align-self-end">Delivery Time: @Model.Gig.BasicPackage.DeliveryTime</p>
+                    <p class="card-subtitle mb-1 align-self-end">Delivery Time: @Model.Gig.BasicPackage.DeliveryTime Days</p>
                     <p class="card-subtitle mb-1 align-self-end">Starting From: @Model.Gig.BasicPackage.Price $</p>
                 </div>
             </div>
 
-            <div class="card-footer align-content-around d-flex justify-content-around">
-                <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
-                <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
-                <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+
+            @*NEW PART*@
+            <div class="card-footer align-content-around d-flex justify-content-between">
+
+                @(Model.isFavourited ? "Remove Gig From Favourites" : "Add Gig To Favourites")
+
+                <i class="fa @(Model.isFavourited ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@Model.Gig.ID"></i>
             </div>
         </div>
+
 
         @if (Model.ShowActions)
         {
@@ -112,6 +110,7 @@
 </div>
 
 
+
 @section scripts {
     <script>
         $(document).ready(function () {
@@ -121,7 +120,7 @@
             //FAVOURITE INFLUENCER
             InfluencerController.initial();
             //PURCHASE PACKAGE
-            PurchaseController.initial(".purchase-forms");   
+            PurchaseController.initial(".purchase-forms");
         });
     </script>
 }

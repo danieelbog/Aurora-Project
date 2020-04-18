@@ -24,7 +24,10 @@
     }
 
     let unfavouriteGig = function (gigId, done, fail) {
-        $.delete("/api/favouriteGigs", { GigID: gigId })
+        $.ajax({
+            url: "/api/favouriteGigs/" + gigId,
+            method: "delete"
+        })
             .done(done)
             .fail(fail)
     }

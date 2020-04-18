@@ -21,10 +21,8 @@ namespace AuroraProject.Controllers.API
             this.unitOfWork = unitOfWork;
         }
 
-
         //POST: api/favourites
         [HttpPost]
-        [Authorize]
         public IHttpActionResult Enable(int id)
         {
             var userId = User.Identity.GetUserId();

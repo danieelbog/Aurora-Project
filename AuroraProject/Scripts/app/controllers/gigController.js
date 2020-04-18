@@ -5,7 +5,6 @@
     //DISABLE GIG
     let disableGig = function () {
         $(".js-disable-gig").click(toggleVisibility);
-        //$(container).on("click", ".js-disable-gig", toggleVisibility);
     }
 
     let toggleVisibility = function (e) {
@@ -34,7 +33,7 @@
         $(".js-toggle-favourite-gig").click(toggleFavourite);
     }
 
-    let toggleFavourite = function () {
+    let toggleFavourite = function (e) {
         button = $(e.target);
         let gigId = button.attr("data-gig-id");
 

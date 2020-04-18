@@ -5,7 +5,7 @@
         $(".js-toggle-favourite-influencer").click(toggleFavourite);
     }
 
-    let toggleFavourite = function () {
+    let toggleFavourite = function (e) {
 
         button = $(e.target);
         let influencerId = button.attr("data-influencer-id");

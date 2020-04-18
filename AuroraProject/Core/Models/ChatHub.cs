@@ -9,19 +9,50 @@ namespace AuroraProject.Core.Models
 {
     public class ChatHub : Hub
     {
-        public void SendChatMessage(string name, string message)
+        public override async Task OnConnected()
         {
-            name = Context.User.Identity.Name;
-            Clients.Group(name).addChatMessage(name, message);
-            Clients.Group("2@2.com").addChatMessage(name, message);
+            await Clients.All.onConnected(Context.ConnectionId, Context.User.Identity.Name);
+            await base.OnConnected();
         }
 
-        public override Task OnConnected()
+        public override async Task OnDisconnected(bool stopCalled)
         {
-            string name = Context.User.Identity.Name;
-            Groups.Add(Context.ConnectionId, name);
-
-            return base.OnConnected();
+            await Clients.All.onDisconected(Context.ConnectionId, Context.User.Identity.Name);
+            await base.OnDisconnected(stopCalled);
         }
+
+        //TO EVERYONE
+        public void SendMessagesToAll(string name, string message)
+        {
+            // Call the addNewMessageToPage method to update clients.
+            Clients.All.addNewMessageToPage(name, message);
+        }
+
+        //TO CALLLER
+        public void SendMessagesToCaller(string name, string message)
+        {
+            // Call the addNewMessageToPage method to update clients.
+            Clients.Caller.addNewMessageToPage(name, message);
+        }
+
+        //TO USER
+        public void SendMessageToUser(string connectionId, string message)
+        {
+            Clients.Client(connectionId).addNewMessageToPage(message);
+        }
+
+        //JOIN GROUP
+        public void JoinGroup(string group)
+        {
+            Groups.Add(Context.ConnectionId, group);
+        }
+
+        //SEND MESSAGE TO GROUP
+        public void SendMessageToGroup(string group, string message)
+        {
+            var name = Context.User.Identity.Name;
+            Clients.Group(group).addNewMessageToPage(name, message);
+        }
+
     }
 }

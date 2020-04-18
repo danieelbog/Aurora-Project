@@ -1,31 +1,103 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<body>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    @{
+        Layout = "";
+    }
+
+    <div class="container-fluid home-container-fluid">
+
+        <div class="tab-content" id="myTabContent">
+            <div class="home-container tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="arrow arrow-toIndustry">
+                    <a class="nav-link" id="industry-tab" data-toggle="tab" href="#industry" role="tab" aria-controls="industry" aria-selected="false"><span></span><span></span><span></span></a>
+                </div>
+
+                <div class="home-img">
+                    <ul class="nav home-nav">
+                        <li>
+                            <a href="@Url.Action("Login", "Account")">Login<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Register", "Account")">Register</a>
+                        </li>
+                    </ul>
+
+                    <a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/Logo/aurora_logoFINAL-05.png" class="home-logo img-fluid" /></a>
+
+                    <section class="wrapper">
+                        <h2 class="sentence">
+                            <span>
+                                Powerful But Simple Way to Promote Your
+                                <span class="slidingVertical">
+                                    <span>Company</span>
+                                    <span>People</span>
+                                    <span>Creativity</span>
+                                    <span>Passion</span>
+                                    <span>Vision</span>
+                                </span>
+                            </span>
+                        </h2>
+                    </section>
+                </div>
+            </div>
+
+            <div class="industry-container tab-pane fade show" id="industry" role="tabpanel" aria-labelledby="industry-tab">
+                <div class="arrow arrow-toHome">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span></span><span></span><span></span></a>
+                </div>
+
+                <div class="jumbotron">
+                    <h1>ASP.NET</h1>
+                    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+                    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Getting started</h2>
+                        <p>
+                            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                            enables a clean separation of concerns and gives you full control over markup
+                            for enjoyable, agile development.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Get more libraries</h2>
+                        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                        <p>
+                            <a class="nav-link show active bg-danger" id="homePage-tab" data-toggle="tab" href="#homePage" role="tab" aria-controls="homePage" aria-selected="true"></a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Web Hosting</h2>
+                        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/app")
+
+    <script>
+        $(document).ready(function () {
+            HomeController.initial();
+        });
+    </script>
+
+</body>
+</html>

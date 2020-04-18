@@ -45,11 +45,11 @@ namespace AuroraProject.Controllers.API
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteFollow(FavouriteInfluencerDto favouriteInfluencerDto)
+        public IHttpActionResult DeleteFollow(int id)
         {
             var userId = User.Identity.GetUserId();
 
-            var favorite = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencer(favouriteInfluencerDto.InfluencerID, userId);
+            var favorite = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencer(id, userId);
 
             if (favorite == null)
                 return NotFound();
@@ -57,7 +57,7 @@ namespace AuroraProject.Controllers.API
             unitOfWork.FavouriteInfluencerRepository.RemoveFavouriteInfluencer(favorite);
             unitOfWork.Complete();
 
-            return Ok(favouriteInfluencerDto.InfluencerID);
+            return Ok(id);
         }
     }
 }
