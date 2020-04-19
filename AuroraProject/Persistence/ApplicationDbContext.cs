@@ -26,7 +26,8 @@ namespace AuroraProject.Persistence
         public DbSet<FileUpload> FileUploads { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts  { get; set; }
 
         public ApplicationDbContext()
             : base("AuroraProjectDbContext", throwIfV1Schema: false)
@@ -57,6 +58,10 @@ namespace AuroraProject.Persistence
             modelBuilder.Entity<ApplicationUser>()
                 .HasRequired(u => u.Wallet)
                 .WithRequiredPrincipal(w => w.Owner);
+
+            modelBuilder.Entity<ApplicationUser>()
+               .HasRequired(u => u.ShoppingCart)
+               .WithRequiredPrincipal(w => w.Owner);
 
             modelBuilder.Entity<UserNotification>()
                 .HasRequired(n => n.User)

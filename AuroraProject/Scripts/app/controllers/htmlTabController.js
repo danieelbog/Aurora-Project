@@ -10,12 +10,12 @@
     }
 
     let mineInfluencer = function () {
-        $("#audienceInfo-tab").click(function () {
-            $("#influencerInfo-tab").removeClass("active");
+        $("#favAudienceInfo-tab").click(function () {
+            $("#favInfluencerInfo-tab").removeClass("active");
         })
 
-        $("#influencerInfo-tab").click(function () {
-            $("#audienceInfo-tab").removeClass("active");
+        $("#favInfluencerInfo-tab").click(function () {
+            $("#favAudienceInfo-tab").removeClass("active");
         })
     }
 

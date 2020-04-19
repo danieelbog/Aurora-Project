@@ -42,6 +42,9 @@ namespace AuroraProject.Core.Models
         //RELATION WITH USER NOTIFICATION
         public ICollection<UserNotification> UserNotifications { get; set; }
 
+        //RELATION WITH THE SHOPPING CART
+        public ShoppingCart ShoppingCart { get; set; }
+
 
         public ApplicationUser()
         {

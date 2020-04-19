@@ -27,6 +27,9 @@ namespace AuroraProject
                         //PURCHASE SELLING PACKAGE
                         "~/Scripts/app/services/purchaseService.js",
                         "~/Scripts/app/controllers/purchaseController.js",
+                        //ORDER SELLING PACKAGE
+                        "~/Scripts/app/services/orderService.js",
+                        "~/Scripts/app/controllers/orderController.js",
                         //SEARCH CONTROLLER
                         "~/Scripts/app/controllers/searchController.js",
                         //HOVER CONTROLLER

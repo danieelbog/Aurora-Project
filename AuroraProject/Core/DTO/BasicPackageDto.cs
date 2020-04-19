@@ -8,6 +8,5 @@ namespace AuroraProject.Core.DTO
     public class BasicPackageDto
     {
         public int ID { get; set; }
-
     }
 }

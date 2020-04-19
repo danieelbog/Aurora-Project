@@ -21,6 +21,8 @@ namespace AuroraProject.Core
         IUserNotificationsRepository UserNotificationsRepository { get; set; }
         IWalletRepository WalletRepository { get; set; }
         IIndustryRepository IndustryRepository { get; set; }
+        IOrderRepository OrderRepository { get; set; }
+        IShoppingCartRepository ShoppingCartRepository { get; set; }
 
         void Complete();
     }

@@ -1448,7 +1448,7 @@ img.OurLogo {
     height: 32em !important;
 }
 
-#audienceInfo-tab {
+#favAudienceInfo-tab {
     position: absolute;
     top: 70%;
     right: -4em;
@@ -1456,7 +1456,7 @@ img.OurLogo {
     transform: rotate(270deg);
 }
 
-#influencerInfo-tab {
+#favInfluencerInfo-tab {
     position: absolute;
     top: 70%;
     left: -2em;

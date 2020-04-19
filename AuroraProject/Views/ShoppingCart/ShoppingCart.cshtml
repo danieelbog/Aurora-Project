@@ -1,0 +1,108 @@
+﻿@model AuroraProject.Core.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "ShoppingCart";
+}
+
+<h2>ShoppingCart</h2>
+
+@if (!Model.Orders.Any())
+{
+    <ul>
+        <li>
+            No Orders Made
+        </li>
+    </ul>
+}
+else
+{
+    foreach (var order in Model.Orders)
+    {
+        if (order.BasicPackage != null)
+        {
+            <ul>
+                <li>
+                    @order.BasicPackage.PackageName
+                </li>
+                <li>
+                    @order.BasicPackage.Price
+                </li>
+                <li>
+                    @order.BasicPackage.PackageDescreption
+                </li>
+                <li>
+                    @order.BasicPackage.DeliveryTime
+                </li>
+                <li>
+                    @order.DateOrdered
+                </li>
+                <li>
+                    @order.Count
+                </li>
+                <li>
+                    @order.Price
+                </li>
+            </ul>
+        }
+        else if (order.AdvancedPackage != null)
+        {
+            <ul>
+                <li>
+                    @order.AdvancedPackage.PackageName
+                </li>
+                <li>
+                    @order.AdvancedPackage.Price
+                </li>
+                <li>
+                    @order.AdvancedPackage.PackageDescreption
+                </li>
+                <li>
+                    @order.AdvancedPackage.DeliveryTime
+                </li>
+                <li>
+                    @order.DateOrdered
+                </li>
+                <li>
+                    @order.Count
+                </li>
+                <li>
+                    @order.Price
+                </li>
+            </ul>
+        }
+        else if (order.PremiumPackage != null)
+        {
+            <ul>
+                <li>
+                    @order.PremiumPackage.PackageName
+                </li>
+                <li>
+                    @order.PremiumPackage.Price
+                </li>
+                <li>
+                    @order.PremiumPackage.PackageDescreption
+                </li>
+                <li>
+                    @order.PremiumPackage.DeliveryTime
+                </li>
+                <li>
+                    @order.DateOrdered
+                </li>
+                <li>
+                    @order.Count
+                </li>
+                <li>
+                    @order.Price
+                </li>
+            </ul>
+        }
+        else
+        {
+            <ul>
+                <li>
+                    Something went wrong
+                </li>
+            </ul>
+        }
+
+    }
+}

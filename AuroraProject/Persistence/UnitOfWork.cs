@@ -28,7 +28,8 @@ namespace AuroraProject.Persistence
         public IWalletRepository WalletRepository { get; set; }
         public IAuctionRepository AuctionRepository { get; set; }
         public IIndustryRepository IndustryRepository { get; set; }
-
+        public IOrderRepository OrderRepository { get; set; }
+        public IShoppingCartRepository ShoppingCartRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -50,6 +51,8 @@ namespace AuroraProject.Persistence
             WalletRepository = new WalletRepository(context);
             AuctionRepository = new AuctionRepository(context);
             IndustryRepository = new IndustryRepository(context);
+            OrderRepository = new OrderRepository(context);
+            ShoppingCartRepository = new ShoppingCartRepository(context);
         }
 
         public void Complete()

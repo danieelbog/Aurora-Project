@@ -176,7 +176,8 @@ namespace AuroraProject.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Wallet = new Wallet(1000)
+                    Wallet = new Wallet(1000),
+                    ShoppingCart = new ShoppingCart()
                 };
                 
                 var result = await UserManager.CreateAsync(user, model.Password);

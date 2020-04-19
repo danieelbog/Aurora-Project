@@ -230,6 +230,7 @@
     <Compile Include="Controllers\API\GigsController.cs" />
     <Compile Include="Controllers\API\InfluencersController.cs" />
     <Compile Include="Controllers\API\NotificationsController.cs" />
+    <Compile Include="Controllers\API\OrdersController.cs" />
     <Compile Include="Controllers\API\SellingPackagesController.cs" />
     <Compile Include="Controllers\EconomicControllers\AuctionController.cs" />
     <Compile Include="Controllers\MainEntitiesControllers\FileController.cs" />
@@ -238,16 +239,21 @@
     <Compile Include="Controllers\MainEntitiesControllers\InfluencerController.cs" />
     <Compile Include="Controllers\IndustryContollers\SpecificIndustryController.cs" />
     <Compile Include="Controllers\EconomicControllers\WalletController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Core\DTO\AdvancedPackageDto.cs" />
     <Compile Include="Core\DTO\BasicPackageDto.cs" />
     <Compile Include="Core\DTO\FavouriteGigDto.cs" />
     <Compile Include="Core\DTO\FavouriteInfluencerDto.cs" />
     <Compile Include="Core\DTO\GigDto.cs" />
     <Compile Include="Core\DTO\InfluencerDto.cs" />
+    <Compile Include="Core\DTO\OrderDto.cs" />
     <Compile Include="Core\DTO\PremiumPackageDto.cs" />
     <Compile Include="Core\DTO\NotificationDto.cs" />
     <Compile Include="Core\Models\ChatHub.cs" />
+    <Compile Include="Core\Models\Order.cs" />
+    <Compile Include="Core\Models\ShoppingCart.cs" />
     <Compile Include="Core\ViewModels\InfluencerViewModels\InfluencerViewModel.cs" />
+    <Compile Include="Core\ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -329,6 +335,10 @@
     <Compile Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.designer.cs">
       <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\202004191946430_ShoppingCartModel.cs" />
+    <Compile Include="Persistence\Migrations\202004191946430_ShoppingCartModel.designer.cs">
+      <DependentUpon>202004191946430_ShoppingCartModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\UserViewModels\AccountViewModels.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -355,6 +365,10 @@
     <Compile Include="Core\Models\EconomicClasses\Wallet.cs" />
     <Compile Include="Core\Models\NotificationsClasses\UserNotification.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Repositories\IOrderRepository.cs" />
+    <Compile Include="Core\Repositories\IShoppingCartRepository.cs" />
+    <Compile Include="Persistence\Repositories\OrderRepository.cs" />
+    <Compile Include="Persistence\Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Persistence\Repositories\AdvancedPackageRepository.cs" />
@@ -438,6 +452,7 @@
     <Content Include="Scripts\app\controllers\formInputCheckController.js" />
     <Content Include="Scripts\app\controllers\hoverIndustryController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
+    <Content Include="Scripts\app\controllers\orderController.js" />
     <Content Include="Scripts\app\controllers\purchaseController.js" />
     <Content Include="Scripts\app\controllers\searchController.js" />
     <Content Include="Scripts\app\controllers\updateMyProfileController.js" />
@@ -445,6 +460,7 @@
     <Content Include="Scripts\app\services\influencerService.js" />
     <Content Include="Scripts\app\services\formInputCheckService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
+    <Content Include="Scripts\app\services\orderService.js" />
     <Content Include="Scripts\app\services\purchaseService.js" />
     <Content Include="Scripts\app\services\updateMyProfileService.js" />
     <Content Include="Scripts\bootbox.js" />
@@ -634,6 +650,7 @@
     <Content Include="Views\Gig\Details.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -707,6 +724,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.resx">
       <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202004191946430_ShoppingCartModel.resx">
+      <DependentUpon>202004191946430_ShoppingCartModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
