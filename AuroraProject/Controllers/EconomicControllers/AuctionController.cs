@@ -31,6 +31,19 @@ namespace AuroraProject.Controllers
             var viewModel = new AuctionViewModel(auctions, User.Identity.IsAuthenticated,
                 specificIndustryID == null ? "No Gigs were Found" : $"All {unitOfWork.SpecificIndustryRepository.GetSpecificIndustry(specificIndustryID).Name} Pro Gigs");
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                viewModel.FavouriteGigs = unitOfWork.FavouriteGigRepository.GetFavouriteGigs(userId)
+                    .ToList()
+                    .ToLookup(f => f.GigID);
+
+                viewModel.FavouriteInfluencers = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencers(userId)
+                    .ToList()
+                    .ToLookup(f => f.InfluencerID);
+            }
+
             //SEND THE SORTED LIST TO THE VIEW
             return View("AuroraPro", viewModel);
         }

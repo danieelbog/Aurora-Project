@@ -25,14 +25,30 @@
                 </div>
 
                 <div class="home-img">
-                    <ul class="nav home-nav">
-                        <li>
-                            <a href="@Url.Action("Login", "Account")">Login<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Register", "Account")">Register</a>
-                        </li>
-                    </ul>
+
+                    @if (Request.IsAuthenticated)
+                    {                      
+                        <ul class="nav home-nav">
+                            <li>
+                                <a class="nav-link hello-user position-relative float-right" role="button" href="@Url.Action("Details", "Influencer")">
+                                    <span class="text-white">@{Html.RenderAction("UserFullName", "Account");}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav home-nav">
+                            <li>
+                                <a href="@Url.Action("Login", "Account")">Login<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Register", "Account")">Register</a>
+                            </li>
+                        </ul>
+                    }
+
+
 
                     <a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/Logo/aurora_logoFINAL-05.png" class="home-logo img-fluid" /></a>
 
@@ -95,7 +111,7 @@
 
     <script>
         $(document).ready(function () {
-            HomeController.initial();
+            HtmlTabController.homeIndex();
         });
     </script>
 

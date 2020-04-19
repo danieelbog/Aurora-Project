@@ -189,7 +189,7 @@
                 @*NEW PART*@
                 <div class="card-footer align-content-around d-flex justify-content-between">
                     
-                    @(Model.FavouriteGigs.Contains(gig.ID) ? "Remove Gig From Favourites" : "Add Gig To Favourites")
+                    @(Model.FavouriteGigs.Contains(gig.ID) ? "Remove Gig From Favorites" : "Add Gig To Favorites")
                     
                     <i class="fa @(Model.FavouriteGigs.Contains(gig.ID) ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@gig.ID"></i>
                 </div>

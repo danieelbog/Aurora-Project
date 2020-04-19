@@ -247,6 +247,7 @@
     <Compile Include="Core\DTO\PremiumPackageDto.cs" />
     <Compile Include="Core\DTO\NotificationDto.cs" />
     <Compile Include="Core\Models\ChatHub.cs" />
+    <Compile Include="Core\ViewModels\InfluencerViewModels\InfluencerViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -432,7 +433,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\gigController.js" />
-    <Content Include="Scripts\app\controllers\homeController.js" />
+    <Content Include="Scripts\app\controllers\htmlTabController.js" />
     <Content Include="Scripts\app\controllers\influencerController.js" />
     <Content Include="Scripts\app\controllers\formInputCheckController.js" />
     <Content Include="Scripts\app\controllers\hoverIndustryController.js" />

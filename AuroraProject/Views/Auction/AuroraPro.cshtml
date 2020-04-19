@@ -143,8 +143,8 @@
                         }
 
                         <h3 class="card-title text-center">
-                            @*@auction.Gig.User.UserFullName
-                                <i class="fa @(auction.Gig.Contains(gig.Influencer.ID) ? "fa-heart" : "fa-heart-o") js-toggle-favourite-influencer animated fadeInDown" data-influencer-id="@gig.InfluencerID"></i>*@
+                            @auction.Gig.User.UserFullName
+                            <i class="fa @(Model.FavouriteInfluencers.Contains(auction.Gig.Influencer.ID) ? "fa-heart" : "fa-heart-o") js-toggle-favourite-influencer animated fadeInDown" data-influencer-id="@auction.Gig.InfluencerID"></i>
                         </h3>
                         <p class="card-subtitle text-center">@auction.Gig.Influencer.AboutTheInfluencer</p>
 
@@ -184,9 +184,9 @@
                 @*NEW PART*@
                 <div class="card-footer align-content-around d-flex justify-content-between">
 
-                    @*@(Model.FavouriteGigs.Contains(gig.ID) ? "Remove Gig From Favourites" : "Add Gig To Favourites")
+                    @(Model.FavouriteGigs.Contains(auction.GigID) ? "Remove Gig From Favourites" : "Add Gig To Favourites")
 
-                        <i class="fa @(Model.FavouriteGigs.Contains(gig.ID) ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@gig.ID"></i>*@
+                    <i class="fa @(Model.FavouriteGigs.Contains(auction.GigID) ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@auction.GigID"></i>
                 </div>
             </div>
         }
@@ -199,7 +199,7 @@
             //FAVOURITE GIG
             GigController.favouriteGig();
             //FAVOURITE INFLUENCER
-            FavouriteInfluencerController.initial();
+            InfluencerController.initial();
         });
     </script>
 }

@@ -6,22 +6,23 @@ using System.Web;
 
 namespace AuroraProject.Core.ViewModels
 {
-    public class AuctionViewModel
+    public class InfluencerViewModel
     {
-        public IEnumerable<Auction> Auctions { get; set; }
+        public IEnumerable<Influencer> Influencers { get; set; }
         public bool ShowActions { get; set; }
         public string Heading { get; set; }
-        public ILookup<int, FavouriteGig> FavouriteGigs { get; set; }
+
         public ILookup<int, FavouriteInfluencer> FavouriteInfluencers { get; set; }
 
-        public AuctionViewModel()
+        //RELATION WITH FILE - UPLOADING IMAGES ETC
+        public ICollection<FileUpload> FileUploads { get; set; }
+        public InfluencerViewModel()
         {
 
         }
-
-        public AuctionViewModel(IEnumerable<Auction> auctions, bool showActions, string heading)
+        public InfluencerViewModel(IEnumerable<Influencer> influencers, bool showActions, string heading)
         {
-            Auctions = auctions;
+            Influencers = influencers;
             ShowActions = showActions;
             Heading = heading;
         }

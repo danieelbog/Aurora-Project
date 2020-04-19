@@ -31,8 +31,8 @@ namespace AuroraProject
                         "~/Scripts/app/controllers/searchController.js",
                         //HOVER CONTROLLER
                         "~/Scripts/app/controllers/hoverIndustryController.js",
-                        //HOME CONTROLLER
-                        "~/Scripts/app/controllers/homeController.js",
+                        //HTML TAB CONTROLLER
+                        "~/Scripts/app/controllers/htmlTabController.js",
                         //APP JS
                         "~/Scripts/app.app.js"));
 

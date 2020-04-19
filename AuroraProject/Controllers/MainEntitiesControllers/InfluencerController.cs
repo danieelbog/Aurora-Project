@@ -29,7 +29,9 @@ namespace AuroraProject.Controllers
             // BRING THE INFLUENCERS THAT THE USER HAS FAVOURITED WITH ALL THEIR NEEDED PROPERTIES
             var influencers = unitOfWork.FavouriteInfluencerRepository.GetFavouriteInfluencersWithProperties(userId);
 
-            return View("MineInfluencers", influencers);
+            var viewModel = new InfluencerViewModel(influencers, true, "My Favorite Influencers");
+
+            return View("MineInfluencers", viewModel);
         }
 
 

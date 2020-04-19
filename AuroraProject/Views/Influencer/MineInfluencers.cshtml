@@ -1,72 +1,187 @@
-﻿@model IEnumerable<AuroraProject.Core.Models.Influencer>
+﻿@model AuroraProject.Core.ViewModels.InfluencerViewModel
 @{
-    ViewBag.Title = "Mine Favourite Influencers";
+    ViewBag.Title = Model.Heading;
 }
-<div class="container-fluid card-container-fluid">
+<div class="container-fluid card-container-fluid register">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">My Favourite Influencers</a></h6>
+    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
 
     <div class="page-decoration container">
-        <h1 class="page-heading">My Favourite Influencers</h1>
-        <p class="page-descreption">A fact about the user, based on his avtivity to make his day</p>       
+        <h1 class="page-heading-b">@Model.Heading</h1>
+        <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
 
-        <div class="sorting-div">
-            <p class="services-count">Influencers Available: @Model.Count()</p>
-        </div>
-    </div>
-
-    <div class="row justify-content-around">
-
-        <!-- Inverse Card -->
-        <div class="favourite-influncer-card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 col-xl-3 col-lg-5 col-md-6 col-sm-8">
-            <div class="front">
-                <div class="influencer-card" href="#">
-                    <div class="top">
-                        <div class="container">
-                            <div class="name">
-                                <p class="influencer-p1">Gal Gadot</p>
-                                <p class="city">Audience Main Country</p>
-                            </div>
-
-
-                            <div class="exposure">
-
-                                <div class="inlfunecer-likes">
-                                    <p class="influencer-p2">Exposure</p>
-                                </div>
-
-                                <div class="influnecer-maintopic">
-                                    <p class="influencer-p2">Main Topic</p>
-                                </div>
-
-                                <div class="influnecer-gigs">
-                                    <p class="influencer-p2">Gigs</p>
-                                </div>
-
-
-                            </div>
+        <div class="sorting-div-b">
+            <div class="dropdown">
+                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Influencer Options<b class="caret"></b></div>
+                <div class="dropdown-menu">
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Rating
+                                <input type="checkbox">
+                            </label>
                         </div>
                     </div>
-                    <div class="bottom">Follow</div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Name
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Most Followed
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Online
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="back">
-                        <div class="back-content middle">
-                            <span>Instagram</span> <br>
-                            <span>Youtube Channel</span> <br>
-                            <span>Facebook Channel</span> <br>
-                            <span>Linkedin</span> <br>
-                            <div class="lg">
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube"></i></a>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
+            <div class="dropdown">
+                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Card Options<b class="caret"></b></div>
+                <div class="dropdown-menu">
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Most Endoresed
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Lowest Price
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div href="#" data-toggle="dropdown" class="dropdown-toggle">Delivery Time<b class="caret"></b></div>
+                <div class="dropdown-menu">
+                    <div>
+                        <div class="checkbox">
+                            Express
+                            <label>
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Up to 3 Days
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Up to 5 Days
+                                <input type="checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                Up to 7 Days
+                                <input type="checkbox">
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="sorting-div">
+            <p class="services-count-b">Services Available: @Model.Influencers.Count()</p>
+        </div>
+    </div>
+    <div class="row-card-container">
+        @foreach (var influencer in Model.Influencers)
+        {
+            <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1 influencer-card-custom">
+                <div class="card-header d-flex flex-row">
+
+                    <div class="media-body">
+                        <h3 class="card-title text-center">
+                            @influencer.User.UserFullName
+                        </h3>
+                        <p class="card-subtitle text-center">@influencer.AboutTheInfluencer</p>
+                    </div>
+                </div>
+
+                @if (influencer.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
+                {
+                    <a class="pmd-card-media fav-influencer-img" href="">
+                        <img class="fav-influencer-img" src="~/File?id=@influencer.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" alt="Gig Background">
+                    </a>
+                }
+                else
+                {
+                    <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = influencer.ID })">
+                        <img src="http://propeller.in/assets/images/profile-pic.png" class="img-fluid fav-influencer-img">
+                    </a>
+                }
+
+                <div class="tab-content mt-1" id="myTabContent">
+                    <div class="influencerInfo-container tab-pane fade show active" id="influencerInfo" role="tabpanel" aria-labelledby="influencerInfo-tab">
+
+                        <a class="nav-link" id="audienceInfo-tab" data-toggle="tab" href="#audienceInfo" role="tab" aria-controls="audienceInfo" aria-selected="false">Audience</a>
+
+                        <div class="justify-content-center">
+                            <p class="d-flex justify-content-center">Main Platform: @influencer.MainPlatform</p>
+                            <p class="d-flex justify-content-center">Main Topic: @influencer.MainTopic</p>
+                            <p class="d-flex justify-content-center">Main Language: @influencer.MainLanguage</p>
+                            <p class="d-flex justify-content-center">Exposure: @influencer.Exposure Fans</p>
+                        </div>
+
+                    </div>
+                    <div class="audienceInfo-container tab-pane fade show" id="audienceInfo" role="tabpanel" aria-labelledby="audienceInfo-tab">
+
+                        <a class="nav-link active" id="influencerInfo-tab" data-toggle="tab" href="#influencerInfo" role="tab" aria-controls="influencerInfo" aria-selected="true">Influencer</a>
+
+                        <div class="justify-content-center">
+                            <p class="d-flex justify-content-center">Audience Age: @influencer.AudienceAge</p>
+                            <p class="d-flex justify-content-center">Audience Main Trait: @influencer.AudienceMainTrait Fan</p>
+                            <p class="d-flex justify-content-center">Audience Country: @influencer.AudienceMainCountry</p>
+                            <p class="d-flex justify-content-center">Audience State: @influencer.AudienceMainState</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-footer align-content-around d-flex justify-content-between">
+                    <p class="card-unfollow-influnecer">Unfollow Influencer</p>
+                    <i class="fa fa-heart js-toggle-favourite-influencer" data-influencer-id="@influencer.ID"></i>
+                </div>
+            </div>
+        }
     </div>
 </div>
 
-
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            HtmlTabController.mineInfluencer();
+            InfluencerController.initial();
+        });
+    </script>
+}

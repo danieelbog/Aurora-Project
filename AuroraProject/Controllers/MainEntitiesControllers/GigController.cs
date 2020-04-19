@@ -109,7 +109,7 @@ namespace AuroraProject.Controllers
 
             // CREATE THE VIEW THAT WE WILL SEND
             var viewModel = new GigsViewModel(gigs, User.Identity.IsAuthenticated,
-               "My Favourite Gigs", null);
+               "My Favorite Gigs", null);
 
             if (User.Identity.IsAuthenticated)
             {
