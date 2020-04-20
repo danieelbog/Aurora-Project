@@ -1,11 +1,13 @@
 ﻿let HtmlTabController = new function () {
     let homeIndex = function () {
         $("#industry-tab").click(function () {
-            $("#home-tab").removeClass("active");
+            $(".home-container-fluid").removeClass("position-absolute")
+            $("#home-tab").removeClass("active")
         })
 
         $("#home-tab").click(function () {
-            $("#industry-tab").removeClass("active");
+            $(".home-container-fluid").addClass("position-absolute")
+            $("#industry-tab").removeClass("active")
         })
     }
 

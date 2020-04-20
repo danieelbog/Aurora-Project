@@ -3,23 +3,29 @@
     ViewBag.Title = "ProIndustries";
 }
 
-<div class=" container-fluid">
+<div class="container-fluid register-b">
 
-    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Pro-Industries", "AuroraProIndustries", "Industry")</h6>
+    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > @Html.ActionLink("Pro-Industries", "AuroraProIndustries", "Industry")</h6>
 
-    <div class="page-decoration container">
-        <h1 class="page-heading">Industries</h1>
-        <p class="page-descreption">Custom Text to describe a Specific Industry with one catchy phrase</p>
+    <div class="page-decoration-b container">
+        <h1 class="page-heading-b">Industries</h1>
+        <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
     </div>
 
-    @foreach (var industry in Model)
-    {
-        <ul>
-            <li>
-                @Html.ActionLink(industry.IndustryName, "AuroraProSpecificIndustries", "SpecificIndustry", new {  industryID = industry.ID }, null)
-            </li>
-        </ul>
-    }
+    <div class="row row-home-industry  col-sm-12">
+        @foreach (var industry in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 m-2">
+                <div class="hovereffect home-industry-div">
+                    <img class="img-responsive" src="http://placehold.it/350x200" alt="">
+                    <div class="overlay">
+                        <h2>@industry.IndustryName</h2>
+                        @Html.ActionLink("Link", "AuroraProSpecificIndustries", "SpecificIndustry", new { industryID = industry.ID }, new { @class = "info" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 
 </div>
 
