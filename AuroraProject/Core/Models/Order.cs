@@ -1,4 +1,5 @@
 ﻿using AuroraProject.Core.DTO;
+using AuroraProject.Core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,68 +11,57 @@ namespace AuroraProject.Core.Models
     public class Order
     {
         public int ID { get; set; }
-        public int? BasicPackageID { get; set; }
-        public BasicPackage BasicPackage { get; set; }
-
-        public int? AdvancedPackageID { get; set; }
-        public AdvancedPackage AdvancedPackage { get; set; }
-
-        public int? PremiumPackageID { get; set; }
-        public PremiumPackage PremiumPackage { get; set; }
+        public string Name { get; set; }
         public int Count { get; set; }
         public float Price { get; set; }
+        public string Descreption { get; set; }
+        public string Coupon { get; set; }
+        public string SellerInstructions { get; set; }
         public DateTime DateOrdered { get; set; }
 
         [Required]
-        public string UserID { get; set; }
-        public ApplicationUser User { get; set; }
-
         public int ShoppingCartID { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
 
+        [Required]
+        public int GigID { get; set; }
+        public Gig Gig { get; set; }
+
         protected Order()
         {
-
-        }
-
-        private Order(int? basicPackageID, int? advancedPackageID, int? premiumPackageID, int count, ShoppingCart shoppingCart)
-        {
-            BasicPackageID = basicPackageID;
-            AdvancedPackageID = advancedPackageID;
-            PremiumPackageID = premiumPackageID;
             DateOrdered = DateTime.Now;
-            Count = count;
-            UserID = shoppingCart.Owner.Id;
-            ShoppingCartID = shoppingCart.ID;
         }
 
-        public static Order SetOrder(BasicPackage basicPackage, AdvancedPackage advancedPackage, PremiumPackage premiumPackage, int count, ShoppingCart shoppingCart)
+        public Order(string name,int count, float price, string descreption, string coupon, string sellerInstructions, int shoppingCartID, int gigID)
         {
-            if (basicPackage != null)
-            {
-                var order = new Order(basicPackage.ID, null, null, count, shoppingCart);
-                order.Price = count * basicPackage.Price;
-                return order;
+            Name = name;
+            Count = count;
+            Price = price;
+            Descreption = descreption;
+            Coupon = coupon;
+            SellerInstructions = sellerInstructions;
+            DateOrdered = DateTime.Now;
+            ShoppingCartID = shoppingCartID;
+            GigID = gigID;
+        }
 
-            }
-            else if (advancedPackage != null)
-            {
-                var order = new Order(null, advancedPackage.ID, null, count, shoppingCart);
-                order.Price = count * advancedPackage.Price;
-                return order;
+        public static Order CreateOrder(int count, ISellingPackage sellingPackage, string coupon, string sellerInstructions, int shoppingCartID, int gigID)
+        {
+            var order = new Order(sellingPackage.PackageName, count, sellingPackage.Price, sellingPackage.PackageDescreption, coupon, sellerInstructions, shoppingCartID, gigID);
 
-            }
-            else if (premiumPackage != null)
-            {
-                var order = new Order(null, null, premiumPackage.ID, count, shoppingCart);
-                order.Price = count * premiumPackage.Price;
-                return order;
+            order.Price = count * sellingPackage.Price;
 
-            }
-            else
-            {
-                return SetOrder(basicPackage, advancedPackage, premiumPackage, count, shoppingCart);
-            }
+            return order;
+        }
+
+        public void Modify(Order order)
+        {
+            Count = order.Count;
+            Price = Count * order.Price;
+            Descreption = order.Descreption;
+            Coupon = order.Coupon;
+            SellerInstructions = order.SellerInstructions;
+            DateOrdered = DateTime.Now;
         }
     }
 }

@@ -15,10 +15,15 @@ namespace AuroraProject.Persistence.Repositories
             _context = context;
         }
 
-        public UserNotification GetNotifications(int notificationId)
+        public UserNotification GetNotificationsToDisplay(int notificationId)
         {
             return _context.UserNotifications
                  .Single(un => !un.IsRead && notificationId == un.NotificationId);
+        }
+        public UserNotification GetNotificationsToDelete(int notificationId)
+        {
+            return _context.UserNotifications
+                 .Single(un => un.NotificationId == notificationId);
         }
 
         public void AddUserNotification(UserNotification userNotification)

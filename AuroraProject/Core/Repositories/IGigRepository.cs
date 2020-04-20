@@ -13,5 +13,10 @@ namespace AuroraProject.Core.Repositories
         IEnumerable<Gig> GetGigsForIndexWithSearch(int? specificIndustryID, string query = null);
         IEnumerable<Gig> GetGigsForMine(string userId);
         void RemoveGig(Gig gig);
+        Gig GetGigFromBasicPackage(int? basicId);
+        Gig GetGigFromAdvancedPackage(int? advancedId);
+        Gig GetGigFromPremiumPackage(int? premiumId);
+
+
     }
 }

@@ -26,45 +26,50 @@ namespace AuroraProject.Controllers.API
             var userId = User.Identity.GetUserId();
 
             var shoppingCart = unitOfWork.ShoppingCartRepository.GetShoppingCart(userId);
-
             if (shoppingCart == null)
                 return BadRequest();
 
-            if(orderDto.BasicPackageID != null)
+            if (orderDto.BasicPackageID != null && orderDto.AdvancedPackageID == null && orderDto.PremiumPackageID == null)
             {
-                var sellingPackage = unitOfWork.BasicPackageRepository.GetBasicPackagePurchase(orderDto.BasicPackageID);
-
-                if (sellingPackage == null)
-                    return BadRequest();
-
-                var order = Order.SetOrder(sellingPackage, null,null,orderDto.Count, shoppingCart);
-                shoppingCart.Orders.Add(order);
-
+                //BRING THE PACKAGE FOR PURCHASE
+                var package = unitOfWork.BasicPackageRepository.GetBasicPackagePurchase(orderDto.BasicPackageID);
+                // CHECK IF THE PACKAGE EXIST
+                if (package == null)
+                    return NotFound();
+                else
+                {
+                    var order = Order.CreateOrder(orderDto.Count, package, orderDto.Coupon, orderDto.SellerInstructions, shoppingCart.ID, orderDto.GigID);
+                    shoppingCart.Orders.Add(order);
+                }
             }
-            else if (orderDto.AdvancedPackageID != null)
+            else if (orderDto.BasicPackageID == null && orderDto.AdvancedPackageID != null && orderDto.PremiumPackageID == null)
             {
-                var sellingPackage = unitOfWork.AdvancedPackageRepository.GetAdvancedPackagePurchase(orderDto.AdvancedPackageID);
-
-                if (sellingPackage == null)
-                    return BadRequest();
-
-                var order = Order.SetOrder(null, sellingPackage, null, orderDto.Count, shoppingCart);
-                shoppingCart.Orders.Add(order);
+                //BRING THE PACKAGE FOR PURCHASE
+                var package = unitOfWork.AdvancedPackageRepository.GetAdvancedPackagePurchase(orderDto.AdvancedPackageID);
+                // CHECK IF THE PACKAGE EXIST
+                if (package == null)
+                    return NotFound();
+                else
+                {
+                    var order = Order.CreateOrder(orderDto.Count, package, orderDto.Coupon, orderDto.SellerInstructions, shoppingCart.ID, orderDto.GigID);
+                    shoppingCart.Orders.Add(order);
+                }
             }
-            else if (orderDto.PremiumPackageID != null)
+            else if (orderDto.BasicPackageID == null && orderDto.AdvancedPackageID == null && orderDto.PremiumPackageID != null)
             {
-                var sellingPackage = unitOfWork.PremiumPackageRepository.GetPremiumPackagePurchase(orderDto.PremiumPackageID);
-
-                if (sellingPackage == null)
-                    return BadRequest();
-
-                var order = Order.SetOrder(null, null, sellingPackage, orderDto.Count, shoppingCart);
-                shoppingCart.Orders.Add(order);
+                //BRING THE PACKAGE FOR PURCHASE
+                var package = unitOfWork.PremiumPackageRepository.GetPremiumPackagePurchase(orderDto.PremiumPackageID);
+                // CHECK IF THE PACKAGE EXIST
+                if (package == null)
+                    return NotFound();
+                else
+                {
+                    var order = Order.CreateOrder(orderDto.Count, package, orderDto.Coupon, orderDto.SellerInstructions, shoppingCart.ID, orderDto.GigID);
+                    shoppingCart.Orders.Add(order);
+                }
             }
             else
-            {
                 return BadRequest();
-            }
 
             unitOfWork.Complete();
 

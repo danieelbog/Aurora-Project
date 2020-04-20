@@ -16,36 +16,24 @@ namespace AuroraProject.Persistence.Repositories
             _context = context;
         }
 
-        public ICollection<Order> GetOrders(string userId)
+        public ICollection<Order> GetOrders(int shoppingCartID)
         {
             return _context.Orders
-                .Include(o => o.BasicPackage)
-                .Include(o => o.AdvancedPackage)
-                .Include(o => o.PremiumPackage)
-                .Include(o => o.User)
-                .Where(o => o.UserID == userId)
+                .Include(o => o.Gig)
+                .Include(o => o.Gig.User)
+                .Include(o => o.Gig.FileUploads)
+                .Where(o => o.ShoppingCartID == shoppingCartID)
                 .ToList();
         }
 
         public Order GetOrder(int orderId)
         {
             return _context.Orders
-                .Include(o => o.BasicPackage)
-                .Include(o => o.AdvancedPackage)
-                .Include(o => o.PremiumPackage)
-                .Include(o => o.User)
+                .Include(o => o.Gig)
+                .Include(o => o.Gig.User)
+                .Include(o => o.Gig.FileUploads)
                 .SingleOrDefault(o => o.ID == orderId);
 
-        }
-
-        public IEnumerable<Order> GetOrdersInShoppingCart(string userId)
-        {
-            return _context.ShoppingCarts
-                .Select(s => s.Orders.SingleOrDefault(o => o.User.Id == userId))
-                .Include(o => o.BasicPackage)
-                .Include(o => o.AdvancedPackage)
-                .Include(o => o.PremiumPackage)
-                .Include(o => o.User);
         }
 
         public void AddOrder(Order order)

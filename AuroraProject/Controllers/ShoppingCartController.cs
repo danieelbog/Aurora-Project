@@ -22,13 +22,12 @@ namespace AuroraProject.Controllers
         public ActionResult ShoppingCart()
         {
             var userId = User.Identity.GetUserId();
-
             var shoppingCart = unitOfWork.ShoppingCartRepository.GetShoppingCart(userId);
-            var orders = unitOfWork.OrderRepository.GetOrders(userId);
+            var orders = unitOfWork.OrderRepository.GetOrders(shoppingCart.ID);
 
             var viewModel = new ShoppingCartViewModel(shoppingCart, orders);
 
-            return View("ShoppingCart", viewModel);
+            return View("ShoppingCart",viewModel);
         }
     }
 }

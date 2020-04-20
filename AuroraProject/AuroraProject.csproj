@@ -335,9 +335,9 @@
     <Compile Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.designer.cs">
       <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\202004191946430_ShoppingCartModel.cs" />
-    <Compile Include="Persistence\Migrations\202004191946430_ShoppingCartModel.designer.cs">
-      <DependentUpon>202004191946430_ShoppingCartModel.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202004201806027_ShoppingCartModels.cs" />
+    <Compile Include="Persistence\Migrations\202004201806027_ShoppingCartModels.designer.cs">
+      <DependentUpon>202004201806027_ShoppingCartModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\UserViewModels\AccountViewModels.cs" />
@@ -429,6 +429,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\Images\download.jpg" />
     <Content Include="Content\Images\Images\home.jpg" />
+    <Content Include="Content\Images\Images\shoppingCart.png" />
     <Content Include="Content\Images\Images\wallet.png" />
     <Content Include="Content\Images\Login\InfluencerRegister.png" />
     <Content Include="Content\Images\Login\GigFormInput.png" />
@@ -725,8 +726,8 @@
     <EmbeddedResource Include="Persistence\Migrations\202004131018306_GigModelUpdateAndFilesModelUpdate.resx">
       <DependentUpon>202004131018306_GigModelUpdateAndFilesModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202004191946430_ShoppingCartModel.resx">
-      <DependentUpon>202004191946430_ShoppingCartModel.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202004201806027_ShoppingCartModels.resx">
+      <DependentUpon>202004201806027_ShoppingCartModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

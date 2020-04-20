@@ -117,5 +117,20 @@ namespace AuroraProject.Persistence.Repositories
         {
             _context.Gigs.Remove(gig);
         }
+
+        public Gig GetGigFromBasicPackage(int? basicId)
+        {
+            return _context.Gigs.SingleOrDefault(g => g.BasicPackageID == basicId);
+        }
+
+        public Gig GetGigFromAdvancedPackage(int? advancedId)
+        {
+            return _context.Gigs.SingleOrDefault(g => g.AdvancedPackageID == advancedId);
+        }
+
+        public Gig GetGigFromPremiumPackage(int? premiumId)
+        {
+            return _context.Gigs.SingleOrDefault(g => g.PremiumPackageID == premiumId);
+        }
     }
 }

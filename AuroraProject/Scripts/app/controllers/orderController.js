@@ -34,7 +34,10 @@
 
             let viewModel = {};
             viewModel.BasicPackageID = packageButton.attr("data-sellingPackage-id")
-            viewModel.ID = packageButton.attr("data-gig-id")
+            viewModel.GigID = packageButton.attr("data-gig-id")
+            viewModel.Count = 1;
+            viewModel.SellerInstructions = "Nothing for now";
+            viewModel.Coupon = "No Coupon";
 
             BootBoxDialog(packageButton, viewModel, packageName)
         });
@@ -50,7 +53,10 @@
 
             let viewModel = {};
             viewModel.AdvancedPackageID = packageButton.attr("data-sellingPackage-id")
-            viewModel.ID = packageButton.attr("data-gig-id")
+            viewModel.GigID = packageButton.attr("data-gig-id")
+            viewModel.Count = 1;
+            viewModel.SellerInstructions = "Nothing for now";
+            viewModel.Coupon = "No Coupon";
 
             BootBoxDialog(packageButton, viewModel, packageName)
         });
@@ -66,7 +72,10 @@
 
             let viewModel = {};
             viewModel.PremiumPackageID = packageButton.attr("data-sellingPackage-id")
-            viewModel.ID = packageButton.attr("data-gig-id")
+            viewModel.GigID = packageButton.attr("data-gig-id")
+            viewModel.Count = 1;
+            viewModel.SellerInstructions = "Nothing for now";
+            viewModel.Coupon = "No Coupon";
 
             BootBoxDialog(packageButton, viewModel, packageName)
         });

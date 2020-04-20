@@ -37,7 +37,7 @@ namespace AuroraProject.Controllers.API
 
             var userId = User.Identity.GetUserId();
 
-            var notification = unitOfWork.UserNotificationsRepository.GetNotifications(userNotificationDto.NotificationID);
+            var notification = unitOfWork.UserNotificationsRepository.GetNotificationsToDisplay(userNotificationDto.NotificationID);
 
             if (notification == null)
                 return BadRequest("No Notification Found");
@@ -58,7 +58,7 @@ namespace AuroraProject.Controllers.API
 
             var userId = User.Identity.GetUserId();
 
-            var notification = unitOfWork.UserNotificationsRepository.GetNotifications(id);
+            var notification = unitOfWork.UserNotificationsRepository.GetNotificationsToDelete(id);
 
             if (notification == null)
                 return BadRequest("No Notification Found");

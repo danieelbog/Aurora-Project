@@ -20,6 +20,7 @@ namespace AuroraProject.Persistence.Repositories
         {
             return _context.ShoppingCarts
                 .Include(s => s.Owner)
+                .Include(s => s.Orders)
                 .SingleOrDefault(s => s.Owner.Id == userId);
         }
     }
