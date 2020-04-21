@@ -3,49 +3,17 @@
     ViewBag.Title = Model.Heading;
 }
 
-<div class="container-fluid card-container-fluid register">
+<div class="register">
+    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();"> @Html.ActionLink(Model.Gig.SpecificIndustry.Name, "GigsPerIndustry", "SpecificIndustry", new { specificIndustryID = Model.Gig.SpecificIndustry.IndustryID }, null)</a>><a href="" onClick="window.location.reload();"> @Model.Heading</a></h6>
 
-    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.Heading</a></h6>
-
-    <div class="page-decoration container">
+    <div class="page-decoration-b container">
         <h1 class="page-heading-b">@Model.Heading</h1>
-        <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
+        <p class="page-descreption-b">Having Money makes Sence, and Sence Makes you Money!</p>
     </div>
 
-    @*NEW PART*@
-    <div class="row-card-container">
-        <!-- Inverse Card -->
-        <div class="card gig-card pmd-card pmd-card-dark mt-4 p-0 mr-1 ml-1">
-            <div class="card-header d-flex flex-row">
+    <div class="profile-header">
 
-                <div class="media-body">
-                    @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
-
-                    @if (Model.Gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
-                    {
-
-                        <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img class="img-fluid" src="~/File?id=@Model.Gig.Influencer.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" width="40" height="40" alt="Influencer Avatar">
-                        </a>
-                    }
-                    else
-                    {
-                        <a class="pmd-avatar-list-img position-absolute" href="javascript:void(0);">
-                            <img src="http://propeller.in/components/list/img/40x40.png" width="40" height="40">
-                        </a>
-                    }
-
-                    <h3 class="card-title text-center">
-                        @Model.Gig.User.UserFullName
-                        <i class="fa @(Model.isFollowing ? "fa-heart" : "fa-heart-o") js-toggle-favourite-influencer animated fadeInDown" data-influencer-id="@Model.Gig.InfluencerID"></i>
-                    </h3>
-                    <p class="card-subtitle text-center">@Model.Gig.Influencer.AboutTheInfluencer</p>
-
-                </div>
-            </div>
-
-
-
+        <div class="profile-img">
             @if (Model.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
             {
 
@@ -60,70 +28,170 @@
                     <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
                 </a>
             }
-
-            <div class="card-body">
-                <h2 class="card-title">@Model.Gig.GigName</h2>
-                <p class="card-text">@Model.Gig.Descreption</p>
+        </div>
+        <div class="profile-nav-info">
+            <h3 class="user-name">@Model.Gig.GigName</h3>
+            <div class="address">
+                <span id="country" class="country">From: @Model.Gig.User.UserFullName</span>
             </div>
 
-            <div class="card-body m-0 p-0">
-                <div class="col-12 d-flex justify-content-between">
-                    <p class="card-subtitle mb-1 align-self-end">Delivery Time: @Model.Gig.BasicPackage.DeliveryTime Days</p>
-                    <p class="card-subtitle mb-1 align-self-end">Starting From: @Model.Gig.BasicPackage.Price $</p>
+        </div>
+        <div class="profile-option">
+            <div class="notification">
+                <i class="fa fa-heart"></i>
+                <span class="alert-message text-light">0</span>
+            </div>
+            <div class="notification">
+                <i class="fa fa-thumbs-up"></i>
+                <span class="alert-message text-light">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-bd">
+        <div class="left-side">
+            <div class="profile-side">
+                <div class="user-bio">
+                    <h3>@Html.DisplayNameFor(model => model.Gig.Descreption)</h3>
+                    <p class="bio">
+                        @Model.Gig.Descreption
+                    </p>
                 </div>
-            </div>
 
+                <div class="user-bio">
+                    <h4>@Html.DisplayNameFor(model => model.Gig.SpecificIndustry)</h4>
+                    <p class="bio">
+                        @Model.Gig.SpecificIndustry.Name
+                    </p>
+                </div>
 
-            @*NEW PART*@
-            <div class="card-footer align-content-around d-flex justify-content-between">
-
-                @(Model.isFavourited ? "Remove Gig From Favourites" : "Add Gig To Favourites")
-
-                <i class="fa @(Model.isFavourited ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@Model.Gig.ID"></i>
+                <div class="user-rating">
+                    <h3 class="rating">4.5</h3>
+                    <div class="rate">
+                        <div class="star-outer">
+                            <div class="star-inner">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <span class="no-of-user-rate"><span>123</span>&nbsp;&nbsp;reviews</span>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <div class="right-side">
 
-        @if (Model.ShowActions)
-        {
-            <div class="purchase-forms">
-                <form id="purchace-gig-basic">
-                    <button id="basic" class="btn btn-danger basicPackageBtn js-button-click" data-sellingPackage-id="@Model.Gig.BasicPackageID" data-gig-id="@Model.Gig.ID">
-                        @Model.Gig.BasicPackage.PackageName
-                    </button>
-                </form>
-
-                <form id="purchace-gig-advanced">
-                    <button id="advanced" class="btn btn-info advancedPackageBtn js-button-click" data-sellingPackage-id="@Model.Gig.AdvancedPackageID" data-gig-id="@Model.Gig.ID">
-                        @Model.Gig.AdvancedPackage.PackageName
-                    </button>
-                </form>
-
-                <form id="purchace-gig-premium">
-                    <button id="premium" class="btn btn-success premiumPackagebtn js-button-click" data-sellingPackage-id="@Model.Gig.PremiumPackageID" data-gig-id="@Model.Gig.ID">
-                        @Model.Gig.PremiumPackage.PackageName
-                    </button>
-                </form>
+            <div class="my-profile-nav">
+                <ul id="myTab" role="tablist">
+                    <li class="user-post nav-link active" id="auction-tab" data-toggle="tab" href="#auction" role="tab" aria-controls="auction" aria-selected="true">First Package</li>
+                    <li class="user-review nav-link" id="position-tab" data-toggle="tab" href="#position" role="tab" aria-controls="position" aria-selected="false">Second Package</li>
+                    <li class="user-setting nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Third Package</li>
+                </ul>
             </div>
-        }
+
+            <div class="profile-body tab-content purchase-forms" id="myTabContent">
+                <div class="my-profile-tab tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="auction-tab">
+                    <div class="single-pricing">
+                        <div class="head-text">
+                            <h3>@Model.Gig.BasicPackage.PackageName</h3>
+                        </div>
+                        <div class="price-area">
+                            @Model.Gig.BasicPackage.Price $
+                        </div>
+                        <div class="feature-area">
+                            <ul>
+                                <li>@Model.Gig.BasicPackage.PackageDescreption</li>
+                                <li>Delivery Time: @Model.Gig.BasicPackage.DeliveryTime</li>
+                                <li>Unlimited Revisions</li>
+                                <li>Safe Transactions</li>
+                                <li>Technical Support</li>
+                            </ul>
+                        </div>
+
+                        <form id="purchace-gig-basic">
+                            <button id="basic" class="btn btn-danger basicPackageBtn js-button-click" data-sellingPackage-id="@Model.Gig.BasicPackageID" data-gig-id="@Model.Gig.ID">
+                                @Model.Gig.BasicPackage.PackageName
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="my-profile-tab tab-pane fade show" id="position" role="tabpanel" aria-labelledby="position-tab">
+                    <div class="single-pricing">
+                        <div class="head-text">
+                            <h3>@Model.Gig.AdvancedPackage.PackageName</h3>
+                        </div>
+                        <div class="price-area">
+                            @Model.Gig.AdvancedPackage.Price $
+                        </div>
+                        <div class="feature-area">
+                            <ul>
+                                <li>@Model.Gig.AdvancedPackage.PackageDescreption</li>
+                                <li>Delivery Time: @Model.Gig.AdvancedPackage.DeliveryTime</li>
+                                <li>Unlimited Revisions</li>
+                                <li>Safe Transactions</li>
+                                <li>Technical Support</li>
+                            </ul>
+                        </div>
+                        <form id="purchace-gig-advanced">
+                            <button id="advanced" class="btn btn-info advancedPackageBtn js-button-click" data-sellingPackage-id="@Model.Gig.AdvancedPackageID" data-gig-id="@Model.Gig.ID">
+                                @Model.Gig.AdvancedPackage.PackageName
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="my-profile-tab tab-pane fade show" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    <div class="account-setting">
+                        <div class="single-pricing">
+                            <div class="head-text">
+                                <h3>@Model.Gig.PremiumPackage.PackageName</h3>
+                            </div>
+                            <div class="price-area">
+                                @Model.Gig.PremiumPackage.Price $
+                            </div>
+                            <div class="feature-area">
+                                <ul>
+                                    <li>@Model.Gig.PremiumPackage.PackageDescreption</li>
+                                    <li>Delivery Time: @Model.Gig.PremiumPackage.DeliveryTime</li>
+                                    <li>Unlimited Revisions</li>
+                                    <li>Safe Transactions</li>
+                                    <li>Technical Support</li>
+                                </ul>
+                            </div>
+                            <form id="purchace-gig-premium">
+                                <button id="premium" class="btn btn-success premiumPackagebtn js-button-click" data-sellingPackage-id="@Model.Gig.PremiumPackageID" data-gig-id="@Model.Gig.ID">
+                                    @Model.Gig.PremiumPackage.PackageName
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 
 
 @section scripts {
     <script>
         $(document).ready(function () {
-
             //FAVOURITE GIG
             GigController.favouriteGig();
             //FAVOURITE INFLUENCER
-            InfluencerController.initial();
-            //PURCHASE PACKAGE
-            //PurchaseController.initial(".purchase-forms");
-
+            InfluencerController.initial();            
             //ADD ORDER
             OrderController.initial(".purchase-forms");
+            //JS FOR TABS
+            HtmlTabController.myProfileTabs();
+
         });
     </script>
 }

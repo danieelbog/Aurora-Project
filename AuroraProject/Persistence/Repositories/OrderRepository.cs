@@ -20,6 +20,9 @@ namespace AuroraProject.Persistence.Repositories
         {
             return _context.Orders
                 .Include(o => o.Gig)
+                .Include(o => o.Gig.BasicPackage)
+                .Include(o => o.Gig.AdvancedPackage)
+                .Include(o => o.Gig.PremiumPackage)
                 .Include(o => o.Gig.User)
                 .Include(o => o.Gig.FileUploads)
                 .Where(o => o.ShoppingCartID == shoppingCartID)

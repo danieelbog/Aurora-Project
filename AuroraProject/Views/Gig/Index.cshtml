@@ -111,12 +111,6 @@
             </div>
         </div>
 
-
-
-
-
-
-
         <div class="sorting-div">
             <p class="services-count-b">Services Available: @Model.Gigs.Count()</p>
         </div>
@@ -131,8 +125,6 @@
                 <div class="card-header d-flex flex-row">
 
                     <div class="media-body">
-                        @*<p class="text-center text-capitalize text-danger enabled-gig"><i class="fa fa-eye-slash"></i></p>*@
-
                         @if (gig.Influencer.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
                         {
 
@@ -149,14 +141,14 @@
 
                         <h3 class="card-title text-center">
                             @gig.User.UserFullName
-                            <i class="fa @(Model.FavouriteInfluencers.Contains(gig.Influencer.ID) ? "fa-heart" : "fa-heart-o") js-toggle-favourite-influencer animated fadeInDown" data-influencer-id="@gig.InfluencerID"></i>
+                            @if (Model.ShowActions)
+                            {
+                                <i class="fa @(Model.FavouriteInfluencers.Contains(gig.Influencer.ID) ? "fa-heart" : "fa-heart-o") js-toggle-favourite-influencer animated fadeInDown" data-influencer-id="@gig.InfluencerID"></i>
+                            }
                         </h3>
                         <p class="card-subtitle text-center">@gig.Influencer.AboutTheInfluencer</p>
-
                     </div>
                 </div>
-
-
 
                 @if (gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
                 {
@@ -187,12 +179,16 @@
 
 
                 @*NEW PART*@
-                <div class="card-footer align-content-around d-flex justify-content-between">
-                    
-                    @(Model.FavouriteGigs.Contains(gig.ID) ? "Remove Gig From Favorites" : "Add Gig To Favorites")
-                    
-                    <i class="fa @(Model.FavouriteGigs.Contains(gig.ID) ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@gig.ID"></i>
-                </div>
+                @if (Model.ShowActions)
+                {
+                    <div class="card-footer align-content-around d-flex justify-content-between">
+
+                        @(Model.FavouriteGigs.Contains(gig.ID) ? "Remove Gig From Favorites" : "Add Gig To Favorites")
+
+                        <i class="fa @(Model.FavouriteGigs.Contains(gig.ID) ? "fa-heart" : "fa-heart-o") pmd-sm js-toggle-favourite-gig" data-gig-id="@gig.ID"></i>
+                    </div>
+                }
+
             </div>
         }
     </div>

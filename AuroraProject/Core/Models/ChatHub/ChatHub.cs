@@ -50,6 +50,7 @@ namespace AuroraProject.Core.Models
         //SEND MESSAGE TO GROUP
         public void SendMessageToGroup(string group, string message)
         {
+
             var name = Context.User.Identity.Name;
             Clients.Group(group).addNewMessageToPage(name, message);
         }

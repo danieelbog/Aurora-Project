@@ -232,6 +232,7 @@
     <Compile Include="Controllers\API\NotificationsController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
     <Compile Include="Controllers\API\SellingPackagesController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\EconomicControllers\AuctionController.cs" />
     <Compile Include="Controllers\MainEntitiesControllers\FileController.cs" />
     <Compile Include="Controllers\MainEntitiesControllers\GigController.cs" />
@@ -239,7 +240,7 @@
     <Compile Include="Controllers\MainEntitiesControllers\InfluencerController.cs" />
     <Compile Include="Controllers\IndustryContollers\SpecificIndustryController.cs" />
     <Compile Include="Controllers\EconomicControllers\WalletController.cs" />
-    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\EconomicControllers\ShoppingCartController.cs" />
     <Compile Include="Core\DTO\AdvancedPackageDto.cs" />
     <Compile Include="Core\DTO\BasicPackageDto.cs" />
     <Compile Include="Core\DTO\FavouriteGigDto.cs" />
@@ -249,9 +250,9 @@
     <Compile Include="Core\DTO\OrderDto.cs" />
     <Compile Include="Core\DTO\PremiumPackageDto.cs" />
     <Compile Include="Core\DTO\NotificationDto.cs" />
-    <Compile Include="Core\Models\ChatHub.cs" />
-    <Compile Include="Core\Models\Order.cs" />
-    <Compile Include="Core\Models\ShoppingCart.cs" />
+    <Compile Include="Core\Models\ChatHub\ChatHub.cs" />
+    <Compile Include="Core\Models\EconomicClasses\Order.cs" />
+    <Compile Include="Core\Models\EconomicClasses\ShoppingCart.cs" />
     <Compile Include="Core\ViewModels\InfluencerViewModels\InfluencerViewModel.cs" />
     <Compile Include="Core\ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -653,6 +654,7 @@
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
     <Content Include="Views\Auction\_AuctionForm.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

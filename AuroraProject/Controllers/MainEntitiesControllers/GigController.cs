@@ -28,6 +28,7 @@ namespace AuroraProject.Controllers
         }
 
         //GET: THE DETAILS OF A GIG
+        [Authorize]
         public ActionResult Details(int gigID)
         {
             var gig = unitOfWork.GigsRepository.GetGigForDetails(gigID);
