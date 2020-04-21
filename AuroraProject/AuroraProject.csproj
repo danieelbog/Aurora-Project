@@ -652,6 +652,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
+    <Content Include="Views\Auction\_AuctionForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

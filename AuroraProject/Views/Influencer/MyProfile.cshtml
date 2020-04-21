@@ -3,216 +3,354 @@
     ViewBag.Title = Model.PageName;
 }
 
-<div class="container-fluid myprofile-container-fluid register">
+@*<div class="container-fluid myprofile-container-fluid register">
 
-    <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.FullName </a>><a href="" onClick="window.location.reload();"> @Model.PageName</a></h6>
+        <h6 class="navigator-h6-b">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">@Model.FullName </a>><a href="" onClick="window.location.reload();"> @Model.PageName</a></h6>
 
-    <div class="page-decoration container">
-        <h1 class="page-heading-b">@Model.PageName</h1>
-        <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
-    </div>
-
-    <form id="update-influencer" enctype = "multipart/form-data">
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="sidebar">
-            <nav>
-                <ul class="mine-profile-ul">
-                    @if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
-                    {
-                        <li class="GalGadot"><img src="~/File?id=@Model.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" alt="avatar" style="width: 100px; height: 100px; border-radius: 50%;"><hr class="text-hide" /><p>@Model.FullName</p> <hr /></li>
-                    }
-                    else
-                    {
-                        <li class="GalGadot"><img src="~/Content/Images/Images/download.jpg" style="width: 100px; height: 100px; border-radius: 50%;"><hr class="text-hide" /><p>@Model.FullName</p> <hr /></li>
-                    }
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.AboutTheInfluencer)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.AboutTheInfluencer, new { placeholder = "Describe yourself", @type = "text", @class = "mine-profile-input border-0 aboutTheInfluencer-text-area", @readonly = "readonly", @rows = "2", @cols = "80" })
-                            @Html.ValidationMessageFor(m => m.AboutTheInfluencer, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="AboutTheInfluencer-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="AboutTheInfluencer-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.MainTopic)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.MainTopic, new { placeholder = "Your main topic", @type = "text", @class = "mine-profile-input border-0 mainTopic-text-area", @readonly = "readonly" })
-                            @Html.ValidationMessageFor(m => m.MainTopic, "", new { @class = "error-register" })
-                            <div class="m-1 hide">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MainTopic-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MainTopic-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.MembershipTypes)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.DropDownListFor(m => m.MembershipTypeID, new SelectList(Model.MembershipTypes, "ID", "Name"), "Membership Type", new { @class = "mineProfile-custom-dropdown border-0 membershipTypeID-text-area", @readonly = "disabled" })
-                            @Html.ValidationMessageFor(m => m.MembershipTypeID, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MembershipTypeID-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MembershipTypeID-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.MainLanguage)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.MainLanguage, new { placeholder = "What is your main used language", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 mainLanguage-text-area" })
-                            @Html.ValidationMessageFor(m => m.MainLanguage, "", new { @class = "error-register" })
-
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MainLanguage-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MainLanguage-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.MainPlatform)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.MainPlatform, new { placeholder = "What is your main used language", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 mainPlatform-text-area" })
-                            @Html.ValidationMessageFor(m => m.MainPlatform, "", new { @class = "error-register" })
-
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MainPlatform-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MainPlatform-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.Exposure)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.Exposure, new { placeholder = "How many followers do you have", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 exposure-text-area" })
-                            @Html.ValidationMessageFor(m => m.Exposure, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="Exposure-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="Exposure-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.AudienceAge)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.AudienceAge, new { placeholder = "Your audience age", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 audienceAge-text-area" })
-                            @Html.ValidationMessageFor(m => m.AudienceAge, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="AudienceAge-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="AudienceAge-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b>
-                                    @Html.DisplayNameFor(model => model.AudienceMainTrait)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.AudienceMainTrait, new { placeholder = "Describe your audience with one phrase", @type = "text", @readonly = "readonly", @class = " mine-profile-input border-0 audienceMainTrait-text-area" })
-                            @Html.ValidationMessageFor(m => m.AudienceMainTrait, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="AudienceMainTrait-Update">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="AudienceMainTrait-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b class="js-main-country">
-                                    @Html.DisplayNameFor(model => model.AudienceMainCountry)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.AudienceMainCountry, new { placeholder = "Where is your main Audience From", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 audienceMainCountry-text-area" })
-                            @Html.ValidationMessageFor(m => m.AudienceMainCountry, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2 animated" value="Update" id="AudienceMainCountry-Update" data-id="1">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2 animated" value="Cancel" id="AudienceMainCountry-Cancel" data-id="2">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="mine-profile-label">
-                            <div class="mt-1">
-                                <b class="js-main-trait">
-                                    @Html.DisplayNameFor(model => model.AudienceMainTrait)
-                                    <i class="fa fa-pencil mine-profile-pencil"></i>
-                                </b>
-                            </div>
-                            @Html.TextAreaFor(m => m.AudienceMainState, new { placeholder = "What is your Audience main State", @type = "text", @readonly = "readonly", @class = "mine-profile-input audienceMainState-text-area border-0" })
-                            @Html.ValidationMessageFor(m => m.AudienceMainState, "", new { @class = "error-register" })
-                            <div class="m-1">
-                                <button type="submit" class="btn my-profile-button-update m-2 animated" value="Update" id="AudienceMainState-Update" data-influencer-AudienceMainstate="@Model.AudienceMainState" data-influencer-id="@Model.ID">Update</button>
-                                <button type="button" class="btn my-profile-button-cancel m-2 animated" value="Cancel" id="AudienceMainState-Cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-                    @Html.HiddenFor(i => i.ID, new { @class = "id-text-area" })
-                </ul>
-            </nav>
+        <div class="page-decoration container">
+            <h1 class="page-heading-b">@Model.PageName</h1>
+            <p class="page-descreption-b">Custom Text to describe a Specific Industry with one catchy phrase</p>
         </div>
-    </form>
-    @{Html.RenderAction("Index", "Auction");}
+
+        <form id="update-influencer" enctype = "multipart/form-data">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="sidebar">
+                <nav>
+                    <ul class="mine-profile-ul">
+                        @if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
+                        {
+                            <li class="GalGadot"><img src="~/File?id=@Model.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" alt="avatar" style="width: 100px; height: 100px; border-radius: 50%;"><hr class="text-hide" /><p>@Model.FullName</p> <hr /></li>
+                        }
+                        else
+                        {
+                            <li class="GalGadot"><img src="~/Content/Images/Images/download.jpg" style="width: 100px; height: 100px; border-radius: 50%;"><hr class="text-hide" /><p>@Model.FullName</p> <hr /></li>
+                        }
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.AboutTheInfluencer)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.AboutTheInfluencer, new { placeholder = "Describe yourself", @type = "text", @class = "mine-profile-input border-0 aboutTheInfluencer-text-area", @readonly = "readonly", @rows = "2", @cols = "80" })
+                                @Html.ValidationMessageFor(m => m.AboutTheInfluencer, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="AboutTheInfluencer-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="AboutTheInfluencer-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.MainTopic)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.MainTopic, new { placeholder = "Your main topic", @type = "text", @class = "mine-profile-input border-0 mainTopic-text-area", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.MainTopic, "", new { @class = "error-register" })
+                                <div class="m-1 hide">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MainTopic-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MainTopic-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.MembershipTypes)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.DropDownListFor(m => m.MembershipTypeID, new SelectList(Model.MembershipTypes, "ID", "Name"), "Membership Type", new { @class = "mineProfile-custom-dropdown border-0 membershipTypeID-text-area", @readonly = "disabled" })
+                                @Html.ValidationMessageFor(m => m.MembershipTypeID, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MembershipTypeID-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MembershipTypeID-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.MainLanguage)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.MainLanguage, new { placeholder = "What is your main used language", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 mainLanguage-text-area" })
+                                @Html.ValidationMessageFor(m => m.MainLanguage, "", new { @class = "error-register" })
+
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MainLanguage-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MainLanguage-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.MainPlatform)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.MainPlatform, new { placeholder = "What is your main used language", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 mainPlatform-text-area" })
+                                @Html.ValidationMessageFor(m => m.MainPlatform, "", new { @class = "error-register" })
+
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="MainPlatform-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="MainPlatform-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.Exposure)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.Exposure, new { placeholder = "How many followers do you have", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 exposure-text-area" })
+                                @Html.ValidationMessageFor(m => m.Exposure, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="Exposure-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="Exposure-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.AudienceAge)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.AudienceAge, new { placeholder = "Your audience age", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 audienceAge-text-area" })
+                                @Html.ValidationMessageFor(m => m.AudienceAge, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="AudienceAge-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="AudienceAge-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b>
+                                        @Html.DisplayNameFor(model => model.AudienceMainTrait)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.AudienceMainTrait, new { placeholder = "Describe your audience with one phrase", @type = "text", @readonly = "readonly", @class = " mine-profile-input border-0 audienceMainTrait-text-area" })
+                                @Html.ValidationMessageFor(m => m.AudienceMainTrait, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2" value="Update" id="AudienceMainTrait-Update">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2" value="Cancel" id="AudienceMainTrait-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b class="js-main-country">
+                                        @Html.DisplayNameFor(model => model.AudienceMainCountry)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.AudienceMainCountry, new { placeholder = "Where is your main Audience From", @type = "text", @readonly = "readonly", @class = "mine-profile-input border-0 audienceMainCountry-text-area" })
+                                @Html.ValidationMessageFor(m => m.AudienceMainCountry, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2 animated" value="Update" id="AudienceMainCountry-Update" data-id="1">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2 animated" value="Cancel" id="AudienceMainCountry-Cancel" data-id="2">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mine-profile-label">
+                                <div class="mt-1">
+                                    <b class="js-main-trait">
+                                        @Html.DisplayNameFor(model => model.AudienceMainTrait)
+                                        <i class="fa fa-pencil mine-profile-pencil"></i>
+                                    </b>
+                                </div>
+                                @Html.TextAreaFor(m => m.AudienceMainState, new { placeholder = "What is your Audience main State", @type = "text", @readonly = "readonly", @class = "mine-profile-input audienceMainState-text-area border-0" })
+                                @Html.ValidationMessageFor(m => m.AudienceMainState, "", new { @class = "error-register" })
+                                <div class="m-1">
+                                    <button type="submit" class="btn my-profile-button-update m-2 animated" value="Update" id="AudienceMainState-Update" data-influencer-AudienceMainstate="@Model.AudienceMainState" data-influencer-id="@Model.ID">Update</button>
+                                    <button type="button" class="btn my-profile-button-cancel m-2 animated" value="Cancel" id="AudienceMainState-Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+                        @Html.HiddenFor(i => i.ID, new { @class = "id-text-area" })
+                    </ul>
+                </nav>
+            </div>
+        </form>
+        @{Html.RenderAction("Index", "Auction");}
+    </div>*@
+
+
+<div class="container-fluid my-profile-container">
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-img">
+                @if (Model.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar))
+                {
+                    <img src="~/File?id=@Model.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Avatar).ID" width="200" alt="Profile Image">
+                }
+                else
+                {
+                    <img src="~/Content/Images/Images/download.jpg" width="200" alt="Profile Image">
+                }
+            </div>
+            <div class="profile-nav-info">
+                <h3 class="user-name">@Model.FullName</h3>
+                <div class="address">
+                    <p id="state" class="state">@Model.AudienceMainCountry | </p>
+                    <span id="country" class="country">@Model.AudienceMainState</span>
+                </div>
+
+            </div>
+            <div class="profile-option">
+                <div class="notification">
+                    <i class="fa fa-bell"></i>
+                    <span class="alert-message text-light">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-bd">
+            <div class="left-side">
+                <div class="profile-side">
+                    <p class="user-mail"><i class="fa fa-envelope"></i> @User.Identity.Name</p>
+                    <p class="user-mail"><i class="fa fa-plane"></i>Main Platform: @Model.MainPlatform</p>
+                    <p class="user-mail"><i class="fa fa-user-plus"></i>Exposure: @Model.Exposure</p>
+                    <div class="user-bio">
+                        <h3>@Html.DisplayNameFor(model => model.AboutTheInfluencer)</h3>
+                        <p class="bio">
+                            @Model.AboutTheInfluencer
+                        </p>
+                    </div>
+
+                    <div class="user-bio">
+                        <h4>@Html.DisplayNameFor(model => model.MainLanguage)</h4>
+                        <p class="bio">
+                            @Model.MainLanguage
+                        </p>
+                    </div>
+
+
+                    <div class="user-bio">
+                        <h4>@Html.DisplayNameFor(model => model.MembershipType)</h4>
+                        <p class="bio">
+                            @Model.MembershipType.Name
+                        </p>
+                    </div>
+
+                    <div class="user-bio">
+                        <h4>@Html.DisplayNameFor(model => model.AudienceAge)</h4>
+                        <p class="bio">
+                            @Model.AudienceAge
+                        </p>
+                    </div>
+
+
+                    <div class="user-bio">
+                        <h4>@Html.DisplayNameFor(model => model.AudienceMainTrait)</h4>
+                        <p class="bio">
+                            @Model.AudienceMainTrait
+                        </p>
+                    </div>
+
+                    <div class="user-rating">
+                        <h3 class="rating">4.5</h3>
+                        <div class="rate">
+                            <div class="star-outer">
+                                <div class="star-inner">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <span class="no-of-user-rate"><span>123</span>&nbsp;&nbsp;reviews</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="right-side">
+
+                <div class="my-profile-nav">
+                    <ul id="myTab" role="tablist">
+                        <li class="user-post nav-link active" id="auction-tab" data-toggle="tab" href="#auction" role="tab" aria-controls="auction" aria-selected="true">Auction</li>
+                        <li class="user-review nav-link" id="position-tab" data-toggle="tab" href="#position" role="tab" aria-controls="position" aria-selected="false">Position</li>
+                        <li class="user-setting nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</li>
+                    </ul>
+                </div>
+
+                <div class="profile-body tab-content" id="myTabContent">
+                    <div class="my-profile-tab tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="auction-tab">
+                        <h1>Place Your Bet</h1>
+                        <p>
+                            By placing a bet for one of your gigs, you get the chance the gig, to be displayed in Aurora Pro. Based on your Bet, your gig will get a "position", in which it will be displayed.
+                        </p>
+                        @{Html.RenderAction("AuctionForm", "Auction");}
+                    </div>
+
+                    <div class="my-profile-tab tab-pane fade show" id="position" role="tabpanel" aria-labelledby="position-tab">
+                        <h1>Your Gigs Position</h1>
+                        <p>
+                            If you have placed a bet for a Gig, it will be displayed in AuroraPro. In this section you can Check its performance.
+                        </p>
+                        @{Html.RenderAction("Index", "Auction");}
+
+                    </div>
+
+                    <div class="my-profile-tab tab-pane fade show" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                        <div class="account-setting">
+                            <h1>User Reviews</h1>
+                            <p>
+                                In this section you can check the reviews you currently have.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 
 @section scripts {
     <script>
         $(document).ready(function () {
             // UPDATE MY PROFILE
             UpdateMyProfileController.initial();
+
+            //JS FOR TABS
+            HtmlTabController.myProfileTabs();
+
         });
     </script>
 }

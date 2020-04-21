@@ -21,9 +21,28 @@
         })
     }
 
+    let myProfileTabs = function () {
+
+        $("#auction-tab").click(function () {
+            $("#position-tab").removeClass("active")
+            $("#reviews-tab").removeClass("active")            
+        })
+
+        $("#position-tab").click(function () {
+            $("#auction-tab").removeClass("active")
+            $("#reviews-tab").removeClass("active")
+        })
+
+        $("#reviews-tab").click(function () {
+            $("#position-tab").removeClass("active")
+            $("#auction-tab").removeClass("active")
+        })
+    }
+
     return {
         homeIndex: homeIndex,
-        mineInfluencer: mineInfluencer
+        mineInfluencer: mineInfluencer,
+        myProfileTabs: myProfileTabs
     }
 
 }();

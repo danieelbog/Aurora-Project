@@ -169,14 +169,14 @@
                 @if (gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
                 {
 
-                    <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
+                    <a class="pmd-card-media" href="@Url.Action("Edit", "Gig", new { gigID = gig.ID })">
                         <img class="img-fluid" src="~/File?id=@gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID" alt="Gig Background" width="1184" height="666">
                     </a>
                 }
                 else
                 {
 
-                    <a class="pmd-card-media" href="@Url.Action("Details", "Gig", new { gigID = gig.ID })">
+                    <a class="pmd-card-media" href="@Url.Action("Edit", "Gig", new { gigID = gig.ID })">
                         <img src="http://propeller.in/assets/images/profile-pic.png" width="1184" height="666" class="img-fluid">
                     </a>
                 }

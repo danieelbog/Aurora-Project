@@ -73,6 +73,23 @@ namespace AuroraProject.Controllers
             return PartialView("_Auction", viewModel);
         }
 
+        public ActionResult AuctionForm()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var gigs = unitOfWork.GigsRepository.GetGigsForAuction(userId).ToList();
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForAuction(userId).ToList();
+
+            // CREATE VIEW MODEL TO SEND IT TO THE VIEW
+            var viewModel = new AuctionFormViewModel
+            {
+                Gigs = gigs,
+                Auctions = auctions
+            };
+
+            return PartialView("_AuctionForm", viewModel);
+        }
+
         // POST: Auction
         [HttpPost]
         public ActionResult Create(AuctionFormViewModel viewModel)

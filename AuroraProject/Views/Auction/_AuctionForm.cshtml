@@ -1,0 +1,46 @@
+﻿@model AuroraProject.Core.ViewModels.AuctionFormViewModel
+
+@using (Html.BeginForm("Create", "Auction", null, FormMethod.Post, new { @class = "auction-form-profile" }))
+{
+    @Html.AntiForgeryToken()
+
+    foreach (var gig in Model.Gigs)
+    {
+        <hr />
+        <tr>
+            <th scope="row" class="border-0">
+                <div class="p-2">
+
+                    @if (gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
+                    {
+                        <img alt="" width="70" class="img-fluid rounded shadow-sm" src="~/File?id=@gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID">
+                    }
+                    else
+                    {
+                        <img src="http://propeller.in/assets/images/profile-pic.png" alt="" width="70" class="img-fluid rounded shadow-sm">
+                    }
+
+                    <div class="ml-3 d-inline-block text-lg-left text-sm-left">
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">@gig.GigName</a></h5><span class="text-muted font-weight-normal font-italic d-block">@gig.Descreption</span>
+                    </div>
+                </div>
+            </th>
+            <td class="border-0 align-middle">
+                @Html.TextBoxFor(m => m.Bet, new { @class = "form-control bet-form-control shadow-none", @placeholder = "Your Bet", @Value = "" })
+                @Html.ValidationMessageFor(m => m.Bet)
+
+                @Html.TextBoxFor(m => m.GigID, new { @class = "form-control", @Value = gig.ID, @type = "hidden" })
+
+            </td>
+            <br />
+            <td class="border-0 align-middle">
+                <button type="submit" class="btn btn-auction-submit shadow-none" value="Save" name="actionButton">Bet</button>
+            </td>
+        </tr>
+    }
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
