@@ -18,6 +18,8 @@ namespace AuroraProject.Core.Models
         public string Coupon { get; set; }
         public string SellerInstructions { get; set; }
         public DateTime DateOrdered { get; set; }
+        public bool IsPayed { get; private set; }
+
 
         [Required]
         public int ShoppingCartID { get; set; }
@@ -62,6 +64,11 @@ namespace AuroraProject.Core.Models
             Coupon = order.Coupon;
             SellerInstructions = order.SellerInstructions;
             DateOrdered = DateTime.Now;
+        }
+
+        public void Payed()
+        {
+            IsPayed = true;
         }
     }
 }

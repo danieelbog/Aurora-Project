@@ -9,7 +9,6 @@ namespace AuroraProject.Core.Models
     public class ShoppingCart
     {
         public int ID { get; set; }
-        public bool IsPayed { get; set; }
         public ICollection<Order> Orders { get; set; }
         public ApplicationUser Owner { get; set; }
 

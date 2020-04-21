@@ -3,6 +3,23 @@
     let packageButton;
     let ButtonId;
     let ButtonText;
+    let rowElement;
+
+    let deleteOrder = function () {
+        deleteOrderFromCart();
+    }
+
+    let deleteOrderFromCart = function () {
+        $(".fa-trash").on("click", function (e) {
+            packageButton = $(e.target);
+            rowElement = $(this).parent().closest("tr");
+
+            let viewModel = {};
+            viewModel.OrderID = packageButton.attr("data-order-id");
+
+            orderService.deleteOrder(viewModel, done, fail);
+        })        
+    }
 
     // PURCHASE
     let initial = function (container) {
@@ -111,20 +128,22 @@
     let done = function (packageName) {
         console.log("OK")
 
-        NotificationController.getNotifications();
+        if (packageName == null) {
+            rowElement.addClass("d-none");
+        }
 
-        toastr.success("Added " + packageName + " To Cart");
+        packageName != null ? toastr.success("Added " + packageName + " To Cart") : toastr.success("Order Deleted");
     }
 
-    let fail = function (packageName) {
+    let fail = function (packageName) {       
 
         console.log("FAIL")
-
-        toastr.error("Failed to Add " + packageName + " To Cart");
+        packageName != null ? toastr.success("Failed to Add " + packageName) : toastr.success("Failed to Delete");
     }
 
     return {
-        initial: initial
+        initial: initial,
+        deleteOrder: deleteOrder
     }
 
 }(OrderService);

@@ -36,7 +36,6 @@ namespace AuroraProject.Persistence.Repositories
                 .Include(o => o.Gig.User)
                 .Include(o => o.Gig.FileUploads)
                 .SingleOrDefault(o => o.ID == orderId);
-
         }
 
         public void AddOrder(Order order)

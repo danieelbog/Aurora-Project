@@ -20,6 +20,42 @@ namespace AuroraProject.Controllers.API
             this.unitOfWork = unitOfWork;
         }
 
+        [HttpDelete]
+        public IHttpActionResult DeleteOrder(OrderDto orderDto)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var order = unitOfWork.OrderRepository.GetOrder(orderDto.OrderID);
+            if (order == null)
+                return BadRequest();
+
+            unitOfWork.OrderRepository.RemoveOrder(order);
+
+            unitOfWork.Complete();
+
+            return Ok(orderDto.OrderID);
+        }
+
+        [HttpPut]
+        public IHttpActionResult PayOrder(OrderDto orderDto)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var shoppingCart = unitOfWork.ShoppingCartRepository.GetShoppingCart(userId);
+            if (shoppingCart == null)
+                return BadRequest();
+
+            var order = unitOfWork.OrderRepository.GetOrder(orderDto.OrderID);
+            if (order == null)
+                return BadRequest();
+
+            order.Payed();
+
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
         [HttpPost]
         public IHttpActionResult AddOrder(OrderDto orderDto)
         {

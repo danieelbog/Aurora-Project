@@ -7,6 +7,7 @@ namespace AuroraProject.Core.DTO
 {
     public class OrderDto
     {
+        public int OrderID { get; set; }
         public int? BasicPackageID { get; set; }
         public int? AdvancedPackageID { get; set; }
         public int? PremiumPackageID { get; set; }

@@ -340,6 +340,10 @@
     <Compile Include="Persistence\Migrations\202004201806027_ShoppingCartModels.designer.cs">
       <DependentUpon>202004201806027_ShoppingCartModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\202004211951071_OrderIsPayedChange.cs" />
+    <Compile Include="Persistence\Migrations\202004211951071_OrderIsPayedChange.designer.cs">
+      <DependentUpon>202004211951071_OrderIsPayedChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\UserViewModels\AccountViewModels.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -731,6 +735,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202004201806027_ShoppingCartModels.resx">
       <DependentUpon>202004201806027_ShoppingCartModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202004211951071_OrderIsPayedChange.resx">
+      <DependentUpon>202004211951071_OrderIsPayedChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

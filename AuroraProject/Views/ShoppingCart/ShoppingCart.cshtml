@@ -25,7 +25,7 @@
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Shopping Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="audienceInfo-tab" data-toggle="tab" href="#audienceInfo" role="tab" aria-controls="audienceInfo" aria-selected="false">Shopping History</a>
+                    <a class="nav-link" id="payed-tab" data-toggle="tab" href="#payed" role="tab" aria-controls="payed" aria-selected="false">Shopping History</a>
                 </li>
             </ul>
 
@@ -57,60 +57,124 @@
                                     <tbody>
                                         @foreach (var order in Model.Orders)
                                         {
-                                            <tr class="purchase-forms">
-                                                <th scope="row" class="border-0">
-                                                    <div class="p-2">
+                                            if (!order.IsPayed)
+                                            {
+                                                <tr class="purchase-forms">
+                                                    <th scope="row" class="border-0">
+                                                        <div class="p-2">
 
-                                                        @if (order.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
+                                                            @if (order.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
+                                                            {
+
+                                                                <img alt="" width="70" class="img-fluid rounded shadow-sm" src="~/File?id=@order.Gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID">
+                                                            }
+                                                            else
+                                                            {
+
+                                                                <img src="http://propeller.in/assets/images/profile-pic.png" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                                            }
+
+                                                            <div class="ml-3 d-inline-block align-middle">
+                                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">@order.Name</a></h5><span class="text-muted font-weight-normal font-italic d-block">@order.Descreption</span>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <td class="border-0 align-middle"><strong>@order.Price$</strong></td>
+                                                    <td class="border-0 align-middle"><strong>@order.Count</strong></td>
+                                                    <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash" data-order-id="@order.ID"></i></a></td>
+                                                    <td class="border-0 align-middle">
+                                                        @if (order.Name == order.Gig.BasicPackage.PackageName && order.Descreption == order.Gig.BasicPackage.PackageDescreption)
                                                         {
-
-                                                            <img alt="" width="70" class="img-fluid rounded shadow-sm" src="~/File?id=@order.Gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID">
+                                                            <form id="purchace-gig-basic">
+                                                                <button id="basic" class="text-light checkout-button btn-success btn shadow-none js-button-click" data-sellingPackage-id="@order.Gig.BasicPackageID" data-gig-id="@order.Gig.ID" data-order-id="@order.ID" data-sellingPackage-name="@order.Gig.BasicPackage.PackageName">
+                                                                    CheckOut
+                                                                </button>
+                                                            </form>
+                                                        }
+                                                        else if (order.Name == order.Gig.AdvancedPackage.PackageName && order.Descreption == order.Gig.AdvancedPackage.PackageDescreption)
+                                                        {
+                                                            <form id="purchace-gig-advanced">
+                                                                <button id="advanced" class="text-light checkout-button btn-success btn shadow-none js-button-click" data-sellingPackage-id="@order.Gig.AdvancedPackageID" data-gig-id="@order.Gig.ID" data-order-id="@order.ID" data-sellingPackage-name="@order.Gig.AdvancedPackage.PackageName">
+                                                                    CheckOut
+                                                                </button>
+                                                            </form>
+                                                        }
+                                                        else if (order.Name == order.Gig.PremiumPackage.PackageName && order.Descreption == order.Gig.PremiumPackage.PackageDescreption)
+                                                        {
+                                                            <form id="purchace-gig-premium">
+                                                                <button id="premium" class="text-light checkout-button btn-success btn shadow-none js-button-click" data-sellingPackage-id="@order.Gig.PremiumPackageID" data-gig-id="@order.Gig.ID" data-order-id="@order.ID" data-sellingPackage-name="@order.Gig.PremiumPackage.PackageName">
+                                                                    CheckOut
+                                                                </button>
+                                                            </form>
                                                         }
                                                         else
                                                         {
-
-                                                            <img src="http://propeller.in/assets/images/profile-pic.png" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                                            <a href="#" class="text-dark">No Option for Purchase</a>
                                                         }
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                                        <div class="ml-3 d-inline-block align-middle">
-                                                            <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">@order.Name</a></h5><span class="text-muted font-weight-normal font-italic d-block">@order.Descreption</span>
+                <div class="tab-pane fade show" id="payed" role="tabpanel" aria-labelledby="payed-tab">
+                    <div class="row shoppingCart-form">
+                        <div class="col-md-12">
+
+                            <!-- Shopping cart table -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="p-2 px-3 text-uppercase">Product</div>
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">Price</div>
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">Quantity</div>
+                                            </th>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">Remove</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var order in Model.Orders)
+                                        {
+                                            if (order.IsPayed)
+                                            {
+                                                <tr class="purchase-forms">
+                                                    <th scope="row" class="border-0">
+                                                        <div class="p-2">
+
+                                                            @if (order.Gig.FileUploads.Any(f => f.FileType == AuroraProject.Core.Models.FileType.Photo))
+                                                            {
+
+                                                                <img alt="" width="70" class="img-fluid rounded shadow-sm" src="~/File?id=@order.Gig.FileUploads.First(f => f.FileType == AuroraProject.Core.Models.FileType.Photo).ID">
+                                                            }
+                                                            else
+                                                            {
+
+                                                                <img src="http://propeller.in/assets/images/profile-pic.png" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                                            }
+
+                                                            <div class="ml-3 d-inline-block align-middle">
+                                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">@order.Name</a></h5><span class="text-muted font-weight-normal font-italic d-block">@order.Descreption</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </th>
-                                                <td class="border-0 align-middle"><strong>@order.Price$</strong></td>
-                                                <td class="border-0 align-middle"><strong>@order.Count</strong></td>
-                                                <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                                                <td class="border-0 align-middle">
-                                                    @if (order.Name == order.Gig.BasicPackage.PackageName && order.Descreption == order.Gig.BasicPackage.PackageDescreption)
-                                                    {
-                                                        <form id="purchace-gig-basic">
-                                                            <button id="basic" class="text-light checkout-button btn-success btn shadow-none js-button-click" data-sellingPackage-id="@order.Gig.BasicPackageID" data-gig-id="@order.Gig.ID">
-                                                                CheckOut
-                                                            </button>
-                                                        </form>
-                                                    }
-                                                    else if (order.Name == order.Gig.AdvancedPackage.PackageName && order.Descreption == order.Gig.AdvancedPackage.PackageDescreption)
-                                                    {
-                                                        <form id="purchace-gig-advanced">
-                                                            <button id="advanced" class="text-light checkout-button btn-success btn shadow-none js-button-click" data-sellingPackage-id="@order.Gig.AdvancedPackageID" data-gig-id="@order.Gig.ID">
-                                                                CheckOut
-                                                            </button>
-                                                        </form>
-                                                    }
-                                                    else if (order.Name == order.Gig.PremiumPackage.PackageName && order.Descreption == order.Gig.PremiumPackage.PackageDescreption)
-                                                    {
-                                                        <form id="purchace-gig-premium">
-                                                            <button id="premium" class="text-light checkout-button btn-success btn shadow-none js-button-click" data-sellingPackage-id="@order.Gig.PremiumPackageID" data-gig-id="@order.Gig.ID">
-                                                                CheckOut
-                                                            </button>
-                                                        </form>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href="#" class="text-dark">No Option for Purchase</a>
-                                                    }
-                                                </td>
-                                            </tr>
+                                                    </th>
+                                                    <td class="border-0 align-middle"><strong>@order.Price$</strong></td>
+                                                    <td class="border-0 align-middle"><strong>@order.Count</strong></td>
+                                                    <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash" data-order-id="@order.ID"></i></a></td>
+                                                </tr>
+                                            }
                                         }
                                     </tbody>
                                 </table>
@@ -128,6 +192,9 @@
         $(document).ready(function () {
             //PURCHASE PACKAGE
             PurchaseController.initial(".purchase-forms");
+            //ORDERS REMOVAL
+            OrderController.deleteOrder();
+
         });
     </script>
 }
