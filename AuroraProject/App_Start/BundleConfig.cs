@@ -14,10 +14,7 @@ namespace AuroraProject
                         "~/Scripts/app/controllers/updateMyProfileController.js",
                         //GIG
                         "~/Scripts/app/services/gigService.js",
-                        "~/Scripts/app/controllers/gigController.js",
-                        //FORM INPUT CHECK FOR INFLUENCER FORM AND GIG FORM
-                        "~/Scripts/app/services/formInputCheckService.js",
-                        "~/Scripts/app/controllers/formInputCheckController.js",
+                        "~/Scripts/app/controllers/gigController.js",                        
                         //INFLUENCER
                         "~/Scripts/app/services/influencerService.js",
                         "~/Scripts/app/controllers/influencerController.js",
@@ -30,6 +27,8 @@ namespace AuroraProject
                         //ORDER SELLING PACKAGE
                         "~/Scripts/app/services/orderService.js",
                         "~/Scripts/app/controllers/orderController.js",
+                        //FORM INPUT CHECK FOR INFLUENCER FORM AND GIG FORM
+                        "~/Scripts/app/controllers/formInputCheckController.js",
                         //SEARCH CONTROLLER
                         "~/Scripts/app/controllers/searchController.js",
                         //HOVER CONTROLLER

@@ -1,16 +1,18 @@
 ﻿let HtmlTabController = new function () {
     //RUN THE HOME INDEX
     let homeIndex = function () {
-        //ON LOAD HIDE NAV BAR AT HOME
-        $(".navbar").addClass("d-none")
+        $(".home-container-fluid").ready(function () {
+            $(".alt-layout-navbar").addClass("d-none")
+        });
+
         //ON CLICK TO HOME2 BRING NAV BACK
         $("#industry-tab").click(function () {
-            $(".navbar").removeClass("d-none")
+            $(".alt-layout-navbar").removeClass("d-none")
             $("#home-tab").removeClass("active")
         })
         //ON CLICK TO HOME1 BRING HIDE NAV
         $("#home-tab").click(function () {
-            $(".navbar").addClass("d-none")
+            $(".alt-layout-navbar").addClass("d-none")
             $("#industry-tab").removeClass("active")
         })
     }

@@ -15,7 +15,9 @@
 
     @{Html.RenderAction("Search", "SpecificIndustry");}
 
-    @Html.Partial("_mainNavBar")
+    <div class="alt-layout-navbar">
+        @Html.Partial("_mainNavBar")
+    </div>
 
     @RenderBody()
     @Html.Partial("_Footer")
