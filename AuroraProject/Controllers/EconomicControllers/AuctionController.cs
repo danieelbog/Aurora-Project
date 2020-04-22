@@ -21,11 +21,11 @@ namespace AuroraProject.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-
+        //BRING GIGS TO AURO PRO VIEW
         public ActionResult AuroraPro(int? specificIndustryID)
         {
             // BRING THE GIGS WITH THE DATA I WANT
-            var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(specificIndustryID);            
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(specificIndustryID);
 
             // SEND GIGS TO THE VIEW
             var viewModel = new AuctionViewModel(auctions, User.Identity.IsAuthenticated,
@@ -47,8 +47,7 @@ namespace AuroraProject.Controllers
             //SEND THE SORTED LIST TO THE VIEW
             return View("AuroraPro", viewModel);
         }
-
-        // GET: Auction
+        //GET AUCTION TO MY PROFILE
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
@@ -56,6 +55,8 @@ namespace AuroraProject.Controllers
             var gigs = unitOfWork.GigsRepository.GetGigsForAuction(userId).ToList();
             var auctions = unitOfWork.AuctionRepository.GetAuctionsForAuction(userId).ToList();
 
+            //THE VIEW THAT A USER GETS SHOULD BE ALWAYS UPDATED
+            //WHEN SOMEONE UPDATES THE VIEW ALL AUCTIONS ARE SORTED AGAIN
             foreach (var auction in auctions)
             {
                 int index = auctions.IndexOf(auction);
@@ -72,7 +73,7 @@ namespace AuroraProject.Controllers
 
             return PartialView("_Auction", viewModel);
         }
-
+        //FORM FOR THE AUCTION AT MY PROFILE
         public ActionResult AuctionForm()
         {
             var userId = User.Identity.GetUserId();
@@ -90,7 +91,7 @@ namespace AuroraProject.Controllers
             return PartialView("_AuctionForm", viewModel);
         }
 
-        // POST: Auction
+        //POST A NEW AUTION
         [HttpPost]
         public ActionResult Create(AuctionFormViewModel viewModel)
         {
@@ -104,16 +105,14 @@ namespace AuroraProject.Controllers
             if (gig == null)
                 return HttpNotFound();
 
-            if(gig.UserID != userId)
+            if (gig.UserID != userId)
                 return new HttpUnauthorizedResult();
-
-            //var auctions = unitOfWork.AuctionRepository.GetAuctionsForProIndex(gig.SpecificIndustryID).ToList();
-
+            //IF THERE IS ALREADY AN AUCTION FOR THE GIG, REMOVE THE AUCTION AND POST A NEW ONE
             if (unitOfWork.AuctionRepository.GetAuctionForGig(viewModel.GigID) != null)
                 unitOfWork.AuctionRepository.RemoveAuctionForGig(viewModel.GigID);
-
+            //CREATE AUTION
             var auction = Auction.CreateAuction(viewModel, gig, unitOfWork.AuroraWalletRepository.GetAuroraWallet());
-
+            //ADD AUCTION TO DB
             unitOfWork.AuctionRepository.AddAuctionForGig(auction);
             unitOfWork.Complete();
 

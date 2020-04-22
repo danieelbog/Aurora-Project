@@ -21,9 +21,7 @@ namespace AuroraProject.Controllers.API
             this.unitOfWork = unitOfWork;
         }
 
-        //FOLLOWER = USER
-        //FOLOWEE = INFLUENCER
-        // POST: api/favoriteInfluencers
+        //ADD FAVORITE INFLUENCER
         [HttpPost]
         public IHttpActionResult Follow(FavouriteInfluencerDto favouriteInfluencerDto)
         {
@@ -43,7 +41,7 @@ namespace AuroraProject.Controllers.API
 
             return Ok();
         }
-
+        //DELETE FAVORITE INFLUENCER
         [HttpDelete]
         public IHttpActionResult DeleteFollow(int id)
         {

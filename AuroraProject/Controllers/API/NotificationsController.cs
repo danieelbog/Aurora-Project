@@ -22,7 +22,7 @@ namespace AuroraProject.Controllers.API
         {
             this.unitOfWork = unitOfWork;
         }
-
+        //GET NOTIFICATIONS
         public IEnumerable<NotificationDto> GetNotifications()
         {
             var userId = User.Identity.GetUserId();
@@ -32,6 +32,7 @@ namespace AuroraProject.Controllers.API
         }
 
         [HttpPost]
+        //MARK NOTIFICATION AS READ
         public IHttpActionResult MarkAsRead(NotificationDto userNotificationDto)
         {
 
@@ -51,7 +52,7 @@ namespace AuroraProject.Controllers.API
 
             return Ok();
         }
-
+        //DELETE NOTIFICATION
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {

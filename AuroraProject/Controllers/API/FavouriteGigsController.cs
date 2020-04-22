@@ -21,10 +21,7 @@ namespace AuroraProject.Controllers.API
             this.unitOfWork = unitOfWork;
         }
 
-        //FOLLOWER = ACTIONER
-        //FOLOWEE = GIG
-
-        //POST: api/favourites
+        //CREATE FAVOURITE GIG
         [HttpPost]
         public IHttpActionResult Favourite(FavouriteGigDto favouriteGigDto)
         {
@@ -44,7 +41,7 @@ namespace AuroraProject.Controllers.API
 
             return Ok();
         }
-
+        //DELETE FAVOURITE GIG
         [HttpDelete]
         public IHttpActionResult Unfavourite(int id)
         {

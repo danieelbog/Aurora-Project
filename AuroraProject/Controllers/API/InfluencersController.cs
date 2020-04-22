@@ -21,7 +21,7 @@ namespace AuroraProject.Controllers.API
         {
             this.unitOfWork = unitOfWork;
         }
-
+        //UPDATE INFLUENCER - FROM MY PROFILE
         [HttpPut]
         public IHttpActionResult UpdateInfluencer(InfluencerDto influencerDto)
         {

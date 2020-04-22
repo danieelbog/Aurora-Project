@@ -21,7 +21,7 @@ namespace AuroraProject.Controllers.API
             this.unitOfWork = unitOfWork;
         }
 
-        //POST: api/favourites
+        //ENABLE GIG TO BE VIEWD
         [HttpPost]
         public IHttpActionResult Enable(int id)
         {
@@ -41,7 +41,7 @@ namespace AuroraProject.Controllers.API
 
             return Ok();
         }
-
+        //DISABLE GIG TO NOT BE VIEWD
         [HttpDelete]
         public IHttpActionResult Disable(int id)
         {

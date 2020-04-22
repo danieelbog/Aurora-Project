@@ -47,7 +47,7 @@ namespace AuroraProject.Controllers
 
             if (walletDb == null || viewModel.Transaction < 0)
                 return HttpNotFound("You dont have a wallet?");
-
+            //BASED ON WHAT SUBMIT WAS THERE WILL BE AN ADD OR A WITHDRAW MONEY
             switch (submitButton)
             {
                 case "AddMoney":

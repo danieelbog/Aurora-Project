@@ -13,6 +13,7 @@ using AuroraProject.Core;
 
 namespace AuroraProject.Controllers.API
 {
+    [Authorize]
     public class SellingPackagesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -20,8 +21,7 @@ namespace AuroraProject.Controllers.API
         {
             this.unitOfWork = unitOfWork;
         }
-
-        [Authorize]
+        //MAKE PURCHASE
         [HttpPost]
         public IHttpActionResult PurchasePackage(GigDto gigDto)
         {

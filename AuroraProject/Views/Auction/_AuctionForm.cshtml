@@ -1,11 +1,12 @@
 ﻿@model AuroraProject.Core.ViewModels.AuctionFormViewModel
 
-@using (Html.BeginForm("Create", "Auction", null, FormMethod.Post, new { @class = "auction-form-profile" }))
+@foreach (var gig in Model.Gigs)
 {
-    @Html.AntiForgeryToken()
-
-    foreach (var gig in Model.Gigs)
+    using (Html.BeginForm("Create", "Auction", null, FormMethod.Post, new { @class = "auction-form-profile" }))
     {
+        @Html.AntiForgeryToken()
+
+
         <hr />
         <tr>
             <th scope="row" class="border-0">
@@ -26,7 +27,7 @@
                 </div>
             </th>
             <td class="border-0 align-middle">
-                @Html.TextBoxFor(m => m.Bet, new { @class = "form-control bet-form-control shadow-none", @placeholder = "Your Bet", @Value = "" })
+                @Html.TextBoxFor(m => m.Bet, new { @class = "form-control bet-form-control shadow-none", @placeholder = "Your Bet" })
                 @Html.ValidationMessageFor(m => m.Bet)
 
                 @Html.TextBoxFor(m => m.GigID, new { @class = "form-control", @Value = gig.ID, @type = "hidden" })

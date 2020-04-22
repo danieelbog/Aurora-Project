@@ -20,7 +20,7 @@ namespace AuroraProject.Controllers.API
         {
             this.unitOfWork = unitOfWork;
         }
-
+        //GET ORDERS
         public IEnumerable<OrderDto> GetOrders()
         {
             var userId = User.Identity.GetUserId();
@@ -30,7 +30,7 @@ namespace AuroraProject.Controllers.API
 
             return orders.Select(Mapper.Map<Order, OrderDto>);
         }
-
+        //DELETE ORDERS
         [HttpDelete]
         public IHttpActionResult DeleteOrder(OrderDto orderDto)
         {
@@ -46,7 +46,7 @@ namespace AuroraProject.Controllers.API
 
             return Ok(orderDto.OrderID);
         }
-
+        //PAY ORDERS
         [HttpPut]
         public IHttpActionResult PayOrder(OrderDto orderDto)
         {
@@ -66,7 +66,7 @@ namespace AuroraProject.Controllers.API
 
             return Ok();
         }
-
+        //ADD ORDER
         [HttpPost]
         public IHttpActionResult AddOrder(OrderDto orderDto)
         {
