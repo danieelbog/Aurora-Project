@@ -7,6 +7,7 @@ namespace AuroraProject.Core.Repositories
     {
         Order GetOrder(int orderId);
         ICollection<Order> GetOrders(int shoppingCartID);
+        ICollection<Order> GetUnpayedOrders(int shoppingCartID);
         void AddOrder(Order order);
         void RemoveOrder(Order order);
 

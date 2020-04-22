@@ -5,6 +5,20 @@
     let ButtonText;
     let rowElement;
 
+    // GET ORDER
+    let getOrders = function () {
+        orderService.getOrders(countOrders);       
+    }
+
+    let countOrders = function (notifications) {
+        $(".js-orders-count")
+            .text(notifications.length)
+            .removeClass("hide")
+            .addClass("animated bounceInDown");
+    }
+
+
+    //DELETE ORDER
     let deleteOrder = function () {
         deleteOrderFromCart();
     }
@@ -132,6 +146,7 @@
             rowElement.addClass("d-none");
         }
 
+        OrderController.getOrders();
         packageName != null ? toastr.success("Added " + packageName + " To Cart") : toastr.success("Order Deleted");
     }
 
@@ -143,7 +158,8 @@
 
     return {
         initial: initial,
-        deleteOrder: deleteOrder
+        deleteOrder: deleteOrder,
+        getOrders: getOrders
     }
 
 }(OrderService);

@@ -1,5 +1,15 @@
 ﻿let OrderService = function () {
 
+    let getOrders = function (countOrders) {
+
+        $.getJSON("/api/orders", function (orders) {
+            if (orders.length == 0)
+                return;
+
+            countOrders(orders);
+        });
+    }
+
     let addOrder = function (viewModel, done, fail, packageName) {
         $.ajax({
             url: '/api/orders',
@@ -30,6 +40,7 @@
 
     return {
         addOrder: addOrder,
-        deleteOrder: deleteOrder
+        deleteOrder: deleteOrder,
+        getOrders: getOrders
     }
 }();

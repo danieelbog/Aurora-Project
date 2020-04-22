@@ -129,6 +129,7 @@
     let done = function (packageName) {
         console.log("OK")
         NotificationController.getNotifications();
+        OrderController.getOrders();
         rowElement.addClass("d-none");
         toastr.success("Purchased " + packageName);
     }

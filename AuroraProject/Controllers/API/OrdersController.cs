@@ -1,6 +1,7 @@
 ﻿using AuroraProject.Core;
 using AuroraProject.Core.DTO;
 using AuroraProject.Core.Models;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,16 @@ namespace AuroraProject.Controllers.API
         public OrdersController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<OrderDto> GetOrders()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var shoppingCart = unitOfWork.ShoppingCartRepository.GetShoppingCart(userId);
+            var orders = unitOfWork.OrderRepository.GetUnpayedOrders(shoppingCart.ID);
+
+            return orders.Select(Mapper.Map<Order, OrderDto>);
         }
 
         [HttpDelete]

@@ -13,6 +13,7 @@ namespace AuroraProject.App_Start
         public OrganizationProfile()
         {
             CreateMap<Notification, NotificationDto>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }
