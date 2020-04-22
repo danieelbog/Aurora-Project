@@ -1,4 +1,5 @@
 ﻿let PurchaseService = function () {
+    //PURCAHSE GIG, VIEWMODEL-GIGDTO
     let purchase = function (viewModel, donePay, failPay, packageName, e) {
 
         $.ajax({
@@ -13,7 +14,7 @@
                 failPay(packageName, e)
             })
     }
-
+    //PAY ORDER, VIEWMODEL-ORDERDTO
     let payOrder = function (viewModel, done, fail, packageName) {
         $.ajax({
             url: '/api/orders',

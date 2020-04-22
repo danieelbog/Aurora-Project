@@ -471,7 +471,6 @@
     <Content Include="Scripts\app\controllers\updateMyProfileController.js" />
     <Content Include="Scripts\app\services\gigService.js" />
     <Content Include="Scripts\app\services\influencerService.js" />
-    <Content Include="Scripts\app\services\formInputCheckService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\app\services\orderService.js" />
     <Content Include="Scripts\app\services\purchaseService.js" />

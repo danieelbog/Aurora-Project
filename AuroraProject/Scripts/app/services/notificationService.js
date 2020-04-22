@@ -1,5 +1,5 @@
 ﻿let NotificationService = function () {
-
+    //GET NOTIFICATION AND USE COUNTNOTIFICATIONS FUNCTION
     let getNotifications = function (countNotifications) {
 
         $.getJSON("/api/notifications", function (notifications) {
@@ -10,13 +10,13 @@
 
         });
     }
-
+    //READ NOTIFICATION, ID SEND
     let readNotification = function (notificationId, done, fail) {
         $.post("/api/notifications", { NotificationID: notificationId })
             .done(done)
             .fail(fail)
     }
-
+    //DELETE NOTIFICATION, ID SEND
     let deleteNotification = function (notificationId, done, fail) {
         $.ajax({
             url: "/api/notifications/" + notificationId,
