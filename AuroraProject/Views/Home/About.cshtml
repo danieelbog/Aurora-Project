@@ -1,7 +1,51 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿
 
-<p>Use this area to provide additional information.</p>
+<div class="container-fluid">
+    <h6 class="navigator-h6">@Html.ActionLink("Aurora", "Index", "Home") > <a href="" onClick="window.location.reload();">About Aurora Team</a></h6>
+
+    <div class="page-decoration container">
+        <h1 class="page-heading">About Aurora Team</h1>
+        <p class="page-descreption">A small team of correct people, is bigger than a big team of wrong people!</p>
+    </div>
+
+        <h1 class="heading text">Meet The Team</h1>
+        <div class="card-wrapper-about-us">
+            <div class="card card-about-us">
+                <img src="~/Content/Images/Images/mdvmefeejg331.jpg" alt="card background" class="card-img">
+                <img src="~/Content/Images/Images/daniel.jpg" alt="profile image" class="profile-img-about-us">
+                <h1>Daniel Bogdan</h1>
+                <p class="job-title">Lead Designer / Full Stack Entry Level Developer</p>
+                <p class="about">
+                    Graduated from Department of Economic and Regional Development from Panteion University.
+                    Has developed many skills working for AXA Insurance in Greece for almost 2 years.
+                    Currently I am changing my career to become a Full Stack Software Developer.
+                    Looking to work in an environment where I can develop further my skills and fulfill my constant need for being creative and vigorous.
+                </p>
+                <a href="#" class="btn">Contact</a>
+                <ul class="social-media">
+                    <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="card card-about-us">
+                <img src="~/Content/Images/Images/city.jpg" alt="card background" class="card-img">
+                <img src="~/Content/Images/Images/david.jpg" alt="profile image" class="profile-img-about-us">
+                <h1>David Iliadis</h1>
+                <p class="job-title">Entry Level Front End Developer</p>
+                <p class="about">
+                    Determined, goal-oriented person, always striving to achieve any assigned task. I have acquired management knowledge through my ex website company and international working experience while working for my last employer.
+                    My new passion is programming, as I enjoy spending unlimited hours per day expanding my knowledge. My ambition is to help others through user friendly applications.
+                </p>
+                <a href="#" class="btn">Contact</a>
+                <ul class="social-media">
+                    <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
+                </ul>
+            </div>
+        </div>
+</div>

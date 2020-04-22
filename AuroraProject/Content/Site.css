@@ -504,6 +504,68 @@ textarea {
 }
 
 
+/*HOME 2 MAIN BODY*/
+#services {
+    margin: 90px auto;
+    text-align: center;
+    background-image: linear-gradient(rgba(20, 0, 255, 0.8), rgba(255, 0, 173, 0.5)), url(Images/Images/nightCityTokyo.jpg);
+    height: 100vh;
+}
+
+.container-services {
+    padding: 0;
+    position: relative;
+    top: -4em;
+}
+
+.home2-h1 {
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    position: relative;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%,-50%);
+    color: white;
+}
+
+    .home2-h1:after {
+        content: '';
+        background-color: ghostwhite;
+        display: block;
+        width: 150px;
+        margin: 10px auto;
+        height: 3px;
+        background: linear-gradient(to right, #4A00E0 0%, white 100%);
+    }
+
+.icon-home2 {
+    font-size: 40px;
+    margin: 20px auto;
+    padding: 20px;
+    height: 80px;
+    width: 80px;
+    border: 1px solid ghostwhite;
+    border-radius: 50%;
+    background-color: ghostwhite;
+}
+
+.col-md-home2:hover {
+    box-shadow: 5px 7px 9px -3px ghostwhite;
+    cursor: pointer;
+}
+
+.row-services {
+    
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    background-color: ghostwhite;
+}
+
+.industry-container {
+    height: 90vh;
+}
 /*CUSTOM LAYOUT NAVBAR*/
 .navbar-brand {
     width: 6em;
@@ -2891,5 +2953,179 @@ sidebar .list-wrap .list .count {
 
     header .open {
         display: block !important;
+    }
+}
+
+/*ABOUT US SECTION*/
+.my-chat container-fluid {
+    overflow-x: hidden;
+}
+
+.heading {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin-right: -3px;
+    margin-bottom: 5rem;
+    text-align: center;
+    color: #333;
+    position: relative;
+}
+
+    .heading::after {
+        content: "";
+        width: 15rem;
+        height: .7rem;
+        /* background-color: #45e19f; */
+        background: linear-gradient(to right, #4A00E0 0%, #8E2DE2 100%);
+        position: absolute;
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2rem;
+    }
+
+.card-wrapper-about-us {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.card-about-us {
+    width: 32rem;
+    background-color: #ebeef8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    box-shadow: .5rem .5rem 3rem rgba(0,0,0,0.2);
+}
+
+@media (max-width: 741px) {
+    .card-about-us {
+        width: 100%;
+    }
+}
+
+    .card-about-us .card-img {
+        width: 100%;
+        height: 20rem;
+        object-fit: cover;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 78%, 0% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 78%, 0% 100%);
+    }
+
+.profile-img-about-us {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 50% !important;
+    margin-top: -11rem;
+    z-index: 999;
+    border: 1rem solid #ebeef8;
+}
+
+.card-about-us h1 {
+    font-size: 1.5rem;
+    /* color: #333; */
+    color: rgb(119, 3, 129);
+    margin: 1.5rem 0;
+}
+
+.job-title {
+    /* color: #777; */
+    color: rgb(99, 26, 163);
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.about {
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    color: #333;
+    padding: 1em;
+}
+
+.card-about-us .btn {
+    padding: 1rem 2.5rem;
+    /* background-color: #445ae3; */
+    background-color: rgb(122, 30, 202);
+    border-radius: 2rem;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    color: #eee;
+    font-size: 1.4rem;
+    transition: all .5s;
+}
+
+    .card-about-us .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.2);
+    }
+
+    .card-about-us .btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+.social-media {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem 0;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0.1);
+}
+
+    .social-media i {
+        font-size: 3rem;
+    }
+
+@media screen and (min-width: 700px) {
+    .card-wrapper-about-us {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-about-us {
+        margin: 2rem;
+        transition: transform .5s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .card-about-us:nth-child(1) {
+        animation: fadeIn .5s .3s backwards;
+    }
+
+    .card-about-us:nth-child(2) {
+        animation: fadeIn .5s .7s backwards;
+    }
+
+    /* .card:nth-child(3) {
+        animation: fadeIn .5s .1.5s backwards;
+    }
+
+    .card:nth-child(4) {
+        animation: fadeIn .5s .2s backwards;
+    } */
+
+    .card-about-us:hover {
+        transform: scale(1.1);
     }
 }

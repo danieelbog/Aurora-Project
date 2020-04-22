@@ -1,4 +1,4 @@
-﻿<div class="container-fluid home-container-fluid position-absolute">
+﻿<div class="container-fluid home-container-fluid">
 
     <div class="tab-content" id="myTabContent">
         <div class="home-container tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -51,11 +51,61 @@
         </div>
 
         <div class="industry-container tab-pane fade show" id="industry" role="tabpanel" aria-labelledby="industry-tab">
-
-
-            <div class="arrow arrow-toHome">
+            <div class="arrow arrow-toHome position-fixed">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span></span><span></span><span></span></a>
+            </div>
+
+            <div class="container-fluid container-services">
+                <div id="services">
+
+                    <h1 class="home2-h1">Our Services</h1>
+
+                    <div class="row row-services">
+                        <div class="col-md-3 text-center col-md-home2">
+
+                            <div class="icon-home2">
+                                <i class="fa fa-desktop"></i>
+                            </div>
+                            <h3>Social Media Marketing Services</h3>
+                            <p> Aurora's social media management and advertising services remove the complexity of social media for business owners and let you stick to what you know best—running your business!</p>
+                        </div>
+                        <div class="col-md-3 text-center col-md-home2">
+
+                            <div class="icon-home2">
+                                <i class="fa fa-tablet"></i>
+                            </div>
+                            <h3>Build & Manage Your Community</h3>
+                            <p>Aurora gives you the opportunity to work with an unlimited number of small influencers with targeted groups. This is our advantage. Activate your existing customers & fans and work with the pool of Aurora ambassadors to drive sales and genuine user generated content. </p>
+                        </div>
+
+                        <div class="col-md-3 text-center col-md-home2">
+
+                            <div class="icon-home2">
+                                <i class="fa fa-line-chart"></i>
+                            </div>
+                            <h3>Generate Buzz Around Your Brand</h3>
+                            <p>Aurora will help small influencers to be heard and to set up marketing missions for their ambassadors & to generate content that can be used again and again, drive revenue with tracking codes and discounts, and increase engagement on their social channels. </p>
+                        </div>
+
+                        <div class="col-md-3 text-center col-md-home2">
+
+                            <div class="icon-home2">
+                                <i class="fa fa-paint-brush"></i>
+                            </div>
+                            <h3>Harness The Power Of Your Top Fans</h3>
+                            <p>Ambassador marketing sits between influencer marketing and affiliate marketing as a powerful word of mouth marketing channel. It’s not a case of one or the other, they work well together, but many brands are overlooking this huge opportunity.
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            MouseCaptureController.initial();
+        });           
+    </script>
+}

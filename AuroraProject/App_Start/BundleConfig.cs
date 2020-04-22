@@ -36,6 +36,8 @@ namespace AuroraProject
                         "~/Scripts/app/controllers/hoverIndustryController.js",
                         //HTML TAB CONTROLLER
                         "~/Scripts/app/controllers/htmlTabController.js",
+                        //HTML MOUSE CAPTRUE CONTROLLER
+                        "~/Scripts/app/controllers/mouseCaptureController.js",
                         //APP JS
                         "~/Scripts/app.app.js"));
 

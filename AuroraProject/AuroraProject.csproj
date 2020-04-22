@@ -432,10 +432,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\Images\city.jpg" />
+    <Content Include="Content\Images\Images\daniel.jpg" />
+    <Content Include="Content\Images\Images\david.jpg" />
     <Content Include="Content\Images\Images\download.jpg" />
     <Content Include="Content\Images\Images\home.jpg" />
+    <Content Include="Content\Images\Images\mdvmefeejg331.jpg" />
+    <Content Include="Content\Images\Images\nightCityTokyo.jpg" />
     <Content Include="Content\Images\Images\shoppingCart.png" />
     <Content Include="Content\Images\Images\wallet.png" />
+    <Content Include="Content\Images\Images\Wallpaper Cyberpunk 2077, E3 2018, artwork, 12K, Games 9168813283.jpg" />
     <Content Include="Content\Images\Login\InfluencerRegister.png" />
     <Content Include="Content\Images\Login\GigFormInput.png" />
     <Content Include="Content\Images\Login\Creative.png" />
@@ -457,6 +463,7 @@
     <Content Include="Scripts\app\controllers\influencerController.js" />
     <Content Include="Scripts\app\controllers\formInputCheckController.js" />
     <Content Include="Scripts\app\controllers\hoverIndustryController.js" />
+    <Content Include="Scripts\app\controllers\mouseCaptureController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
     <Content Include="Scripts\app\controllers\orderController.js" />
     <Content Include="Scripts\app\controllers\purchaseController.js" />
