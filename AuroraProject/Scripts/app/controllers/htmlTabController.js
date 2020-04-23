@@ -20,10 +20,12 @@
     //TABS FOR MY INFLUENCER PAGE
     let mineInfluencer = function () {
         $("#favAudienceInfo-tab").click(function () {
+            $("#favInfluencerInfo").removeClass("active");
             $("#favInfluencerInfo-tab").removeClass("active");
         })
 
         $("#favInfluencerInfo-tab").click(function () {
+            $("#favAudienceInfo").removeClass("active");
             $("#favAudienceInfo-tab").removeClass("active");
         })
     }

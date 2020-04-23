@@ -1000,7 +1000,7 @@ textarea {
 }
 
 .page-descreption-b {
-    color: var( --page-decorator-maintext-white) !important;
+    color: white !important;
     text-decoration: none;
     opacity: 0.8;
     position: relative;

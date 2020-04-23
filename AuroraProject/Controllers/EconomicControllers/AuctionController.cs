@@ -53,7 +53,7 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             var gigs = unitOfWork.GigsRepository.GetGigsForAuction(userId).ToList();
-            var auctions = unitOfWork.AuctionRepository.GetAuctionsForAuction(userId).ToList();
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForAuction().ToList();
 
             //THE VIEW THAT A USER GETS SHOULD BE ALWAYS UPDATED
             //WHEN SOMEONE UPDATES THE VIEW ALL AUCTIONS ARE SORTED AGAIN
@@ -68,7 +68,7 @@ namespace AuroraProject.Controllers
             var viewModel = new AuctionFormViewModel
             {
                 Gigs = gigs,
-                Auctions = auctions
+                Auctions = auctions.Where(a => a.Gig.UserID == userId)
             };
 
             return PartialView("_Auction", viewModel);
@@ -79,7 +79,7 @@ namespace AuroraProject.Controllers
             var userId = User.Identity.GetUserId();
 
             var gigs = unitOfWork.GigsRepository.GetGigsForAuction(userId).ToList();
-            var auctions = unitOfWork.AuctionRepository.GetAuctionsForAuction(userId).ToList();
+            var auctions = unitOfWork.AuctionRepository.GetAuctionsForFormAuction(userId).ToList();
 
             // CREATE VIEW MODEL TO SEND IT TO THE VIEW
             var viewModel = new AuctionFormViewModel

@@ -7,7 +7,8 @@ namespace AuroraProject.Core.Repositories
     {
         void AddAuctionForGig(Auction auction);
         Auction GetAuctionForGig(int gigId);
-        IEnumerable<Auction> GetAuctionsForAuction(string userId);
+        IEnumerable<Auction> GetAuctionsForAuction();
+        IEnumerable<Auction> GetAuctionsForFormAuction(string userId);
         IEnumerable<Auction> GetAuctionsForProIndex(int? specificIndustryId);
         void RemoveAuctionForGig(int gigId);
     }

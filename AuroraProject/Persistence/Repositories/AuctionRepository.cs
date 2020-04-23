@@ -35,9 +35,9 @@ namespace AuroraProject.Persistence.Repositories
             return auctions;
         }
 
-        public IEnumerable<Auction> GetAuctionsForAuction(string userId)
+        public IEnumerable<Auction> GetAuctionsForAuction()
         {
-            var auctions = _context.Auctions.Where(a => a.Gig.UserID == userId).Include(a => a.Gig).ToList();
+            var auctions = _context.Auctions.Include(a => a.Gig).ToList();
 
             BubbleSort.SortDescendingBet(auctions);
 
@@ -59,6 +59,15 @@ namespace AuroraProject.Persistence.Repositories
             var auction = GetAuctionForGig(gigId);
 
             _context.Auctions.Remove(auction);
+        }
+
+        public IEnumerable<Auction> GetAuctionsForFormAuction(string userId)
+        {
+            var auctions = _context.Auctions.Where(a => a.Gig.UserID == userId).Include(a => a.Gig).ToList();
+
+            BubbleSort.SortDescendingBet(auctions);
+
+            return auctions;
         }
     }
 }

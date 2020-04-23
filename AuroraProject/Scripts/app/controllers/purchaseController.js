@@ -34,6 +34,7 @@
             packageButton = $(e.target.children);
             // GET THE ELEMENT DIV IN ORDER TO HIDE WHEN DONE
             rowElement = $(this).parent().closest("tr");
+            console.log(rowElement);
             // GET THE PACKAGE NAME
             packageName = packageButton.attr("data-sellingPackage-name");
             // CREATE VIEWMODEL TO SEND IT TO DTO
